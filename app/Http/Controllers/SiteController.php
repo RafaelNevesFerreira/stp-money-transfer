@@ -9,4 +9,8 @@ class SiteController extends Controller
     public function index(){
         return view("site.welcome");
     }
+
+    public function about(){
+        return view("site.about");
+    }
 }

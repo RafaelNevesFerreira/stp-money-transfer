@@ -70,7 +70,7 @@
                                     <li><a
                                             href="http://demo.harnishdesign.net/html/payyed/landing-page-receive.html">Receive</a>
                                     </li>
-                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li><a href="{{route("about")}}">About Us</a></li>
                                     <li><a href="fees.html">Fees</a></li>
                                     <li><a href="help.html">Help</a></li>
 
