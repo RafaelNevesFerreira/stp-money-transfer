@@ -236,13 +236,13 @@
                                     <p class="text-4">“Estou Feliz Enviando dinheiro com a {{ env('APP_NAME') }},
                                         ganhei 20% de desconto no segundo envio, fantastico”</p>
                                     <strong class="d-block fw-500">Alves Sousa</strong> <span
-                                        class="text-muted">França</span>
+                                        class="text-muted">Londres</span>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="testimonial rounded text-center p-4">
                                     <p class="text-9 text-muted opacity-2 mb-2"><i class="fa fa-quote-left"></i></p>
-                                    <p class="text-4">Envios rápidos e fáceis, disponivel para muitas moedas
+                                    <p class="text-4">"Envios rápidos e fáceis, disponivel para muitas moedas
                                         diferentes. Muito
                                         melhor que as transferências bancarias.”</p>
                                     <strong class="d-block fw-500">Garcia Neves</strong> <span
