@@ -118,7 +118,7 @@
                     <div class="col-lg-4">
                         <div class="featured-box style-3">
                             <div class="featured-box-icon text-light"><span class="w-100 text-20 fw-500">3</span></div>
-                            <h3>Send Money</h3>
+                            <h3>Envie dinheiro</h3>
                             <p class="text-3">Depois de enviar o dinheiro, o destinatário será notificado por
                                 e-mail, menssagem ou chalada telefonica quando
                                 o dinheiro for transferido para São Tomé, menos de 30min.</p>
