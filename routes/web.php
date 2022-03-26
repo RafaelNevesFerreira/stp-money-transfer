@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(SiteController::class)->group(function(){
-    Route::get("/")->name("home");
+    Route::get("/","index")->name("home");
 });
