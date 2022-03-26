@@ -29,7 +29,7 @@
                                 <hr class="mb-4 mx-n4">
                                 <form id="form-send-money" method="post">
                                     <div class="mb-3">
-                                        <label for="youSend" class="form-label">Você Envia</label>
+                                        <label for="youSend" class="form-label">Valor a ser enviado</label>
                                         <div class="input-group">
                                             <span class="input-group-text">$</span>
                                             <input type="text" class="form-control" data-bv-field="youSend" id="youSend"
@@ -62,7 +62,7 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="recipientGets" class="form-label">A Pessoa Recebe</label>
+                                        <label for="recipientGets" class="form-label">Valor a ser recebido</label>
                                         <div class="input-group">
                                             <span class="input-group-text">$</span>
                                             <input type="text" class="form-control" data-bv-field="recipientGets"
