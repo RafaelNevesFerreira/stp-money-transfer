@@ -3,7 +3,7 @@
     <script src="{{ asset('assets/js/maskmoney.min.js') }}"></script>
 
     <!-- Content
-                                          ============================================= -->
+                                              ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
 
@@ -19,19 +19,20 @@
                             <a href="#" class="step-dot"></a>
                         </div>
                         <div class="col-4 step disabled">
-                            <div class="step-name">Confirm</div>
+                            <div class="step-name">Identificação</div>
                             <div class="progress">
                                 <div class="progress-bar"></div>
                             </div>
                             <a href="#" class="step-dot"></a>
                         </div>
                         <div class="col-4 step disabled">
-                            <div class="step-name">Success</div>
+                            <div class="step-name">Pagamento</div>
                             <div class="progress">
                                 <div class="progress-bar"></div>
                             </div>
                             <a href="#" class="step-dot"></a>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -43,7 +44,7 @@
                         <h3 class="text-5 fw-400 mb-3 mb-sm-4">Detalhes</h3>
                         <hr class="mx-n3 mx-sm-n5 mb-4">
                         <!-- Send Money Form
-                                                    ============================ -->
+                                                        ============================ -->
                         <form id="form-send-money" method="post">
                             <div class="mb-3">
                                 <label for="nomedoreceptor" class="form-label">Nome do Receptor</label>
@@ -54,8 +55,8 @@
                                 <label for="youSend" class="form-label">Valor a ser enviado</label>
                                 <div class="input-group">
                                     {{-- <span class="input-group-text">$</span> --}}
-                                    <input type="text" data-thousands="." data-decimal="," class="form-control" data-bv-field="youSend" id="youSend"
-                                        value="25" placeholder="">
+                                    <input type="text" data-thousands="." data-decimal="," class="form-control"
+                                        data-bv-field="youSend" id="youSend" value="25" placeholder="">
                                     <span class="input-group-text p-0">
                                         <select id="youSendCurrency" data-style="form-select bg-transparent border-0"
                                             data-container="body" data-live-search="true"
@@ -117,16 +118,15 @@
             $("#youSend").keyup(function() {
                 if ($("#youSend").val() < 1) {
                     $("#recipientGets").val(0);
-
                 } else {
-                    var valor = parseFloat($(this).val());
-                    var formater = new Intl.NumberFormat("fr-FR",{
+                    var valor = $(this).val()
+                    var valor_novo = valor.replace(/./g,'');
+                    var formater = new Intl.NumberFormat("fr-FR", {
                         style: "currency",
                         currency: "EUR"
                     });
-                    console.log(formater.format(valor+10));
-                    // $("#recipientGets").val(valor + 10);
-
+                    // PESQUISAR COMO REMOVER CERTOS CARACTERES DE UMA STRING EM JAVASCRIPT
+                    console.log(valor_novo);
                 }
             });
 
