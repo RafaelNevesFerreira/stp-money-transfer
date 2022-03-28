@@ -119,8 +119,13 @@
                     $("#recipientGets").val(0);
 
                 } else {
-                    var valor = parseInt($(this).val());
-                    $("#recipientGets").val(valor + 10);
+                    var valor = parseFloat($(this).val());
+                    var formater = new Intl.NumberFormat("fr-FR",{
+                        style: "currency",
+                        currency: "EUR"
+                    });
+                    console.log(formater.format(valor+10));
+                    // $("#recipientGets").val(valor + 10);
 
                 }
             });
