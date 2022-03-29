@@ -49,17 +49,17 @@
                             <div class="mb-3">
                                 <label for="nomedoreceptor" class="form-label">Nome do Receptor</label>
                                 <input type="text" class="form-control" id="nomedoreceptor" required
-                                    placeholder="Digite o nome completo do receptor">
+                                    placeholder="Digite o nome completo do receptor" name="nomedoreceptor">
                             </div>
                             <div class="mb-3">
                                 <label for="youSend" class="form-label">Valor a ser enviado</label>
                                 <div class="input-group">
                                     {{-- <span class="input-group-text">$</span> --}}
                                     <input type="text" data-thousands="." data-decimal="," class="form-control"
-                                        data-bv-field="youSend" id="youSend" value="25,00" placeholder="">
+                                        data-bv-field="youSend" name="valor_enviado" id="youSend" value="25,00" placeholder="">
                                     <span class="input-group-text p-0">
                                         <select id="youSendCurrency" data-style="form-select bg-transparent border-0"
-                                            data-container="body" data-live-search="true"
+                                            data-container="body" data-live-search="true" name="moeda"
                                             class="selectpicker form-control bg-transparent" required="">
                                             <optgroup label="Popular Currency">
                                                 <option data-icon="currency-flag currency-flag-usd me-1"
