@@ -133,8 +133,11 @@
                         minha_tax = 50
                     } else if (valor > 800 && valor <= 1000) {
                         minha_tax = 150
-                    } else {
+                    } else if (valor >= 25) {
+                        minha_tax = 6
+                    }else{
                         minha_tax = 10
+
                     }
                     var tax = valor * 0.030 + 0.3 + minha_tax
 

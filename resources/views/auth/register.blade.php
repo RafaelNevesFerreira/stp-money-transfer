@@ -26,6 +26,27 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
+            <!-- Phone -->
+            <div>
+                <x-label for="phone_number" :value="__('Phone')" />
+
+                <x-input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number" :value="old('phone_number')" required autofocus />
+            </div>
+
+            <!-- Address -->
+            <div>
+                <x-label for="address" :value="__('Address')" />
+
+                <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autofocus />
+            </div>
+
+            <!-- Country -->
+            <div>
+                <x-label for="country" :value="__('Country')" />
+
+                <x-input id="country" class="block mt-1 w-full" type="text" name="country" :value="old('country')" required autofocus />
+            </div>
+
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />

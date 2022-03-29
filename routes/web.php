@@ -15,21 +15,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(SiteController::class)->group(function(){
-    Route::get("/","index")->name("home");
-    Route::get("/about","about")->name("about");
-    Route::get("/send","send")->name("send");
-    Route::get("/identification","identification")->name("identification");
+Route::controller(SiteController::class)->group(function () {
+    Route::get("/", "index")->name("home");
+    Route::get("/about", "about")->name("about");
+    Route::get("/send", "send")->name("send");
+
+    Route::middleware("send_money")->group(function () {
+        Route::get("/identification", "identification")->name("identification");
+    });
 });
 
-Route::controller(SendMoneyController::class)->group(function(){
-    Route::post("/details","details")->name("details");
-    // Route::get("/about","about")->name("about");
-    // Route::get("/send","send")->name("send");
+Route::controller(SendMoneyController::class)->group(function () {
+    Route::post("/details", "details")->name("details");
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
