@@ -3,7 +3,7 @@
     <script src="{{ asset('assets/js/maskmoney.min.js') }}"></script>
 
     <!-- Content
-                                                              ============================================= -->
+                                                                  ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
 
@@ -44,7 +44,7 @@
                         <h3 class="text-5 fw-400 mb-3 mb-sm-4">Detalhes</h3>
                         <hr class="mx-n3 mx-sm-n5 mb-4">
                         <!-- Send Money Form
-                                                                        ============================ -->
+                                                                            ============================ -->
                         <form id="form-send-money" method="post" action="{{ route('details') }}">
                             @csrf
                             <div class="mb-3">
@@ -57,7 +57,8 @@
                                 <div class="input-group">
                                     {{-- <span class="input-group-text">$</span> --}}
                                     <input type="text" data-thousands="." data-decimal="," class="form-control"
-                                        data-bv-field="youSend" name="valor_enviado" id="youSend" value="25,00" placeholder="">
+                                        data-bv-field="youSend" name="valor_enviado" id="youSend" value="25,00"
+                                        placeholder="">
                                     <span class="input-group-text p-0">
                                         <select id="youSendCurrency" data-style="form-select bg-transparent border-0"
                                             data-container="body" data-live-search="true" name="moeda"
@@ -135,7 +136,7 @@
                         minha_tax = 150
                     } else if (valor >= 25) {
                         minha_tax = 6
-                    }else{
+                    } else {
                         minha_tax = 10
 
                     }
