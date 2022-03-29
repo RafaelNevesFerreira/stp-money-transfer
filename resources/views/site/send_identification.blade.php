@@ -14,7 +14,7 @@
                             <div class="progress">
                                 <div class="progress-bar"></div>
                             </div>
-                            <a href="send-money.html" class="step-dot"></a>
+                            <a href="{{route("details")}}" class="step-dot"></a>
                         </div>
                         <div class="col-4 step active">
                             <div class="step-name">Confirm</div>
