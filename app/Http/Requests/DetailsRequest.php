@@ -13,7 +13,7 @@ class DetailsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,7 @@ class DetailsRequest extends FormRequest
     {
         return [
             "moeda" => "required|string|max:200",
-            "nomedoreceptor" => "require|min:3|max:200",
+            "nomedoreceptor" => "required|min:3|max:200",
             "valor_enviado" => "required"
         ];
     }

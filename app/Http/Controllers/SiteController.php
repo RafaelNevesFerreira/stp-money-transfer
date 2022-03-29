@@ -17,4 +17,8 @@ class SiteController extends Controller
     public function send(){
         return view("site.send");
     }
+
+    public function identification(){
+        return view("site.send_identification");
+    }
 }

@@ -9,6 +9,29 @@ class SendMoneyController extends Controller
 {
     public function details(DetailsRequest $request)
     {
-        dd($request->all());
+        $valor = (int)$request->valor_enviado;
+
+        if ($valor >= 100 && $valor <= 400) {
+            $minha_tax = 27;
+        } else if ($valor > 400 && $valor <= 800) {
+            $minha_tax = 50;
+        } else if ($valor > 800 && $valor <= 1000) {
+            $minha_tax = 150;
+        } else if ($valor <=25 ) {
+            $minha_tax = 6;
+        }else{
+            $minha_tax = 10;
+        }
+        $tax = $valor * 0.030 + 0.3 + $minha_tax;
+
+        $total = $valor + $tax;
+        if ($request->moeda == "eur") {
+            $moeda = "€";
+        }else{
+            $moeda = "£";
+        }
+        session()->put(["total" => $total,"valor_a_ser_enviado" => $valor, "tax" => $tax, "receptor" => $request->nomedoreceptor,"moeda" => $moeda]);
+
+        return redirect()->route("identification");
     }
 }

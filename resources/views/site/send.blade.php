@@ -45,7 +45,8 @@
                         <hr class="mx-n3 mx-sm-n5 mb-4">
                         <!-- Send Money Form
                                                                         ============================ -->
-                        <form id="form-send-money" method="post">
+                        <form id="form-send-money" method="post" action="{{ route('details') }}">
+                            @csrf
                             <div class="mb-3">
                                 <label for="nomedoreceptor" class="form-label">Nome do Receptor</label>
                                 <input type="text" class="form-control" id="nomedoreceptor" required
@@ -135,7 +136,7 @@
                     } else {
                         minha_tax = 10
                     }
-                    var tax = valor * 0.029 + 0.3 + minha_tax
+                    var tax = valor * 0.030 + 0.3 + minha_tax
 
                     var total = valor + tax;
                     $("#taxas").text(tax.toFixed(2));
