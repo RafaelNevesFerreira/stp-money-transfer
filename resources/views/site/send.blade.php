@@ -3,7 +3,7 @@
     <script src="{{ asset('assets/js/maskmoney.min.js') }}"></script>
 
     <!-- Content
-                                                                  ============================================= -->
+                                                                      ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
 
@@ -44,7 +44,7 @@
                         <h3 class="text-5 fw-400 mb-3 mb-sm-4">Detalhes</h3>
                         <hr class="mx-n3 mx-sm-n5 mb-4">
                         <!-- Send Money Form
-                                                                            ============================ -->
+                                                                                ============================ -->
                         <form id="form-send-money" method="post" action="{{ route('details') }}">
                             @csrf
                             <div class="mb-3">
@@ -134,11 +134,12 @@
                         minha_tax = 50
                     } else if (valor > 800 && valor <= 1000) {
                         minha_tax = 150
-                    } else if (valor <= 25) {
-                        minha_tax = 5
+                    } else if (valor == 25) {
+                        minha_tax = 5;
+                    } else if (valor < 25) {
+                        minha_tax = 3;
                     } else {
-                        minha_tax = 10
-
+                        minha_tax = 10;
                     }
                     var tax = valor * 0.030 + 0.3 + minha_tax
 
