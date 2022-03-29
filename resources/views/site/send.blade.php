@@ -3,7 +3,7 @@
     <script src="{{ asset('assets/js/maskmoney.min.js') }}"></script>
 
     <!-- Content
-                                                  ============================================= -->
+                                                              ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
 
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <h2 class="fw-400 text-center mt-3">Send Money</h2>
+            <h2 class="fw-400 text-center mt-3">Enviar Dinheiro</h2>
             <p class="lead text-center mb-4">Envie seu dinheiro a qualquer momento e em qualquer lugar.</p>
             <div class="row">
                 <div class="col-md-9 col-lg-7 col-xl-6 mx-auto">
@@ -44,7 +44,7 @@
                         <h3 class="text-5 fw-400 mb-3 mb-sm-4">Detalhes</h3>
                         <hr class="mx-n3 mx-sm-n5 mb-4">
                         <!-- Send Money Form
-                                                            ============================ -->
+                                                                        ============================ -->
                         <form id="form-send-money" method="post">
                             <div class="mb-3">
                                 <label for="nomedoreceptor" class="form-label">Nome do Receptor</label>
@@ -56,7 +56,7 @@
                                 <div class="input-group">
                                     {{-- <span class="input-group-text">$</span> --}}
                                     <input type="text" data-thousands="." data-decimal="," class="form-control"
-                                        data-bv-field="youSend" id="youSend" value="25" placeholder="">
+                                        data-bv-field="youSend" id="youSend" value="25,00" placeholder="">
                                     <span class="input-group-text p-0">
                                         <select id="youSendCurrency" data-style="form-select bg-transparent border-0"
                                             data-container="body" data-live-search="true"
@@ -87,7 +87,7 @@
                                 <label for="recipientGets" class="form-label">Valor a ser recebido</label>
                                 <div class="input-group">
                                     <span class="input-group-text">Dbs</span>
-                                    <input type="text" disabled class="form-control" id="recipientGets" value="625">
+                                    <input type="text" disabled class="form-control" id="recipientGets" value="625,00">
                                     <span class="input-group-text p-0">
                                         <select id="recipientCurrency" disabled
                                             data-style="form-select bg-transparent border-0" data-container="body"
@@ -100,10 +100,9 @@
                             </div>
 
                             <hr>
-                            <p>Total Fees<span class="float-end" id="taxas">7.21 USD</span></p>
+                            <p>Total Taxas<span class="float-end" id="taxas"></span></p>
                             <hr>
-                            <p class="text-4 fw-500">Total To Pay<span class="float-end" id="total">1,000.00
-                                    USD</span></p>
+                            <p class="text-4 fw-500">Total a Pagar<span class="float-end" id="total"></span></p>
                             <div class="d-grid"><button class="btn btn-primary">Continue</button></div>
                         </form>
                         <!-- Send Money Form end -->
@@ -123,24 +122,26 @@
 
                     var formater = new Intl.NumberFormat("fr-FR", {
                         style: "currency",
-                        currency: "EUR"
+                        currency: "snt"
                     });
                     valor = parseFloat(valor.replace(".", ''))
 
-                    if (valor >200 && valor < 700) {
-                        var minha_tax = 20
-                    }else if(valor > 700 && valor <= 1000) {
+                    if (valor >= 100 && valor <= 400) {
+                        var minha_tax = 27
+                    } else if (valor > 400 && valor <= 800) {
                         minha_tax = 50
-                    }else{
+                    } else if (valor > 800 && valor <= 1000) {
+                        minha_tax = 150
+                    } else {
                         minha_tax = 10
                     }
-                    var tax = valor * 0.029 + 0.3 +minha_tax
+                    var tax = valor * 0.029 + 0.3 + minha_tax
 
-                    var total = valor  + tax;
-                    $("#taxas").text(tax);
+                    var total = valor + tax;
+                    $("#taxas").text(tax.toFixed(2));
                     $("#total").text(total);
 
-                    // $("#youSend").val(formater.format(valor));
+                    $("#recipientGets").val(formater.format(valor * 25));
 
                 }
             });
