@@ -41,8 +41,7 @@
                     <div class="bg-white shadow-sm rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4">
                         <h3 class="text-5 fw-400 mb-3 mb-sm-4">Identificação</h3>
                         <hr class="mx-n3 mx-sm-n5 mb-4">
-                        <!-- Send Money Confirm
-                                                        ============================================= -->
+                        <!-- Send Money Confirm ============================================= -->
                         <form id="form-send-money" method="post">
                             <div class="mb-4">
                                 @auth
@@ -87,9 +86,9 @@
                                         placeholder="Digite o seu email" name="email">
                                     <br>
                                     <p>Deseja Cadastrarse:</p>
-                                    <input type="radio" id="sim" name="cadastro" value="Sim">
+                                    <input type="radio" id="sim" name="cadastro" value="{{true}}">
                                     <label for="sim">Sim</label><br>
-                                    <input type="radio" id="nao" name="cadastro" value="Não">
+                                    <input type="radio" id="nao" name="cadastro" value="{{false}}">
                                     <label for="nao">Não</label><br>
                                 @endguest
 
