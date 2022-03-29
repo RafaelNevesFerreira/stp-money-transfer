@@ -3,7 +3,7 @@
     <script src="{{ asset('assets/js/maskmoney.min.js') }}"></script>
 
     <!-- Content
-                                              ============================================= -->
+                                                  ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
 
@@ -44,7 +44,7 @@
                         <h3 class="text-5 fw-400 mb-3 mb-sm-4">Detalhes</h3>
                         <hr class="mx-n3 mx-sm-n5 mb-4">
                         <!-- Send Money Form
-                                                        ============================ -->
+                                                            ============================ -->
                         <form id="form-send-money" method="post">
                             <div class="mb-3">
                                 <label for="nomedoreceptor" class="form-label">Nome do Receptor</label>
@@ -120,13 +120,28 @@
                     $("#recipientGets").val(0);
                 } else {
                     var valor = $(this).val()
-                    var valor_novo = valor.replace(/./g,'');
+
                     var formater = new Intl.NumberFormat("fr-FR", {
                         style: "currency",
                         currency: "EUR"
                     });
-                    // PESQUISAR COMO REMOVER CERTOS CARACTERES DE UMA STRING EM JAVASCRIPT
-                    console.log(valor_novo);
+                    valor = parseFloat(valor.replace(".", ''))
+
+                    if (valor >200 && valor < 700) {
+                        var minha_tax = 20
+                    }else if(valor > 700 && valor <= 1000) {
+                        minha_tax = 50
+                    }else{
+                        minha_tax = 10
+                    }
+                    var tax = valor * 0.029 + 0.3 +minha_tax
+
+                    var total = valor  + tax;
+                    $("#taxas").text(tax);
+                    $("#total").text(total);
+
+                    // $("#youSend").val(formater.format(valor));
+
                 }
             });
 
