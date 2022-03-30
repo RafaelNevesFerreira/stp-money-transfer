@@ -8,7 +8,7 @@ use Stripe;
 class SiteController extends Controller
 {
     public function index(){
-        return view("site.welcome");
+        // return view("site.welcome");
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         Stripe\Charge::create ([
                 "amount" => 100 * 100,
