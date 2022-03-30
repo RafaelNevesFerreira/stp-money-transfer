@@ -105,14 +105,14 @@
 
                                                 </div>
                                                 <br>
-                                                <p>Deseja Cadastrarse?</p>
+                                                <p>Deseja Cadastrar-se?</p>
                                                 <p><small>Uma vez cadastrado o seu processo de envio será mais rapido, e no seu
                                                         primeiro envio como cliente cadastrado não pagará as mesmas
                                                         taxas</small></p>
                                                 <div class="d-grid "><a href="{{ route('register') }}"
                                                         class="btn btn-warning">Cadastrar-se</a></div>
                                                 <br>
-                                                <p>Ja tem uma conta?</p>
+                                                <p>Já  tem uma conta?</p>
                                                 <p><small>Faça o login e pule as outras etapas!</small></p>
                                                 <div class="d-grid "><a href="{{ route('login') }}"
                                                         class="btn btn-info">Login</a></div>

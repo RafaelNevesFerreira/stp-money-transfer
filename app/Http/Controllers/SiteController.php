@@ -21,4 +21,8 @@ class SiteController extends Controller
     public function identification(){
         return view("site.send_identification");
     }
+
+    public function payment(){
+        return "memes";
+    }
 }
