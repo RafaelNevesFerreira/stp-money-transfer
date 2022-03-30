@@ -45,7 +45,48 @@
                         <form id="form-send-money" method="post" action="{{ route('identification.submit') }}">
                             <div class="mb-4">
                                 @csrf
-                                @if (session('name') && !Auth::check())
+                                @auth
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="name" class="form-label">Nome Completo</label>
+                                                <input type="text" class="form-control c" id="name" required
+                                                    placeholder="Digite o seu nome completo" value="{{ auth()->user()->name}}"
+                                                    name="name">
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <label for="address" class="form-label">Morada</label>
+                                                <input type="text" class="form-control" id="address" required
+                                                    placeholder="Digite a sua morada" value="{{ auth()->user()->address}}"
+                                                    name="address">
+                                            </div>
+                                            <div class="col-md-6">
+
+
+                                                <label for="phone_number" class="form-label">Número de Telemóvel</label>
+                                                <input type="number" class="form-control" id="phone_number" required
+                                                    placeholder="Digite o seu Número de Telemóvel"
+                                                    value="{{ auth()->user()->phone_number}}" name="phone_number">
+                                            </div>
+                                            <div class="col-md-6">
+
+
+                                                <label for="country" class="form-label">País</label>
+                                                <input type="text" class="form-control" id="country" required
+                                                    placeholder="Digite o seu país de residência"
+                                                    value="{{ auth()->user()->country}}" name="country">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input type="text" class="form-control" id="email" required
+                                                    placeholder="Digite o seu email" value="{{ auth()->user()->email}}"
+                                                    name="email">
+                                            </div>
+
+                                        </div>
+
+                                @endauth
+                                @if (session('name') )
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="name" class="form-label">Nome Completo</label>
@@ -96,7 +137,7 @@
                                     <p><small>Faça o login e pule as outras etapas!</small></p>
                                     <div class="d-grid "><a href="{{ route('login') }}"
                                             class="btn btn-info">Login</a></div>
-                                @elseif (!session("name"))
+                                @elseif (!session("name") && !Auth::check())
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="name" class="form-label">Nome Completo</label>
@@ -145,29 +186,7 @@
                                     <div class="d-grid "><a href="{{ route('login') }}"
                                             class="btn btn-info">Login</a></div>
                                 @endif
-                                @auth
-                                    <label for="name" class="form-label">Nome Completo</label>
-                                    <input type="text" class="form-control" id="name" required
-                                        placeholder="Digite o seu nome completo" value="{{ auth()->user()->name }}"
-                                        name="name">
-                                    <label for="address" class="form-label">Morada</label>
-                                    <input type="text" class="form-control" id="address" required
-                                        placeholder="Digite a sua morada" value="{{ auth()->user()->address }}"
-                                        name="address">
 
-                                    <label for="phone_number" class="form-label">Número de Telemóvel</label>
-                                    <input type="number" class="form-control" value="{{ auth()->user()->phone_number }}"
-                                        id="phone_number" required placeholder="Digite o seu Número de Telemóvel"
-                                        name="phone_number">
-
-                                    <label for="country" class="form-label">País</label>
-                                    <input type="text" class="form-control" value="{{ auth()->user()->country }}"
-                                        id="country" required placeholder="Digite o seu país de residência" name="country">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="text" class="form-control" value="{{ auth()->user()->email }}" id="email"
-                                        required placeholder="Digite o seu email" name="email">
-
-                                @endauth
 
                             </div>
                             <hr class="mx-n3 mx-sm-n5 mb-3 mb-sm-4">
