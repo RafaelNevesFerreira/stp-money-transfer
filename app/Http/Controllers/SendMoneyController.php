@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DetailsRequest;
+use App\Http\Requests\IdentificationRequest;
 use Illuminate\Http\Request;
 
 class SendMoneyController extends Controller
@@ -35,5 +36,23 @@ class SendMoneyController extends Controller
         session()->put(["total" => $total, "valor_a_ser_enviado" => $valor, "tax" => $tax, "receptor" => $request->nomedoreceptor, "moeda" => $moeda]);
 
         return redirect()->route("identification");
+    }
+
+    public function identification(IdentificationRequest $request)
+    {
+        $data[] = $request->all();
+
+        session()->put([
+            "name" => $request->name,
+            "phone_number" => $request->phone_number,
+            "email" => $request->email,
+            "address" => $request->address,
+            "country" => $request->country
+        ]);
+        // dd(session()->all());
+
+        return redirect()->route("payment");
+
+
     }
 }

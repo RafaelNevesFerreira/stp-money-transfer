@@ -23,6 +23,6 @@ class SiteController extends Controller
     }
 
     public function payment(){
-        return "memes";
+        return view("site.payment");
     }
 }

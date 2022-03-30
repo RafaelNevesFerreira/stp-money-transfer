@@ -22,11 +22,13 @@ Route::controller(SiteController::class)->group(function () {
 
     Route::middleware("send_money")->group(function () {
         Route::get("/identification", "identification")->name("identification");
+        Route::get("/payment", "payment")->name("payment");
     });
 });
 
 Route::controller(SendMoneyController::class)->group(function () {
     Route::post("/details", "details")->name("details");
+    Route::post("/identification", "identification")->name("identification.submit");
 });
 
 Route::get('/dashboard', function () {
