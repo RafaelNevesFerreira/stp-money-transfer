@@ -140,7 +140,7 @@ class PaymentController extends Controller
                 []
             );
             if ($memes->status == "succeeded") {
-                $this->order->store(session()->get("data"));
+                // $this->order->store(session()->get("data"));
             }
             return $this->task($request);
         } catch (\Throwable $th) {

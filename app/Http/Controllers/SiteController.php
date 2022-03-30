@@ -8,20 +8,7 @@ use Stripe;
 class SiteController extends Controller
 {
     public function index(){
-        // return view("site.welcome");
-
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-
-        Stripe\Charge::create ([
-                "amount" => 100 * 100,
-                "currency" => "usd",
-                "source" => "tok_mastercard",
-                "description" => "Test payment from tutsmake.com."
-        ]);
-
-        Session::flash('success', 'Payment successful!');
-
-        return "memes";
+        return view("site.welcome");
     }
 
     public function about(){
