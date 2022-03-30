@@ -102,9 +102,10 @@
                             </div>
 
                             <hr>
-                            <p>Total Taxas<span class="float-end" id="taxas"></span></p>
+                            <p>Total Taxas<span class="float-end" id="taxas">6.05</span></p>
                             <hr>
-                            <p class="text-4 fw-500">Total a Pagar<span class="float-end" id="total"></span></p>
+                            <p class="text-4 fw-500">Total a Pagar<span class="float-end" id="total">31.05
+                            </span></p>
                             <div class="d-grid"><button class="btn btn-primary">Continue</button></div>
                         </form>
                         <!-- Send Money Form end -->

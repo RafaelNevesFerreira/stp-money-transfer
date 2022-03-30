@@ -9,7 +9,7 @@
         <title>Payyed - Money Transfer and Online Payments HTML Template</title>
         <meta name="description"
             content="This professional design html template is for build a Money Transfer and online payments website.">
-        <meta name="author" content="harnishdesign.net">
+        <meta name="author" content="Rafael Ferreira">
 
         <!-- Web Fonts
     ============================================= -->
@@ -22,7 +22,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/all.min.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-select.min.css') }}" />
         <script src="{{asset("assets/js/jquery.min.js")}}"></script>
-        <link rel="stylesheet" type="text/css" href="http://demo.harnishdesign.net/html/payyed/vendor/currency-flags/css/currency-flags.min.css" />
+        <link rel="stylesheet" type="text/css" href="{{asset("assets/css/currency-flags.min.css")}}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.min.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/stylesheet.css') }}" />
         <!-- Colors Css -->
@@ -85,7 +85,7 @@
             ============================== -->
                             <nav class="login-signup navbar navbar-expand">
                                 <ul class="navbar-nav">
-                                    <li><a href="login.html">Login</a> </li>
+                                    <li><a href="{{route("login")}}">Login</a> </li>
                                     <li class="align-items-center h-auto ms-sm-3"><a class="btn btn-primary"
                                             href="signup.html">Sign Up</a></li>
                                 </ul>
