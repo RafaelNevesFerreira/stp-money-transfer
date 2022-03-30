@@ -13,6 +13,7 @@ class PaymentController extends Controller
 
     public function store(PaymentRequest $request)
     {
+        // dd($request->all());
         session()->put(["data" => $request->all()]);
 
         $input['transaction_id'] = Str::random(18);
@@ -50,6 +51,11 @@ class PaymentController extends Controller
 
             $request_url = self::BASE_URL . '/v1/payment_intents';
 
+            if (session("moeda") == "€") {
+                $currency = "eur";
+            } else {
+                $currency = "gbp";
+            }
             if (session("total")) {
                 $total = number_format(session("total"), 2, '.', ',');
             } else {
@@ -57,7 +63,7 @@ class PaymentController extends Controller
             }
             $request_data = [
                 'amount' => $total * 100, // multiply amount with 100
-                'currency' => "eur",
+                'currency' => $currency,
                 'payment_method_types[]' => 'card',
                 'payment_method' => $payment_response['id'],
                 'confirm' => 'true',
@@ -86,22 +92,22 @@ class PaymentController extends Controller
                 // transaction success without 3d secure redirect
             } elseif (isset($response_data['status']) && $response_data['status'] == 'succeeded') {
 
-                $this->order->store(session()->get("data"));
+                // $this->order->store(session()->get("data"));
 
                 return redirect()->route('stripeResponse', $input['transaction_id']);
 
                 // transaction declined because of error
             } elseif (isset($response_data['error']['message']) && $response_data['error']['message'] != null) {
 
-                return redirect("checkout")->withErrors($response_data['error']['message']);
+                return redirect()->route("payment")->with("errors",$response_data['error']['message']);
             } else {
 
-                return redirect("checkout")->withErrors('Something went wrong, please try again.');
+                return redirect()->route("payment")->with("errors",'Something went wrong, please try again.');
             }
 
             // error in creating payment method
         } elseif (isset($payment_response['error']['message']) && $payment_response['error']['message'] != null) {
-            return redirect("checkout")->withErrors($payment_response['error']['message']);
+            return redirect()->route("payment")->with("errors",$payment_response['error']['message']);
         }
     }
 
@@ -146,7 +152,13 @@ class PaymentController extends Controller
         } catch (\Throwable $th) {
 
             $this->task($request);
-            return view("shop::response");
+            $valor = session("valor_a_ser_enviado");
+            $moeda = session("moeda");
+            $receptor = session("receptor");
+            session()->forget(["moeda", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
+
+            return view("site.payment_confirm", compact("valor", "moeda", "receptor"));
+
         }
     }
 
@@ -178,15 +190,20 @@ class PaymentController extends Controller
 
             // succeeded means transaction success
             if (isset($get_data['status']) && $get_data['status'] == 'succeeded') {
-                return view("shop::response")->with('success', 'Payment success.');
+                $valor = session("valor_a_ser_enviado");
+                $moeda = session("moeda");
+                $receptor = session("receptor");
+                session()->forget(["moeda", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
+
+                return view("site.payment_confirm", compact("valor", "moeda", "receptor"));
             } elseif (isset($get_data['error']['message']) && $get_data['error']['message'] != null) {
-                return redirect("checkout")->withErrors($get_data['error']['message']);
+                return redirect()->route("payment")->with("errors",$get_data['error']['message']);
             } else {
-                return redirect("checkout")->withErrors('Payment  failed.');
+                return redirect()->route("payment")->with("errors",'Payment  failed.');
             }
         } else {
 
-            // return redirect("checkout")->withErrors('Payment failed.');
+            // return redirect()->route("payment")->with("errors",'Payment failed.');
         }
     }
 }

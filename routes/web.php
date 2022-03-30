@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SendMoneyController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,12 @@ Route::controller(SiteController::class)->group(function () {
         Route::get("/identification", "identification")->name("identification");
         Route::get("/payment", "payment")->name("payment");
     });
+
 });
+
+Route::get("status/{id}",[PaymentController::class,"response"])->name("stripeResponse");
+Route::post('/payment', [PaymentController::class , 'store'])->name('payment.post');
+
 
 Route::controller(SendMoneyController::class)->group(function () {
     Route::post("/details", "details")->name("details");

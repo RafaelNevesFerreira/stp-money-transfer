@@ -177,6 +177,8 @@
         <script src="{{asset("assets/js/owl-carousel.min.js")}}"></script>
         <!-- Style Switcher -->
         <script src="{{asset("assets/js/theme.js")}}"></script>
+
+        @yield("scripts")
     </body>
 
     </html>

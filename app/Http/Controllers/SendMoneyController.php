@@ -49,7 +49,6 @@ class SendMoneyController extends Controller
             "address" => $request->address,
             "country" => $request->country
         ]);
-        // dd(session()->all());
 
         return redirect()->route("payment");
 

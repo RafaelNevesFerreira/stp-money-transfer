@@ -16,7 +16,7 @@
                     <div class="progress">
                         <div class="progress-bar"></div>
                     </div>
-                    <a href="{{ route("identification") }}" class="step-dot"></a>
+                    <a href="{{ route('identification') }}" class="step-dot"></a>
                 </div>
                 <div class="col-4 step complete">
                     <div class="step-name">Pagamento</div>
@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <h2 class="fw-400 text-center mt-3">Enviar Dinheiro</h2>
+    <h2 class="fw-400 text-center mt-3" id="memes">Enviar Dinheiro</h2>
     <p class="lead text-center mb-4">você està enviando dinheiro para <span
             class="fw-500">{{ session('receptor') }}</span></p>
     <div class="row">
@@ -37,96 +37,54 @@
                 <h3 class="text-5 fw-400 mb-3 mb-sm-4">Identificação</h3>
                 <hr class="mx-n3 mx-sm-n5 mb-4">
                 <!-- Send Money Confirm ============================================= -->
-                <form id="form-send-money" method="post">
-                    <div class="mb-4">
-                        @auth
-                            <label for="name" class="form-label">Nome Completo</label>
-                            <input type="text" class="form-control" id="name" required
-                                placeholder="Digite o seu nome completo" value="{{ auth()->user()->name }}" name="name">
-                            <label for="address" class="form-label">Morada</label>
-                            <input type="text" class="form-control" id="address" required placeholder="Digite a sua morada"
-                                value="{{ auth()->user()->address }}" name="address">
+                <form id="form-send-money">
+                    @csrf
+                    <div class="col-md-12">
+                        <div class='form-row row'>
 
-                            <label for="phone_number" class="form-label">Número de Telemóvel</label>
-                            <input type="number" class="form-control" value="{{ auth()->user()->phone_number }}"
-                                id="phone_number" required placeholder="Digite o seu Número de Telemóvel" name="phone_number">
-
-                            <label for="country" class="form-label">País</label>
-                            <input type="text" class="form-control" value="{{ auth()->user()->country }}" id="country"
-                                required placeholder="Digite o seu país de residência" name="country">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" value="{{ auth()->user()->email }}" id="email" required
-                                placeholder="Digite o seu email" name="email">
-
-                        @endauth
-
-                        @guest
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="name" class="form-label">Nome Completo</label>
-                                    <input type="text" class="form-control c" id="name" required
-                                        placeholder="Digite o seu nome completo" name="name">
-                                </div>
-
-
-                                <div class="col-md-6">
-
-                                    <label for="address" class="form-label">Morada</label>
-                                    <input type="text" class="form-control" id="address" required
-                                        placeholder="Digite a sua morada" name="address">
-                                </div>
-                                <div class="col-md-6">
-
-
-                                    <label for="phone_number" class="form-label">Número de Telemóvel</label>
-                                    <input type="number" class="form-control" id="phone_number" required
-                                        placeholder="Digite o seu Número de Telemóvel" name="phone_number">
-                                </div>
-                                <div class="col-md-6">
-
-
-                                    <label for="country" class="form-label">País</label>
-                                    <input type="text" class="form-control" id="country" required
-                                        placeholder="Digite o seu país de residência" name="country">
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="text" class="form-control" id="email" required
-                                        placeholder="Digite o seu email" name="email">
-                                </div>
+                            <div class='col-md-6 col-md-4 form-group '>
+                                <label for="card_no" class="control-label mt-3">Card</label>
+                                <input type="text" id="card_no" class="form-control" name="card_no">
+                            </div>
+                            <div class='col-md-6 col-md-4 form-group '>
+                                <label class='control-label mt-3'>CVC</label>
+                                <input type="text" id="cvc" class="form-control" name="cvc">
+                            </div>
+                            <div class='col-md-6 col-md-4 form-group '>
+                                <label class='control-label mt-3'>Expiration Month</label>
+                                <input type="text" id="exp_month" class="form-control" name="exp_month">
+                            </div>
+                            <div class='col-md-6 col-md-4 form-group ' style="margin-bottom: 20px;">
+                                <label class='control-label mt-3'>Expiration Year</label>
+                                <input type="text" id="exp_year" class="form-control" name="exp_year">
 
                             </div>
-                            <br>
-                            <p>Deseja Cadastrar-se?</p>
-                            <p><small>Uma vez cadastrado o seu processo de envio será mais rapido, e no seu
-                                    primeiro envio como cliente cadastrado não pagará as mesmas
-                                    taxas</small></p>
-                            <div class="d-grid "><a href="{{ route('register') }}"
-                                    class="btn btn-warning">Cadastrar-se</a></div>
-                            <br>
-                            <p>Já tem uma conta?</p>
-                            <p><small>Faça o login e pule as outras etapas!</small></p>
-                            <div class="d-grid "><a href="{{ route('login') }}" class="btn btn-info">Login</a></div>
+                        </div>
+                        <div class='form-row row'>
+                            @if (session('errors'))
+                                <div class='col-md-12 error form-group'>
+                                    <div class='alert-danger alert'>{{ session('errors') }}
+                                    </div>
+                                </div>
+                            @endif
 
-                        @endguest
-
+                        </div>
+                        <div class="d-grid"><button class="btn btn-primary" id="pay">Enviar</button>
+                        </div>
 
                     </div>
-                    <hr class="mx-n3 mx-sm-n5 mb-3 mb-sm-4">
-                    <h3 class="text-5 fw-400 mb-3 mb-sm-4">Confirmar Detalhes</h3>
-                    <hr class="mx-n3 mx-sm-n5 mb-4">
-                    <p class="mb-1">Valor à Enviar <span
-                            class="text-3 float-end">{{ session('valor_a_ser_enviado') }}
-                            {{ session('moeda') }}</span></p>
-                    <p class="mb-1">Total Tax <span class="text-3 float-end">{{ session('tax') }}
-                            {{ session('moeda') }}</span></p>
-                    <hr>
-                    <p class="text-4 fw-500">Total<span class="float-end">{{ session('total') }}
-                            {{ session('moeda') }}</span></p>
-                    <div class="d-grid"><button class="btn btn-primary">Enviar</button></div>
                 </form>
                 <!-- Send Money Confirm end -->
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $("#memes").click(function() {
+                $('#preloader').css("display",
+                "block").delay( 800 ).fadeIn( 400 ); // will fade out the white DIV that covers the website.
+        })
+    </script>
 @endsection
