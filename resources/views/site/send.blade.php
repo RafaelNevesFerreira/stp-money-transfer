@@ -67,7 +67,7 @@
                                     <span class="input-group-text p-0">
                                         <select id="youSendCurrency" data-style="form-select bg-transparent border-0"
                                             data-container="body" data-live-search="true" name="moeda"
-                                            class="selectpicker form-control bg-transparent" required="">
+                                            class="selectpicker form-control bg-transparent" id="moeda_mudar" required="">
                                             <optgroup label="Popular Currency">
                                                 @if (session("moeda") == "€")
                                                 <option data-icon="currency-flag currency-flag-usd me-1"  data-subtext="Dolar" value="usd">USD</option>
