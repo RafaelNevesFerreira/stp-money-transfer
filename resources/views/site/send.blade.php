@@ -175,7 +175,6 @@
             $('#youSend').maskMoney()
             $("#youSendCurrency").change(function() {
                 if ($(this).val() == "eur") {
-
                     $("#moeda_mudar").val("€")
                 }else if($(this).val() == "usd"){
                     $("#moeda_mudar").val("$")
