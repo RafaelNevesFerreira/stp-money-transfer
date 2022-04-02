@@ -30,6 +30,8 @@ class SendMoneyController extends Controller
         $total = $valor + $tax;
         if ($request->moeda == "eur") {
             $moeda = "€";
+        } elseif ($request->moeda == "usd") {
+            $moeda = "$";
         } else {
             $moeda = "£";
         }
@@ -51,7 +53,5 @@ class SendMoneyController extends Controller
         ]);
 
         return redirect()->route("payment");
-
-
     }
 }

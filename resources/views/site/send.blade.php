@@ -3,7 +3,7 @@
     <script src="{{ asset('assets/js/maskmoney.min.js') }}"></script>
 
     <!-- Content
-                                                                      ============================================= -->
+                                                                              ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
 
@@ -44,13 +44,18 @@
                         <h3 class="text-5 fw-400 mb-3 mb-sm-4">Detalhes</h3>
                         <hr class="mx-n3 mx-sm-n5 mb-4">
                         <!-- Send Money Form
-                                                                                ============================ -->
+                                                                                        ============================ -->
                         <form id="form-send-money" method="post" action="{{ route('details') }}">
                             @csrf
                             <div class="mb-3">
                                 <label for="nomedoreceptor" class="form-label">Nome do Receptor</label>
-                                <input type="text" class="form-control" id="nomedoreceptor" required
-                                    placeholder="Digite o nome completo do receptor" name="nomedoreceptor">
+                                @if (session('receptor'))
+                                    <input type="text" class="form-control" id="nomedoreceptor" required
+                                        value="{{session("receptor")}}" name="nomedoreceptor">
+                                @else
+                                    <input type="text" class="form-control" id="nomedoreceptor" required
+                                        placeholder="Digite o nome completo do receptor" name="nomedoreceptor">
+                                @endif
                             </div>
                             <div class="mb-3">
                                 <label for="youSend" class="form-label">Valor a ser enviado</label>
@@ -64,22 +69,30 @@
                                             data-container="body" data-live-search="true" name="moeda"
                                             class="selectpicker form-control bg-transparent" required="">
                                             <optgroup label="Popular Currency">
-                                                <option data-icon="currency-flag currency-flag-usd me-1"
-                                                    data-subtext="Dolar Norte Americano" value="usd">USD</option>
-                                                <option data-icon="currency-flag currency-flag-aud me-1"
-                                                    data-subtext="Dolar Australiano" value="aud">AUD</option>
-                                                <option data-icon="currency-flag currency-flag-eur me-1" data-subtext="Euro"
-                                                    selected="selected" value="eur">EUR
+                                                @if (session("moeda") == "€")
+                                                <option data-icon="currency-flag currency-flag-usd me-1"  data-subtext="Dolar" value="usd">USD</option>
+                                                <option data-icon="currency-flag currency-flag-gbp me-1"  data-subtext="Libras" value="gbp">GBP</option>
+                                                <option data-icon="currency-flag currency-flag-eur me-1" data-subtext="Euro" selected="selected" value="eur">EUR
+
+                                                @elseif (session("moeda" == "$"))
+                                                <option data-icon="currency-flag currency-flag-usd me-1"  data-subtext="Dolar" selected="selected" value="usd">USD</option>
+                                                <option data-icon="currency-flag currency-flag-gbp me-1"  data-subtext="Libras" value="gbp">GBP</option>
+                                                <option data-icon="currency-flag currency-flag-eur me-1" data-subtext="Euro"  value="eur">EUR
+
+                                                @elseif (session("moeda") == "£")
+
+                                                <option data-icon="currency-flag currency-flag-usd me-1"  data-subtext="Dolar" selected="selected" value="usd">USD</option>
+                                                <option data-icon="currency-flag currency-flag-gbp me-1"  data-subtext="Libras" value="gbp">GBP</option>
+                                                <option data-icon="currency-flag currency-flag-eur me-1" data-subtext="Euro"  value="eur">EUR
+                                                @else
+
+                                                <option data-icon="currency-flag currency-flag-usd me-1"  data-subtext="Dolar"  value="usd">USD</option>
+                                                <option data-icon="currency-flag currency-flag-gbp me-1"  data-subtext="Libras" value="gbp">GBP</option>
+                                                <option data-icon="currency-flag currency-flag-eur me-1" data-subtext="Euro" selected="selected"  value="eur">EUR
+
+
+                                                @endif
                                                 </option>
-                                            </optgroup>
-                                            <option data-divider="true"></option>
-                                            <optgroup label="Other Currency">
-                                                <option data-icon="currency-flag currency-flag-brl me-1"
-                                                    data-subtext="Real Brazileiro" value="brl">BRL</option>
-                                                <option data-icon="currency-flag currency-flag-cad me-1"
-                                                    data-subtext="Dolar canadiano" value="cad">CAD</option>
-                                                <option data-icon="currency-flag currency-flag-chf me-1"
-                                                    data-subtext="Franco Suiço" value="chf">CHF</option>
                                             </optgroup>
                                         </select>
                                     </span>
@@ -105,7 +118,7 @@
                             <p>Total Taxas<span class="float-end" id="taxas">6.05</span></p>
                             <hr>
                             <p class="text-4 fw-500">Total a Pagar<span class="float-end" id="total">31.05
-                            </span></p>
+                                </span></p>
                             <div class="d-grid"><button class="btn btn-primary">Continue</button></div>
                         </form>
                         <!-- Send Money Form end -->

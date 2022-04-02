@@ -51,11 +51,17 @@ class PaymentController extends Controller
 
             $request_url = self::BASE_URL . '/v1/payment_intents';
 
-            if (session("moeda") == "€") {
-                $currency = "eur";
-            } else {
-                $currency = "gbp";
+            switch (session("moeda")) {
+                case "€":
+                    $currency = "eur";
+                    break;
+                case '$':
+                    $currency = "usd";
+                    break;
+                case 'gbp':
+                    break;
             }
+
             if (session("total")) {
                 $total = number_format(session("total"), 2, '.', ',');
             } else {
@@ -99,15 +105,15 @@ class PaymentController extends Controller
                 // transaction declined because of error
             } elseif (isset($response_data['error']['message']) && $response_data['error']['message'] != null) {
 
-                return redirect()->route("payment")->with("errors",$response_data['error']['message']);
+                return redirect()->route("payment")->with("errors", $response_data['error']['message']);
             } else {
 
-                return redirect()->route("payment")->with("errors",'Something went wrong, please try again.');
+                return redirect()->route("payment")->with("errors", 'Something went wrong, please try again.');
             }
 
             // error in creating payment method
         } elseif (isset($payment_response['error']['message']) && $payment_response['error']['message'] != null) {
-            return redirect()->route("payment")->with("errors",$payment_response['error']['message']);
+            return redirect()->route("payment")->with("errors", $payment_response['error']['message']);
         }
     }
 
@@ -158,7 +164,6 @@ class PaymentController extends Controller
             session()->forget(["moeda", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
 
             return view("site.payment_confirm", compact("valor", "moeda", "receptor"));
-
         }
     }
 
@@ -197,9 +202,9 @@ class PaymentController extends Controller
 
                 return view("site.payment_confirm", compact("valor", "moeda", "receptor"));
             } elseif (isset($get_data['error']['message']) && $get_data['error']['message'] != null) {
-                return redirect()->route("payment")->with("errors",$get_data['error']['message']);
+                return redirect()->route("payment")->with("errors", $get_data['error']['message']);
             } else {
-                return redirect()->route("payment")->with("errors",'Payment  failed.');
+                return redirect()->route("payment")->with("errors", 'Payment  failed.');
             }
         } else {
 
