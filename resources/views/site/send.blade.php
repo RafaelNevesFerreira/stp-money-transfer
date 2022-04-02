@@ -169,6 +169,10 @@
             $('#youSend').maskMoney()
 
         })
+
+        $("#moeda_mudar").change(function(){
+            alert("memes")
+        })
     </script>
     <!-- Content end -->
 @endsection
