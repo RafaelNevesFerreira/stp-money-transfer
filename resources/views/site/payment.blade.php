@@ -37,7 +37,7 @@
                 <h3 class="text-5 fw-400 mb-3 mb-sm-4">Identificação</h3>
                 <hr class="mx-n3 mx-sm-n5 mb-4">
                 <!-- Send Money Confirm ============================================= -->
-                <form id="form-send-money">
+                <form id="form-send-money" method="POST" action="{{ route("payment.post") }}">
                     @csrf
                     <div class="col-md-12">
                         <div class='form-row row'>
@@ -82,9 +82,8 @@
 
 @section('scripts')
     <script>
-        $("#memes").click(function() {
-                $('#preloader').css("display",
-                "block").delay( 800 ).fadeIn( 400 ); // will fade out the white DIV that covers the website.
+        $("#form-send-money").submit(function() {
+                $('#preloader').css("display", "block").delay( 800 ).fadeIn( 400 ); // will fade out the white DIV that covers the website.
         })
     </script>
 @endsection
