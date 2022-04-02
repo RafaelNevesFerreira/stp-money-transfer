@@ -121,9 +121,9 @@
                             </div>
 
                             <hr>
-                            <p>Total Taxas<span class="float-end" id="taxas">6.05</span></p>
+                            <p>Total Taxas<span class="float-end" id="taxas">6.05 <span class="moeda_mudar"></span></span></p>
                             <hr>
-                            <p class="text-4 fw-500">Total a Pagar<span class="float-end" id="total">31.05 <span id="moeda_mudar">€</span>
+                            <p class="text-4 fw-500">Total a Pagar<span class="float-end" id="total">31.05 <span class="moeda_mudar">€</span>
                                 </span></p>
                             <div class="d-grid"><button class="btn btn-primary">Continue</button></div>
                         </form>
@@ -175,12 +175,11 @@
             $('#youSend').maskMoney()
             $("#youSendCurrency").change(function() {
                 if ($(this).val() == "eur") {
-                    console.log($(this).val());
-                    $("#moeda_mudar").val("€")
+                    $(".moeda_mudar").text("€")
                 }else if($(this).val() == "usd"){
-                    $("#moeda_mudar").val("$")
+                    $(".moeda_mudar").text("$")
                 }else{
-                    $("#moeda_mudar").val("£")
+                    $(".moeda_mudar").text("£")
 
                 }
             })
