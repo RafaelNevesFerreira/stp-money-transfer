@@ -8,7 +8,7 @@
                 <div class="col-lg-11 mx-auto">
                     <div class="row widget-steps">
                         <div class="col-4 step complete">
-                            <div class="step-name">Detamhes</div>
+                            <div class="step-name">Detalhes</div>
                             <div class="progress">
                                 <div class="progress-bar"></div>
                             </div>
