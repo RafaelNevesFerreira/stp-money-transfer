@@ -175,11 +175,12 @@
             $('#youSend').maskMoney()
             $("#youSendCurrency").change(function() {
                 if ($(this).val() == "eur") {
-                    $("$(this).val() == "eur"").val("€")
+
+                    $("#moeda_mudar").val("€")
                 }else if($(this).val() == "usd"){
-                    $("$(this).val() == "eur"").val("$")
+                    $("#moeda_mudar").val("$")
                 }else{
-                    $("$(this).val() == "eur"").val("£")
+                    $("#moeda_mudar").val("£")
 
                 }
             })
