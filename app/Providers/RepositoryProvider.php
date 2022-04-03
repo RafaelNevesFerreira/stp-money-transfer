@@ -14,13 +14,14 @@ class RepositoryProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            "",
-            ""
+            'App\Repositories\Contracts\PostsRepositoryInterface',
+            'App\Repositories\Eloquent\PostsRepository',
         );
     }
 
+
     /**
-     * Bootstrap services.
+     * Bootstrap any application services.
      *
      * @return void
      */

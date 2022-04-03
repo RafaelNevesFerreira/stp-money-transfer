@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section('content')
     <!-- Page Header
-      ============================================= -->
+                          ============================================= -->
     <section class="page-header page-header-text-light bg-dark-3 py-5">
         <div class="container">
             <div class="row align-items-center">
@@ -20,99 +20,50 @@
     <!-- Page Header end -->
 
     <!-- Content
-      ============================================= -->
+                          ============================================= -->
     <div id="content">
         <div class="container">
             <div class="row">
 
                 <!-- Middle Panel
-            ============================================= -->
+                                ============================================= -->
                 <div class="col-lg-8 col-xl-9">
                     <div class="row gy-4">
-                        <div class="col-12">
-                            <div class="blog-post card shadow-sm border-0"> <a class="d-flex"
-                                    href="blog-single.html"><img class="card-img-top"
-                                        src="http://demo.harnishdesign.net/html/payyed/images/blog/post-3.jpg" alt=""></a>
-                                <div class="card-body p-4">
-                                    <h4 class="title-blog"><a href="blog-single.html">Selling Profitably in New Markets
-                                            Via Marketplaces</a></h4>
-                                    <ul class="meta-blog">
-                                        <li><i class="fas fa-calendar-alt"></i> April 24, 2021</li>
-                                        <li><a href="#"><i class="fas fa-user"></i> Admin</a></li>
-                                        <li><a href="#"><i class="fas fa-comments"></i> 10</a></li>
-                                    </ul>
-                                    <p>Some quick example text to build on the card title and make up the bulk of the card's
-                                        content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor
-                                        incididunt ut labore. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                        eiusmod tempor incididunt ut labore et dolore magna aliqua....</p>
-                                    <a href="blog-single.html" class="btn btn-primary btn-sm">Read more</a>
+                        @foreach ($posts as $post)
+                            <div class="col-12">
+                                <div class="blog-post card shadow-sm border-0"> <a class="d-flex"
+                                        href="blog-single.html"><img class="card-img-top"
+                                            src="{{ $post->featured_image }}" alt="{{ $post->title }} image"></a>
+                                    <div class="card-body p-4">
+                                        <h4 class="title-blog"><a href="blog-single.html">{{ $post->title }}</a></h4>
+                                        <ul class="meta-blog">
+                                            <li><i
+                                                    class="fas fa-calendar-alt"></i>{{ $post->created_at->diffForHumans() }}
+                                            </li>
+                                            <li><a href="#"><i class="fas fa-user"></i> {{ $post->author->name }}</a>
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-tag"></i>
+                                                @foreach ($post->tags as $tag)
+                                                    <a href="{{ $tag->name }}">
+                                                        {{ $tag->name }}
+                                                    </a>
+                                                @endforeach
+
+                                            </li>
+
+                                        </ul>
+                                        <p>{{ Str::limit($post->excerpt, 600, ' ..') }}</p>
+                                        <a href="blog-single.html" class="btn btn-primary btn-sm">Read more</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="blog-post card shadow-sm border-0"> <a class="d-flex"
-                                    href="blog-single.html"><img class="card-img-top"
-                                        src="http://demo.harnishdesign.net/html/payyed/images/blog/post-1.jpg" alt=""></a>
-                                <div class="card-body p-4">
-                                    <h4 class="title-blog"><a href="blog-single.html">Financial Planning for Small and
-                                            Medium Sized Enterprises</a></h4>
-                                    <ul class="meta-blog">
-                                        <li><i class="fas fa-calendar-alt"></i> April 24, 2021</li>
-                                        <li><a href="#"><i class="fas fa-user"></i> Admin</a></li>
-                                        <li><a href="#"><i class="fas fa-comments"></i> 10</a></li>
-                                    </ul>
-                                    <p>Some quick example text to build on the card title and make up the bulk of the card's
-                                        content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor
-                                        incididunt ut labore. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                        eiusmod tempor incididunt ut labore et dolore magna aliqua....</p>
-                                    <a href="blog-single.html" class="btn btn-primary btn-sm">Read more</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="blog-post card shadow-sm border-0"> <a class="d-flex"
-                                    href="blog-single.html"><img class="card-img-top"
-                                        src="http://demo.harnishdesign.net/html/payyed/images/blog/post-2.jpg" alt=""></a>
-                                <div class="card-body p-4">
-                                    <h4 class="title-blog"><a href="blog-single.html">Pay Your Contractors, Employees
-                                            Anywhere in the World</a></h4>
-                                    <ul class="meta-blog">
-                                        <li><i class="fas fa-calendar-alt"></i> April 24, 2021</li>
-                                        <li><a href="#"><i class="fas fa-user"></i> Admin</a></li>
-                                        <li><a href="#"><i class="fas fa-comments"></i> 10</a></li>
-                                    </ul>
-                                    <p>Some quick example text to build on the card title and make up the bulk of the card's
-                                        content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor
-                                        incididunt ut labore. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                        eiusmod tempor incididunt ut labore et dolore magna aliqua....</p>
-                                    <a href="blog-single.html" class="btn btn-primary btn-sm">Read more</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="blog-post card shadow-sm border-0"> <a class="d-flex"
-                                    href="blog-single.html"><img class="card-img-top"
-                                        src="http://demo.harnishdesign.net/html/payyed/images/blog/post-4.jpg" alt=""></a>
-                                <div class="card-body p-4">
-                                    <h4 class="title-blog"><a href="blog-single.html">Dealing with Returns,
-                                            Cancellations and Claims on Your Store</a></h4>
-                                    <ul class="meta-blog">
-                                        <li><i class="fas fa-calendar-alt"></i> April 24, 2021</li>
-                                        <li><a href="#"><i class="fas fa-user"></i> Admin</a></li>
-                                        <li><a href="#"><i class="fas fa-comments"></i> 10</a></li>
-                                    </ul>
-                                    <p>Some quick example text to build on the card title and make up the bulk of the card's
-                                        content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor
-                                        incididunt ut labore. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                        eiusmod tempor incididunt ut labore et dolore magna aliqua....</p>
-                                    <a href="blog-single.html" class="btn btn-primary btn-sm">Read more</a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+
                     </div>
 
                     <!-- Pagination
-                ============================================= -->
+                                    ============================================= -->
                     <ul class="pagination justify-content-center my-5">
                         <li class="page-item disabled"> <a class="page-link" href="#" tabindex="-1"><i
                                     class="fas fa-angle-left"></i></a> </li>
@@ -130,10 +81,9 @@
                 <!-- Middle Panel End -->
 
                 <!-- Right Sidebar
-            ============================================= -->
+                                ============================================= -->
                 <aside class="col-lg-4 col-xl-3">
-                    <!-- Search
-      =============================== -->
+                    <!-- Search      =============================== -->
                     <div class="input-group shadow-sm mb-4">
                         <input class="form-control shadow-none border-0 pe-0" type="search" id="search-input"
                             placeholder="Search" value="">
@@ -143,8 +93,7 @@
                         </span>
                     </div>
 
-                    <!-- Categories
-      =============================== -->
+                    <!-- Categories      =============================== -->
                     <div class="bg-white shadow-sm rounded p-3 mb-4">
                         <h4 class="text-5 fw-400">Categories</h4>
                         <hr class="mx-n3">
@@ -159,8 +108,7 @@
                         </ul>
                     </div>
 
-                    <!-- Recent Posts
-              =============================== -->
+                    <!-- Recent Posts              =============================== -->
                     <div class="bg-white shadow-sm rounded p-3 mb-4">
                         <h4 class="text-5 fw-400">Recent Posts</h4>
                         <hr class="mx-n3">
@@ -195,8 +143,7 @@
                         </div>
                     </div>
 
-                    <!-- Popular Tags
-              =============================== -->
+                    <!-- Popular Tags              =============================== -->
                     <div class="bg-white shadow-sm rounded p-3 mb-4">
                         <h4 class="text-5 fw-400">Popular Tags</h4>
                         <hr class="mx-n3">

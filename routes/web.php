@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SendMoneyController;
 use App\Http\Controllers\SiteController;
@@ -29,6 +30,10 @@ Route::controller(SiteController::class)->group(function () {
         Route::get("/payment", "payment")->name("payment");
     });
 
+});
+
+Route::controller(BlogController::class)->group(function(){
+    Route::get("/blog", "blog")->name("blog");
 });
 
 Route::get("status/{id}",[PaymentController::class,"response"])->name("stripeResponse");
