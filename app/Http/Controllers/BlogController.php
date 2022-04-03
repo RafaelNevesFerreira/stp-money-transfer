@@ -19,6 +19,9 @@ class BlogController extends Controller
     public function post($slug)
     {
         $post = $this->posts->whereSlug($slug);
+
         return view("blog.post",compact("post"));
     }
+
+
 }

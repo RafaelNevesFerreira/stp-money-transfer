@@ -123,11 +123,9 @@
                 </div>
                 <!-- Middle Panel End -->
 
-                <!-- Right Sidebar
-                                                    ============================================= -->
+                <!-- Right Sidebar  ============================================= -->
                 <aside class="col-lg-4 col-xl-3">
-                    <!-- Search
-                                              =============================== -->
+                    <!-- Search    =============================== -->
                     <div class="input-group shadow-sm mb-4">
                         <input class="form-control shadow-none border-0 pe-0" type="search" id="search-input"
                             placeholder="Search" value="">
@@ -136,26 +134,7 @@
                                     class="fa fa-search"></i></button>
                         </span>
                     </div>
-
-                    <!-- Categories
-                                                      =============================== -->
-                    <div class="bg-white shadow-sm rounded p-3 mb-4">
-                        <h4 class="text-5 fw-400">Categories</h4>
-                        <hr class="mx-n3">
-                        <ul class="list-item">
-                            <li><a href="#">Industry Tips<span>(24)</span></a></li>
-                            <li><a href="#">Sales & Marketing<span>(14)</span></a></li>
-                            <li><a href="#">Enterprise Hub<span>(6)</span></a></li>
-                            <li><a href="#">Outsourcing<span>(8)</span></a></li>
-                            <li><a href="#">Finance & Management<span>(4)</span></a></li>
-                            <li><a href="#">IT & Programming<span>(10)</span></a></li>
-                            <li><a href="#">Design & Photography<span>(9)</span></a></li>
-                        </ul>
-                    </div>
-
-
-                    <!-- Popular Tags
-                                                      =============================== -->
+                    <!-- Popular Tags   =============================== -->
                     <div class="bg-white shadow-sm rounded p-3 mb-4">
                         <h4 class="text-5 fw-400">Popular Tags</h4>
                         <hr class="mx-n3">
@@ -166,7 +145,6 @@
                     </div>
                 </aside>
                 <!-- Right Sidebar End -->
-
             </div>
         </div>
     </div>

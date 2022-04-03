@@ -14,4 +14,13 @@ class AbstractRepository
     {
         return $this->model::whereSlug($slug)->firstOrFail();
     }
+
+    public function whereTags($tag)
+    {
+        return $this->model::with(['tags' => function ($q) use ($tag) {
+            // Query the name field in status table
+            $q->where('name', $tag)->firstOrFail();
+
+        }])->get();
+    }
 }
