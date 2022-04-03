@@ -24,7 +24,6 @@
                             <li><a href="{{ route('about') }}">Sobre Nós</a></li>
                             <li><a href="{{route("help")}}">Ajuda</a></li>
                             <li><a href="{{route("contact")}}">Contato</a></li>
-                            <li><a href="{{route("privacity")}}">Privacidade</a></li>
 
                         </ul>
                     </div>
@@ -37,7 +36,7 @@
                     <ul class="navbar-nav">
                         <li><a href="{{ route('login') }}">Login</a> </li>
                         <li class="align-items-center h-auto ms-sm-3"><a class="btn btn-primary"
-                                href="signup.html">Sign Up</a></li>
+                                href="{{route("register")}}">Sign Up</a></li>
                     </ul>
                 </nav>
                 <!-- Login & Signup Link end -->
