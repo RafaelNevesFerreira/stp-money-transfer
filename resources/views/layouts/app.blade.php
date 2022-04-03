@@ -59,7 +59,7 @@
 
         <!-- Back to Top
     ============================================= -->
-        <a id="back-to-top" data-bs-toggle="tooltip" title="Back to Top" href="javascript:void(0)"><i
+        <a id="back-to-top" data-bs-toggle="tooltip" title="Voltar ao topo" href="javascript:void(0)"><i
                 class="fa fa-chevron-up"></i></a>
 
         <!-- Video Modal

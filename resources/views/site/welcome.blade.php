@@ -291,7 +291,7 @@
         <section class="section bg-white">
             <div class="container">
                 <h2 class="text-9 text-center">Dúvidas Frequentes</h2>
-                <p class="lead text-center mb-4 mb-sm-5">Não encontrou nada relacionado as suas duvidas? Envie-nos uma
+                <p class="lead text-center mb-4 mb-sm-5">Não encontrou nada relacionado as suas dúvidas? Envie-nos uma
                     menssagem <a class="btn-link" href="help.html">Centro de Ajuda</a></p>
                 <div class="row">
                     <div class="col-md-10 col-lg-8 mx-auto">
@@ -376,7 +376,7 @@
                         <hr class="mt-0">
                     </div>
                 </div>
-                <div class="text-center mt-4"><a href="{{route("help")}}" class="btn-link text-4">Mais Duvidas<i
+                <div class="text-center mt-4"><a href="{{route("help")}}" class="btn-link text-4">Mais Dúvidas<i
                             class="fas fa-chevron-right text-2 ms-2"></i></a></div>
             </div>
         </section>
