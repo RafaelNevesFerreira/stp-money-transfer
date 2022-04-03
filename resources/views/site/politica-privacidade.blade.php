@@ -6,12 +6,12 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h1>Elements 2</h1>
+                    <h1>Política de privacidade</h1>
                 </div>
                 <div class="col-md-4">
                     <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
-                        <li><a href="http://demo.harnishdesign.net/html/payyed/index.html">Home</a></li>
-                        <li class="active">Elements 2</li>
+                        <li><a href="{{route("home")}}">Inicio</a></li>
+                        <li class="active">Política de privacidade</li>
                     </ul>
                 </div>
             </div>
