@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section('content')
     <!-- Page Header
-                                                                                                                    ============================================= -->
+                                                                                                                        ============================================= -->
     <div class="page-header page-header-text-light bg-dark">
         <div class="container">
             <div class="row align-items-center">
@@ -20,7 +20,7 @@
     <!-- Page Header end -->
 
     <!-- Content
-                                                                                                                  ============================================= -->
+                                                                                                                      ============================================= -->
     <div id="content">
         <div class="container">
             <div class="bg-white shadow-md rounded p-4 mb-4">
@@ -138,6 +138,24 @@
                             ou se você violar nossos Termos de Serviço.
                         </p>
                     </div>
+
+                    <div class="col-md-8 mx-auto mt-5">
+
+                        <h2>SEÇÃO 5 - COMPARTILHAMENTO DOS DADOS</h2>
+                        <p>
+                            O compartilhamento de dados do usuário ocorre apenas com os dados referentes os envios de
+                            dinheiro
+                            realizadas pelo próprio usuário, tais ações são compartilhadas apenas com os responsaveis pela
+                            entrega do dinheiro.
+                        </p>
+                        <p>
+                            Os dados do perfil do usuário não são compartilhados publicamente em sistemas de busca nem
+                            dentro da
+                            plataforma para outros usuarios.
+                        </p>
+
+                    </div>
+
 
                     <div class="col-md-8 mx-auto mt-5">
 
