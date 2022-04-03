@@ -35,8 +35,7 @@
                 <nav class="login-signup navbar navbar-expand">
                     <ul class="navbar-nav">
                         <li><a href="{{ route('login') }}">Login</a> </li>
-                        <li class="align-items-center h-auto ms-sm-3"><a class="btn btn-primary"
-                                href="{{route("register")}}">Sign Up</a></li>
+                        <li class="align-items-center h-auto ms-sm-3"><a class="btn btn-primary" href="{{route("register")}}">Criar Conta</a></li>
                     </ul>
                 </nav>
                 <!-- Login & Signup Link end -->
