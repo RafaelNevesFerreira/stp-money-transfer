@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section('content')
     <!-- Page Header
-                                                                                                                        ============================================= -->
+                                                                                                                                                            ============================================= -->
     <div class="page-header page-header-text-light bg-dark">
         <div class="container">
             <div class="row align-items-center">
@@ -20,7 +20,7 @@
     <!-- Page Header end -->
 
     <!-- Content
-                                                                                                                      ============================================= -->
+                                                                                                                                                          ============================================= -->
     <div id="content">
         <div class="container">
             <div class="bg-white shadow-md rounded p-4 mb-4">
@@ -159,19 +159,62 @@
 
                     <div class="col-md-8 mx-auto mt-5">
 
-                        <h2>SEÇÃO 5 - COMPARTILHAMENTO DOS DADOS</h2>
+                        <h2>SEÇÃO 6 – COOKIES OU DADOS DE NAVEGAÇÃO</h2>
                         <p>
-                            O compartilhamento de dados do usuário ocorre apenas com os dados referentes os envios de
-                            dinheiro
-                            realizadas pelo próprio usuário, tais ações são compartilhadas apenas com os responsaveis pela
-                            entrega do dinheiro.
+                            Os cookies referem-se a arquivos de texto enviados pela plataforma ao computador do usuário e
+                            visitante e que nele ficam armazenados, com informações relacionadas à navegação no site. Tais
+                            informações são relacionadas aos dados de acesso como local e horário de acesso e são
+                            armazenadas pelo navegador do usuário e visitante para que o servidor da plataforma possa lê-las
+                            posteriormente a fim de personalizar os serviços da plataforma.
                         </p>
                         <p>
-                            Os dados do perfil do usuário não são compartilhados publicamente em sistemas de busca nem
-                            dentro da
-                            plataforma para outros usuarios.
+                            O usuário e o visitante da plataforma {{ env('APP_NAME') }} manifesta conhecer e aceitar que
+                            pode ser utilizado um
+                            sistema de coleta de dados de navegação mediante à utilização de cookies.
+                        </p>
+                        <p>
+                            O cookie persistente permanece no disco rígido do usuário e visitante depois que o navegador é
+                            fechado e será usado pelo navegador em visitas subsequentes ao site. Os cookies persistentes
+                            podem ser removidos seguindo as instruções do seu navegador. Já o cookie de sessão é temporário
+                            e desaparece depois que o navegador é fechado. É possível redefinir seu navegador da web para
+                            recusar todos os cookies, porém alguns recursos da plataforma podem não funcionar corretamente
+                            se a capacidade de aceitar cookies estiver desabilitada.
                         </p>
 
+                    </div>
+
+                    <div class="col-md-8 mx-auto mt-5">
+
+                        <h2>SEÇÃO 7 – CONSENTIMENTO</h2>
+                        <p>
+                            Ao utilizar os serviços e fornecer as informações pessoais na plataforma, o usuário está
+                            consentindo com a presente Política de Privacidade.
+                            O usuário, ao cadastrar-se, manifesta conhecer e pode exercitar seus direitos de cancelar seu
+                            cadastro, acessar e atualizar seus dados pessoais e garante a veracidade das informações por ele
+                            disponibilizadas.
+                            O usuário tem direito de retirar o seu consentimento a qualquer tempo, para tanto deve entrar em
+                            contato através do e-mail presente na pagina de contato.
+                        </p>
+                    </div>
+
+                    <div class="col-md-8 mx-auto mt-5">
+
+                        <h2>SEÇÃO 8 – ALTERAÇÕES PARA ESSA POLÍTICA DE PRIVACIDADE</h2>
+                        <p>
+                            Reservamos o direito de modificar essa Política de Privacidade a qualquer momento, então, é
+                            recomendável que o usuário e visitante revise-a com frequência.
+                        </p>
+                        <p>
+                            As alterações e esclarecimentos vão surtir efeito imediatamente após sua publicação na
+                            plataforma. Quando realizadas alterações os usuários serão notificados. Ao utilizar o serviço ou
+                            fornecer informações pessoais após eventuais modificações, o usuário e visitante demonstra sua
+                            concordância com as novas normas.
+                        </p>
+                        <p>
+                            Diante da fusão ou venda da plataforma à outra empresa os dados dos usuários podem ser
+                            transferidas para os novos proprietários para que a permanência dos serviços oferecidos.
+                        </p>
+                        </p>
                     </div>
 
 
