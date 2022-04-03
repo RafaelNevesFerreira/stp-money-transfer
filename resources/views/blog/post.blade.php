@@ -171,8 +171,5 @@
         </div>
     </div>
 
-    <script>
-        $(".embedded_image").children('img').addClass("img-fluid");
-    </script>
     <!-- Content end -->
 @endsection
