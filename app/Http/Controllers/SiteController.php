@@ -34,4 +34,8 @@ class SiteController extends Controller
     public function contact(){
         return view("site.contact");
     }
+
+    public function privacity(){
+        return view("site.politica-privacidade");
+    }
 }

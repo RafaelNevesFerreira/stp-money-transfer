@@ -155,7 +155,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-center mt-3"><a href="#" class="btn btn-outline-primary shadow-none text-uppercase">Criar
+                <div class="text-center mt-3"><a href="{{route("register")}}" class="btn btn-outline-primary shadow-none text-uppercase">Criar
                         Uma Conta</a></div>
             </div>
         </section>
@@ -193,7 +193,7 @@
                         <div class="featured-box style-1">
                             <div class="featured-box-icon text-primary"> <i class="far fa-check-circle"></i> </div>
                             <h3>Taxas Baixas</h3>
-                            <p>Envie seu dinheiro com as taxas mais baixas posiiveis.</p>
+                            <p>Envie seu dinheiro com as taxas mais baixas posiveis.</p>
                         </div>
                         <div class="featured-box style-1">
                             <div class="featured-box-icon text-primary"> <i class="far fa-check-circle"></i> </div>
@@ -376,7 +376,7 @@
                         <hr class="mt-0">
                     </div>
                 </div>
-                <div class="text-center mt-4"><a href="#" class="btn-link text-4">Mais Duvidas<i
+                <div class="text-center mt-4"><a href="{{route("help")}}" class="btn-link text-4">Mais Duvidas<i
                             class="fas fa-chevron-right text-2 ms-2"></i></a></div>
             </div>
         </section>
@@ -391,7 +391,7 @@
                 <div class="container d-md-flex text-center text-md-start align-items-center justify-content-center">
                     <h2 class="text-6 fw-400 text-white mb-3 mb-md-0">Cadastre-se hoje e receba sua primeira taxa de
                         transação grátis!</h2>
-                    <a href="#" class="btn btn-outline-light text-nowrap ms-0 ms-md-4">Criar Conta</a>
+                    <a href="{{route("register")}}" class="btn btn-outline-light text-nowrap ms-0 ms-md-4">Criar Conta</a>
                 </div>
             </div>
         </section>

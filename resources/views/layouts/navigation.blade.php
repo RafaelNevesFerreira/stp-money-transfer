@@ -24,6 +24,7 @@
                             <li><a href="{{ route('about') }}">Sobre Nós</a></li>
                             <li><a href="{{route("help")}}">Ajuda</a></li>
                             <li><a href="{{route("contact")}}">Contato</a></li>
+                            <li><a href="{{route("privacity")}}">Privacidade</a></li>
 
                         </ul>
                     </div>

@@ -22,6 +22,7 @@ Route::controller(SiteController::class)->group(function () {
     Route::get("/send", "send")->name("send");
     Route::get("/help", "help")->name("help");
     Route::get("/contact", "contact")->name("contact");
+    Route::get("/privacity", "privacity")->name("privacity");
 
     Route::middleware("send_money")->group(function () {
         Route::get("/identification", "identification")->name("identification");
