@@ -27,35 +27,60 @@
                             <div class="bg-white rounded shadow-md p-4">
                                 <h3 class="text-5 mb-4 text-center">Enviar Dinheiro</h3>
                                 <hr class="mb-4 mx-n4">
-                                <form id="form-send-money" method="post">
+                                <form id="form-send-money" method="post" action="{{ route('details') }}">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="nomedoreceptor" class="form-label">Nome do Receptor</label>
+                                        @if (session('receptor'))
+                                            <input type="text" class="form-control" id="nomedoreceptor" required
+                                                value="{{ session('receptor') }}" name="nomedoreceptor">
+                                        @else
+                                            <input type="text" class="form-control" id="nomedoreceptor" required
+                                                placeholder="Digite o nome completo do receptor" name="nomedoreceptor">
+                                        @endif
+                                    </div>
                                     <div class="mb-3">
                                         <label for="youSend" class="form-label">Valor a ser enviado</label>
                                         <div class="input-group">
-                                            <span class="input-group-text">$</span>
-                                            <input type="text" class="form-control" data-bv-field="youSend" id="youSend"
-                                                value="1,000" placeholder="">
+                                            {{-- <span class="input-group-text">$</span> --}}
+                                            <input type="text" data-thousands="." data-decimal="," class="form-control"
+                                                data-bv-field="youSend" name="valor_enviado" id="youSend" value="25,00"
+                                                placeholder="">
                                             <span class="input-group-text p-0">
-                                                <select id="youSendCurrency"
-                                                    data-style="form-select bg-transparent border-0" data-container="body"
-                                                    data-live-search="true" class="selectpicker form-control bg-transparent"
-                                                    required="">
+                                                <select id="youSendCurrency" data-style="form-select bg-transparent border-0"
+                                                    data-container="body" data-live-search="true" name="moeda"
+                                                    class="selectpicker form-control bg-transparent" required="">
                                                     <optgroup label="Popular Currency">
-                                                        <option data-icon="currency-flag currency-flag-usd me-1"
-                                                            data-subtext="United States dollar" value="">USD</option>
-                                                        <option data-icon="currency-flag currency-flag-aud me-1"
-                                                            data-subtext="Australian dollar" value="">AUD</option>
-                                                        <option data-icon="currency-flag currency-flag-eur me-1"
-                                                            data-subtext="European euro" selected="selected" value="">EUR
+                                                        @if (session('moeda') == '€')
+                                                            <option data-icon="currency-flag currency-flag-usd me-1"
+                                                                data-subtext="Dolar" value="usd">USD</option>
+                                                            <option data-icon="currency-flag currency-flag-gbp me-1"
+                                                                data-subtext="Libras" value="gbp">GBP</option>
+                                                            <option data-icon="currency-flag currency-flag-eur me-1"
+                                                                data-subtext="Euro" selected="selected" value="eur">EUR
+                                                            @elseif (session('moeda' == "$"))
+                                                            <option data-icon="currency-flag currency-flag-usd me-1"
+                                                                data-subtext="Dolar" selected="selected" value="usd">USD</option>
+                                                            <option data-icon="currency-flag currency-flag-gbp me-1"
+                                                                data-subtext="Libras" value="gbp">GBP</option>
+                                                            <option data-icon="currency-flag currency-flag-eur me-1"
+                                                                data-subtext="Euro" value="eur">EUR
+                                                            @elseif (session('moeda') == '£')
+                                                            <option data-icon="currency-flag currency-flag-usd me-1"
+                                                                data-subtext="Dolar" selected="selected" value="usd">USD</option>
+                                                            <option data-icon="currency-flag currency-flag-gbp me-1"
+                                                                data-subtext="Libras" value="gbp">GBP</option>
+                                                            <option data-icon="currency-flag currency-flag-eur me-1"
+                                                                data-subtext="Euro" value="eur">EUR
+                                                            @else
+                                                            <option data-icon="currency-flag currency-flag-usd me-1"
+                                                                data-subtext="Dolar" value="usd">USD</option>
+                                                            <option data-icon="currency-flag currency-flag-gbp me-1"
+                                                                data-subtext="Libras" value="gbp">GBP</option>
+                                                            <option data-icon="currency-flag currency-flag-eur me-1"
+                                                                data-subtext="Euro" selected="selected" value="eur">EUR
+                                                        @endif
                                                         </option>
-                                                    </optgroup>
-                                                    <option data-divider="true"></option>
-                                                    <optgroup label="Other Currency">
-                                                        <option data-icon="currency-flag currency-flag-brl me-1"
-                                                            data-subtext="Brazilian real" value="">BRL</option>
-                                                        <option data-icon="currency-flag currency-flag-cad me-1"
-                                                            data-subtext="Canadian dollar" value="">CAD</option>
-                                                        <option data-icon="currency-flag currency-flag-chf me-1"
-                                                            data-subtext="Swiss franc" value="">CHF</option>
                                                     </optgroup>
                                                 </select>
                                             </span>
@@ -64,11 +89,10 @@
                                     <div class="mb-3">
                                         <label for="recipientGets" class="form-label">Valor a ser recebido</label>
                                         <div class="input-group">
-                                            <span class="input-group-text">$</span>
-                                            <input type="text" class="form-control" data-bv-field="recipientGets"
-                                                id="recipientGets" value="1,410.06" placeholder="">
+                                            <span class="input-group-text">Dbs</span>
+                                            <input type="text" disabled class="form-control" id="recipientGets" value="625,00">
                                             <span class="input-group-text p-0">
-                                                <select id="recipientCurrency"
+                                                <select id="recipientCurrency" disabled
                                                     data-style="form-select bg-transparent border-0" data-container="body"
                                                     class="selectpicker form-control bg-transparent" required="">
                                                     <option data-icon="currency-flag currency-flag-stp me-1"
@@ -77,8 +101,14 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <p class="text-muted">A Taxa Atual é <span class="fw-500">1,00
-                                            EUR = 24,00 DBS</span></p>
+
+                                    <hr>
+                                    <p>Total Taxas<span class="float-end" id="taxas">6.05 <span
+                                                class="moeda_mudar">€</span></span></p>
+                                    <hr>
+                                    <p class="text-4 fw-500">Total a Pagar<span class="float-end" id="total">31.05 <span
+                                                class="moeda_mudar">€</span>
+                                        </span></p>
                                     <div class="d-grid"><button class="btn btn-primary">Continuar</button></div>
                                 </form>
                             </div>
@@ -337,18 +367,7 @@
                                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                                     data-bs-parent="#popularTopics">
                                     <div class="accordion-body">
-                                        Se você quiser enviar dinheiro sem pagar as taxas, siga as seguintes etapas:
-
-                                        <ol>
-                                            <li> Faça o Login ou crie uma conta.</li>
-                                            <li> Entre na área de dashboard.</li>
-                                            <li> Và até o submenu de recomendações.</li>
-                                            <li> Copie o seu codigo de recomendações.</li>
-                                            <li> Dê o seu codigo de recomendações para alguem que queira enviar dinheiro com
-                                                a {{ env('APP_NAME') }}.</li>
-                                        </ol>
-                                        Se a pessoa enviar dinheiro com o seu codigo de recomendações, então você não pagara
-                                        taxas no seu proximo envio
+                                        Se você quiser enviar dinheiro sem pagar as taxas, temos um post que fala especialmente sobre isso, leia e siga as etapas
 
                                     </div>
                                 </div>

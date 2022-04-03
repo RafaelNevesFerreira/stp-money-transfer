@@ -1,9 +1,6 @@
 @extends("layouts.app")
 @section('content')
-    <script src="{{ asset('assets/js/maskmoney.min.js') }}"></script>
-
-    <!-- Content
-                                                                                  ============================================= -->
+    <!-- Conten  ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
 
@@ -12,7 +9,7 @@
                 <div class="col-lg-11 mx-auto">
                     <div class="row widget-steps">
                         <div class="col-4 step active">
-                            <div class="step-name">Details</div>
+                            <div class="step-name">Detalhes</div>
                             <div class="progress">
                                 <div class="progress-bar"></div>
                             </div>
@@ -44,7 +41,7 @@
                         <h3 class="text-5 fw-400 mb-3 mb-sm-4">Detalhes</h3>
                         <hr class="mx-n3 mx-sm-n5 mb-4">
                         <!-- Send Money Form
-                                                                                            ============================ -->
+                                                                                                        ============================ -->
                         <form id="form-send-money" method="post" action="{{ route('details') }}">
                             @csrf
                             <div class="mb-3">
@@ -67,7 +64,7 @@
                                     <span class="input-group-text p-0">
                                         <select id="youSendCurrency" data-style="form-select bg-transparent border-0"
                                             data-container="body" data-live-search="true" name="moeda"
-                                            class="selectpicker form-control bg-transparent"  required="">
+                                            class="selectpicker form-control bg-transparent" required="">
                                             <optgroup label="Popular Currency">
                                                 @if (session('moeda') == '€')
                                                     <option data-icon="currency-flag currency-flag-usd me-1"
@@ -121,11 +118,13 @@
                             </div>
 
                             <hr>
-                            <p>Total Taxas<span class="float-end" id="taxas">6.05 <span class="moeda_mudar"></span></span></p>
+                            <p>Total Taxas<span class="float-end" id="taxas">6.05 <span
+                                        class="moeda_mudar">€</span></span></p>
                             <hr>
-                            <p class="text-4 fw-500">Total a Pagar<span class="float-end" id="total">31.05 <span class="moeda_mudar">€</span>
+                            <p class="text-4 fw-500">Total a Pagar<span class="float-end" id="total">31.05 <span
+                                        class="moeda_mudar">€</span>
                                 </span></p>
-                            <div class="d-grid"><button class="btn btn-primary">Continue</button></div>
+                            <div class="d-grid"><button class="btn btn-primary">Continuar</button></div>
                         </form>
                         <!-- Send Money Form end -->
                     </div>
@@ -134,56 +133,5 @@
         </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            $("#youSend").keyup(function() {
-                if ($("#youSend").val() < 1) {
-                    $("#recipientGets").val(0);
-                } else {
-                    var valor = $(this).val()
-
-                    var formater = new Intl.NumberFormat("fr-FR", {
-                        style: "currency",
-                        currency: "snt"
-                    });
-                    valor = parseFloat(valor.replace(".", ''))
-
-                    if (valor >= 100 && valor <= 400) {
-                        var minha_tax = 27
-                    } else if (valor > 400 && valor <= 800) {
-                        minha_tax = 50
-                    } else if (valor > 800 && valor <= 1000) {
-                        minha_tax = 150
-                    } else if (valor == 25) {
-                        minha_tax = 5;
-                    } else if (valor < 25) {
-                        minha_tax = 3;
-                    } else {
-                        minha_tax = 10;
-                    }
-                    var tax = valor * 0.030 + 0.3 + minha_tax
-
-                    var total = valor + tax;
-                    $("#taxas").text(tax.toFixed(2));
-                    $("#total").text(total);
-
-                    $("#recipientGets").val(formater.format(valor * 25));
-
-                }
-            });
-
-            $('#youSend').maskMoney()
-            $("#youSendCurrency").change(function() {
-                if ($(this).val() == "eur") {
-                    $(".moeda_mudar").text("€")
-                }else if($(this).val() == "usd"){
-                    $(".moeda_mudar").text("$")
-                }else{
-                    $(".moeda_mudar").text("£")
-
-                }
-            })
-        })
-    </script>
     <!-- Content end -->
 @endsection

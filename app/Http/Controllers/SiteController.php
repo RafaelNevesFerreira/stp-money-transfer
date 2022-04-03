@@ -26,4 +26,12 @@ class SiteController extends Controller
     public function payment(){
         return view("site.payment");
     }
+
+    public function help(){
+        return view("site.help");
+    }
+
+    public function contact(){
+        return view("site.contact");
+    }
 }

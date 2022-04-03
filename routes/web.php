@@ -20,6 +20,8 @@ Route::controller(SiteController::class)->group(function () {
     Route::get("/", "index")->name("home");
     Route::get("/about", "about")->name("about");
     Route::get("/send", "send")->name("send");
+    Route::get("/help", "help")->name("help");
+    Route::get("/contact", "contact")->name("contact");
 
     Route::middleware("send_money")->group(function () {
         Route::get("/identification", "identification")->name("identification");

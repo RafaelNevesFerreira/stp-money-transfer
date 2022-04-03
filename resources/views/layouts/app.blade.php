@@ -20,9 +20,10 @@
     ============================================= -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/all.min.css') }}" />
+
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-select.min.css') }}" />
-        <script src="{{asset("assets/js/jquery.min.js")}}"></script>
-        <link rel="stylesheet" type="text/css" href="{{asset("assets/css/currency-flags.min.css")}}" />
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/currency-flags.min.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.min.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/stylesheet.css') }}" />
         <!-- Colors Css -->
@@ -44,106 +45,13 @@
             <!-- Header
     ============================================= -->
 
-            <header id="header">
-                <div class="container">
-                    <div class="header-row">
-                        <div class="header-column justify-content-start">
-                            <!-- Logo
-            ============================= -->
-                            <div class="logo me-3">
-                                <a class="d-flex" href="http://demo.harnishdesign.net/html/payyed/index.html"
-                                    title="Payyed - HTML Template"><img
-                                        src="http://demo.harnishdesign.net/html/payyed/images/logo.png" alt="Payyed" /></a>
-                            </div>
-                            <!-- Logo end -->
-                            <!-- Collapse Button
-            ============================== -->
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#header-nav"> <span></span> <span></span> <span></span> </button>
-                            <!-- Collapse Button end -->
-
-                            <!-- Primary Navigation
-            ============================== -->
-                            <nav class="primary-menu navbar navbar-expand-lg">
-                                <div id="header-nav" class="collapse navbar-collapse">
-                                    <ul class="navbar-nav me-auto">
-                                        <li ><a href="{{route("home")}}">Home</a></li>
-                                        <li><a
-                                                href="{{route("send")}}">Enviar</a>
-                                        </li>
-                                        <li><a href="{{route("about")}}">About Us</a></li>
-                                        <li><a href="fees.html">Fees</a></li>
-                                        <li><a href="help.html">Help</a></li>
-
-                                    </ul>
-                                </div>
-                            </nav>
-                            <!-- Primary Navigation end -->
-                        </div>
-                        <div class="header-column justify-content-end">
-                            <!-- Login & Signup Link
-            ============================== -->
-                            <nav class="login-signup navbar navbar-expand">
-                                <ul class="navbar-nav">
-                                    <li><a href="{{route("login")}}">Login</a> </li>
-                                    <li class="align-items-center h-auto ms-sm-3"><a class="btn btn-primary"
-                                            href="signup.html">Sign Up</a></li>
-                                </ul>
-                            </nav>
-                            <!-- Login & Signup Link end -->
-                        </div>
-                    </div>
-                </div>
-            </header>
+            @include("layouts.navigation")
             <!-- Header End -->
             @yield("content")
 
             <!-- Footer
     ============================================= -->
-            <footer id="footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg d-lg-flex align-items-center">
-                            <ul class="nav justify-content-center justify-content-lg-start text-3">
-                                <li class="nav-item"> <a class="nav-link active" href="#">About Us</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="#">Support</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="#">Help</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="#">Careers</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="#">Affiliate</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="#">Fees</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg d-lg-flex justify-content-lg-end mt-3 mt-lg-0">
-                            <ul class="social-icons justify-content-center">
-                                <li class="social-icons-facebook"><a data-bs-toggle="tooltip"
-                                        href="http://www.facebook.com/" target="_blank" title="Facebook"><i
-                                            class="fab fa-facebook-f"></i></a></li>
-                                <li class="social-icons-twitter"><a data-bs-toggle="tooltip" href="http://www.twitter.com/"
-                                        target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                <li class="social-icons-google"><a data-bs-toggle="tooltip" href="http://www.google.com/"
-                                        target="_blank" title="Google"><i class="fab fa-google"></i></a></li>
-                                <li class="social-icons-youtube"><a data-bs-toggle="tooltip" href="http://www.youtube.com/"
-                                        target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="footer-copyright pt-3 pt-lg-2 mt-2">
-                        <div class="row">
-                            <div class="col-lg">
-                                <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a
-                                        href="#">Payyed</a>. All Rights Reserved.</p>
-                            </div>
-                            <div class="col-lg d-lg-flex align-items-center justify-content-lg-end">
-                                <ul class="nav justify-content-center">
-                                    <li class="nav-item"> <a class="nav-link active" href="#">Security</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="#">Terms</a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="#">Privacy</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            @include("layouts.footer")
             <!-- Footer end -->
 
         </div>
@@ -172,11 +80,13 @@
         <!-- Video Modal end -->
 
         <!-- Script -->
-        <script src="{{asset("assets/js/bootstrap-bundle.min.js")}}"></script>
-        <script src="{{asset("assets/js/bootstrap-select.min.js")}}"></script>
-        <script src="{{asset("assets/js/owl-carousel.min.js")}}"></script>
+        <script src="{{ asset('assets/js/maskmoney.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap-bundle.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
+        <script src="{{ asset('assets/js/owl-carousel.min.js') }}"></script>
         <!-- Style Switcher -->
-        <script src="{{asset("assets/js/theme.js")}}"></script>
+        <script src="{{ asset('assets/js/theme.js') }}"></script>
+        <script src="{{ asset('assets/js/app.js') }}"></script>
 
         @yield("scripts")
     </body>
