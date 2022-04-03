@@ -6,14 +6,19 @@ use App\Repositories\Contracts\PostsRepositoryInterface;
 
 class BlogController extends Controller
 {
-    public $posts;
-    public function __construct(PostsRepositoryInterface $posts)
+    public function __construct(public PostsRepositoryInterface $posts)
     {
-        $this->posts = $posts;
     }
 
-    public function blog(){
+    public function blog()
+    {
         $posts = $this->posts->all();
-        return view("blog.blog",compact("posts"));
+        return view("blog.blog", compact("posts"));
+    }
+
+    public function post($slug)
+    {
+        $post = $this->posts->whereSlug($slug);
+        return view("blog.post",compact("post"));
     }
 }

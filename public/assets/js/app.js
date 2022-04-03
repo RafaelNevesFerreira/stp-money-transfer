@@ -51,5 +51,7 @@
             currency: "snt"
         });
         $("#recipientGets").val(formater.format(625));
+        $(".embedded_image").children('img').addClass("img-fluid");
+
 
     })

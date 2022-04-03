@@ -34,6 +34,7 @@ Route::controller(SiteController::class)->group(function () {
 
 Route::controller(BlogController::class)->group(function(){
     Route::get("/blog", "blog")->name("blog");
+    Route::get("/blog/{slug}", "post")->name("post");
 });
 
 Route::get("status/{id}",[PaymentController::class,"response"])->name("stripeResponse");
