@@ -13,5 +13,6 @@ class Cards extends Model
         "card_number",
         "card_expiration_month",
         "card_expiration_year",
+        "users_id",
     ];
 }

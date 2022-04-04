@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->integer("card_number")->unique();
+            $table->string("card_number");
             $table->integer("card_expiration_month");
             $table->integer("card_expiration_year");
+            $table->foreignId("users_id")->references("id")->on("users");
             $table->timestamps();
         });
     }

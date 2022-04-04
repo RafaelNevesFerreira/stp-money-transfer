@@ -7,7 +7,7 @@ class AbstractRepository
     public function all()
     {
         return $this->model::query()->when(request()->has("title"), function ($query) {
-            $query->where("title", "like","%". request("title") . "%");
+            $query->where("title", "like", "%" . request("title") . "%");
         })->latest()->get();
     }
 
@@ -19,5 +19,10 @@ class AbstractRepository
     public function whereTag($tag)
     {
         return $this->model::with("posts")->where("slug", $tag)->firstOrFail();
+    }
+
+    public function create($request)
+    {
+        $this->model::create($request);
     }
 }

@@ -18,9 +18,10 @@ class CardsFactory extends Factory
     public function definition()
     {
         return [
-            "card_number" => $this->faker->creditCardNumber(),
-            "card_expiration_month" => $this->faker->randomElement([1 , 12]),
-            "card_expiration_year" => $this->faker->randomElement([2022, 2050]),
+            "card_number" => $this->faker->randomElement([4242424242424242,4000056655665556,5555555555554444,4000002500003155,371449635398431,4000002760003184,4000008260003178]),
+            "card_expiration_month" => $this->faker->numberBetween(1 , 12),
+            "card_expiration_year" => $this->faker->numberBetween(2022, 2050),
+            "users_id" => $this->faker->numberBetween(1, 1),
         ];
     }
 }
