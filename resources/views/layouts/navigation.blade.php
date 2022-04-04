@@ -4,9 +4,9 @@
             <div class="header-column justify-content-start">
                 <!-- Logo  ============================= -->
                 <div class="logo me-3">
-                    <a class="d-flex" href="http://demo.harnishdesign.net/html/payyed/index.html"
+                    <a class="d-flex" href="{{route("home")}}"
                         title="Payyed - HTML Template"><img
-                            src="http://demo.harnishdesign.net/html/payyed/images/logo.png"
+                            src="{{asset("assets/images/logos.png")}}"
                             alt="Payyed" /></a>
                 </div>
                 <!-- Logo end -->
@@ -23,6 +23,7 @@
                             <li><a href="{{ route('send') }}">Enviar</a> </li>
                             <li><a href="{{ route('about') }}">Sobre Nós</a></li>
                             <li><a href="{{route("help")}}">Ajuda</a></li>
+                            <li><a href="{{route("blog")}}">Blog</a></li>
                             <li><a href="{{route("contact")}}">Contato</a></li>
 
                         </ul>

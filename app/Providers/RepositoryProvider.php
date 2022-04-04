@@ -17,6 +17,11 @@ class RepositoryProvider extends ServiceProvider
             'App\Repositories\Contracts\PostsRepositoryInterface',
             'App\Repositories\Eloquent\PostsRepository',
         );
+
+        $this->app->bind(
+            'App\Repositories\Contracts\TagsRepositoryInterface',
+            'App\Repositories\Eloquent\TagsRepository',
+        );
     }
 
 

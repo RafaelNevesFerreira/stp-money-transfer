@@ -124,26 +124,7 @@
                 <!-- Middle Panel End -->
 
                 <!-- Right Sidebar  ============================================= -->
-                <aside class="col-lg-4 col-xl-3">
-                    <!-- Search    =============================== -->
-                    <div class="input-group shadow-sm mb-4">
-                        <input class="form-control shadow-none border-0 pe-0" type="search" id="search-input"
-                            placeholder="Search" value="">
-                        <span class="input-group-text bg-white border-0 p-0">
-                            <button class="btn text-muted shadow-none px-3 border-0" type="button"><i
-                                    class="fa fa-search"></i></button>
-                        </span>
-                    </div>
-                    <!-- Popular Tags   =============================== -->
-                    <div class="bg-white shadow-sm rounded p-3 mb-4">
-                        <h4 class="text-5 fw-400">Popular Tags</h4>
-                        <hr class="mx-n3">
-                        <div class="tags"> <a href="#">Industry</a> <a href="#">Tips</a> <a href="#">2021</a>
-                            <a href="#">IT</a> <a href="#">Outsourcing</a> <a href="#">Design</a> <a href="#">Enterprise</a>
-                            <a href="#">Marketing</a>
-                        </div>
-                    </div>
-                </aside>
+                @include("layouts.blog.asside")
                 <!-- Right Sidebar End -->
             </div>
         </div>

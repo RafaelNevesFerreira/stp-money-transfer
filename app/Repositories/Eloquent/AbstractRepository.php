@@ -2,12 +2,13 @@
 
 namespace App\Repositories\Eloquent;
 
-
 class AbstractRepository
 {
     public function all()
     {
-        return $this->model::latest()->get();
+        return $this->model::query()->when(request()->has("title"), function ($query) {
+            $query->where("title", "like","%". request("title") . "%");
+        })->latest()->get();
     }
 
     public function whereSlug($slug)
@@ -15,12 +16,8 @@ class AbstractRepository
         return $this->model::whereSlug($slug)->firstOrFail();
     }
 
-    public function whereTags($tag)
+    public function whereTag($tag)
     {
-        return $this->model::with(['tags' => function ($q) use ($tag) {
-            // Query the name field in status table
-            $q->where('name', $tag)->firstOrFail();
-
-        }])->get();
+        return $this->model::with("posts")->where("slug", $tag)->firstOrFail();
     }
 }

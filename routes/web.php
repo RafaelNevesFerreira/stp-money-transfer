@@ -29,16 +29,18 @@ Route::controller(SiteController::class)->group(function () {
         Route::get("/identification", "identification")->name("identification");
         Route::get("/payment", "payment")->name("payment");
     });
-
 });
 
-Route::controller(BlogController::class)->group(function(){
-    Route::get("/blog", "blog")->name("blog");
-    Route::get("/blog/{slug}", "post")->name("post");
+Route::controller(BlogController::class)->group(function () {
+    Route::prefix("blog")->group(function () {
+        Route::get("/", "blog")->name("blog");
+        Route::get("/{slug}", "post")->name("post");
+        Route::get("/tag/{tag}", "tag")->name("tag");
+    });
 });
 
-Route::get("status/{id}",[PaymentController::class,"response"])->name("stripeResponse");
-Route::post('/payment', [PaymentController::class , 'store'])->name('payment.post');
+Route::get("status/{id}", [PaymentController::class, "response"])->name("stripeResponse");
+Route::post('/payment', [PaymentController::class, 'store'])->name('payment.post');
 
 
 Route::controller(SendMoneyController::class)->group(function () {

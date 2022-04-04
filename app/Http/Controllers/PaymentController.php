@@ -58,7 +58,9 @@ class PaymentController extends Controller
                 case '$':
                     $currency = "usd";
                     break;
-                case 'gbp':
+                case '£':
+                    $currency = "gbp";
+
                     break;
             }
 

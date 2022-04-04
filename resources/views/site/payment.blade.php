@@ -44,19 +44,19 @@
 
                             <div class='col-md-6 col-md-4 form-group '>
                                 <label for="card_no" class="control-label mt-3">Card</label>
-                                <input type="text" id="card_no" class="form-control" name="card_no">
+                                <input type="number" id="card_no" class="form-control" name="card_no">
                             </div>
                             <div class='col-md-6 col-md-4 form-group '>
                                 <label class='control-label mt-3'>CVC</label>
-                                <input type="text" id="cvc" class="form-control" name="cvc">
+                                <input type="number" id="cvc" class="form-control" name="cvc">
                             </div>
                             <div class='col-md-6 col-md-4 form-group '>
                                 <label class='control-label mt-3'>Expiration Month</label>
-                                <input type="text" id="exp_month" class="form-control" name="exp_month">
+                                <input type="number" id="exp_month" class="form-control" name="exp_month">
                             </div>
                             <div class='col-md-6 col-md-4 form-group ' style="margin-bottom: 20px;">
                                 <label class='control-label mt-3'>Expiration Year</label>
-                                <input type="text" id="exp_year" class="form-control" name="exp_year">
+                                <input type="number" id="exp_year" class="form-control" name="exp_year">
 
                             </div>
                         </div>
