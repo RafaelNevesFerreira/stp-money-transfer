@@ -16,10 +16,8 @@ return new class extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->integer("card_number")->unique();
-            $table->integer("card_cvc");
             $table->integer("card_expiration_month");
             $table->integer("card_expiration_year");
-            $table->foreignId("transfers_id")->references("cards_id")->on("transfers");
             $table->timestamps();
         });
     }

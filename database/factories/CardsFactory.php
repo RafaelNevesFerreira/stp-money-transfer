@@ -19,10 +19,8 @@ class CardsFactory extends Factory
     {
         return [
             "card_number" => $this->faker->creditCardNumber(),
-            "card_cvc" => $this->faker->creditCardNumber(),
             "card_expiration_month" => $this->faker->creditCardExpirationDate(),
             "card_expiration_year" => $this->faker->creditCardExpirationDate(),
-            "transfers_id" => $this->faker->unique()->randomElement([1,50])
         ];
     }
 }

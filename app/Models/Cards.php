@@ -11,9 +11,7 @@ class Cards extends Model
 
     protected $fillable = [
         "card_number",
-        "card_cvc",
         "card_expiration_month",
         "card_expiration_year",
-        "transfers_id",
     ];
 }
