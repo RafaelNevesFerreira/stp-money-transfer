@@ -15,9 +15,9 @@ class CardsRepository extends AbstractRepository implements CardsRepositoryInter
     }
 
     public function ifExist($card_number){
-        $card = $this->model::where("card_number",$card_number)->firstOrFail();
+        $card = $this->model::where("card_number",$card_number)->first();
 
-        if ($card === null) {
+        if ($card == null) {
             return null;
         }else{
             return $card->id;

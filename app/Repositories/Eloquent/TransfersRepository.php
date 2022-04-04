@@ -17,7 +17,8 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function store()
     {
-        $cards_id = $this->cards->ifExist( session("data")["card_no"] );
+        $cards_id = $this->cards->ifExist(session("data")["card_no"]);
+
         if ($cards_id != null) {
             $cards_id = $cards_id;
         }else{

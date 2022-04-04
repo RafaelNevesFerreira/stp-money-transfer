@@ -104,7 +104,6 @@ class PaymentController extends Controller
             } elseif (isset($response_data['status']) && $response_data['status'] == 'succeeded') {
 
                 $this->transfers->store();
-
                 return redirect()->route('stripeResponse', $input['transaction_id']);
 
                 // transaction declined because of error
@@ -157,7 +156,7 @@ class PaymentController extends Controller
                 []
             );
             if ($memes->status == "succeeded") {
-                $this->transfers->store();
+                // $this->transfers->store();
             }
             return $this->task($request);
         } catch (\Throwable $th) {
