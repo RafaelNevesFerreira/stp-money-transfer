@@ -3,7 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Cards;
-use Wink\WinkTag;
+use Illuminate\Support\Facades\Crypt;
 use App\Repositories\Contracts\CardsRepositoryInterface;
 
 class CardsRepository extends AbstractRepository implements CardsRepositoryInterface
@@ -15,8 +15,10 @@ class CardsRepository extends AbstractRepository implements CardsRepositoryInter
     }
 
     public function ifExist($card_number){
+        // $card_number = Crypt::encrypt($card_number);
+        dd(Crypt::encryptString($card_number));
         $card = $this->model::where("card_number",$card_number)->first();
-
+        dd(Crypt::decrypt($card->card_number));
         if ($card == null) {
             return null;
         }else{
