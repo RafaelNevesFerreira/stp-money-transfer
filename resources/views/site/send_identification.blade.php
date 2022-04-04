@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section('content')
     <!-- Content
-                                                                              ============================================= -->
+                                                                                  ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
 
@@ -45,48 +45,47 @@
                         <form id="form-send-money" method="post" action="{{ route('identification.submit') }}">
                             <div class="mb-4">
                                 @csrf
-                                @auth
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="name" class="form-label">Nome Completo</label>
-                                                <input type="text" class="form-control c" id="name" required
-                                                    placeholder="Digite o seu nome completo" value="{{ auth()->user()->name}}"
-                                                    name="name">
-                                            </div>
-                                            <div class="col-md-6">
+                                @if (!session('name') && Auth::check())
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="name" class="form-label">Nome Completo</label>
+                                            <input type="text" class="form-control c" id="name" required
+                                                placeholder="Digite o seu nome completo" value="{{ auth()->user()->name }}"
+                                                name="name">
+                                        </div>
+                                        <div class="col-md-6">
 
-                                                <label for="address" class="form-label">Morada</label>
-                                                <input type="text" class="form-control" id="address" required
-                                                    placeholder="Digite a sua morada" value="{{ auth()->user()->address}}"
-                                                    name="address">
-                                            </div>
-                                            <div class="col-md-6">
-
-
-                                                <label for="phone_number" class="form-label">Número de Telemóvel</label>
-                                                <input type="number" class="form-control" id="phone_number" required
-                                                    placeholder="Digite o seu Número de Telemóvel"
-                                                    value="{{ auth()->user()->phone_number}}" name="phone_number">
-                                            </div>
-                                            <div class="col-md-6">
+                                            <label for="address" class="form-label">Morada</label>
+                                            <input type="text" class="form-control" id="address" required
+                                                placeholder="Digite a sua morada" value="{{ auth()->user()->address }}"
+                                                name="address">
+                                        </div>
+                                        <div class="col-md-6">
 
 
-                                                <label for="country" class="form-label">País</label>
-                                                <input type="text" class="form-control" id="country" required
-                                                    placeholder="Digite o seu país de residência"
-                                                    value="{{ auth()->user()->country}}" name="country">
-                                            </div>
-                                            <div class="col-md-12">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="text" class="form-control" id="email" required
-                                                    placeholder="Digite o seu email" value="{{ auth()->user()->email}}"
-                                                    name="email">
-                                            </div>
+                                            <label for="phone_number" class="form-label">Número de Telemóvel</label>
+                                            <input type="number" class="form-control" id="phone_number" required
+                                                placeholder="Digite o seu Número de Telemóvel"
+                                                value="{{ auth()->user()->phone_number }}" name="phone_number">
+                                        </div>
+                                        <div class="col-md-6">
 
+
+                                            <label for="country" class="form-label">País</label>
+                                            <input type="text" class="form-control" id="country" required
+                                                placeholder="Digite o seu país de residência"
+                                                value="{{ auth()->user()->country }}" name="country">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="text" class="form-control" id="email" required
+                                                placeholder="Digite o seu email" value="{{ auth()->user()->email }}"
+                                                name="email">
                                         </div>
 
-                                @endauth
-                                @if (session('name') )
+                                    </div>
+                                @endif
+                                @if (session('name'))
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="name" class="form-label">Nome Completo</label>
@@ -126,18 +125,21 @@
 
                                     </div>
                                     <br>
-                                    <p>Deseja Cadastrar-se?</p>
-                                    <p><small>Uma vez cadastrado o seu processo de envio será mais rapido, e no seu
-                                            primeiro envio como cliente cadastrado não pagará as mesmas
-                                            taxas</small></p>
-                                    <div class="d-grid "><a href="{{ route('register') }}"
-                                            class="btn btn-warning">Cadastrar-se</a></div>
-                                    <br>
-                                    <p>Já tem uma conta?</p>
-                                    <p><small>Faça o login e pule as outras etapas!</small></p>
-                                    <div class="d-grid "><a href="{{ route('login') }}"
-                                            class="btn btn-info">Login</a></div>
-                                @elseif (!session("name") && !Auth::check())
+                                    @unless(Auth::check())
+                                        <p>Deseja Cadastrar-se?</p>
+                                        <p><small>Uma vez cadastrado o seu processo de envio será mais rapido, e no seu
+                                                primeiro envio como cliente cadastrado não pagará as mesmas
+                                                taxas</small></p>
+                                        <div class="d-grid "><a href="{{ route('register') }}"
+                                                class="btn btn-warning">Cadastrar-se</a></div>
+                                        <br>
+                                        <p>Já tem uma conta?</p>
+                                        <p><small>Faça o login e pule as outras etapas!</small></p>
+                                        <div class="d-grid "><a href="{{ route('login') }}"
+                                                class="btn btn-info">Login</a>
+                                        </div>
+                                    @endunless
+                                @elseif (!session('name') && !Auth::check())
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="name" class="form-label">Nome Completo</label>

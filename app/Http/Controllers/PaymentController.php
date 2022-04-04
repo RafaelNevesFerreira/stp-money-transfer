@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\PaymentRequest;
+use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class PaymentController extends Controller
 {
+    public function __construct( public TransfersRepositoryInterface $transfers)
+    {
+    }
     const BASE_URL = 'https://api.stripe.com';
     const SECRET_KEY = 'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId';
 
     public function store(PaymentRequest $request)
     {
-        // dd($request->all());
-        session()->put(["data" => $request->all()]);
+        session()->put("data",$request->all());
 
         $input['transaction_id'] = Str::random(18);
 
@@ -100,7 +103,7 @@ class PaymentController extends Controller
                 // transaction success without 3d secure redirect
             } elseif (isset($response_data['status']) && $response_data['status'] == 'succeeded') {
 
-                // $this->order->store(session()->get("data"));
+                $this->transfers->store();
 
                 return redirect()->route('stripeResponse', $input['transaction_id']);
 
@@ -154,7 +157,7 @@ class PaymentController extends Controller
                 []
             );
             if ($memes->status == "succeeded") {
-                // $this->order->store(session()->get("data"));
+                $this->transfers->store();
             }
             return $this->task($request);
         } catch (\Throwable $th) {

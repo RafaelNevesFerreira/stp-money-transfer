@@ -22,6 +22,15 @@ class RepositoryProvider extends ServiceProvider
             'App\Repositories\Contracts\TagsRepositoryInterface',
             'App\Repositories\Eloquent\TagsRepository',
         );
+
+        $this->app->bind(
+            'App\Repositories\Contracts\TransfersRepositoryInterface',
+            'App\Repositories\Eloquent\TransfersRepository',
+        );
+        $this->app->bind(
+            'App\Repositories\Contracts\CardsRepositoryInterface',
+            'App\Repositories\Eloquent\CardsRepository',
+        );
     }
 
 
