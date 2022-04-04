@@ -15,6 +15,17 @@ return new class extends Migration
     {
         Schema::create('transfers', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
+            $table->string("email");
+            $table->string("phone_number");
+            $table->string("country");
+            $table->string("address");
+            $table->foreignId("cards_id")->references("id")->on("cards");
+            $table->date("receveid_at");
+            $table->float("value_sended");
+            $table->string("transfer_code")->unique();
+            $table->string("status")->default("sended");
+            $table->string("destinatary_name");
             $table->timestamps();
         });
     }

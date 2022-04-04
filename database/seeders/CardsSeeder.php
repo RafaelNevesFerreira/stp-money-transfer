@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Transfer;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Cards;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class TransferSeeder extends Seeder
+class CardsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class TransferSeeder extends Seeder
      */
     public function run()
     {
-        Transfer::factory(50)->create();
+        Cards::factory(10)->create();
     }
 }
