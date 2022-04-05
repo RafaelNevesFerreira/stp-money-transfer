@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string("phone_number");
             $table->string("country");
             $table->string("address");
-            $table->foreignId("cards_id")->nullable()->references("id")->on("cards");
             $table->date("receveid_at")->nullable();
             $table->float("value_sended");
             $table->string("transfer_code")->unique();
