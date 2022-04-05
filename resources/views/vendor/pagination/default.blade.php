@@ -1,5 +1,4 @@
 @if ($paginator->hasPages())
-        <ul class="pagination justify-content-center my-5">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
 
@@ -19,7 +18,7 @@
             @foreach ($elements as $element)
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
-                    <li class="disabled" aria-disabled="true"><span>{{ $element }}</span></li>
+                    <li  aria-disabled="true"><span>{{ $element }}</span></li>
                 @endif
 
                 {{-- Array Of Links --}}
@@ -44,11 +43,10 @@
                     </a>
                 </li>
             @else
-                <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
+                <li class="page-item " aria-disabled="true" aria-label="@lang('pagination.next')">
                     <a class="page-link" href="#">
                         <i class="fas fa-angle-right"></i>
                     </a>
                 </li>
             @endif
-        </ul>
 @endif
