@@ -17,7 +17,6 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function store()
     {
-
         $this->model::create([
             "name" => session("name"),
             "address" => session("address"),
