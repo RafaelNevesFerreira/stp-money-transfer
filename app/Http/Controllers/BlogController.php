@@ -13,7 +13,7 @@ class BlogController extends Controller
 
     public function blog()
     {
-        $posts = $this->posts->all();
+        $posts = $this->posts->all_posts();
         $tags = $this->tags->all_tags();
 
         return view("blog.blog", compact("posts","tags"));
