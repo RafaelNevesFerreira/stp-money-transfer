@@ -12,4 +12,9 @@ class PostsRepository extends AbstractRepository implements PostsRepositoryInter
     {
         $this->model = new WinkPost();
     }
+
+    public function all_posts()
+    {
+        return $this->model::latest()->paginate(1);
+    }
 }

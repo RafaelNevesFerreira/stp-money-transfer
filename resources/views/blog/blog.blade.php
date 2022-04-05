@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section('content')
     <!-- Page Header
-                              ============================================= -->
+                                  ============================================= -->
     <section class="page-header page-header-text-light bg-dark-3 py-5">
         <div class="container">
             <div class="row align-items-center">
@@ -10,8 +10,8 @@
                 </div>
                 <div class="col-md-4 order-0 order-md-1">
                     <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
-                        <li><a href="{{route("home")}}">Inicio</a></li>
-                        <li class="active"><a href="{{route("blog")}}">Blog</a></li>
+                        <li><a href="{{ route('home') }}">Inicio</a></li>
+                        <li class="active"><a href="{{ route('blog') }}">Blog</a></li>
                     </ul>
                 </div>
             </div>
@@ -20,22 +20,23 @@
     <!-- Page Header end -->
 
     <!-- Content
-                              ============================================= -->
+                                  ============================================= -->
     <div id="content">
         <div class="container">
             <div class="row">
 
                 <!-- Middle Panel
-                                    ============================================= -->
+                                        ============================================= -->
                 <div class="col-lg-8 col-xl-9">
                     <div class="row gy-4">
                         @foreach ($posts as $post)
                             <div class="col-12">
                                 <div class="blog-post card shadow-sm border-0"> <a class="d-flex"
-                                        href="{{route("post",$post->slug)}}"><img class="card-img-top"
+                                        href="{{ route('post', $post->slug) }}"><img class="card-img-top"
                                             src="{{ $post->featured_image }}" alt="{{ $post->title }} image"></a>
                                     <div class="card-body p-4">
-                                        <h4 class="title-blog"><a href="{{route("post",$post->slug)}}">{{ $post->title }}</a></h4>
+                                        <h4 class="title-blog"><a
+                                                href="{{ route('post', $post->slug) }}">{{ $post->title }}</a></h4>
                                         <ul class="meta-blog">
                                             <li><i
                                                     class="fas fa-calendar-alt"></i>{{ $post->created_at->diffForHumans() }}
@@ -45,7 +46,7 @@
                                             <li>
                                                 <i class="fas fa-tag"></i>
                                                 @foreach ($post->tags as $tag)
-                                                    <a href="{{ route("tag",$tag->slug) }}">
+                                                    <a href="{{ route('tag', $tag->slug) }}">
                                                         {{ $tag->name }}
                                                     </a>
                                                 @endforeach
@@ -54,7 +55,8 @@
 
                                         </ul>
                                         <p>{{ Str::limit($post->excerpt, 600, ' ..') }}</p>
-                                        <a href="{{route("post",$post->slug)}}" class="btn btn-primary btn-sm">Read more</a>
+                                        <a href="{{ route('post', $post->slug) }}" class="btn btn-primary btn-sm">Read
+                                            more</a>
                                     </div>
                                 </div>
                             </div>
@@ -63,17 +65,9 @@
                     </div>
 
                     <!-- Pagination
-                                        ============================================= -->
+                                            ============================================= -->
                     <ul class="pagination justify-content-center my-5">
-                        <li class="page-item disabled"> <a class="page-link" href="#" tabindex="-1"><i
-                                    class="fas fa-angle-left"></i></a> </li>
-                        <li class="page-item active"> <a class="page-link" href="#">1</a> </li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item d-flex align-content-center flex-wrap text-muted text-5 mx-1">......</li>
-                        <li class="page-item"><a class="page-link" href="#">15</a></li>
-                        <li class="page-item"> <a class="page-link" href="#"><i
-                                    class="fas fa-angle-right"></i></a> </li>
+                        {{$posts->links("pagination::default") }}
                     </ul>
                     <!-- Paginations end -->
 
@@ -81,8 +75,8 @@
                 <!-- Middle Panel End -->
 
                 <!-- Right Sidebar
-                                    ============================================= -->
-                @include("layouts.blog.asside")
+                                        ============================================= -->
+                @include('layouts.blog.asside')
                 <!-- Right Sidebar End -->
 
             </div>
