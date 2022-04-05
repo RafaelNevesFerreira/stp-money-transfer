@@ -55,8 +55,7 @@
 
                                         </ul>
                                         <p>{{ Str::limit($post->excerpt, 600, ' ..') }}</p>
-                                        <a href="{{ route('post', $post->slug) }}" class="btn btn-primary btn-sm">Read
-                                            more</a>
+                                        <a href="{{ route('post', $post->slug) }}" class="btn btn-primary btn-sm">Continuar</a>
                                     </div>
                                 </div>
                             </div>
@@ -66,17 +65,14 @@
 
                     <!-- Pagination
                                             ============================================= -->
-                    <ul class="pagination justify-content-center my-5">
                         {{ $posts->links("pagination::default") }}
 
-                    </ul>
                     <!-- Paginations end -->
 
                 </div>
                 <!-- Middle Panel End -->
 
-                <!-- Right Sidebar
-                                        ============================================= -->
+                <!-- Right Sidebar  ============================================= -->
                 @include('layouts.blog.asside')
                 <!-- Right Sidebar End -->
 

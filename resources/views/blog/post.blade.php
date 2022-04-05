@@ -60,7 +60,7 @@
                             <div class="col-lg-7 col-xl-8">
                                 <div class="tags text-center text-lg-start">
                                     @forelse ($post->tags as $tag)
-                                        <a href="{{ $tag->name }}">{{ $tag->name }}</a>
+                                        <a href="{{ route("tag",$tag->name) }}">{{ $tag->name }}</a>
                                     @empty
                                     @endforelse
                                 </div>
