@@ -10,7 +10,7 @@ use App\Repositories\Contracts\TransfersRepositoryInterface;
 class TransfersRepository extends AbstractRepository implements TransfersRepositoryInterface
 {
     public $model;
-    public function __construct(public CardsRepositoryInterface $cards)
+    public function __construct()
     {
         $this->model = new Transfer();
     }
