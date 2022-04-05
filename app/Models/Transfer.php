@@ -11,7 +11,6 @@ class Transfer extends Model
 
     protected $fillable = [
         "name",
-        "cards_id",
         "address",
         "country",
         "phone_number",

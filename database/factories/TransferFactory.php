@@ -18,7 +18,6 @@ class TransferFactory extends Factory
     {
         return [
             "name" => $this->faker->name(),
-            "cards_id" => $this->faker->unique(true)->numberBetween(1,10),
             "email" => $this->faker->unique(true)->safeEmail(),
             "value_sended" => $this->faker->numberBetween(25, 1000),
             "destinatary_name" => $this->faker->name(),
