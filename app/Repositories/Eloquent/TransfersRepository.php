@@ -17,9 +17,22 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function store()
     {
+        switch (session("moeda")) {
+            case "€":
+                $currency = "eur";
+                break;
+            case '$':
+                $currency = "usd";
+                break;
+            case '£':
+                $currency = "gbp";
+
+                break;
+        }
         $this->model::create([
             "name" => session("name"),
             "address" => session("address"),
+            "currency" => $currency,
             "country" => session("country"),
             "phone_number" => session("phone_number"),
             "email" => session("email"),

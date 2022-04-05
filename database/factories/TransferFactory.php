@@ -23,6 +23,7 @@ class TransferFactory extends Factory
             "destinatary_name" => $this->faker->name(),
             "transfer_code" => uniqid(),
             "status" => $this->faker->randomElement(["sended","receveid","reimbursed"]),
+            "currency" => $this->faker->randomElement(["eur","usd","gbp"]),
             'address' => $this->faker->randomElement(["Abbéville-la-Rivière", "Angerville", "Angervilliers", "Arpajon", "Arrancourt", "Athis-Mons", "Authon-la-Plaine", "Auvernaux", "Auvers-Saint-Georges", "Avrainville", "Ballainvilliers", "Ballancourt-sur-Essonne", "Baulne", "Bièvres", "Blandy", "Boigneville", "Bois-Herpin", "Cerny", "Chalo-Saint-Mars", "Chalou-Moulineux", "Chamarande", "Champcueil", "Champlan", "Champmotteux", "Chatignonville", "Chauffour-lès-Étréchy", "Cheptainville", "Chevannes", "Chilly-Mazarin", "Corbeil-Essonnes", "Corbreuse", "Le Coudray-Montceaux", "Courances", "Courdimanche-sur-Essonne", "Courson-Monteloup", "Crosne", "Saint-Escobille", "Sainte-Geneviève-des-Bois", "Saint-Germain-lès-Arpajon", "Saint-Germain-lès-Corbeil", "Saint-Hilaire", "Saint-Jean-de-Beauregard", "Saint-Maurice-Montcouronne", "Saint-Michel-sur-Orge", "Saint-Pierre-du-Perray", "Saintry-sur-Seine", "Saint-Sulpice-de-Favières", "Saint-Vrain", "Saint-Yon", "Saulx-les-Chartreux", "Savigny-sur-Orge", "Sermaise",]),
             'country' => $this->faker->country(),
             "receveid_at" => $this->faker->date(),

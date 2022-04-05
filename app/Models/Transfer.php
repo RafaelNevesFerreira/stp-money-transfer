@@ -11,6 +11,7 @@ class Transfer extends Model
 
     protected $fillable = [
         "name",
+        "currency",
         "address",
         "country",
         "phone_number",
