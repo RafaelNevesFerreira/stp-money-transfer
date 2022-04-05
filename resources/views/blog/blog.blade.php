@@ -64,9 +64,10 @@
 
                     </div>
 
-                    <!-- Pagination
-                                            ============================================= -->
-                        {{$posts->links("pagination::default") }}
+                    <!-- Pagination  ============================================= -->
+
+                        {{ $posts->links("pagination::default") }}
+
                     <!-- Paginations end -->
 
                 </div>
