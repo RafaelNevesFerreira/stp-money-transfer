@@ -70,6 +70,7 @@
                     @else
                     <ul class="pagination justify-content-center my-5">
                     </ul>
+
                     @endif
 
                     <!-- Paginations end -->
