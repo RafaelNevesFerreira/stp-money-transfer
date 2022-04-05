@@ -3,8 +3,6 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Transfer;
-use App\Repositories\Contracts\CardsRepositoryInterface;
-use Wink\WinkTag;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class TransfersRepository extends AbstractRepository implements TransfersRepositoryInterface
