@@ -66,9 +66,7 @@
 
                     <!-- Pagination
                                             ============================================= -->
-                    <ul class="pagination justify-content-center my-5">
                         {{$posts->links("pagination::default") }}
-                    </ul>
                     <!-- Paginations end -->
 
                 </div>
