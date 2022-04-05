@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section('content')
     <!-- Page Header
-                                  ============================================= -->
+                                      ============================================= -->
     <section class="page-header page-header-text-light bg-dark-3 py-5">
         <div class="container">
             <div class="row align-items-center">
@@ -20,13 +20,13 @@
     <!-- Page Header end -->
 
     <!-- Content
-                                  ============================================= -->
+                                      ============================================= -->
     <div id="content">
         <div class="container">
             <div class="row">
 
                 <!-- Middle Panel
-                                        ============================================= -->
+                                            ============================================= -->
                 <div class="col-lg-8 col-xl-9">
                     <div class="row gy-4">
                         @foreach ($posts as $post)
@@ -55,7 +55,8 @@
 
                                         </ul>
                                         <p>{{ Str::limit($post->excerpt, 600, ' ..') }}</p>
-                                        <a href="{{ route('post', $post->slug) }}" class="btn btn-primary btn-sm">Continuar</a>
+                                        <a href="{{ route('post', $post->slug) }}"
+                                            class="btn btn-primary btn-sm">Continuar</a>
                                     </div>
                                 </div>
                             </div>
@@ -63,9 +64,10 @@
 
                     </div>
 
-                    <!-- Pagination
-                                            ============================================= -->
-                        {{ $posts->links("pagination::default") }}
+                    <!-- Pagination============================================= -->
+                    @if (Route::current()->uri != 'blog/tag/{tag}')
+                        {{ $posts->links('pagination::default') }}
+                    @endif
 
                     <!-- Paginations end -->
 

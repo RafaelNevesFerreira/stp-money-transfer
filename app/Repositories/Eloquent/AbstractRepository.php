@@ -18,7 +18,7 @@ class AbstractRepository
 
     public function whereTag($tag)
     {
-        return $this->model::with("posts")->where("slug", $tag)->firstOrFail();
+        return $this->model::with("posts")->where("slug", $tag)->paginate(6)->firstOrFail();
     }
 
     public function create($request)

@@ -29,7 +29,9 @@ class BlogController extends Controller
 
     public function tag($tag){
         $posts = $this->tags->whereTag($tag)->posts;
+
         $tags = $this->tags->all_tags();
+
 
         return view("blog.blog",compact("posts","tags"));
     }
