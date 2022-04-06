@@ -24,7 +24,10 @@ class PaymentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "card_no" => "required|numeric",
+            "cvc" => "required",
+            "exp_month" => "required|min:1|max:3",
+            "exp_year" => "required|min:1|max:4"
         ];
     }
 }
