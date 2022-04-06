@@ -69,7 +69,6 @@
 
 
             } else if ($(this).val() == "usd") {
-                var valor = $("#youSend").val()
 
                 if ($(".moeda_mudar").length) {
                     $(".moeda_mudar").text("$")
@@ -83,6 +82,7 @@
                     $("#total").append(p);
                 }
 
+                var valor = $("#youSend").val()
 
                 var formater = new Intl.NumberFormat("fr-FR", {
                     style: "currency",
@@ -90,9 +90,6 @@
                 });
                 valor = parseFloat(valor.replace(".", ''))
 
-                $("#taxas").text(tax.toFixed(2));
-
-                $("#total").text(total);
 
                 var valor_mueda = 22;
 
