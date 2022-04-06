@@ -50,8 +50,6 @@
                 });
                 valor = parseFloat(valor.replace(".", ''))
 
-                $("#total").text(total);
-
                 var valor_mueda = 25;
 
                 if ($(".moeda_mudar").length) {
