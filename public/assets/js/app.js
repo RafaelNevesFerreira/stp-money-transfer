@@ -4,9 +4,9 @@
             if ($("#youSend").val() < 1) {
                 $("#recipientGets").val(0);
             } else {
-                const valor = $(this).val()
+                var valor = $(this).val()
 
-                const formater = new Intl.NumberFormat("fr-FR", {
+                var formater = new Intl.NumberFormat("fr-FR", {
                     style: "currency",
                     currency: "stn"
                 });
@@ -31,7 +31,7 @@
                 $("#taxas").text(tax.toFixed(2));
                 $("#total").text(total);
 
-                valor_mueda = 25;
+                var valor_mueda = 25;
                 $("#recipientGets").val(formater.format(valor * valor_mueda));
 
             }
@@ -70,10 +70,8 @@
                 $("#taxas").text(tax.toFixed(2));
                 $("#total").text(total);
 
-                valor_mueda = 25;
+                var valor_mueda = 25;
                 $("#recipientGets").val(formater.format(valor * valor_mueda));
-
-                $(".moeda_mudar").text("$")
 
             } else if ($(this).val() == "usd") {
                 var valor = $("#youSend").val()
@@ -103,16 +101,15 @@
                 $("#taxas").text(tax.toFixed(2));
                 $(".moeda_mudar").text("$")
 
-                // $("#total").text(total);
+                $("#total").text(total);
 
-                // valor_mueda = 22;
+                var valor_mueda = 22;
 
-                // $("#recipientGets").val(formater.format(valor * valor_mueda));
+                $("#recipientGets").val(formater.format(valor * valor_mueda));
 
 
 
             } else {
-                $(".moeda_mudar").text("£")
                 var valor = $("#youSend").val()
 
                 var formater = new Intl.NumberFormat("fr-FR", {
@@ -140,10 +137,10 @@
                 $("#taxas").text(tax.toFixed(2));
                 $("#total").text(total);
 
-                valor_mueda = 29;
+                var valor_mueda = 29;
                 $("#recipientGets").val(formater.format(valor * valor_mueda));
 
-                $(".moeda_mudar").text("$")
+                $(".moeda_mudar").text("£")
             }
         })
         var formater = new Intl.NumberFormat("stn", {
@@ -151,6 +148,8 @@
             currency: "stn"
         });
         $("#recipientGets").val(formater.format(625));
+
+        //imagem dos posts do blog
         $(".embedded_image").children('img').addClass("img-fluid");
 
 
