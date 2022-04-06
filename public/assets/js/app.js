@@ -39,20 +39,6 @@
 
         $('#youSend').maskMoney()
 
-        function faz_se() {
-            if ($(".moeda_mudar").length) {
-                $(".moeda_mudar").text("€")
-
-            } else {
-                // create a paragraph element
-                var p = $("<span class='moeda_mudar'></span>");
-                $(".moeda_mudar").text("€")
-
-                // append the paragraph to the parent
-                $("#total").append(p);
-            }
-        }
-
         $("#youSendCurrency").change(function() {
             if ($(this).val() == "eur") {
 
@@ -67,16 +53,35 @@
                 $("#total").text(total);
 
                 var valor_mueda = 25;
-                $(".moeda_mudar").text("€")
 
-                faz_se("€")
-                    // $("#recipientGets").val(formater.format(valor * valor_mueda));
+                if ($(".moeda_mudar").length) {
+                    $(".moeda_mudar").text("€")
+
+                } else {
+                    console.log("memes");
+                    // create a paragraph element
+                    var p = $("<span class='moeda_mudar'>€</span>");
+
+                    // append the paragraph to the parent
+                    $("#total").append(p);
+                }
+                // $("#recipientGets").val(formater.format(valor * valor_mueda));
 
 
             } else if ($(this).val() == "usd") {
                 var valor = $("#youSend").val()
 
-                faz_se("$")
+                if ($(".moeda_mudar").length) {
+                    $(".moeda_mudar").text("$")
+
+                } else {
+                    console.log("memes");
+                    // create a paragraph element
+                    var p = $("<span class='moeda_mudar'>$</span>");
+
+                    // append the paragraph to the parent
+                    $("#total").append(p);
+                }
 
 
                 var formater = new Intl.NumberFormat("fr-FR", {
@@ -144,7 +149,17 @@
                 var valor_mueda = 29;
                 $("#recipientGets").val(formater.format(valor * valor_mueda));
 
-                $(".moeda_mudar").text("£")
+                if ($(".moeda_mudar").length) {
+                    $(".moeda_mudar").text("£")
+
+                } else {
+                    console.log("memes");
+                    // create a paragraph element
+                    var p = $("<span class='moeda_mudar'>£</span>");
+
+                    // append the paragraph to the parent
+                    $("#total").append(p);
+                }
             }
         })
         var formater = new Intl.NumberFormat("stn", {
