@@ -115,7 +115,9 @@ class PaymentController extends Controller
             $card = $stripe->customers->createSource(
                 "cus_LSYdtvTdsG4STL",
                 [
-                    'source' => 'tok_mastercard',
+                    'source' => 'tok_mastercard',[
+                        "number" => "2223003122003222"
+                    ]
 
                 ],
 
