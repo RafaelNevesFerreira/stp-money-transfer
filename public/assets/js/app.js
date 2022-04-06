@@ -41,17 +41,16 @@
 
         function faz_se(currency) {
             if ($(".moeda_mudar").length) {
-                $(".moeda_mudar").text(currency)
+                $(".moeda_mudar").text("currency")
 
             } else {
                 // create a paragraph element
                 var p = $("<span class='moeda_mudar'></span>");
-                $(".moeda_mudar").text(currency)
+                $(".moeda_mudar").text("currency")
 
                 // append the paragraph to the parent
                 $("#total").append(p);
             }
-            console.log(currency);
         }
 
         $("#youSendCurrency").change(function() {
