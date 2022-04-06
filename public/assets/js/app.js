@@ -4,6 +4,10 @@
             if ($("#youSend").val() < 1) {
                 $("#recipientGets").val(0);
             } else {
+
+
+
+
                 var valor = $(this).val()
 
                 var formater = new Intl.NumberFormat("fr-FR", {
