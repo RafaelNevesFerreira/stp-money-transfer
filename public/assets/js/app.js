@@ -37,11 +37,13 @@
             }
         });
 
-
-
         $('#youSend').maskMoney()
+
+
+
         $("#youSendCurrency").change(function() {
             if ($(this).val() == "eur") {
+
                 var valor = $("#youSend").val()
 
                 var formater = new Intl.NumberFormat("fr-FR", {
@@ -66,12 +68,13 @@
                 var tax = valor * 0.030 + 0.3 + minha_tax
 
                 var total = valor + tax;
-                $("#taxas").text(tax.toFixed(2));
+                // $("#taxas").text(tax.toFixed(2));
                 $("#total").text(total);
 
                 var valor_mueda = 25;
-                $("#recipientGets").val(formater.format(valor * valor_mueda));
                 $(".moeda_mudar").text("€")
+
+                // $("#recipientGets").val(formater.format(valor * valor_mueda));
 
 
             } else if ($(this).val() == "usd") {
