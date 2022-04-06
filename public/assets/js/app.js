@@ -77,6 +77,9 @@
             } else if ($(this).val() == "usd") {
                 var valor = $("#youSend").val()
 
+                $(".moeda_mudar").text("$")
+
+
                 var formater = new Intl.NumberFormat("fr-FR", {
                     style: "currency",
                     currency: "stn"
@@ -107,7 +110,6 @@
 
                 $("#recipientGets").val(formater.format(valor * valor_mueda));
 
-                $(".moeda_mudar").text("$")
 
 
 
