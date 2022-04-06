@@ -5,10 +5,32 @@
                 $("#recipientGets").val(0);
             } else {
 
-
-
-
                 var valor = $(this).val()
+                var selected = $('select[name="moeda"]').val()
+
+                if (selected == "eur") {
+                    console.log(selected);
+                    // create a paragraph element
+                    var span = $("<span class='moeda_mudar'>€</span>");
+
+                    // append the paragraph to the parent
+                    $("#total").append(span);
+
+                } else if (selected == "usd") {
+                    // create a paragraph element
+                    var span = $("<span class='moeda_mudar'>$</span>");
+
+                    // append the paragraph to the parent
+                    $("#total").append(span);
+
+                } else {
+                    // create a paragraph element
+                    var span = $("<span class='moeda_mudar'>£</span>");
+
+                    // append the paragraph to the parent
+                    $("#total").append(span);
+
+                }
 
                 var formater = new Intl.NumberFormat("fr-FR", {
                     style: "currency",
@@ -49,7 +71,6 @@
                     $(".moeda_mudar").text("€")
 
                 } else {
-                    console.log("memes");
                     // create a paragraph element
                     var span = $("<span class='moeda_mudar'>€</span>");
 
@@ -76,7 +97,6 @@
                     $(".moeda_mudar").text("$")
 
                 } else {
-                    console.log("memes");
                     // create a paragraph element
                     var span = $("<span class='moeda_mudar'>$</span>");
 
@@ -117,7 +137,6 @@
                     $(".moeda_mudar").text("£")
 
                 } else {
-                    console.log("memes");
                     // create a paragraph element
                     var span = $("<span class='moeda_mudar'>£</span>");
 
