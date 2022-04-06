@@ -100,14 +100,34 @@ class PaymentController extends Controller
             // ]);
 
             // dd($customer);
-            $stripe->subscriptions->create([
-                'customer' => "cus_LSXeXojudEiFKq",
-                'items' => [
-                    ['price' => 'price_1KlcEUFzWXjclIq0kPWaHzXs'],
+            // $stripe->subscriptions->create([
+            //     'customer' => "cus_LSXeXojudEiFKq",
+            //     'items' => [
+            //         ['price' => 'price_1KlcEUFzWXjclIq0kPWaHzXs'],
+            //     ],
+            // ]);
+            // $costumer = $stripe->customers->create([
+            //     'email' => "pedordias@email.com",
+            //     'name' => "pedro bastos",
+            //     'phone' => 758164875,
+            // ]);
+
+            $card = $stripe->customers->createSource(
+                "cus_LSYdtvTdsG4STL",
+                [
+                    'source' => 'tok_mastercard',
+
                 ],
+
+
+            );
+
+            $nome = $stripe->customers->search([
+                'query' => 'name:\'pedro bastos\' ',
             ]);
 
-            dd("done");
+            dd($card);
+            // dd("done");
 
             $request_headers = [
                 'Content-Type: application/x-www-form-urlencoded',
@@ -126,7 +146,7 @@ class PaymentController extends Controller
 
                 // transaction success without 3d secure redirect
             } elseif (isset($response_data['status']) && $response_data['status'] == 'succeeded') {
-
+                dd($response_data);
                 $this->transfers->store();
                 return redirect()->route('stripeResponse', $input['transaction_id']);
 
