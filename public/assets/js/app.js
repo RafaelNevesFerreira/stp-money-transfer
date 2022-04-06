@@ -107,7 +107,7 @@
 
                 $("#recipientGets").val(formater.format(valor * valor_mueda));
 
-                $(".moeda_mudar").text("$")
+                $(".moeda_mudar").val("$")
 
 
 
