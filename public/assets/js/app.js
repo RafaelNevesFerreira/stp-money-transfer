@@ -55,7 +55,12 @@
                 // $("#total").text(total);
 
                 // var valor_mueda = 25;
-                $(".moeda_mudar").text("€")
+                if ($("#div").length) {
+                    $(".moeda_mudar").text("€")
+
+                } else {
+
+                }
 
                 // $("#recipientGets").val(formater.format(valor * valor_mueda));
 
