@@ -51,7 +51,7 @@
                 // append the paragraph to the parent
                 $("#total").append(p);
             }
-            console.log("memes");
+            console.log(currency);
         }
 
         $("#youSendCurrency").change(function() {
