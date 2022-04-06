@@ -55,11 +55,16 @@
                 // $("#total").text(total);
 
                 // var valor_mueda = 25;
-                if ($("#div").length) {
+                if ($(".moeda_mudar").length) {
                     $(".moeda_mudar").text("€")
 
                 } else {
+                    // create a paragraph element
+                    var p = $("<span class='moeda_mudar'></span>");
+                    $(".moeda_mudar").text("€")
 
+                    // append the paragraph to the parent
+                    $("#total").append(p);
                 }
 
                 // $("#recipientGets").val(formater.format(valor * valor_mueda));
@@ -68,7 +73,7 @@
             } else if ($(this).val() == "usd") {
                 var valor = $("#youSend").val()
 
-                $(".moeda_mudar").text("$")
+                // $(".moeda_mudar").text("$")
 
             }
         })
