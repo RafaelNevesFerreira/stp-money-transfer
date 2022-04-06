@@ -39,14 +39,14 @@
 
         $('#youSend').maskMoney()
 
-        function faz_se(currency) {
+        function faz_se() {
             if ($(".moeda_mudar").length) {
-                $(".moeda_mudar").text("currency")
+                $(".moeda_mudar").text("€")
 
             } else {
                 // create a paragraph element
                 var p = $("<span class='moeda_mudar'></span>");
-                $(".moeda_mudar").text("currency")
+                $(".moeda_mudar").text("€")
 
                 // append the paragraph to the parent
                 $("#total").append(p);
