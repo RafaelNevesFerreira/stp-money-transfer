@@ -41,6 +41,17 @@
 
         $("#youSendCurrency").change(function() {
             if ($(this).val() == "eur") {
+                if ($(".moeda_mudar").length) {
+                    $(".moeda_mudar").text("€")
+
+                } else {
+                    console.log("memes");
+                    // create a paragraph element
+                    var span = $("<span class='moeda_mudar'>€</span>");
+
+                    // append the paragraph to the parent
+                    $("#total").append(span);
+                }
 
                 var valor = $("#youSend").val()
 
@@ -52,18 +63,7 @@
 
                 var valor_mueda = 25;
 
-                if ($(".moeda_mudar").length) {
-                    $(".moeda_mudar").text("€")
-
-                } else {
-                    console.log("memes");
-                    // create a paragraph element
-                    var p = $("<span class='moeda_mudar'>€</span>");
-
-                    // append the paragraph to the parent
-                    $("#total").append(p);
-                }
-                // $("#recipientGets").val(formater.format(valor * valor_mueda));
+                $("#recipientGets").val(formater.format(valor * valor_mueda));
 
 
             } else if ($(this).val() == "usd") {
@@ -74,10 +74,10 @@
                 } else {
                     console.log("memes");
                     // create a paragraph element
-                    var p = $("<span class='moeda_mudar'>$</span>");
+                    var span = $("<span class='moeda_mudar'>$</span>");
 
                     // append the paragraph to the parent
-                    $("#total").append(p);
+                    $("#total").append(span);
                 }
 
                 var valor = $("#youSend").val()
@@ -106,7 +106,6 @@
                 });
                 valor = parseFloat(valor.replace(".", ''))
 
-
                 var valor_mueda = 29;
                 $("#recipientGets").val(formater.format(valor * valor_mueda));
 
@@ -116,10 +115,10 @@
                 } else {
                     console.log("memes");
                     // create a paragraph element
-                    var p = $("<span class='moeda_mudar'>£</span>");
+                    var span = $("<span class='moeda_mudar'>£</span>");
 
                     // append the paragraph to the parent
-                    $("#total").append(p);
+                    $("#total").append(span);
                 }
             }
         })
