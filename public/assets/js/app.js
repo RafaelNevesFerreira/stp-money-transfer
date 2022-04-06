@@ -6,31 +6,7 @@
             } else {
 
                 var valor = $(this).val()
-                var selected = $('select[name="moeda"]').val()
 
-                if (selected == "eur") {
-                    console.log(selected);
-                    // create a paragraph element
-                    var span = $("<span class='moeda_mudar'>€</span>");
-
-                    // append the paragraph to the parent
-                    $("#total").append(span);
-
-                } else if (selected == "usd") {
-                    // create a paragraph element
-                    var span = $("<span class='moeda_mudar'>$</span>");
-
-                    // append the paragraph to the parent
-                    $("#total").append(span);
-
-                } else {
-                    // create a paragraph element
-                    var span = $("<span class='moeda_mudar'>£</span>");
-
-                    // append the paragraph to the parent
-                    $("#total").append(span);
-
-                }
 
                 var formater = new Intl.NumberFormat("fr-FR", {
                     style: "currency",
@@ -56,9 +32,36 @@
                 var total = valor + tax;
                 $("#taxas").text(tax.toFixed(2));
                 $("#total").text(total);
+                var selected = $('select[name="moeda"]').val()
+
+                if (selected == "eur") {
+                    // create a paragraph element
+                    var span = $("<span class='moeda_mudar'>€</span>");
+
+                    // append the paragraph to the parent
+                    $("#total").append(span);
+
+                } else if (selected == "usd") {
+                    // create a paragraph element
+                    var span = $("<span class='moeda_mudar'>$</span>");
+
+                    // append the paragraph to the parent
+                    $("#total").append(span);
+
+                } else {
+                    // create a paragraph element
+                    var span = $("<span class='moeda_mudar'>£</span>");
+
+                    // append the paragraph to the parent
+                    $("#total").append(span);
+
+                }
 
                 var valor_mueda = 25;
                 $("#recipientGets").val(formater.format(valor * valor_mueda));
+
+
+
 
             }
         });
@@ -151,8 +154,10 @@
         });
         $("#recipientGets").val(formater.format(625));
 
+
         //imagem dos posts do blog
         $(".embedded_image").children('img').addClass("img-fluid");
+        $('#total').maskMoney()
 
 
     })

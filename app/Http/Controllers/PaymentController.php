@@ -9,7 +9,7 @@ use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class PaymentController extends Controller
 {
-    public function __construct( public TransfersRepositoryInterface $transfers)
+    public function __construct(public TransfersRepositoryInterface $transfers)
     {
     }
     const BASE_URL = 'https://api.stripe.com';
@@ -17,7 +17,10 @@ class PaymentController extends Controller
 
     public function store(PaymentRequest $request)
     {
-        session()->put("data",$request->all());
+        session()->put("data", $request->all());
+        // dd($request->all());
+
+
 
         $input['transaction_id'] = Str::random(18);
 
@@ -84,6 +87,27 @@ class PaymentController extends Controller
             ];
 
             $request_payload = http_build_query($request_data);
+
+            $stripe = new \Stripe\StripeClient(
+                'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
+            );
+            // dd($stripe);
+            // $customer = $stripe->customers->create([
+            //     'email' => session("email"),
+            //     'name' => session("name"),
+            //     'phone' => session("phone_number"),
+
+            // ]);
+
+            // dd($customer);
+            $stripe->subscriptions->create([
+                'customer' => "cus_LSXeXojudEiFKq",
+                'items' => [
+                    ['price' => 'price_1KlcEUFzWXjclIq0kPWaHzXs'],
+                ],
+            ]);
+
+            dd("done");
 
             $request_headers = [
                 'Content-Type: application/x-www-form-urlencoded',
@@ -156,7 +180,7 @@ class PaymentController extends Controller
                 []
             );
             if ($memes->status == "succeeded") {
-                // $this->transfers->store();
+                $this->transfers->store();
             }
             return $this->task($request);
         } catch (\Throwable $th) {
