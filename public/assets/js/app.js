@@ -73,7 +73,17 @@
             } else if ($(this).val() == "usd") {
                 var valor = $("#youSend").val()
 
-                // $(".moeda_mudar").text("$")
+                if ($(".moeda_mudar").length) {
+                    $(".moeda_mudar").text("$")
+
+                } else {
+                    // create a paragraph element
+                    var p = $("<span class='moeda_mudar'></span>");
+                    $(".moeda_mudar").text("$")
+
+                    // append the paragraph to the parent
+                    $("#total").append(p);
+                }
 
             }
         })
