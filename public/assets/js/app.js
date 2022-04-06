@@ -42,7 +42,6 @@
         $('#youSend').maskMoney()
         $("#youSendCurrency").change(function() {
             if ($(this).val() == "eur") {
-                $(".moeda_mudar").text("€")
                 var valor = $("#youSend").val()
 
                 var formater = new Intl.NumberFormat("fr-FR", {
@@ -72,6 +71,8 @@
 
                 var valor_mueda = 25;
                 $("#recipientGets").val(formater.format(valor * valor_mueda));
+                $(".moeda_mudar").text("€")
+
 
             } else if ($(this).val() == "usd") {
                 var valor = $("#youSend").val()
@@ -99,13 +100,15 @@
 
                 var total = valor + tax;
                 $("#taxas").text(tax.toFixed(2));
-                $(".moeda_mudar").text("$")
 
                 $("#total").text(total);
 
                 var valor_mueda = 22;
 
                 $("#recipientGets").val(formater.format(valor * valor_mueda));
+
+                $(".moeda_mudar").text("$")
+
 
 
 
