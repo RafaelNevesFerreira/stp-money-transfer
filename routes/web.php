@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PaymentTipeController;
 use App\Http\Controllers\SendMoneyController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -40,7 +41,7 @@ Route::controller(BlogController::class)->group(function () {
 });
 
 Route::get("status/{id}", [PaymentController::class, "response"])->name("stripeResponse");
-Route::post('/payment', [PaymentController::class, 'store'])->name('payment.post');
+Route::post('/payment', [PaymentTipeController::class, 'verificar_condição_de_pagamento'])->name('payment.post');
 
 
 Route::controller(SendMoneyController::class)->group(function () {

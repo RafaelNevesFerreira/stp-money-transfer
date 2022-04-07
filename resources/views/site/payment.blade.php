@@ -71,11 +71,11 @@
                             <div id="memes" hidden>
                                 <div class='col-md-12 col-md-4 form-group ' style="margin-bottom: 20px;">
                                     <label class='control-label mt-3'>Pagar em 2x</label>
-                                    <input type="radio" value="nao">
+                                    <input type="radio" value="2" name="numero_prestacoes">
                                 </div>
                                 <div class='col-md-12 col-md-4 form-group ' style="margin-bottom: 20px;">
-                                    <label class='control-label mt-3'>Pagar em 2x</label>
-                                    <input type="radio" value="nao">
+                                    <label class='control-label mt-3'>Pagar em 3x</label>
+                                    <input type="radio" value="3" name="numero_prestacoes">
                                 </div>
                             </div>
 
