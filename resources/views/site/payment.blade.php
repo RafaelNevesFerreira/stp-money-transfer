@@ -37,7 +37,7 @@
                 <h3 class="text-5 fw-400 mb-3 mb-sm-4">Identificação</h3>
                 <hr class="mx-n3 mx-sm-n5 mb-4">
                 <!-- Send Money Confirm ============================================= -->
-                <form id="form-send-money" method="POST" action="{{ route("payment.post") }}">
+                <form id="form-send-money" method="POST" action="{{ route('payment.post') }}">
                     @csrf
                     <div class="col-md-12">
                         <div class='form-row row'>
@@ -59,6 +59,26 @@
                                 <input type="number" id="exp_year" class="form-control" name="exp_year">
 
                             </div>
+                            <div class='col-md-12 col-md-4 form-group ' style="margin-bottom: 20px;">
+                                <label class='control-label mt-3'>Deseja Pagar Em Prestações?</label>
+
+                                <label class='control-label mt-3'>Sim</label>
+                                <input type="radio" name="pagar_em_prestacoes" class="pagar_em_prestacoes" value="sim">
+                                <label class='control-label mt-3'>Não</label>
+                                <input type="radio" name="pagar_em_prestacoes" class="pagar_em_prestacoes" value="nao">
+
+                            </div>
+                            <div id="memes" hidden>
+                                <div class='col-md-12 col-md-4 form-group ' style="margin-bottom: 20px;">
+                                    <label class='control-label mt-3'>Pagar em 2x</label>
+                                    <input type="radio" value="nao">
+                                </div>
+                                <div class='col-md-12 col-md-4 form-group ' style="margin-bottom: 20px;">
+                                    <label class='control-label mt-3'>Pagar em 2x</label>
+                                    <input type="radio" value="nao">
+                                </div>
+                            </div>
+
                         </div>
                         <div class='form-row row'>
                             @if (session('errors'))
@@ -83,7 +103,8 @@
 @section('scripts')
     <script>
         $("#form-send-money").submit(function() {
-                $('#preloader').css("display", "block").delay( 800 ).fadeIn( 400 ); // will fade out the white DIV that covers the website.
+            $('#preloader').css("display", "block").delay(800).fadeIn(
+            400); // will fade out the white DIV that covers the website.
         })
     </script>
 @endsection

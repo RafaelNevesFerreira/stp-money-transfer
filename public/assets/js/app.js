@@ -159,5 +159,13 @@
         $(".embedded_image").children('img').addClass("img-fluid");
         $('#total').maskMoney()
 
+        $(".pagar_em_prestacoes").click(function() {
+
+            if ($(this).val() == "sim") {
+                $("#memes").show()
+                console.log("memes");
+            }
+        });
+
 
     })
