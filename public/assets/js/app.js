@@ -162,7 +162,7 @@
         $(".pagar_em_prestacoes").click(function() {
 
             if ($(this).val() == "sim") {
-                $("#memes").show()
+                $("#memes").removeAttr("hidden")
                 console.log("memes");
             }
         });
