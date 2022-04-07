@@ -99,36 +99,43 @@ class PaymentController extends Controller
 
             // ]);
 
-            // dd($customer);
+            // // dd($customer);
             // $stripe->subscriptions->create([
             //     'customer' => "cus_LSXeXojudEiFKq",
             //     'items' => [
             //         ['price' => 'price_1KlcEUFzWXjclIq0kPWaHzXs'],
             //     ],
             // ]);
-            // $costumer = $stripe->customers->create([
-            //     'email' => "pedordias@email.com",
-            //     'name' => "pedro bastos",
-            //     'phone' => 758164875,
-            // ]);
+            $costumer = $stripe->customers->create([
+                'email' => "pedordias@email.com",
+                'name' => "pedro bastos",
+                'phone' => 758164875,
+            ]);
 
             $card = $stripe->customers->createSource(
-                "cus_LSYdtvTdsG4STL",
+                $costumer->id,
                 [
-                    'source' => 'tok_mastercard',[
-                        "number" => "2223003122003222"
-                    ]
-
+                    'source' => [
+                        "object" => "card",
+                        "number" => "5555555555554444",
+                        "exp_month" => "12",
+                        "exp_year" => "2024"
+                    ],
                 ],
-
-
             );
+
+            $stripe->subscriptions->create([
+                'customer' => $costumer->id,
+                'items' => [
+                    ['price' => 'price_1KlcEUFzWXjclIq0kPWaHzXs'],
+                ],
+            ]);
 
             $nome = $stripe->customers->search([
                 'query' => 'name:\'pedro bastos\' ',
             ]);
 
-            dd($card);
+            dd($nome);
             // dd("done");
 
             $request_headers = [
