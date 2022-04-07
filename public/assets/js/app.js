@@ -163,7 +163,9 @@
 
             if ($(this).val() == "sim") {
                 $("#memes").removeAttr("hidden")
-                console.log("memes");
+            } else {
+                $("#memes").prop("hidden", true)
+
             }
         });
 

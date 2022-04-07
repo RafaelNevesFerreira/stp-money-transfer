@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <h2 class="fw-400 text-center mt-3" id="memes">Enviar Dinheiro</h2>
+    <h2 class="fw-400 text-center mt-3" >Enviar Dinheiro</h2>
     <p class="lead text-center mb-4">você està enviando dinheiro para <span
             class="fw-500">{{ session('receptor') }}</span></p>
     <div class="row">
