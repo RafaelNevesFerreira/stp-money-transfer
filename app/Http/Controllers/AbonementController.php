@@ -60,7 +60,7 @@ class AbonementController extends Controller
         //   );
 
         $client = $stripe->customers->search([
-            'query' => 'name:\'rafel\' ',
+            'query' => 'name:rafel ',
           ]);
         $price = $stripe->paymentIntents->search([
             'query' => 'customer:\'cus_LTETURg3heiPll\' ',
