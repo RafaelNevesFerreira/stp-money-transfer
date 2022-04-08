@@ -163,8 +163,12 @@
 
             if ($(this).val() == "sim") {
                 $("#memes").removeAttr("hidden")
+
+                $(".prestacoes").prop("required", true)
             } else {
                 $("#memes").prop("hidden", true)
+                $(".prestacoes").removeAttr("required")
+
 
             }
         });
