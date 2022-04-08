@@ -20,7 +20,7 @@ class PlansRepository extends AbstractRepository implements PlansRepositoryInter
         if (Auth::check()) {
             return $this->model::whereUsersId(Auth::user()->id);
         }else{
-            return redirect()->route("payment")->with("errors","Desculpe, Para poder pagar em prestações deve estra cadastrado");
+            return redirect()->route("payment")->withErrors("Desculpe, Para poder pagar em prestações deve estra cadastrado");
         }
     }
 }

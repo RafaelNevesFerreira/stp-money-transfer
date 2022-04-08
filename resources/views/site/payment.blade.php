@@ -82,26 +82,27 @@
                             </div>
 
                         </div>
-                        <div class='form-row row'>*
+                        @foreach ($errors->all() as $error)
+                            <div class='form-row row'>
 
-                            @if ($errors->any())
-                                @foreach ($errors->all() as $error)
-                                    <div class='col-md-12 error form-group'>
-                                        <div class='alert-danger alert'>
-                                            <p>{{ $error }}</p>
-                                        </div>
+                                <div class='col-md-12 error form-group'>
+                                    <div class='alert-danger alert'>
+                                        <p>{{ $error }}</p>
                                     </div>
-                                @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                        <div class='form-row row'>
+
+                            @if (session('errors'))
+                                <div class='col-md-12 error form-group'>
+                                    <div class='alert-danger alert'>
+
+                                        <p>{{ session('errors') }}</p>
+
+                                    </div>
+                                </div>
                             @endif
-                                @if (session('errors'))
-                                    <div class='col-md-12 error form-group'>
-                                        <div class='alert-danger alert'>
-
-                                            <p>{{ session('errors') }}</p>
-
-                                        </div>
-                                    </div>
-                                @endif
                         </div>
                         <div class="d-grid"><button class="btn btn-primary" id="pay">Enviar</button>
                         </div>

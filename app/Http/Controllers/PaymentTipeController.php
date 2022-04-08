@@ -25,7 +25,7 @@ class PaymentTipeController extends Controller
         }else if($request->has("pagar_em_prestacoes") && Auth::check() == false){
             // $this->payment->store($request);
             // dd($request->all());
-            return redirect()->back()->with("errors","para pagar em prestações deve se registrar");
+            return redirect()->back()->withErrors("para pagar em prestações deve se registrar");
         }
     }
 }
