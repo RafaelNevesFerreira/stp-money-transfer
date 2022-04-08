@@ -82,28 +82,19 @@
                             </div>
 
                         </div>
-                        @foreach ($errors->all() as $error)
-                            <div class='form-row row'>
+                        @if ($errors->any())
 
-                                <div class='col-md-12 error form-group'>
-                                    <div class='alert-danger alert'>
+
+                        <div class='form-row row'>
+                            <div class='col-md-12 error form-group'>
+                                <div class='alert-danger alert'>
+                                    @foreach ($errors->all() as $error)
                                         <p>{{ $error }}</p>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
-                        @endforeach
-                        <div class='form-row row'>
-
-                            @if (session('errors'))
-                                <div class='col-md-12 error form-group'>
-                                    <div class='alert-danger alert'>
-
-                                        <p>{{ session('errors') }}</p>
-
-                                    </div>
-                                </div>
-                            @endif
                         </div>
+                        @endif
                         <div class="d-grid"><button class="btn btn-primary" id="pay">Enviar</button>
                         </div>
 
