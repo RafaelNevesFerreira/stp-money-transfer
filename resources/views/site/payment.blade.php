@@ -88,7 +88,7 @@
                             @if (session('errors'))
                                 <div class='col-md-12 error form-group'>
                                     <div class='alert-danger alert'>
-                                        @if ($errors)
+                                        @if ($errors->any())
                                             @foreach ($errors->all() as $error)
                                                 <p>{{ $error }}</p>
                                             @endforeach
