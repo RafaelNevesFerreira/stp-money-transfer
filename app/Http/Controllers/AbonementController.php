@@ -34,7 +34,7 @@ class AbonementController extends Controller
             'phone' => session("phone_number"),
         ]);
 
-        $card = $stripe->customers->createSource(
+         $stripe->customers->createSource(
             $costumer->id,
             [
                 'source' => [
@@ -47,19 +47,19 @@ class AbonementController extends Controller
             ],
         );
 
-        $subscription = $stripe->subscriptions->create([
+
+         $stripe->subscriptions->create([
             'customer' => $costumer->id,
             'items' => [
                 ['price' => 'price_1KlcEUFzWXjclIq0kPWaHzXs'],
             ],
         ]);
 
-
+        sleep(15);
         $name = session("name");
         $client = $stripe->customers->search([
             'query' => "name:'" . $name . "'",
         ]);
-
 
         $price = $stripe->paymentIntents->search([
             'query' => "customer:'" . $client->data[0]->id . "'",
@@ -71,8 +71,7 @@ class AbonementController extends Controller
         );
 
 
-
-        dd($client);
+        dd("done");
 
         return $this->payment->store($request);
     }
