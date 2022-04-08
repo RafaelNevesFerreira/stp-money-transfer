@@ -18,9 +18,6 @@ class PaymentController extends Controller
     public function store(PaymentRequest $request)
     {
         session()->put("data", $request->all());
-        // dd($request->all());
-
-
 
         $input['transaction_id'] = Str::random(18);
 
@@ -50,8 +47,6 @@ class PaymentController extends Controller
         $payment_body = $this->curlPost($payment_url, $payment_payload, $payment_headers);
 
         $payment_response = json_decode($payment_body, true);
-
-
 
         if (isset($payment_response['id']) && $payment_response['id'] != null) {
 
@@ -88,56 +83,6 @@ class PaymentController extends Controller
 
             $request_payload = http_build_query($request_data);
 
-            $stripe = new \Stripe\StripeClient(
-                'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
-            );
-            // dd($stripe);
-            // $customer = $stripe->customers->create([
-            //     'email' => session("email"),
-            //     'name' => session("name"),
-            //     'phone' => session("phone_number"),
-
-            // ]);
-
-            // // dd($customer);
-            // $stripe->subscriptions->create([
-            //     'customer' => "cus_LSXeXojudEiFKq",
-            //     'items' => [
-            //         ['price' => 'price_1KlcEUFzWXjclIq0kPWaHzXs'],
-            //     ],
-            // ]);
-            $costumer = $stripe->customers->create([
-                'email' => "pedordias@email.com",
-                'name' => "pedro bastos",
-                'phone' => 758164875,
-            ]);
-
-            $card = $stripe->customers->createSource(
-                $costumer->id,
-                [
-                    'source' => [
-                        "object" => "card",
-                        "number" => "5555555555554444",
-                        "exp_month" => "12",
-                        "exp_year" => "2024"
-                    ],
-                ],
-            );
-
-            $stripe->subscriptions->create([
-                'customer' => $costumer->id,
-                'items' => [
-                    ['price' => 'price_1KlcEUFzWXjclIq0kPWaHzXs'],
-                ],
-            ]);
-
-            $nome = $stripe->customers->search([
-                'query' => 'name:\'pedro bastos\' ',
-            ]);
-
-            dd($nome);
-            // dd("done");
-
             $request_headers = [
                 'Content-Type: application/x-www-form-urlencoded',
                 'Authorization: Bearer ' . self::SECRET_KEY
@@ -155,7 +100,8 @@ class PaymentController extends Controller
 
                 // transaction success without 3d secure redirect
             } elseif (isset($response_data['status']) && $response_data['status'] == 'succeeded') {
-                dd($response_data);
+                // dd($response_data);
+
                 $this->transfers->store();
                 return redirect()->route('stripeResponse', $input['transaction_id']);
 
@@ -265,7 +211,7 @@ class PaymentController extends Controller
             }
         } else {
 
-            // return redirect()->route("payment")->withErrors(Payment failed.');
+            // return redirect()->route("payment")->withErrors('Payment failed.');
         }
     }
 }
