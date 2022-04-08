@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Contracts\PlansRepositoryInterface;
 use Illuminate\Http\Request;
 
 class AbonementController extends Controller
 {
+
+    public function __construct(public PlansRepositoryInterface $plans){
+
+    }
     public function pagar_em_3_vezes(Request $request)
     {
         dd($request->all());
@@ -16,6 +21,10 @@ class AbonementController extends Controller
         $stripe = new \Stripe\StripeClient(
             'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
         );
+
+        $have_a_plan = $this->plans->ifExist();
+
+        dd($have_a_plan);
 
         $costumer = $stripe->customers->create([
             'email' => session("email"),

@@ -31,6 +31,10 @@ class RepositoryProvider extends ServiceProvider
             'App\Repositories\Contracts\CardsRepositoryInterface',
             'App\Repositories\Eloquent\CardsRepository',
         );
+        $this->app->bind(
+            'App\Repositories\Contracts\PlansRepositoryInterface',
+            'App\Repositories\Eloquent\PlansRepository',
+        );
     }
 
 

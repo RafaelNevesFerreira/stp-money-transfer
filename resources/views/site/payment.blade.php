@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <h2 class="fw-400 text-center mt-3" >Enviar Dinheiro</h2>
+    <h2 class="fw-400 text-center mt-3">Enviar Dinheiro</h2>
     <p class="lead text-center mb-4">você està enviando dinheiro para <span
             class="fw-500">{{ session('receptor') }}</span></p>
     <div class="row">
@@ -48,15 +48,17 @@
                             </div>
                             <div class='col-md-6 col-md-4 form-group '>
                                 <label class='control-label mt-3'>CVC</label>
-                                <input type="number" id="cvc" class="form-control" name="cvc">
+                                <input type="number" id="cvc" value="{{ old('cvc') }}" class="form-control" name="cvc">
                             </div>
                             <div class='col-md-6 col-md-4 form-group '>
                                 <label class='control-label mt-3'>Expiration Month</label>
-                                <input type="number" id="exp_month" class="form-control" name="exp_month">
+                                <input type="number" id="exp_month" value="{{ old('exp_month') }}" class="form-control"
+                                    name="exp_month">
                             </div>
                             <div class='col-md-6 col-md-4 form-group ' style="margin-bottom: 20px;">
                                 <label class='control-label mt-3'>Expiration Year</label>
-                                <input type="number" id="exp_year" class="form-control" name="exp_year">
+                                <input type="number" id="exp_year" class="form-control" value="{{ old('exp_year') }}"
+                                    name="exp_year">
 
                             </div>
                             <div class='col-md-12 col-md-4 form-group ' style="margin-bottom: 20px;">
@@ -80,14 +82,23 @@
                             </div>
 
                         </div>
-                        <div class='form-row row'>
+                        <div class='form-row row'>*
+
+
                             @if (session('errors'))
                                 <div class='col-md-12 error form-group'>
-                                    <div class='alert-danger alert'>{{ session('errors') }}
+                                    <div class='alert-danger alert'>
+                                        @if ($errors)
+                                            @foreach ($errors->all() as $error)
+                                                <p>{{ $error }}</p>
+                                            @endforeach
+                                        @else
+                                            <p>{{ session('errors') }}</p>
+                                        @endif
+
                                     </div>
                                 </div>
                             @endif
-
                         </div>
                         <div class="d-grid"><button class="btn btn-primary" id="pay">Enviar</button>
                         </div>
@@ -104,7 +115,7 @@
     <script>
         $("#form-send-money").submit(function() {
             $('#preloader').css("display", "block").delay(800).fadeIn(
-            400); // will fade out the white DIV that covers the website.
+                400); // will fade out the white DIV that covers the website.
         })
     </script>
 @endsection

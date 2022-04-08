@@ -7,36 +7,43 @@ use Stripe;
 
 class SiteController extends Controller
 {
-    public function index(){
-
+    public function index()
+    {
         return view("site.welcome");
     }
 
-    public function about(){
+    public function about()
+    {
         return view("site.about");
     }
 
-    public function send(){
+    public function send()
+    {
         return view("site.send");
     }
 
-    public function identification(){
+    public function identification()
+    {
         return view("site.send_identification");
     }
 
-    public function payment(){
+    public function payment()
+    {
         return view("site.payment");
     }
 
-    public function help(){
+    public function help()
+    {
         return view("site.help");
     }
 
-    public function contact(){
+    public function contact()
+    {
         return view("site.contact");
     }
 
-    public function privacity(){
+    public function privacity()
+    {
         return view("site.politica-privacidade");
     }
 }
