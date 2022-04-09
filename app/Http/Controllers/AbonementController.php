@@ -53,6 +53,8 @@ class AbonementController extends Controller
                 'query' => "name:'" . $name . "' ",
             ]);
 
+            // dd($client);
+
             $card = $stripe->customers->allSources(
                 $client->data[0]->id,
                 ['object' => 'card']
@@ -62,20 +64,15 @@ class AbonementController extends Controller
             foreach ($card->data as $memes) {
                 if ($memes->last4 == substr($request->card_no, strlen($request->card_no) - 4)) {
                     $exist = true;
-                } else {
-                    $exist = false;
                 }
             }
-
-
-
 
             // dd($client);
 
 
             sleep(10);
 
-            if ($exist == false) {
+            if ($exist != true) {
                 $stripe->customers->createSource(
                     $client->data[0]->id,
                     [
