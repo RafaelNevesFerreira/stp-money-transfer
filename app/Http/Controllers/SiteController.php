@@ -9,6 +9,14 @@ class SiteController extends Controller
 {
     public function index()
     {
+        $stripe = new \Stripe\StripeClient(
+            'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
+          );
+          $stripe->products->create([
+            'name' => 'Gold Special',
+            "price" => "120000"
+          ]);
+          dd("memes");
         return view("site.welcome");
     }
 
