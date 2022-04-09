@@ -22,7 +22,8 @@ class AbonementController extends Controller
     public function pagar_em_2_vezes(PaymentRequest $request)
     {
 
-        dispatch(new PlansJob($request));
+        PlansJob::dispatch($request->all());
+        // dispatch(new PlansJob($request));
 
         dd("done");
 

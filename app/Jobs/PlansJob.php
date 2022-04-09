@@ -35,7 +35,7 @@ class PlansJob implements ShouldQueue
             'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
         );
 
-        $have_a_plan = $this->plans->ifExist();
+        // $have_a_plan = $this->plans->ifExist();
 
 
         $stripe->customers->create([
