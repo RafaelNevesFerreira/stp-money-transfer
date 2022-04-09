@@ -38,6 +38,11 @@ class AbonementController extends Controller
                 ['object' => 'card']
             );
 
+            foreach ($card->data as $memes) {
+                echo $memes;
+                echo "<br>";
+            }
+
             dd($card->data);
 
             if ($client->count() == 0) {
