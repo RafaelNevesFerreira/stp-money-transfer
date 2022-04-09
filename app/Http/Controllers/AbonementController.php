@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Illuminate\Http\Request;
-use App\Http\Controllers\PaymentController;
 use App\Http\Requests\PaymentRequest;
+use App\Http\Controllers\PaymentController;
 use App\Repositories\Contracts\PlansRepositoryInterface;
 
 class AbonementController extends Controller
@@ -34,8 +35,22 @@ class AbonementController extends Controller
             'phone' => session("phone_number"),
         ]);
 
-         $stripe->customers->createSource(
-            $costumer->id,
+
+        $date = DateTime::createFromFormat('d-m-Y H:i:s', "22-09-2022 00:00:00");
+        $date = $date->getTimestamp();
+
+
+
+        sleep(20);
+        $name = session("name");
+
+        $client = $stripe->customers->search([
+            'query' => "name:'" . $name . "'",
+        ]);
+
+        sleep(10);
+        $stripe->customers->createSource(
+            $client->data[0]->id,
             [
                 'source' => [
                     "object" => "card",
@@ -48,27 +63,24 @@ class AbonementController extends Controller
         );
 
 
-         $stripe->subscriptions->create([
-            'customer' => $costumer->id,
+        $stripe->subscriptions->create([
+            'customer' => $client->data[0]->id,
             'items' => [
                 ['price' => 'plan_LTTW2Nne4lQtDt'],
             ],
-            "cancel_at" => date("Y/m/d H:i:s")
+            "cancel_at" => $date
         ]);
 
+        sleep(10);
 
 
-        sleep(15);
-        $name = session("name");
-        $client = $stripe->customers->search([
-            'query' => "name:'" . $name . "'",
-        ]);
 
         $price = $stripe->paymentIntents->search([
             'query' => "customer:'" . $client->data[0]->id . "'",
         ]);
 
-        $payment = $stripe->paymentIntents->confirm(
+        sleep(10);
+        $stripe->paymentIntents->confirm(
             $price->data[0]->id,
             ['payment_method' => 'pm_card_visa']
         );

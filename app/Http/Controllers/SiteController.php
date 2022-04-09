@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Session;
-use Stripe;
-
 class SiteController extends Controller
 {
     public function index()
