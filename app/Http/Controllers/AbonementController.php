@@ -36,10 +36,9 @@ class AbonementController extends Controller
             $card = $stripe->customers->allSources(
                 $client->data[0]->id,
                 ['object' => 'card']
-              );
+            );
 
-            dd($card);
-
+            dd($card->data);
 
             if ($client->count() == 0) {
 
@@ -50,7 +49,6 @@ class AbonementController extends Controller
                 ]);
 
                 sleep(20);
-
             }
 
             $client = $stripe->customers->search([
