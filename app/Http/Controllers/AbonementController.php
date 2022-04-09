@@ -53,6 +53,7 @@ class AbonementController extends Controller
             'items' => [
                 ['price' => 'plan_LTTW2Nne4lQtDt'],
             ],
+            "cancel_at" => date("Y/m/d H:i:s")
         ]);
 
 
