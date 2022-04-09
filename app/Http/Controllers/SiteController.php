@@ -12,12 +12,7 @@ class SiteController extends Controller
         $stripe = new \Stripe\StripeClient(
             'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
           );
-        //   $stripe->plans->create([
-        //     'amount' => 28000,
-        //     'currency' => 'eur',
-        //     'interval' => 'month',
-        //     'product' => 'prod_LSXJFWphfFl1Cc',
-        //   ]);
+
           dd("memes");
         return view("site.welcome");
     }
