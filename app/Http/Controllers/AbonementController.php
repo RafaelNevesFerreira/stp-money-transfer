@@ -33,7 +33,12 @@ class AbonementController extends Controller
                 'query' => "name:'" . $name . "' ",
             ]);
 
-            dd($request->all());
+            $card = $stripe->customers->allSources(
+                $client->data[0]->id,
+                ['object' => 'card']
+              );
+
+            dd($card);
 
 
             if ($client->count() == 0) {
@@ -51,7 +56,6 @@ class AbonementController extends Controller
             $client = $stripe->customers->search([
                 'query' => "name:'" . $name . "' ",
             ]);
-
 
             // dd($client);
 
