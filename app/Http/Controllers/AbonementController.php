@@ -21,9 +21,47 @@ class AbonementController extends Controller
 
     public function pagar_em_2_vezes(PaymentRequest $request)
     {
+        try {
+            $stripe = new \Stripe\StripeClient(
+                'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
+            );
 
-        PlansJob::dispatch($request->all());
-        // dispatch(new PlansJob($request));
+            // dispatch(new PlansJob($request));
+            $stripe->customers->create([
+                'email' => session("email"),
+                'name' => session("name"),
+                'phone' => session("phone_number"),
+            ]);
+
+            sleep(20);
+            $name = session("name");
+
+            $client = $stripe->customers->search([
+                'query' => "name:'" . $name . "'",
+            ]);
+
+            sleep(10);
+            $stripe->customers->createSource(
+                $client->data[0]->id,
+                [
+                    'source' => [
+                        "object" => "card",
+                        "number" => $request->card_no,
+                        "exp_month" => $request->exp_month,
+                        "exp_year" => $request->exp_year,
+                        "cvc" => $request->cvc,
+                    ],
+                ],
+            );
+
+            PlansJob::dispatch($request->all(), $name)->delay(now()->addMinutes(1));
+        } catch (\Throwable $th) {
+            $stripe->customers->delete(
+                $client->data[0]->id,
+              );
+            return redirect()->back()->withErrors("Desculpe, Não foi possivel realizar a operação, verifique se seus dados estão corretos ou se o seu saldo é suficiente");
+        }
+
 
         dd("done");
 
