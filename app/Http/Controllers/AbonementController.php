@@ -41,28 +41,28 @@ class AbonementController extends Controller
                 'query' => "name:'" . $name . "' ",
             ]);
 
-            dd($client);
+            // dd($client);
 
-            $price = $stripe->paymentIntents->search([
-                'query' => "customer:'" . $client->data[0]->id . "'",
-            ]);
+            // $price = $stripe->paymentIntents->search([
+            //     'query' => "customer:'" . $client->data[0]->id . "'",
+            // ]);
 
-            $plan = $stripe->plans->create([
-                'amount' => 12000,
-                'currency' => 'eur',
-                'interval' => 'month',
-                'product' => 'prod_LSXJFWphfFl1Cc',
-              ]);
+            // $plan = $stripe->plans->create([
+            //     'amount' => 12000,
+            //     'currency' => 'eur',
+            //     'interval' => 'month',
+            //     'product' => 'prod_LSXJFWphfFl1Cc',
+            //   ]);
 
-            $stripe->subscriptions->create([
-                'customer' => $client->data[0]->id,
-                'items' => [
-                    ['price' => $plan->id],
-                ],
-                // "cancel_at" => $date
-            ]);
+            // $stripe->subscriptions->create([
+            //     'customer' => $client->data[0]->id,
+            //     'items' => [
+            //         ['price' => $plan->id],
+            //     ],
+            //     // "cancel_at" => $date
+            // ]);
 
-            dd($price->data);
+            // dd($price->data[0]->status);
 
             sleep(10);
             $stripe->customers->createSource(
@@ -78,7 +78,7 @@ class AbonementController extends Controller
                 ],
             );
 
-            PlansJob::dispatch($request->all(), $name)->delay(now()->addMinutes(1));
+            PlansJob::dispatch($request->all(), $name,session("total"))->delay(now()->addMinutes(1));
         } catch (\Throwable $th) {
             $stripe->customers->delete(
                 $client->data[0]->id,

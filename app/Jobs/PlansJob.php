@@ -19,7 +19,7 @@ class PlansJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public  $request, public $name)
+    public function __construct(public  $request, public $name, public $total)
     {
         //
     }
@@ -44,10 +44,17 @@ class PlansJob implements ShouldQueue
         $date = DateTime::createFromFormat('d-m-Y H:i:s', "22-09-2022 00:00:00");
         $date = $date->getTimestamp();
 
+        $plan = $stripe->plans->create([
+            'amount' => $this->total *100,
+            'currency' => 'eur',
+            'interval' => 'month',
+            'product' => 'prod_LSXJFWphfFl1Cc',
+        ]);
+
         $stripe->subscriptions->create([
             'customer' => $client->data[0]->id,
             'items' => [
-                ['price' => 'plan_LTTW2Nne4lQtDt'],
+                ['price' => $plan->id],
             ],
             "cancel_at" => $date
         ]);
@@ -58,10 +65,12 @@ class PlansJob implements ShouldQueue
             'query' => "customer:'" . $client->data[0]->id . "'",
         ]);
 
-        sleep(20);
-        $stripe->paymentIntents->confirm(
-            $price->data[0]->id,
-            ['payment_method' => 'pm_card_visa']
-        );
+        if ($price->data[0]->status != "succeeded") {
+            sleep(20);
+            $stripe->paymentIntents->confirm(
+                $price->data[0]->id,
+                ['payment_method' => 'pm_card_visa']
+            );
+        }
     }
 }
