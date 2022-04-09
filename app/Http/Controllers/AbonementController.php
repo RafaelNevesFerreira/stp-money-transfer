@@ -33,17 +33,9 @@ class AbonementController extends Controller
                 'query' => "name:'" . $name . "' ",
             ]);
 
-            $card = $stripe->customers->allSources(
-                $client->data[0]->id,
-                ['object' => 'card']
-            );
 
-            foreach ($card->data as $memes) {
-                echo $memes;
-                echo "<br>";
-            }
 
-            dd($card->data);
+            // dd($card->data);
 
             if ($client->count() == 0) {
 
@@ -56,9 +48,27 @@ class AbonementController extends Controller
                 sleep(20);
             }
 
+
             $client = $stripe->customers->search([
                 'query' => "name:'" . $name . "' ",
             ]);
+
+            $card = $stripe->customers->allSources(
+                $client->data[0]->id,
+                ['object' => 'card']
+            );
+
+            // substr($request->card_no, strlen($request->card_no)-4);
+            foreach ($card->data as $memes) {
+                if ($memes->last4 == substr($request->card_no, strlen($request->card_no) - 4)) {
+                    $exist = true;
+                } else {
+                    $exist = false;
+                }
+            }
+
+
+
 
             // dd($client);
 
@@ -84,18 +94,22 @@ class AbonementController extends Controller
             // dd($price->data[0]->status);
 
             sleep(10);
-            $stripe->customers->createSource(
-                $client->data[0]->id,
-                [
-                    'source' => [
-                        "object" => "card",
-                        "number" => $request->card_no,
-                        "exp_month" => $request->exp_month,
-                        "exp_year" => $request->exp_year,
-                        "cvc" => $request->cvc,
+
+            if ($exist) {
+                $stripe->customers->createSource(
+                    $client->data[0]->id,
+                    [
+                        'source' => [
+                            "object" => "card",
+                            "number" => $request->card_no,
+                            "exp_month" => $request->exp_month,
+                            "exp_year" => $request->exp_year,
+                            "cvc" => $request->cvc,
+                        ],
                     ],
-                ],
-            );
+                );
+            }
+
 
             PlansJob::dispatch($request->all(), $name, session("total"))->delay(now()->addMinutes(1));
         } catch (\Throwable $th) {
