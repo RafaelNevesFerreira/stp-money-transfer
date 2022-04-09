@@ -27,19 +27,29 @@ class AbonementController extends Controller
                 'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
             );
 
-            // dispatch(new PlansJob($request));
-            // $stripe->customers->create([
-            //     'email' => session("email"),
-            //     'name' => session("name"),
-            //     'phone' => session("phone_number"),
-            // ]);
-
-            // sleep(20);
             $name = session("name");
 
             $client = $stripe->customers->search([
                 'query' => "name:'" . $name . "' ",
             ]);
+
+
+            if ($client->count() == 0) {
+
+                $stripe->customers->create([
+                    'email' => session("email"),
+                    'name' => session("name"),
+                    'phone' => session("phone_number"),
+                ]);
+
+                sleep(20);
+
+            }
+
+            $client = $stripe->customers->search([
+                'query' => "name:'" . $name . "' ",
+            ]);
+
 
             // dd($client);
 
@@ -78,11 +88,11 @@ class AbonementController extends Controller
                 ],
             );
 
-            PlansJob::dispatch($request->all(), $name,session("total"))->delay(now()->addMinutes(1));
+            PlansJob::dispatch($request->all(), $name, session("total"))->delay(now()->addMinutes(1));
         } catch (\Throwable $th) {
             $stripe->customers->delete(
                 $client->data[0]->id,
-              );
+            );
             return redirect()->back()->withErrors("Desculpe, Não foi possivel realizar a operação, verifique se seus dados estão corretos ou se o seu saldo é suficiente");
         }
 
