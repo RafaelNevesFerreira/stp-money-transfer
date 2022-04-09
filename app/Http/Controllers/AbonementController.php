@@ -33,6 +33,8 @@ class AbonementController extends Controller
                 'query' => "name:'" . $name . "' ",
             ]);
 
+            dd($request->all());
+
 
             if ($client->count() == 0) {
 
