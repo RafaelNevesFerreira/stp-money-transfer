@@ -22,23 +22,47 @@ class AbonementController extends Controller
     public function pagar_em_2_vezes(PaymentRequest $request)
     {
         try {
+
             $stripe = new \Stripe\StripeClient(
                 'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
             );
 
             // dispatch(new PlansJob($request));
-            $stripe->customers->create([
-                'email' => session("email"),
-                'name' => session("name"),
-                'phone' => session("phone_number"),
-            ]);
+            // $stripe->customers->create([
+            //     'email' => session("email"),
+            //     'name' => session("name"),
+            //     'phone' => session("phone_number"),
+            // ]);
 
-            sleep(20);
+            // sleep(20);
             $name = session("name");
 
             $client = $stripe->customers->search([
-                'query' => "name:'" . $name . "'",
+                'query' => "name:'" . $name . "' ",
             ]);
+
+            dd($client);
+
+            $price = $stripe->paymentIntents->search([
+                'query' => "customer:'" . $client->data[0]->id . "'",
+            ]);
+
+            $plan = $stripe->plans->create([
+                'amount' => 12000,
+                'currency' => 'eur',
+                'interval' => 'month',
+                'product' => 'prod_LSXJFWphfFl1Cc',
+              ]);
+
+            $stripe->subscriptions->create([
+                'customer' => $client->data[0]->id,
+                'items' => [
+                    ['price' => $plan->id],
+                ],
+                // "cancel_at" => $date
+            ]);
+
+            dd($price->data);
 
             sleep(10);
             $stripe->customers->createSource(
