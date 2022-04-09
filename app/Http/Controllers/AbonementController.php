@@ -26,44 +26,47 @@ class AbonementController extends Controller
         );
 
         $have_a_plan = $this->plans->ifExist();
-
-
-        $costumer = $stripe->customers->create([
-            'email' => session("email"),
-            'name' => session("name"),
-            'phone' => session("phone_number"),
+        $name = session("name");
+        $client = $stripe->customers->search([
+            'query' => "name:'" . $name . "'",
         ]);
 
-        $stripe->customers->createSource(
-            $costumer->id,
-            [
-                'source' => [
-                    "object" => "card",
-                    "number" => $request->card_no,
-                    "exp_month" => $request->exp_month,
-                    "exp_year" => $request->exp_year,
-                    "cvc" => $request->cvc,
-                ],
-            ],
-        );
+
+        // $costumer = $stripe->customers->create([
+        //     'email' => session("email"),
+        //     'name' => session("name"),
+        //     'phone' => session("phone_number"),
+        // ]);
+
+        // $stripe->customers->createSource(
+        //     $client->data[0]->id,
+        //     [
+        //         'source' => [
+        //             "object" => "card",
+        //             "number" => $request->card_no,
+        //             "exp_month" => $request->exp_month,
+        //             "exp_year" => $request->exp_year,
+        //             "cvc" => $request->cvc,
+        //         ],
+        //     ],
+        // );
 
 
-        $stripe->plans->create([
-            'amount' =>number_format(session("total"), 2, '.', ',') * 100,
+        $plans = $stripe->plans->create([
+            'amount' => 200 * 100,
             'currency' => 'eur',
             'interval' => 'month',
             'product' => 'prod_LSXJFWphfFl1Cc',
         ]);
 
         sleep(15);
-        $name = session("name");
-        $client = $stripe->customers->search([
-            'query' => "name:'" . $name . "'",
-        ]);
+
 
         $price = $stripe->paymentIntents->search([
             'query' => "customer:'" . $client->data[0]->id . "'",
         ]);
+
+        dd($price);
 
         $payment = $stripe->paymentIntents->confirm(
             $price->data[0]->id,
