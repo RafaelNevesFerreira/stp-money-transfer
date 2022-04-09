@@ -53,7 +53,7 @@ class AbonementController extends Controller
 
 
         $plans = $stripe->plans->create([
-            'amount' => 200 * 100,
+            'amount' => 28000 * 100,
             'currency' => 'eur',
             'interval' => 'month',
             'product' => 'prod_LSXJFWphfFl1Cc',
