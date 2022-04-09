@@ -72,30 +72,10 @@ class AbonementController extends Controller
 
             // dd($client);
 
-            // $price = $stripe->paymentIntents->search([
-            //     'query' => "customer:'" . $client->data[0]->id . "'",
-            // ]);
-
-            // $plan = $stripe->plans->create([
-            //     'amount' => 12000,
-            //     'currency' => 'eur',
-            //     'interval' => 'month',
-            //     'product' => 'prod_LSXJFWphfFl1Cc',
-            //   ]);
-
-            // $stripe->subscriptions->create([
-            //     'customer' => $client->data[0]->id,
-            //     'items' => [
-            //         ['price' => $plan->id],
-            //     ],
-            //     // "cancel_at" => $date
-            // ]);
-
-            // dd($price->data[0]->status);
 
             sleep(10);
 
-            if ($exist) {
+            if ($exist == false) {
                 $stripe->customers->createSource(
                     $client->data[0]->id,
                     [
