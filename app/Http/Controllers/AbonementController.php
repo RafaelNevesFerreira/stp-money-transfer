@@ -34,7 +34,7 @@ class AbonementController extends Controller
             'phone' => session("phone_number"),
         ]);
 
-        $stripe->customers->createSource(
+         $stripe->customers->createSource(
             $costumer->id,
             [
                 'source' => [
@@ -48,12 +48,14 @@ class AbonementController extends Controller
         );
 
 
-        $stripe->plans->create([
-            'amount' =>number_format(session("total"), 2, '.', ',') * 100,
-            'currency' => 'eur',
-            'interval' => 'month',
-            'product' => 'prod_LSXJFWphfFl1Cc',
+         $stripe->subscriptions->create([
+            'customer' => $costumer->id,
+            'items' => [
+                ['price' => 'plan_LTTW2Nne4lQtDt'],
+            ],
         ]);
+
+
 
         sleep(15);
         $name = session("name");

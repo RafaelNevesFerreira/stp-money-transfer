@@ -18,7 +18,7 @@ class SiteController extends Controller
         //     'interval' => 'month',
         //     'product' => 'prod_LSXJFWphfFl1Cc',
         //   ]);
-          dd("memes");
+        //   dd("memes");
         return view("site.welcome");
     }
 
