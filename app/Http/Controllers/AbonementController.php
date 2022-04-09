@@ -51,7 +51,7 @@ class AbonementController extends Controller
          $stripe->subscriptions->create([
             'customer' => $costumer->id,
             'items' => [
-                ['price' => 'price_1KlcEUFzWXjclIq0kPWaHzXs'],
+                ['price' => 'plan_LTTW2Nne4lQtDt'],
             ],
         ]);
 
