@@ -49,7 +49,7 @@ class AbonementController extends Controller
 
 
         $stripe->plans->create([
-            'amount' =>number_format(session("total"), 2, '.', ','),
+            'amount' =>number_format(session("total"), 2, '.', ',') * 100,
             'currency' => 'eur',
             'interval' => 'month',
             'product' => 'prod_LSXJFWphfFl1Cc',
