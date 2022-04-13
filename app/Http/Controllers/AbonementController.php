@@ -72,7 +72,6 @@ class AbonementController extends Controller
                 $exist = false;
             }
 
-
             // dd($exist);
 
 
