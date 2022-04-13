@@ -67,7 +67,7 @@ class AbonementController extends Controller
                 }
             }
 
-            // dd($client);
+            dd($exist);
 
 
             sleep(10);
