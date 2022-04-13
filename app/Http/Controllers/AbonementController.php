@@ -99,12 +99,15 @@ class AbonementController extends Controller
 
 
             PlansJob::dispatch($request->all(), $name, session("total"))->delay(now()->addMinutes(1));
-        } catch (\Stripe\Exception\CardException $e) {
-            dd($e);
-            $stripe->customers->delete(
-                $client->data[0]->id,
-            );
-            return redirect()->back()->withErrors("Desculpe, Não foi possivel realizar a operação, verifique se seus dados estão corretos ou se o seu saldo é suficiente");
+        } catch (\Stripe\Exception\CardException $error) {
+                // echo "<br>";
+                // echo $error->getError()->message;
+            // dd($e);
+            return;
+            // $stripe->customers->delete(
+            //     $client->data[0]->id,
+            // );
+            return redirect()->back()->withErrors($error->getError()->message);
         }
 
 
