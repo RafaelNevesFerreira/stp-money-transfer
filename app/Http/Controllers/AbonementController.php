@@ -40,8 +40,6 @@ class AbonementController extends Controller
 
 
 
-            // dd($card->data);
-
             if ($client->count() == 0) {
 
                 $stripe->customers->create([
@@ -58,22 +56,20 @@ class AbonementController extends Controller
                 'query' => "name:'" . $name . "' ",
             ]);
 
-            // dd($client);
+
 
             $card = $stripe->customers->allSources(
                 $client->data[0]->id,
                 ['object' => 'card']
             );
 
-            // dd($card->data);
 
-            // dd(count($card->data));
+
             $exist = false;
-            // substr($request->card_no, strlen($request->card_no)-4);
+
             if (count($card->data) > 0) {
 
                 for ($i = 0; $i < count($card->data); $i++) {
-                    // dd($card->data[$i]["last4"]);
                     if ($card->data[$i]["last4"] == substr($request->card_no, strlen($request->card_no) - 4)) {
                         $exist = true;
                     }
@@ -82,7 +78,6 @@ class AbonementController extends Controller
                 $exist = false;
             }
 
-            // dd("memes");
 
 
             sleep(10);
@@ -105,15 +100,16 @@ class AbonementController extends Controller
 
             PlansJob::dispatch($request->all(), $name, session("total"))->delay(now()->addMinutes(1));
         } catch (\Stripe\Exception\CardException $error) {
+
             $stripe->customers->delete(
                 $client->data[0]->id,
             );
+
             return redirect()->back()->withErrors($error->getError()->message);
         }
 
 
         dd("done");
 
-        return $this->payment->store($request);
     }
 }

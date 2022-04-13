@@ -23,4 +23,10 @@ class PlansRepository extends AbstractRepository implements PlansRepositoryInter
             return redirect()->route("payment")->withErrors("Desculpe, Para poder pagar em prestações deve estra cadastrado");
         }
     }
+
+    public function store(){
+        $this->model::create([
+            "users_id" => Auth::user()->id
+        ]);
+    }
 }

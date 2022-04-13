@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Repositories\Contracts\PlansRepositoryInterface;
 use DateTime;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -19,7 +20,7 @@ class PlansJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public  $request, public $name, public $total)
+    public function __construct(public  $request, public $name, public $total, public PlansRepositoryInterface $plans)
     {
         //
     }
@@ -72,6 +73,10 @@ class PlansJob implements ShouldQueue
                     ['payment_method' => 'pm_card_visa']
                 );
             }
+
+            return $this->plans->store();
+
+
         } catch (\Throwable $th) {
             throw $th;
         }
