@@ -95,6 +95,7 @@ class AbonementController extends Controller
 
             PlansJob::dispatch($request->all(), $name, session("total"))->delay(now()->addMinutes(1));
         } catch (\Throwable $th) {
+            dd("falha");
             $stripe->customers->delete(
                 $client->data[0]->id,
             );
