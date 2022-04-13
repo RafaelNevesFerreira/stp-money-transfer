@@ -15,7 +15,7 @@ class PaymentTipeController extends Controller
     public function verificar_condição_de_pagamento(PaymentRequest $request)
     {
 
-        if ($request->has("pagar_em_prestacoes") && Auth::check()) {
+        if ($request->has("pagar_em_prestacoes") && Auth::check() && $request->pagar_em_prestacoes == "sim") {
             if ($request->has("numero_prestacoes")) {
                 if ($request->numero_prestacoes == "3") {
                     $this->abonement->pagar_em_3_vezes($request);
