@@ -40,7 +40,6 @@ class PlansJob implements ShouldQueue
                 'query' => "name:'" . $this->name . "'",
             ]);
 
-            // $have_a_plan = $this->plans->ifExist();
 
             $date = DateTime::createFromFormat('d-m-Y H:i:s', "22-09-2022 00:00:00");
             $date = $date->getTimestamp();

@@ -18,7 +18,7 @@ class PlansRepository extends AbstractRepository implements PlansRepositoryInter
     public function ifExist()
     {
         if (Auth::check()) {
-            return $this->model::whereUsersId(Auth::user()->id);
+            return $this->model::where("users_id",Auth::user()->id)->firstOrFail()->count();
         }else{
             return redirect()->route("payment")->withErrors("Desculpe, Para poder pagar em prestações deve estra cadastrado");
         }

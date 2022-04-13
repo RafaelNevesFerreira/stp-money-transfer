@@ -23,6 +23,11 @@ class AbonementController extends Controller
     {
         try {
 
+            if ($this->plans->ifExist() > 0) {
+                return redirect()->back()->withErrors("Desculpe Mas ja tem uma subscrição a pagar, assim que terminar de pagar podera fazer outra");
+            }
+
+
             $stripe = new \Stripe\StripeClient(
                 'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
             );
@@ -67,7 +72,7 @@ class AbonementController extends Controller
             // substr($request->card_no, strlen($request->card_no)-4);
             if (count($card->data) > 0) {
 
-                for ($i = 0 ; $i < count($card->data) ; $i++) {
+                for ($i = 0; $i < count($card->data); $i++) {
                     // dd($card->data[$i]["last4"]);
                     if ($card->data[$i]["last4"] == substr($request->card_no, strlen($request->card_no) - 4)) {
                         $exist = true;
@@ -100,13 +105,9 @@ class AbonementController extends Controller
 
             PlansJob::dispatch($request->all(), $name, session("total"))->delay(now()->addMinutes(1));
         } catch (\Stripe\Exception\CardException $error) {
-                // echo "<br>";
-                // echo $error->getError()->message;
-            // dd($e);
-            return;
-            // $stripe->customers->delete(
-            //     $client->data[0]->id,
-            // );
+            $stripe->customers->delete(
+                $client->data[0]->id,
+            );
             return redirect()->back()->withErrors($error->getError()->message);
         }
 
