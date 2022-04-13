@@ -60,15 +60,17 @@ class AbonementController extends Controller
                 ['object' => 'card']
             );
 
-            // dd($card->data);
+            // dd(count($card->data));
             // substr($request->card_no, strlen($request->card_no)-4);
             if (count($card->data) > 0) {
+                dd($card->data);
+
                 foreach ($card->data as $memes) {
                     if ($memes->last4 == substr($request->card_no, strlen($request->card_no) - 4)) {
                         $exist = true;
                     }
                 }
-            }else{
+            } else {
                 $exist = false;
             }
 
