@@ -60,13 +60,16 @@ class AbonementController extends Controller
                 ['object' => 'card']
             );
 
+            // dd($card->data);
+
             // dd(count($card->data));
+            $exist = false;
             // substr($request->card_no, strlen($request->card_no)-4);
             if (count($card->data) > 0) {
-                dd($card->data);
 
-                foreach ($card->data as $memes) {
-                    if ($memes->last4 == substr($request->card_no, strlen($request->card_no) - 4)) {
+                for ($i = 0 ; $i < count($card->data) ; $i++) {
+                    // dd($card->data[$i]["last4"]);
+                    if ($card->data[$i]["last4"] == substr($request->card_no, strlen($request->card_no) - 4)) {
                         $exist = true;
                     }
                 }
@@ -74,12 +77,12 @@ class AbonementController extends Controller
                 $exist = false;
             }
 
-            // dd($exist);
+            // dd("memes");
 
 
             sleep(10);
 
-            if ($exist != true) {
+            if (isset($exist) && $exist != true) {
                 $stripe->customers->createSource(
                     $client->data[0]->id,
                     [
