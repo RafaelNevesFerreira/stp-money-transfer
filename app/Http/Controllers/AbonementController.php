@@ -53,7 +53,7 @@ class AbonementController extends Controller
                 'query' => "name:'" . $name . "' ",
             ]);
 
-            // dd($client);
+            dd($client);
 
             $card = $stripe->customers->allSources(
                 $client->data[0]->id,
