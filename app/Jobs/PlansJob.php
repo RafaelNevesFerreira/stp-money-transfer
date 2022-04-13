@@ -31,46 +31,52 @@ class PlansJob implements ShouldQueue
      */
     public function handle()
     {
-        $stripe = new \Stripe\StripeClient(
-            'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
-        );
+        try {
+            //code...
 
-        $client = $stripe->customers->search([
-            'query' => "name:'" . $this->name . "'",
-        ]);
-
-        // $have_a_plan = $this->plans->ifExist();
-
-        $date = DateTime::createFromFormat('d-m-Y H:i:s', "22-09-2022 00:00:00");
-        $date = $date->getTimestamp();
-
-        $plan = $stripe->plans->create([
-            'amount' => $this->total *100,
-            'currency' => 'eur',
-            'interval' => 'month',
-            'product' => 'prod_LSXJFWphfFl1Cc',
-        ]);
-
-        $stripe->subscriptions->create([
-            'customer' => $client->data[0]->id,
-            'items' => [
-                ['price' => $plan->id],
-            ],
-            "cancel_at" => $date
-        ]);
-
-        sleep(20);
-
-        $price = $stripe->paymentIntents->search([
-            'query' => "customer:'" . $client->data[0]->id . "'",
-        ]);
-
-        if ($price->data[0]->status != "succeeded") {
-            sleep(20);
-            $stripe->paymentIntents->confirm(
-                $price->data[0]->id,
-                ['payment_method' => 'pm_card_visa']
+            $stripe = new \Stripe\StripeClient(
+                'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
             );
+
+            $client = $stripe->customers->search([
+                'query' => "name:'" . $this->name . "'",
+            ]);
+
+            // $have_a_plan = $this->plans->ifExist();
+
+            $date = DateTime::createFromFormat('d-m-Y H:i:s', "22-09-2022 00:00:00");
+            $date = $date->getTimestamp();
+
+            $plan = $stripe->plans->create([
+                'amount' => $this->total * 100,
+                'currency' => 'eur',
+                'interval' => 'month',
+                'product' => 'prod_LSXJFWphfFl1Cc',
+            ]);
+
+            $stripe->subscriptions->create([
+                'customer' => $client->data[0]->id,
+                'items' => [
+                    ['price' => $plan->id],
+                ],
+                "cancel_at" => $date
+            ]);
+
+            sleep(20);
+
+            $price = $stripe->paymentIntents->search([
+                'query' => "customer:'" . $client->data[0]->id . "'",
+            ]);
+
+            if ($price->data[0]->status != "succeeded") {
+                sleep(20);
+                $stripe->paymentIntents->confirm(
+                    $price->data[0]->id,
+                    ['payment_method' => 'pm_card_visa']
+                );
+            }
+        } catch (\Throwable $th) {
+            throw $th;
         }
     }
 }
