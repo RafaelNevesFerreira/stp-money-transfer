@@ -60,6 +60,10 @@ class AbonementController extends Controller
                 'query' => "name:'" . $name . "' ",
             ]);
 
+            dd(
+                $client->data[0]->id,
+            );
+
             //insere no nosso db plans o id do cliente, para que dessa maneira na proxima subscription possamos ver que
             //o cliente ja tem uma subscription que ainda não foi totalmente pagada
             $this->plans->store();
