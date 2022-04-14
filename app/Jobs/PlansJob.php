@@ -69,6 +69,7 @@ class PlansJob implements ShouldQueue
                 'query' => "customer:'" . $client->data[0]->id . "'",
             ]);
 
+            //depois verificar se o estado esta incompleto ou bloqueado
             if ($price->data[0]->status != "succeeded") {
                 // sleep(20);
                 // $stripe->paymentIntents->confirm(
