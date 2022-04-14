@@ -21,7 +21,7 @@ class PaimentSuccess implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(public $email)
     {
         //
     }
@@ -33,6 +33,6 @@ class PaimentSuccess implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to(Auth::user()->email)->send(new PaimentsuccessMail());
+        Mail::to($this->email)->send(new PaimentsuccessMail());
     }
 }
