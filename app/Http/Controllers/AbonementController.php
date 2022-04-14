@@ -34,9 +34,7 @@ class AbonementController extends Controller
             );
 
 
-            dd($stripe->radar->earlyFraudWarnings->all([
-                'limit' => 3,
-            ]));
+            dd($stripe->issuing->disputes->all(['limit' => 3]));
 
             //atribui a varivael nome o valor do nome de quem envia o dinhiro
             $name = session("name");
