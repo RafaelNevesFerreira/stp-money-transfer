@@ -17,7 +17,7 @@ class PaimentsuccessMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(public $name)
     {
         //
     }
@@ -29,7 +29,7 @@ class PaimentsuccessMail extends Mailable
      */
     public function build()
     {
-        $name = Auth::user()->name;
+        $name = $this->name;
         return $this->markdown('mail.paimentsuccess-mail',compact("name"))->subject("Pagamento efetuado com sucesso");
     }
 }

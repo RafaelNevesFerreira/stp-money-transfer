@@ -78,7 +78,7 @@ class PlansJob implements ShouldQueue
                 // );
             }
 
-            PaimentSuccess::dispatch($this->email)->delay(now()->addSecond(30));
+            PaimentSuccess::dispatch($this->email, $this->name)->delay(now()->addSecond(30));
         } catch (\Throwable $th) {
             PaimentFailed::dispatch($this->email)->delay(now()->addSecond(30));
         }
