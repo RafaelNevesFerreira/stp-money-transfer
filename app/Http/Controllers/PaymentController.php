@@ -70,6 +70,7 @@ class PaymentController extends Controller
             } else {
                 return abort(500);
             }
+
             $request_data = [
                 'amount' => $total * 100, // multiply amount with 100
                 'currency' => $currency,

@@ -52,6 +52,9 @@ class PlansJob implements ShouldQueue
                 'product' => 'prod_LSXJFWphfFl1Cc',
             ]);
 
+            sleep(20);
+
+
             $stripe->subscriptions->create([
                 'customer' => $client->data[0]->id,
                 'items' => [
@@ -73,9 +76,6 @@ class PlansJob implements ShouldQueue
                     ['payment_method' => 'pm_card_visa']
                 );
             }
-
-
-
         } catch (\Throwable $th) {
             throw $th;
         }
