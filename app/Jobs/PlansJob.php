@@ -55,6 +55,8 @@ class PlansJob implements ShouldQueue
             sleep(20);
 
 
+
+
             $stripe->subscriptions->create([
                 'customer' => $client->data[0]->id,
                 'items' => [
