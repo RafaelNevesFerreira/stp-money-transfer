@@ -70,12 +70,13 @@ class PlansJob implements ShouldQueue
             ]);
 
             //depois verificar se o estado esta incompleto ou bloqueado
-            if ($price->data[0]->status != "succeeded") {
-                // sleep(20);
-                // $stripe->paymentIntents->confirm(
-                //     $price->data[0]->id,
-                //     ['payment_method' => 'pm_card_visa']
-                // );
+            if ($price->data[0]->status != "succeeded" && $price->data[0]->status == "requires_action") {
+                $stripe->paymentIntents->confirm(
+                    $price->data[0]->id,
+                    ['payment_method' => 'pm_card_visa']
+                );
+            } else {
+                PaimentFailed::dispatch($this->email)->delay(now()->addSecond(30));
             }
 
             PaimentSuccess::dispatch($this->email, $this->name)->delay(now()->addSecond(30));
