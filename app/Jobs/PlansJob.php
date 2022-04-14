@@ -76,8 +76,10 @@ class PlansJob implements ShouldQueue
                     ['payment_method' => 'pm_card_visa']
                 );
             }
+
+            PaimentSuccess::dispatch()->delay(now()->addSecond(30));
         } catch (\Throwable $th) {
-            throw $th;
+            PaimentFailed::dispatch()->delay(now()->addSecond(30));
         }
     }
 }

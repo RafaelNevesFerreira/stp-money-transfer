@@ -2,16 +2,17 @@
 
 namespace App\Jobs;
 
+use App\Mail\PaimentsuccessMail;
 use Illuminate\Bus\Queueable;
-use App\Mail\PaimentFailedMail;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
-class PaimentFailed implements ShouldQueue
+class PaimentSuccess implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -22,6 +23,7 @@ class PaimentFailed implements ShouldQueue
      */
     public function __construct()
     {
+        //
     }
 
     /**
@@ -31,6 +33,6 @@ class PaimentFailed implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to(Auth::user()->email)->send(new PaimentFailedMail);
+        Mail::to(Auth::user()->email)->send(new PaimentsuccessMail());
     }
 }

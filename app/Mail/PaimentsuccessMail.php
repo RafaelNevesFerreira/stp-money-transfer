@@ -3,11 +3,12 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class PaimentFailedMail extends Mailable
+class PaimentsuccessMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +29,7 @@ class PaimentFailedMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.paiment-failed-mail')->subject("Falha ao pagar em prestções");
+        $name = Auth::user()->name;
+        return $this->markdown('mail.paimentsuccess-mail',compact("name"))->subject("Pagamento efetuado com sucesso");
     }
 }
