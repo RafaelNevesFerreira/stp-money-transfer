@@ -21,7 +21,6 @@ class AbonementController extends Controller
 
     public function pagar_em_2_vezes(PaymentRequest $request)
     {
-
         try {
             //verifica se o usuario ja tem alguma subscription
             if ($this->plans->ifExist() > 0) {
