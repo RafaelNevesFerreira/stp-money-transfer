@@ -59,6 +59,12 @@ class AbonementController extends Controller
                 'query' => "name:'" . $name . "' ",
             ]);
 
+            $price = $stripe->paymentIntents->search([
+                'query' => "customer:'" . $client->data[0]->id . "'",
+            ]);
+
+            // dd($price->data[0]->status);
+
             //pega todos os cartões de credito usados pelo cliente
             $card = $stripe->customers->allSources(
                 $client->data[0]->id,
