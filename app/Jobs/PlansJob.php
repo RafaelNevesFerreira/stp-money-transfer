@@ -20,7 +20,7 @@ class PlansJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public  $request, public $name, public $total, public PlansRepositoryInterface $plans)
+    public function __construct(public  $request, public $name, public $total)
     {
         //
     }
@@ -74,7 +74,6 @@ class PlansJob implements ShouldQueue
                 );
             }
 
-            return $this->plans->store();
 
 
         } catch (\Throwable $th) {

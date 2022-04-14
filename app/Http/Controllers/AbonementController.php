@@ -27,8 +27,6 @@ class AbonementController extends Controller
                 return redirect()->back()->withErrors("Desculpe Mas ja tem uma subscrição a pagar, assim que terminar de pagar podera fazer outra");
             }
 
-
-
             $stripe = new \Stripe\StripeClient(
                 'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
             );
@@ -97,6 +95,9 @@ class AbonementController extends Controller
                     ],
                 );
             }
+
+            return $this->plans->store();
+
 
 
             PlansJob::dispatch($request->all(), $name, session("total"))->delay(now()->addMinutes(1));

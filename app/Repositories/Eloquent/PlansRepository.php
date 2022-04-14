@@ -18,13 +18,13 @@ class PlansRepository extends AbstractRepository implements PlansRepositoryInter
     public function ifExist()
     {
         if (Auth::check()) {
-            return $this->model::where("users_id",Auth::user()->id)->firstOrFail()->count();
-        }else{
+            return $this->model::where("users_id", Auth::user()->id)->count();
+        } else {
             return false;
         }
     }
-
-    public function store(){
+    public function store()
+    {
         $this->model::create([
             "users_id" => Auth::user()->id
         ]);
