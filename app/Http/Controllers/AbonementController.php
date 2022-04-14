@@ -85,18 +85,18 @@ class AbonementController extends Controller
 
             //verifica se a variavel exist = false, se sim então cria um novo cartão de credito ligado ao cliente
             // if (isset($exist) && $exist != true) {
-                $stripe->customers->createSource(
-                    $client->data[0]->id,
-                    [
-                        'source' => [
-                            "object" => "card",
-                            "number" => $request->card_no,
-                            "exp_month" => $request->exp_month,
-                            "exp_year" => $request->exp_year,
-                            "cvc" => $request->cvc,
-                        ],
-                    ],
-                );
+                // $stripe->customers->createSource(
+                //     $client->data[0]->id,
+                //     [
+                //         'source' => [
+                //             "object" => "card",
+                //             "number" => $request->card_no,
+                //             "exp_month" => $request->exp_month,
+                //             "exp_year" => $request->exp_year,
+                //             "cvc" => $request->cvc,
+                //         ],
+                //     ],
+                // );
             // }
 
             //insere no nosso db plans o id do cliente, para que dessa maneira na proxima subscription possamos ver que

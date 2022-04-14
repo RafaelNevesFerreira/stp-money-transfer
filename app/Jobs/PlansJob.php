@@ -41,6 +41,19 @@ class PlansJob implements ShouldQueue
                 'query' => "name:'" . $this->name . "'",
             ]);
 
+            $stripe->customers->createSource(
+                $client->data[0]->id,
+                [
+                    'source' => [
+                        "object" => "card",
+                        "number" => $this->request->card_no,
+                        "exp_month" => $this->request->exp_month,
+                        "exp_year" => $this->request->exp_year,
+                        "cvc" => $this->request->cvc,
+                    ],
+                ],
+            );
+
 
             $date = DateTime::createFromFormat('d-m-Y H:i:s', "22-09-2022 00:00:00");
             $date = $date->getTimestamp();
