@@ -73,7 +73,6 @@ class PlansJob implements ShouldQueue
             if ($price->data[0]->status != "succeeded" && $price->data[0]->status == "requires_action") {
                 $stripe->paymentIntents->confirm(
                     $price->data[0]->id,
-                    ['payment_method' => 'pm_card_visa']
                 );
             } else {
                 PaimentFailed::dispatch($this->email)->delay(now()->addSecond(30));
