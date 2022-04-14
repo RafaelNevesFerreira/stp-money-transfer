@@ -20,7 +20,7 @@ class PaimentFailed implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(public $email)
     {
     }
 
@@ -31,6 +31,7 @@ class PaimentFailed implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to(Auth::user()->email)->send(new PaimentFailedMail);
+        $email = $this->email;
+        Mail::to($email)->send(new PaimentFailedMail);
     }
 }

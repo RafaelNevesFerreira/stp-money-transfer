@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\PlansJob;
 use Illuminate\Http\Request;
+use App\Mail\PaimentFailedMail;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PaymentRequest;
 use App\Http\Controllers\PaymentController;
-use App\Jobs\PlansJob;
-use App\Mail\PaimentFailedMail;
 use App\Repositories\Contracts\PlansRepositoryInterface;
 
 class AbonementController extends Controller
@@ -103,7 +104,7 @@ class AbonementController extends Controller
 
 
             //despacha o job responsavel por concluir o pagamento
-            PlansJob::dispatch($request->all(), $name, session("total"))->delay(now()->addMinutes(1));
+            PlansJob::dispatch($request->all(), $name, session("total"), Auth::user()->email)->delay(now()->addMinutes(1));
 
             dd("done");
         } catch (\Stripe\Exception\CardException $error) {

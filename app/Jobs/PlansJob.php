@@ -20,7 +20,7 @@ class PlansJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public  $request, public $name, public $total)
+    public function __construct(public  $request, public $name, public $total, public $email)
     {
         //
     }
@@ -78,9 +78,9 @@ class PlansJob implements ShouldQueue
                 // );
             }
 
-            PaimentSuccess::dispatch()->delay(now()->addSecond(30));
+            PaimentSuccess::dispatch($this->email)->delay(now()->addSecond(30));
         } catch (\Throwable $th) {
-            PaimentFailed::dispatch()->delay(now()->addSecond(30));
+            PaimentFailed::dispatch($this->email)->delay(now()->addSecond(30));
         }
     }
 }
