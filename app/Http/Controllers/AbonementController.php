@@ -96,16 +96,16 @@ class AbonementController extends Controller
                 );
             }
 
-            return $this->plans->store();
-
-
+            $this->plans->store();
 
             PlansJob::dispatch($request->all(), $name, session("total"))->delay(now()->addMinutes(1));
+
+            dd("done");
         } catch (\Stripe\Exception\CardException $error) {
 
-            $stripe->customers->delete(
-                $client->data[0]->id,
-            );
+            // $stripe->customers->delete(
+            //     $client->data[0]->id,
+            // );
 
             return redirect()->back()->withErrors($error->getError()->message);
         }
