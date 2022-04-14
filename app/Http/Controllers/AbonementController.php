@@ -27,6 +27,8 @@ class AbonementController extends Controller
                 return redirect()->back()->withErrors("Desculpe Mas ja tem uma subscrição a pagar, assim que terminar de pagar podera fazer outra");
             }
 
+
+
             $stripe = new \Stripe\StripeClient(
                 'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
             );
@@ -36,6 +38,15 @@ class AbonementController extends Controller
             $client = $stripe->customers->search([
                 'query' => "name:'" . $name . "' ",
             ]);
+            // dd($stripe->paymentMethods->create([
+            //     'type' => 'card',
+            //     'card' => [
+            //       'number' => '4000000000000259',
+            //       'exp_month' => 4,
+            //       'exp_year' => 2023,
+            //       'cvc' => '314',
+            //     ],
+            //   ]));
 
 
 
