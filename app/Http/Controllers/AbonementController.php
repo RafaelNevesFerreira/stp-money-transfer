@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PaymentRequest;
 use App\Http\Controllers\PaymentController;
 use App\Repositories\Contracts\PlansRepositoryInterface;
+use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class AbonementController extends Controller
 {
@@ -59,46 +60,6 @@ class AbonementController extends Controller
                 'query' => "name:'" . $name . "' ",
             ]);
 
-
-            //pega todos os cartões de credito usados pelo cliente
-            $card = $stripe->customers->allSources(
-                $client->data[0]->id,
-                ['object' => 'card']
-            );
-
-            //inicializa a variavel exit como sendo false, ou seja o cartão ainda não foi usado pelo cliente
-            $exist = false;
-
-            //verifica se o cliente temcartões registrados, caso tenha, verifica se nos cartoes registrados os ultimos 4
-            //numeros batem com os ultimos do cartão que sta sendo usado agora, caso sim a variavel exist recebera true
-            //caso ainda não tenha o catão registrado, exist = false, e caso não tenha cartão alhum registrado, exist = false
-            if (count($card->data) > 0) {
-
-                for ($i = 0; $i < count($card->data); $i++) {
-                    if ($card->data[$i]["last4"] == substr($request->card_no, strlen($request->card_no) - 4)) {
-                        $exist = true;
-                    }
-                }
-            } else {
-                $exist = false;
-            }
-
-            //verifica se a variavel exist = false, se sim então cria um novo cartão de credito ligado ao cliente
-            // if (isset($exist) && $exist != true) {
-                // $stripe->customers->createSource(
-                //     $client->data[0]->id,
-                //     [
-                //         'source' => [
-                //             "object" => "card",
-                //             "number" => $request->card_no,
-                //             "exp_month" => $request->exp_month,
-                //             "exp_year" => $request->exp_year,
-                //             "cvc" => $request->cvc,
-                //         ],
-                //     ],
-                // );
-            // }
-
             //insere no nosso db plans o id do cliente, para que dessa maneira na proxima subscription possamos ver que
             //o cliente ja tem uma subscription que ainda não foi totalmente pagada
             $this->plans->store();
@@ -106,6 +67,13 @@ class AbonementController extends Controller
 
             //despacha o job responsavel por concluir o pagamento
             PlansJob::dispatch($request->all(), $name, session("total"), Auth::user()->email)->delay(now()->addMinutes(1));
+
+            $valor = session("valor_a_ser_enviado");
+            $moeda = session("moeda");
+            $receptor = session("receptor");
+            session()->forget(["moeda", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
+
+            return view("site.payment_confirm", compact("valor", "moeda", "receptor"));
 
             dd("done");
         } catch (\Stripe\Exception\CardException $error) {

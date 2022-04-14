@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\PaymentRequest;
+use App\Jobs\PaimentSuccess;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class PaymentController extends Controller
@@ -104,6 +105,7 @@ class PaymentController extends Controller
                 // dd($response_data);
 
                 $this->transfers->store();
+                PaimentSuccess::dispatch(session("email"),session("name"));
                 return redirect()->route('stripeResponse', $input['transaction_id']);
 
                 // transaction declined because of error
@@ -157,6 +159,7 @@ class PaymentController extends Controller
             );
             if ($memes->status == "succeeded") {
                 $this->transfers->store();
+                PaimentSuccess::dispatch(session("email"),session("name"));
             }
             return $this->task($request);
         } catch (\Throwable $th) {
