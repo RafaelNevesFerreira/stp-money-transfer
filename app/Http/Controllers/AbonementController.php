@@ -23,7 +23,7 @@ class AbonementController extends Controller
     public function pagar_em_2_vezes(PaymentRequest $request)
     {
 
-        return PaimentFailedMail::class();
+        return new PaimentFailedMail();
 
         try {
             //verifica se o usuario ja tem alguma subscription
