@@ -41,6 +41,8 @@ class PlansJob implements ShouldQueue
                 'query' => "name:'" . $this->name . "'",
             ]);
 
+            sleep(20);
+
             $stripe->customers->createSource(
                 $client->data[0]->id,
                 [
@@ -53,6 +55,7 @@ class PlansJob implements ShouldQueue
                     ],
                 ],
             );
+            sleep(20);
 
 
             $date = DateTime::createFromFormat('d-m-Y H:i:s', "22-09-2022 00:00:00");
