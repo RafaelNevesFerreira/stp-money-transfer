@@ -79,7 +79,10 @@ class PlansJob implements ShouldQueue
                     $price->data[0]->id,
                 );
                 PaimentSuccess::dispatch($this->email, $this->name)->delay(now()->addSecond(30));
-            } else {
+            }
+            if ($price->data[0]->status == "succeeded") {
+                PaimentSuccess::dispatch($this->email, $this->name)->delay(now()->addSecond(30));
+            }else {
                 PaimentFailed::dispatch($this->email)->delay(now()->addSecond(30));
             }
         } catch (\Throwable $th) {
