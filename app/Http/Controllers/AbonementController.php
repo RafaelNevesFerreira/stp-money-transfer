@@ -85,13 +85,15 @@ class AbonementController extends Controller
                 $exist = false;
             }
 
+            sleep(5);
             //espera 5 segundos e depois adiciona o cartão criado como sendo default, para que dessa maneira o pagamento seja feito
             //com esse novo cartão registrado
-            $stripe->customers->update(
-                $client->data[0]->id,
-                ['default_source' => $card_id]
-            );
-
+            if ($exist != true) {
+                $stripe->customers->update(
+                    $client->data[0]->id,
+                    ['default_source' => $card_id]
+                );
+            }
 
 
             //verifica se a variavel exist = false, se sim então cria um novo cartão de credito ligado ao cliente
