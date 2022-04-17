@@ -76,7 +76,6 @@ class PlansJob implements ShouldQueue
                     'line_items' => [
                         [
                             'price' => $plan->id,
-                            "cancel_at" => $date
                         ],
                     ],
                 ]);
