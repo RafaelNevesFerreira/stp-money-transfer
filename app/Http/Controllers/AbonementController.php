@@ -86,7 +86,7 @@ class AbonementController extends Controller
 
             //verifica se a variavel exist = false, se sim então cria um novo cartão de credito ligado ao cliente
             if (isset($exist) && $exist != true) {
-                $stripe->customers->createSource(
+                $new_card = $stripe->customers->createSource(
                     $client->data[0]->id,
                     [
                         'source' => [
@@ -99,7 +99,15 @@ class AbonementController extends Controller
                         ],
                     ],
                 );
+
+                sleep(5);
+                $stripe->customers->update(
+                    $client->data[0]->id,
+                    ['default_source' => $new_card->id]
+                );
             }
+
+
 
             //insere no nosso db plans o id do cliente, para que dessa maneira na proxima subscription possamos ver que
             //o cliente ja tem uma subscription que ainda não foi totalmente pagada
