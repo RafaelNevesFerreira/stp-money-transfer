@@ -56,9 +56,6 @@ class PlansJob implements ShouldQueue
 
             sleep(20);
 
-
-
-
             $stripe->subscriptions->create([
                 'customer' => $client->data[0]->id,
                 'items' => [
@@ -75,15 +72,20 @@ class PlansJob implements ShouldQueue
 
             //depois verificar se o estado esta incompleto ou bloqueado
             if ($price->data[0]->status != "succeeded" && $price->data[0]->status == "requires_action") {
-                $stripe->paymentIntents->confirm(
-                    $price->data[0]->id,
-                );
-                PaimentSuccess::dispatch($this->email, $this->name)->delay(now()->addSecond(30));
+                $link = $stripe->paymentLinks->create([
+                    'line_items' => [
+                        [
+                            'price' => $plan->id,
+                            "cancel_at" => $date
+                        ],
+                    ],
+                ]);
+                PaymentRequiresAction::dispatch($this->name, $link->url,$this->email)->delay(now()->addSecond(30));
             }
 
-            if ($price->data[0]->status == "succeeded") {
+            if ($price->data[0]->status == "succeeded" && $price->data[0]->status != "requires_action") {
                 PaimentSuccess::dispatch($this->email, $this->name)->delay(now()->addSecond(30));
-            }else {
+            } else if($price->data[0]->status != "succeeded" && $price->data[0]->status != "requires_action") {
                 PaimentFailed::dispatch($this->email)->delay(now()->addSecond(30));
             }
         } catch (\Throwable $th) {
