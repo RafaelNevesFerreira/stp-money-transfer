@@ -1,7 +1,7 @@
 @component('mail::message')
 # Seu Cartão Requer Authorização
 
-Boa Tarde {{$nome}},  vimos por esse meio informa-lo que seu pagamento não foi efetuado com sucesso pois requer sua autorização.
+Boa Tarde {{$name}},  vimos por esse meio informa-lo que seu pagamento não foi efetuado com sucesso pois requer sua autorização.
 Pedimos que faça o pagamento clicando no botão a baixo,
 
 

@@ -16,7 +16,7 @@ class PaymentRequiresActionMail extends Mailable
      *
      * @return void
      */
-    public function __construct(public $nome , public $link)
+    public function __construct(public $name , public $link)
     {
         //
     }
