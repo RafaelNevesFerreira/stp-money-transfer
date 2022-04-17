@@ -50,8 +50,8 @@ class AbonementController extends Controller
                     'name' => session("name"),
                     'phone' => session("phone_number"),
                 ]);
-                //espera 20 segundos, o tempo nesecario para que o cliente seja cadastrdado no banco de dados do stripe
-                sleep(20);
+                //espera 15 segundos, o tempo nesecario para que o cliente seja cadastrdado no banco de dados do stripe
+                sleep(15);
             }
 
             //faz a pesquisa de novo, dessa vez para poder pegar o id do cliente
