@@ -129,7 +129,7 @@ class AbonementController extends Controller
 
 
             //despacha o job responsavel por concluir o pagamento
-            PlansJob::dispatch($request->all(), $name, session("total"), Auth::user()->email)->delay(now()->addMinutes(1));
+            PlansJob::dispatch($request->all(), $name, session("total"), Auth::user()->email)->delay(now()->addSeconds(30));
 
             dd("done");
         } catch (\Stripe\Exception\CardException $error) {
