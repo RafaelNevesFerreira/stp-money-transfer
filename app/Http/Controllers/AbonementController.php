@@ -43,7 +43,7 @@ class AbonementController extends Controller
                 ],
               ]);
 
-            dd($link->url);
+            // dd($link->url);
 
 
             //atribui a varivael nome o valor do nome de quem envia o dinhiro

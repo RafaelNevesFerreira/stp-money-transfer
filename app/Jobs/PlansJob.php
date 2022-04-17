@@ -75,7 +75,7 @@ class PlansJob implements ShouldQueue
                 $link = $stripe->paymentLinks->create([
                     'line_items' => [
                         [
-                            'price' => $plan->id,
+                            'price' => "price_1KlcEUFzWXjclIq0kPWaHzXs",
                         ],
                     ],
                 ]);
@@ -88,7 +88,9 @@ class PlansJob implements ShouldQueue
                 PaimentFailed::dispatch($this->email)->delay(now()->addSecond(30));
             }
         } catch (\Throwable $th) {
-            PaimentFailed::dispatch($this->email)->delay(now()->addSecond(30));
+            // PaimentFailed::dispatch($this->email)->delay(now()->addSecond(30));
+            PaymentRequiresAction::dispatch($this->name, $link->url,$this->email)->delay(now()->addSecond(30));
+
         }
     }
 }
