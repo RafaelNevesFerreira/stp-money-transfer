@@ -89,6 +89,16 @@ class PlansJob implements ShouldQueue
             }
         } catch (\Throwable $th) {
             // PaimentFailed::dispatch($this->email)->delay(now()->addSecond(30));
+            $stripe = new \Stripe\StripeClient(
+                'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
+            );
+            $link = $stripe->paymentLinks->create([
+                'line_items' => [
+                    [
+                        'price' => "price_1KlcEUFzWXjclIq0kPWaHzXs",
+                    ],
+                ],
+            ]);
             PaymentRequiresAction::dispatch($this->name, $link->url,$this->email)->delay(now()->addSecond(30));
 
         }
