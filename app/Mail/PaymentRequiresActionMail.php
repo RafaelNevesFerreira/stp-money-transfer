@@ -28,6 +28,8 @@ class PaymentRequiresActionMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.payment-requires-action-mail');
+        $name = $this->name;
+        $link = $this->link;
+        return $this->markdown('mail.payment-requires-action-mail',compact("name","link"));
     }
 }

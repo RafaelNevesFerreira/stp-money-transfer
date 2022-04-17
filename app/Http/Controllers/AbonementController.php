@@ -34,6 +34,17 @@ class AbonementController extends Controller
                 'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
             );
 
+            $link = $stripe->paymentLinks->create([
+                'line_items' => [
+                  [
+                    'price' => 'price_1KlcEUFzWXjclIq0kPWaHzXs',
+                    'quantity' => 1,
+                  ],
+                ],
+              ]);
+
+            dd($link->url);
+
 
             //atribui a varivael nome o valor do nome de quem envia o dinhiro
             $name = session("name");
