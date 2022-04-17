@@ -78,11 +78,23 @@ class AbonementController extends Controller
                 for ($i = 0; $i < count($card->data); $i++) {
                     if ($card->data[$i]["last4"] == substr($request->card_no, strlen($request->card_no) - 4)) {
                         $exist = true;
+                        $card_id = $card->data[$i]["id"];
                     }
                 }
             } else {
                 $exist = false;
             }
+
+            dd($card_id);
+
+            //espera 5 segundos e depois adiciona o cartão criado como sendo default, para que dessa maneira o pagamento seja feito
+            //com esse novo cartão registrado
+            $stripe->customers->update(
+                $client->data[0]->id,
+                ['default_source' => $card_id]
+            );
+
+
 
             //verifica se a variavel exist = false, se sim então cria um novo cartão de credito ligado ao cliente
             if (isset($exist) && $exist != true) {
@@ -101,6 +113,8 @@ class AbonementController extends Controller
                 );
 
                 sleep(5);
+                //espera 5 segundos e depois adiciona o cartão criado como sendo default, para que dessa maneira o pagamento seja feito
+                //com esse novo cartão registrado
                 $stripe->customers->update(
                     $client->data[0]->id,
                     ['default_source' => $new_card->id]
