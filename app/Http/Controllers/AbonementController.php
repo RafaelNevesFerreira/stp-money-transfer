@@ -85,15 +85,15 @@ class AbonementController extends Controller
                 $exist = false;
             }
 
-            sleep(5);
             //espera 5 segundos e depois adiciona o cartão criado como sendo default, para que dessa maneira o pagamento seja feito
             //com esse novo cartão registrado
-            if ($exist != true) {
-                $stripe->customers->update(
-                    $client->data[0]->id,
-                    ['default_source' => $card_id]
-                );
-            }
+            // if ($exist == true) {
+            //     sleep(5);
+            //     $stripe->customers->update(
+            //         $client->data[0]->id,
+            //         ['default_source' => $card_id]
+            //     );
+            // }
 
 
             //verifica se a variavel exist = false, se sim então cria um novo cartão de credito ligado ao cliente
@@ -115,17 +115,17 @@ class AbonementController extends Controller
                 sleep(5);
                 //espera 5 segundos e depois adiciona o cartão criado como sendo default, para que dessa maneira o pagamento seja feito
                 //com esse novo cartão registrado
-                $stripe->customers->update(
-                    $client->data[0]->id,
-                    ['default_source' => $new_card->id]
-                );
+                // $stripe->customers->update(
+                //     $client->data[0]->id,
+                //     ['default_source' => $new_card->id]
+                // );
             }
 
 
 
             //insere no nosso db plans o id do cliente, para que dessa maneira na proxima subscription possamos ver que
             //o cliente ja tem uma subscription que ainda não foi totalmente pagada
-            $this->plans->store();
+            // $this->plans->store();
 
 
             //despacha o job responsavel por concluir o pagamento
