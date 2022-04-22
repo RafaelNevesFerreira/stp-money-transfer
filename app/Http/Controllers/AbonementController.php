@@ -71,8 +71,6 @@ class AbonementController extends Controller
                 'query' => "name:'" . $name . "' ",
             ]);
 
-
-
             //pega todos os cartões de credito usados pelo cliente
             $card = $stripe->customers->allSources(
                 $client->data[0]->id,
@@ -86,7 +84,6 @@ class AbonementController extends Controller
             //numeros batem com os ultimos do cartão que sta sendo usado agora, caso sim a variavel exist recebera true
             //caso ainda não tenha o catão registrado, exist = false, e caso não tenha cartão alhum registrado, exist = false
             if (count($card->data) > 0) {
-
                 for ($i = 0; $i < count($card->data); $i++) {
                     if ($card->data[$i]["last4"] == substr($request->card_no, strlen($request->card_no) - 4)) {
                         $exist = true;
@@ -133,15 +130,25 @@ class AbonementController extends Controller
                 // );
             }
 
-
+            $plan = $stripe->plans->create([
+                'amount' => session("total") * 100,
+                'currency' => 'eur',
+                'interval' => 'month',
+                'product' => 'prod_LSXJFWphfFl1Cc',
+            ]);
 
             //insere no nosso db plans o id do cliente, para que dessa maneira na proxima subscription possamos ver que
             //o cliente ja tem uma subscription que ainda não foi totalmente pagada
-            // $this->plans->store();
+            $link = $stripe->paymentLinks->create([
+                'line_items' => [
+                    [
+                        'price' => $plan->id,
+                        'quantity' => 1,
+                    ],
+                ],
+            ]);
 
-
-            //despacha o job responsavel por concluir o pagamento
-            PlansJob::dispatch($request->all(), $name, session("total"), Auth::user()->email)->delay(now()->addSeconds(30));
+            return redirect()->away($link->url);
 
             dd("done");
         } catch (\Stripe\Exception\CardException $error) {
