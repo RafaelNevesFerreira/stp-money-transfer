@@ -31,17 +31,11 @@ class AbonementController extends Controller
                 self::STRIPE_KEY
             );
 
-            $link = $stripe->paymentLinks->create([
-                'line_items' => [
-                  [
-                    'price' => 'price_1KlcEUFzWXjclIq0kPWaHzXs',
-                    'quantity' => 1,
-                  ],
-                ],
-              ]);
-
+            //prepara o total, somando o total que ja vem com as nossas taxas normais e adiciona uma taxa
+            //de 20% em cima do valor
             $total = (session("total") / 100 * 20 + session("total")) /2;
 
+            //cria o plano stripe
             $plan = $stripe->plans->create([
                 'amount' => $total * 100,
                 'currency' => 'eur',
@@ -49,7 +43,7 @@ class AbonementController extends Controller
                 'product' => 'prod_LSXJFWphfFl1Cc',
             ]);
 
-            //insere no nosso db plans o id do cliente, para que dessa maneira na proxima subscription possamos ver que
+            //Cria o link do stripe para fazer o pagamento atraves da pagina deles
             $link = $stripe->paymentLinks->create([
                 'line_items' => [
                     [
@@ -64,15 +58,9 @@ class AbonementController extends Controller
             dd("done");
         } catch (\Stripe\Exception\CardException $error) {
             // caso aconteça algum erro generico:
-
-            // $stripe->customers->delete(
-            //     $client->data[0]->id,
-            // );
-
             //redireciona para o view pagamento com  a menssagem do erro
             return redirect()->back()->withErrors($error->getError()->message);
         }
 
-        dd("done");
     }
 }
