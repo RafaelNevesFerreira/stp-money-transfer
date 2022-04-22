@@ -18,11 +18,6 @@ class AbonementController extends Controller
     public function __construct(public PlansRepositoryInterface $plans, public PaymentController $payment)
     {
     }
-    public function pagar_em_3_vezes(Request $request)
-    {
-        dd($request->all());
-    }
-
     public function pagar_em_2_vezes(PaymentRequest $request)
     {
         try {
@@ -66,9 +61,11 @@ class AbonementController extends Controller
                 ],
             ]);
 
+            //apaga todos os valores na seção relacionado com o envio
+            session()->forget(["moeda", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
+
             return redirect()->away($link->url);
 
-            dd("done");
         } catch (\Stripe\Exception\CardException $error) {
             // caso aconteça algum erro generico:
             //redireciona para o view pagamento com  a menssagem do erro
