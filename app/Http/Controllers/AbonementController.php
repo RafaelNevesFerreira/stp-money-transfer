@@ -35,12 +35,23 @@ class AbonementController extends Controller
             //de 20% em cima do valor
             $total = (session("total") / 100 * 20 + session("total")) /2;
 
+            //adiciona o valor certo da moeda para a variavel
+            switch (session("moeda")) {
+                case "€":
+                    $currency = "eur";
+                    break;
+                case '$':
+                    $currency = "usd";
+                    break;
+                case '£':
+                    $currency = "gbp";
 
-            dd(session());
+                    break;
+            }
             //cria o plano stripe
             $plan = $stripe->plans->create([
                 'amount' => $total * 100,
-                'currency' => 'eur',
+                'currency' => $currency,
                 'interval' => 'month',
                 'product' => 'prod_LSXJFWphfFl1Cc',
             ]);
