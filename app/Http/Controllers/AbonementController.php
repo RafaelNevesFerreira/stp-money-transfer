@@ -130,8 +130,10 @@ class AbonementController extends Controller
                 // );
             }
 
+            $total = (session("total") / 100 * 20 + session("total")) /2;
+
             $plan = $stripe->plans->create([
-                'amount' => session("total") * 100,
+                'amount' => $total * 100,
                 'currency' => 'eur',
                 'interval' => 'month',
                 'product' => 'prod_LSXJFWphfFl1Cc',
@@ -143,7 +145,7 @@ class AbonementController extends Controller
                 'line_items' => [
                     [
                         'price' => $plan->id,
-                        'quantity' => 2,
+                        'quantity' => 1,
                     ],
                 ],
             ]);
