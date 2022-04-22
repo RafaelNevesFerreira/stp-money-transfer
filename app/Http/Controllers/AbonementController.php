@@ -143,7 +143,7 @@ class AbonementController extends Controller
                 'line_items' => [
                     [
                         'price' => $plan->id,
-                        'quantity' => 1,
+                        'quantity' => 2,
                     ],
                 ],
             ]);
