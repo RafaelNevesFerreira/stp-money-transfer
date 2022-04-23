@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date("receveid_at")->nullable();
             $table->float("value_sended");
             $table->string("currency");
+            $table->boolean("plans");
             $table->string("transfer_code")->unique();
             $table->string("status")->default("sended");
             $table->string("destinatary_name");

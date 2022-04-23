@@ -29,12 +29,18 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
                 break;
         }
         $transfer_code = uniqid("SMT");
+        if (session("plan")) {
+            $plan = session("plan");
+        }else{
+            $plan = false;
+        }
         $this->model::create([
             "name" => session("name"),
             "address" => session("address"),
             "currency" => $currency,
             "country" => session("country"),
             "phone_number" => session("phone_number"),
+            "plan" => $plan,
             "email" => session("email"),
             "value_sended" => session("valor_a_ser_enviado"),
             "destinatary_name" => session("receptor"),

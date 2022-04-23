@@ -140,7 +140,7 @@ class AbonementController extends Controller
         $this->transfer->store();
 
         //apaga todos os valores na seção relacionado com o envio
-        session()->forget(["moeda", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
+        session()->forget(["moeda","plan", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
 
         return view("site.plan_confirmation", compact("valor", "moeda", "valor_debitado", "receptor"));
     }
