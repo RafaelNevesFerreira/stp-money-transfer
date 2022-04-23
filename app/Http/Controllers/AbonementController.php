@@ -43,12 +43,14 @@ class AbonementController extends Controller
 
                     break;
             }
+
+            $name = session("name");
             //cria o plano stripe
             $plan = $stripe->plans->create([
                 'amount' => $total * 100,
                 'currency' => $currency,
                 'interval' => 'month',
-                'product' => 'prod_LSXJFWphfFl1Cc',
+                'product' => ["name"=>"Pagar em 2x $name","tax_code" => "txcd_20030000"],
             ]);
 
             //Cria o link do stripe para fazer o pagamento atraves da pagina deles
