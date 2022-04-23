@@ -30,13 +30,12 @@ class AbonementController extends Controller
 
             //prepara o total, somando o total que ja vem com as nossas taxas normais e adiciona uma taxa
             //de 20% em cima do valor
-            $total = (session("total") / 100 * 20 + session("total")) / 2;
-
+            $total = number_format((session("total") / 100 * 20 + session("total")) / 2, 2, ".", ",");
 
             if (session("valor_a_ser_enviado") >= self::VALOR_MAXIMO) {
                 return redirect()->back()->withErrors("desculpe por enquanto so sera posivel enviar um valor a baixo de "
-                . self::VALOR_MAXIMO . session("moeda") . " caso queira pagar em prestações, clique no link a baixo e digite um valor abaixo de "
-                . self::VALOR_MAXIMO . session("moeda") ." Obrigado" . "<br><a href='". route("send") ."' class='btn-link'>Inserir Novo Valor</a>");
+                    . self::VALOR_MAXIMO . session("moeda") . " caso queira pagar em prestações, clique no link a baixo e digite um valor abaixo de "
+                    . self::VALOR_MAXIMO . session("moeda") . " Obrigado" . "<br><a href='" . route("send") . "' class='btn-link'>Inserir Novo Valor</a>");
             }
 
             //adiciona o valor certo da moeda para a variavel
@@ -52,9 +51,9 @@ class AbonementController extends Controller
 
                     break;
             }
-            $data = $stripe->prices->search([
-                'query' => 'active:\'true\' AND metadata[\'name\']:\'rafael\'',
-            ]);
+            // $data = $stripe->prices->search([
+            //     'query' => 'active:\'true\' AND metadata[\'name\']:\'rafael\'',
+            // ]);
 
             // dd($data->data);
             // dd(date('d-m-Y', $data->data[0]["created"]));
@@ -101,6 +100,6 @@ class AbonementController extends Controller
         //apaga todos os valores na seção relacionado com o envio
         session()->forget(["moeda", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
 
-        return view("site.plan_confirmation", compact("valor", "moeda", "valor_debitado","receptor"));
+        return view("site.plan_confirmation", compact("valor", "moeda", "valor_debitado", "receptor"));
     }
 }
