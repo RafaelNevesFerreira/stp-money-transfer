@@ -89,7 +89,7 @@
                             <div class='col-md-12 error form-group'>
                                 <div class='alert-danger alert'>
                                     @foreach ($errors->all() as $error)
-                                        <p>{{ $error }}</p>
+                                        <p>{!! $error !!}</p>
                                     @endforeach
                                 </div>
                             </div>
