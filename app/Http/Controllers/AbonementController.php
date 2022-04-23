@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use DateTime;
-use App\Jobs\PlansJob;
-use Illuminate\Http\Request;
-use App\Mail\PaimentFailedMail;
-use PhpParser\Node\Stmt\Foreach_;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PaymentRequest;
-use App\Http\Controllers\PaymentController;
 use App\Repositories\Contracts\PlansRepositoryInterface;
+use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class AbonementController extends Controller
 {
@@ -19,7 +15,7 @@ class AbonementController extends Controller
     const TAX_POR_ENVIO_EM_PERCENTAGEM = 20;
 
 
-    public function __construct(public PlansRepositoryInterface $plans, public PaymentController $payment)
+    public function __construct(public PlansRepositoryInterface $plans, public TransfersRepositoryInterface $transfer)
     {
     }
     public function pagar_em_2_vezes(PaymentRequest $request)
@@ -56,7 +52,7 @@ class AbonementController extends Controller
 
                     //verifica se o ultimo pagamento em prestações foi num periudo menor ou igual a 2 meses
                     //o cliente so pode fazer um novo envio se ja se passaram 3 messes depois do ultimo envio
-                    if ($difference <= 2){
+                    if ($difference <= 2) {
                         return redirect()
                             ->back()
                             ->withErrors("So serà possivel fazer um novo envio a pagar em prestações depois de  2 messe pa
@@ -127,15 +123,24 @@ class AbonementController extends Controller
 
     public function success()
     {
+        if (!session("name")) {
+            return redirect()->route("home");
+        }
         $valor = session("valor_a_ser_enviado");
         $moeda = session("moeda");
         $receptor = session("receptor");
         $valor_debitado = (session("total") / 100 * 20 + session("total")) / 2;
 
+        session()->put(["plan" => true]);
+
+        //guarda os dados na table plans
+        $this->plans->store();
+
+        //guarda os dados na table transfer
+        $this->transfer->store();
+
         //apaga todos os valores na seção relacionado com o envio
         session()->forget(["moeda", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
-
-        $this->plans->store();
 
         return view("site.plan_confirmation", compact("valor", "moeda", "valor_debitado", "receptor"));
     }

@@ -17,7 +17,7 @@ class PaimentsuccessMail extends Mailable
      *
      * @return void
      */
-    public function __construct(public $name)
+    public function __construct(public $name,  public $code, public $receptor)
     {
         //
     }
@@ -30,6 +30,8 @@ class PaimentsuccessMail extends Mailable
     public function build()
     {
         $name = $this->name;
-        return $this->markdown('mail.paimentsuccess-mail',compact("name"))->subject("Pagamento efetuado com sucesso");
+        $code = $this->code;
+        $receptor = $this->receptor;
+        return $this->markdown('mail.paimentsuccess-mail',compact("name","code","receptor"))->subject("Pagamento efetuado com sucesso");
     }
 }

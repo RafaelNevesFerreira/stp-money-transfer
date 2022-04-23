@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Jobs\PaimentSuccess;
 use App\Models\Transfer;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
@@ -27,6 +28,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
                 break;
         }
+        $transfer_code = uniqid("SMT");
         $this->model::create([
             "name" => session("name"),
             "address" => session("address"),
@@ -36,7 +38,9 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             "email" => session("email"),
             "value_sended" => session("valor_a_ser_enviado"),
             "destinatary_name" => session("receptor"),
-            "transfer_code" => uniqid("SMT"),
+            "transfer_code" => $transfer_code,
         ]);
+
+        PaimentSuccess::dispatch(session("email"),session("name"),$transfer_code,session("receptor"))->delay(now());
     }
 }

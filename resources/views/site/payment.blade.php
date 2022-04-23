@@ -34,7 +34,7 @@
     <div class="row">
         <div class="col-md-9 col-lg-7 col-xl-6 mx-auto">
             <div class="bg-white shadow-sm rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4">
-                <h3 class="text-5 fw-400 mb-3 mb-sm-4">Identificação</h3>
+                <h3 class="text-5 fw-400 mb-3 mb-sm-4">Pagamento</h3>
                 <hr class="mx-n3 mx-sm-n5 mb-4">
                 <!-- Send Money Confirm ============================================= -->
                 <form id="form-send-money" method="POST" action="{{ route('payment.post') }}">
