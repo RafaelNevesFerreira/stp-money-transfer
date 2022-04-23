@@ -56,9 +56,9 @@ class AbonementController extends Controller
                     if ($difference <= 2) {
                         return redirect()
                             ->back()
-                            ->withErrors("So serà possivel fazer um novo envio a pagar em prestações depois de  2 messe pa
-                        sados do dia do ultimo envio em prestações, apenas podera fazer um novo envio em prestações
-                        3 mêses passados do $data");
+                            ->withErrors("só serà possivel fazer um novo envio e pagar em prestações depois de  2 meses pa
+                        sados da data do último envio pago em prestações, apenas poderá fazer um novo envio pago em prestações
+                        3 meses passados do dia $data");
                     }
                 }
             endif;
@@ -72,12 +72,12 @@ class AbonementController extends Controller
             //caso o valor que o usuario queira enviar seja maior do que o valor setado na constante VALOR_MAXIMO
             //e que ele seja maior do que o valor da constante VALOR_MINIMO
             if (session("valor_a_ser_enviado") >= self::VALOR_MAXIMO) {
-                return redirect()->back()->withErrors("desculpe por enquanto so é posivel enviar um valor a baixo de "
-                    . self::VALOR_MAXIMO . session("moeda") . " caso queira pagar em prestações, clique no link a baixo e digite um valor abaixo de "
+                return redirect()->back()->withErrors("desculpe por enquanto só é posivel enviar um valor abaixo de "
+                    . self::VALOR_MAXIMO . session("moeda") . " caso queira pagar em prestações, clique no link abaixo e digite um valor abaixo de "
                     . self::VALOR_MAXIMO . session("moeda") . " Obrigado" . "<br><a href='" . route("send") . "' class='btn-link'>Inserir Novo Valor</a>");
             } else if (session("valor_a_ser_enviado") < self::VALOR_MINIMO) {
                 return redirect()->back()->withErrors("desculpe por enquanto apenas é posivel enviar um valor acima  de "
-                    . self::VALOR_MINIMO . session("moeda") . " caso queira pagar em prestações, clique no link a baixo e digite um valor acima  de "
+                    . self::VALOR_MINIMO . session("moeda") . " caso queira pagar em prestações, clique no link abaixo e digite um valor acima  de "
                     . self::VALOR_MINIMO . session("moeda") . " Obrigado" . "<br><a href='" . route("send") . "' class='btn-link'>Inserir Novo Valor</a>");
             }
 
