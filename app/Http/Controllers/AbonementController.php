@@ -13,6 +13,7 @@ use App\Repositories\Contracts\PlansRepositoryInterface;
 class AbonementController extends Controller
 {
     const STRIPE_KEY = "sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId";
+    const VALOR_MAXIMO = 700;
 
 
     public function __construct(public PlansRepositoryInterface $plans, public PaymentController $payment)
@@ -20,6 +21,7 @@ class AbonementController extends Controller
     }
     public function pagar_em_2_vezes(PaymentRequest $request)
     {
+
         try {
             //inicia a variavel de stripe com a nossa chave secreta
             $stripe = new \Stripe\StripeClient(
@@ -29,6 +31,13 @@ class AbonementController extends Controller
             //prepara o total, somando o total que ja vem com as nossas taxas normais e adiciona uma taxa
             //de 20% em cima do valor
             $total = (session("total") / 100 * 20 + session("total")) / 2;
+
+
+            if ($total >= self::VALOR_MAXIMO) {
+                return redirect()->back()->withErrors("desculpe por enquanto so sera posivel enviar um valor a baixo de "
+                . self::VALOR_MAXIMO . session("moeda") . " caso queira pagar em prestações, clique no link a baixo e digite um valor abaixo de"
+                . self::VALOR_MAXIMO . session("moeda") ." Obrigado" . "<a class='btn-link'>Inserir Novo Valor</a>");
+            }
 
             //adiciona o valor certo da moeda para a variavel
             switch (session("moeda")) {
@@ -74,14 +83,24 @@ class AbonementController extends Controller
                 ],
             ]);
 
-            //apaga todos os valores na seção relacionado com o envio
-            session()->forget(["moeda", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
-
             return redirect()->away($link->url);
         } catch (\Stripe\Exception\CardException $error) {
             // caso aconteça algum erro generico:
             //redireciona para o view pagamento com  a menssagem do erro
             return redirect()->back()->withErrors($error->getError()->message);
         }
+    }
+
+    public function success()
+    {
+        $valor = session("valor_a_ser_enviado");
+        $moeda = session("moeda");
+        $receptor = session("receptor");
+        $valor_debitado = (session("total") / 100 * 20 + session("total")) / 2;
+
+        //apaga todos os valores na seção relacionado com o envio
+        session()->forget(["moeda", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
+
+        return view("site.plan_confirmation", compact("valor", "moeda", "valor_debitado","receptor"));
     }
 }

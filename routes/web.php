@@ -42,7 +42,7 @@ Route::controller(BlogController::class)->group(function () {
 });
 
 Route::get("success/{id}", [PaymentController::class, "response"])->name("stripeResponse");
-Route::get("success/plans", [AbonementController::class, "success"])->name("plan_success");
+Route::get("plans/success", [AbonementController::class, "success"])->name("plan_success");
 Route::post('/payment', [PaymentTipeController::class, 'verificar_condição_de_pagamento'])->name('payment.post');
 
 

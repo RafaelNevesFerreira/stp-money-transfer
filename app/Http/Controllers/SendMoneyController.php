@@ -10,7 +10,7 @@ class SendMoneyController extends Controller
 {
     public function details(DetailsRequest $request)
     {
-        $valor = (int)$request->valor_enviado;
+        $valor = (float) str_replace(".", "", $request->valor_enviado);
 
         if ($valor >= 100 && $valor <= 400) {
             $minha_tax = 27;
@@ -27,7 +27,10 @@ class SendMoneyController extends Controller
         }
         $tax = $valor * 0.030 + 0.3 + $minha_tax;
 
+
         $total = $valor + $tax;
+        // dd($total);
+        // dd(number_format($valor));
         if ($request->moeda == "eur") {
             $moeda = "€";
         } elseif ($request->moeda == "usd") {
