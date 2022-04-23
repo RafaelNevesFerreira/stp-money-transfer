@@ -31,7 +31,7 @@ class AbonementController extends Controller
 
             $users_plans_exist = $this->plans->ifExist();
 
-            dd($users_plans_exist);
+            // dd($users_plans_exist);
             if ($users_plans_exist > 0):
                 foreach ($users_plans_exist as $user_plans) {
                     if ($user_plans->created_at == now()) {
