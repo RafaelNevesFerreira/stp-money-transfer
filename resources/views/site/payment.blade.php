@@ -75,25 +75,19 @@
                                     <label class='control-label mt-3'>Pagar em 2x</label>
                                     <input type="radio" value="2" class="prestacoes" name="numero_prestacoes">
                                 </div>
-                                <div class='col-md-12 col-md-4 form-group ' style="margin-bottom: 20px;">
-                                    <label class='control-label mt-3'>Pagar em 3x</label>
-                                    <input type="radio" class="prestacoes" value="3" name="numero_prestacoes">
-                                </div>
                             </div>
 
                         </div>
                         @if ($errors->any())
-
-
-                        <div class='form-row row'>
-                            <div class='col-md-12 error form-group'>
-                                <div class='alert-danger alert'>
-                                    @foreach ($errors->all() as $error)
-                                        <p>{!! $error !!}</p>
-                                    @endforeach
+                            <div class='form-row row'>
+                                <div class='col-md-12 error form-group'>
+                                    <div class='alert-danger alert'>
+                                        @foreach ($errors->all() as $error)
+                                            <p>{!! $error !!}</p>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endif
                         <div class="d-grid"><button class="btn btn-primary" id="pay">Enviar</button>
                         </div>
