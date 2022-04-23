@@ -36,7 +36,7 @@ class AbonementController extends Controller
             if ($total >= self::VALOR_MAXIMO) {
                 return redirect()->back()->withErrors("desculpe por enquanto so sera posivel enviar um valor a baixo de "
                 . self::VALOR_MAXIMO . session("moeda") . " caso queira pagar em prestações, clique no link a baixo e digite um valor abaixo de"
-                . self::VALOR_MAXIMO . session("moeda") ." Obrigado" . "<a class='btn-link'>Inserir Novo Valor</a>");
+                . self::VALOR_MAXIMO . session("moeda") ." Obrigado" . "<br><a class='btn-link'>Inserir Novo Valor</a>");
             }
 
             //adiciona o valor certo da moeda para a variavel
