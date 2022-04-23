@@ -58,7 +58,7 @@ class AbonementController extends Controller
                             ->back()
                             ->withErrors("só serà possivel fazer um novo envio e pagar em prestações depois de  2 meses pa
                         sados da data do último envio pago em prestações, apenas poderá fazer um novo envio pago em prestações
-                        3 meses passados do dia $data");
+                        3 meses passados do dia " . $data);
                     }
                 }
             endif;
