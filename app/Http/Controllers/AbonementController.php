@@ -76,8 +76,8 @@ class AbonementController extends Controller
                     . self::VALOR_MAXIMO . session("moeda") . " caso queira pagar em prestações, clique no link a baixo e digite um valor abaixo de "
                     . self::VALOR_MAXIMO . session("moeda") . " Obrigado" . "<br><a href='" . route("send") . "' class='btn-link'>Inserir Novo Valor</a>");
             } else if (session("valor_a_ser_enviado") < self::VALOR_MINIMO) {
-                return redirect()->back()->withErrors("desculpe por enquanto apenas é posivel enviar um valor a cima de "
-                    . self::VALOR_MINIMO . session("moeda") . " caso queira pagar em prestações, clique no link a baixo e digite um valor a cima de "
+                return redirect()->back()->withErrors("desculpe por enquanto apenas é posivel enviar um valor acima  de "
+                    . self::VALOR_MINIMO . session("moeda") . " caso queira pagar em prestações, clique no link a baixo e digite um valor acima  de "
                     . self::VALOR_MINIMO . session("moeda") . " Obrigado" . "<br><a href='" . route("send") . "' class='btn-link'>Inserir Novo Valor</a>");
             }
 
