@@ -4,6 +4,7 @@ use App\Http\Controllers\AbonementController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentTipeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SendMoneyController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,8 @@ Route::controller(BlogController::class)->group(function () {
     });
 });
 
+//profile.change.data
+
 Route::get("success/{id}", [PaymentController::class, "response"])->name("stripeResponse");
 Route::get("plans/success", [AbonementController::class, "success"])->name("plan_success");
 Route::post('/payment', [PaymentTipeController::class, 'verificar_condição_de_pagamento'])->name('payment.post');
@@ -50,9 +53,19 @@ Route::controller(SendMoneyController::class)->group(function () {
     Route::post("/details", "details")->name("details");
     Route::post("/identification", "identification")->name("identification.submit");
 });
+// profile.change.data
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::controller(ProfileController::class)->group(function () {
+    Route::middleware(["auth"])->group(function () {
+        Route::prefix("user")->group(function () {
+            Route::get("profile", "profille")->name("profile");
+            Route::post("change_data", "profilleChangeDta")->name("profille.change.data");
+        });
+    });
+});
+
+// Route::get('/dashboard', function () {
+//     return view("profile.settings");
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
