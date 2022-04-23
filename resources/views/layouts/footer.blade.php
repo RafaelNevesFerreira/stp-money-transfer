@@ -24,11 +24,14 @@
         <div class="footer-copyright pt-3 pt-lg-2 mt-2">
             <div class="row">
                 <div class="col-lg">
-                    <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a target="_blank" href="https://ferreirarafael.com">Rafael Ferreira</a>. All
-                        Rights Reserved.</p>
+                    <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; {{date("Y")}} {{env("APP_NAME")}} All
+                        Rights Reserved.
+                        </p>
                 </div>
                 <div class="col-lg d-lg-flex align-items-center justify-content-lg-end">
                     <ul class="nav justify-content-center">
+                        <li class="nav-item"> <a class="nav-link"  href="https://ferreirarafael.com">Created & maintained by Rafael Ferreira</a></li>
+
                         <li class="nav-item"> <a class="nav-link"  href="{{route("privacity")}}">Política de privacidade</a></li>
                     </ul>
                 </div>
