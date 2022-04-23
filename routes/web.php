@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbonementController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentTipeController;
@@ -40,7 +41,8 @@ Route::controller(BlogController::class)->group(function () {
     });
 });
 
-Route::get("status/{id}", [PaymentController::class, "response"])->name("stripeResponse");
+Route::get("success/{id}", [PaymentController::class, "response"])->name("stripeResponse");
+Route::get("success/plans", [AbonementController::class, "success"])->name("plan_success");
 Route::post('/payment', [PaymentTipeController::class, 'verificar_condição_de_pagamento'])->name('payment.post');
 
 
