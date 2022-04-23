@@ -16,6 +16,7 @@ class AbonementController extends Controller
 {
     const STRIPE_KEY = "sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId";
     const VALOR_MAXIMO = 700;
+    const TAX_POR_ENVIO_EM_PERCENTAGEM = 20;
 
 
     public function __construct(public PlansRepositoryInterface $plans, public PaymentController $payment)
@@ -30,36 +31,45 @@ class AbonementController extends Controller
                 self::STRIPE_KEY
             );
 
+            //pega os planos que o cliente ja fez, se fez.
             $users_plans_exist = $this->plans->ifExist();
 
-            // dd($users_plans_exist);
+            //verifica se o cliente ja fez algum pagamento em prestações
+            //se ja cai no condição
             if ($users_plans_exist->count() > 0) :
+
+                //para cada plano que o usuario fez, ele ira passar poe um ciclo,
+                //caso o usuario tenha feito mais que um, ele ira pegar todos e verificar
+                //a diferença entre as datas
                 foreach ($users_plans_exist as $user_plans) {
-                    $dataSubtracted1 = strtotime('-2 month');
 
-                    $datetime1 = new DateTime(date("Y-4-d"));
-                    $datetime2 = new DateTime($user_plans->created_at->format("Y-m-d"));
-                    $interval = $datetime1->diff($datetime2);
-                    $restar = $interval->format('%r%m');
-                    return $restar;
+                    //pega a diferenca entre o dia do ultimo envio e o dia de hoje em relação ao numero de meses
+                    $data = $user_plans->created_at->format('Y-m-d');
 
-                    echo "<br>";
+                    $hoje = new DateTime(date("Y-m-d"));
+                    $data_do_envio = new DateTime($data);
 
-                    echo date("m", $dataSubtracted1);
+                    $interval = $data_do_envio->diff($hoje);
 
-                    echo "<hr>";
+                    $difference = $interval->format('%r%m');
 
-                    echo $user_plans->created_at->format("d-m-Y");
 
+                    //verifica se o ultimo pagamento em prestações foi num periudo menor ou igual a 2 meses
+                    //o cliente so pode fazer um novo envio se ja se passaram 3 messes depois do ultimo envio
+                    if ($difference <= 2){
+                        return redirect()
+                            ->back()
+                            ->withErrors("So serà possivel fazer um novo envio a pagar em prestações depois de  2 messe pa
+                        sados do dia do ultimo envio em prestações, apenas podera fazer um novo envio em prestações
+                        3 mêses passados do $data");
+                    }
                 }
-            // return redirect()->back()->withErrors("memes");
             endif;
 
-            return;
 
             //prepara o total, somando o total que ja vem com as nossas taxas normais e adiciona uma taxa
             //de 20% em cima do valor
-            $total = number_format((session("total") / 100 * 20 + session("total")) / 2, 2, ".", ",");
+            $total = number_format((session("total") / 100 * self::TAX_POR_ENVIO_EM_PERCENTAGEM + session("total")) / 2, 2, ".", ",");
 
             if (session("valor_a_ser_enviado") >= self::VALOR_MAXIMO) {
                 return redirect()->back()->withErrors("desculpe por enquanto so sera posivel enviar um valor a baixo de "
@@ -80,12 +90,8 @@ class AbonementController extends Controller
 
                     break;
             }
-            // $data = $stripe->prices->search([
-            //     'query' => 'active:\'true\' AND metadata[\'name\']:\'rafael\'',
-            // ]);
 
-            // dd($data->data);
-            // dd(date('d-m-Y', $data->data[0]["created"]));
+
             //cria o plano stripe
             $plan = $stripe->plans->create([
                 'amount' => $total * 100,
