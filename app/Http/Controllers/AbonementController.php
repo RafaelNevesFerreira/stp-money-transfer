@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PaymentRequest;
 use App\Http\Controllers\PaymentController;
 use App\Repositories\Contracts\PlansRepositoryInterface;
+use PhpParser\Node\Stmt\Foreach_;
 
 class AbonementController extends Controller
 {
@@ -27,6 +28,18 @@ class AbonementController extends Controller
             $stripe = new \Stripe\StripeClient(
                 self::STRIPE_KEY
             );
+
+            $users_plans_exist = $this->plans->ifExist();
+
+            dd($users_plans_exist);
+            if ($users_plans_exist > 0):
+                foreach ($users_plans_exist as $user_plans) {
+                    if ($user_plans->created_at == now()) {
+
+                    }
+                }
+                // return redirect()->back()->withErrors("memes");
+            endif;
 
             //prepara o total, somando o total que ja vem com as nossas taxas normais e adiciona uma taxa
             //de 20% em cima do valor
@@ -99,6 +112,8 @@ class AbonementController extends Controller
 
         //apaga todos os valores na seção relacionado com o envio
         session()->forget(["moeda", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
+
+        $this->plans->store();
 
         return view("site.plan_confirmation", compact("valor", "moeda", "valor_debitado", "receptor"));
     }

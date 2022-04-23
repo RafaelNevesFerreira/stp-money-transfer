@@ -18,7 +18,7 @@ class PlansRepository extends AbstractRepository implements PlansRepositoryInter
     public function ifExist()
     {
         if (Auth::check()) {
-            return $this->model::where("users_id", Auth::user()->id)->count();
+            return $this->model::where("users_id", Auth::user()->id)->get();
         } else {
             return false;
         }
