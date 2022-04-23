@@ -29,8 +29,7 @@ class SendMoneyController extends Controller
 
 
         $total = $valor + $tax;
-        // dd($total);
-        // dd(number_format($valor));
+
         if ($request->moeda == "eur") {
             $moeda = "€";
         } elseif ($request->moeda == "usd") {

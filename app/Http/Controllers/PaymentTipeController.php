@@ -18,10 +18,9 @@ class PaymentTipeController extends Controller
             if ($request->has("numero_prestacoes")) {
                 return $this->abonement->pagar_em_2_vezes($request);
             } else {
-                return redirect()->back()->withErrors("Se Quiser pagar em prestações Deve Escolher Em Quantas vezes deseja pagar em prestções");
+                return redirect()->back()->withErrors("Se Quiser pagar em prestações Deve Escolher Em Quantas vezes deseja pagar");
             }
         } else if ($request->has("pagar_em_prestacoes") && Auth::check() == false) {
-
             return redirect()->back()->withErrors("para pagar em prestações deve se registrar, ou se ja tem uma conta deve fazer o login");
         } else {
 
