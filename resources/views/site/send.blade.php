@@ -57,10 +57,16 @@
                             <div class="mb-3">
                                 <label for="youSend" class="form-label">Valor a ser enviado</label>
                                 <div class="input-group">
-                                    {{-- <span class="input-group-text">$</span> --}}
+                                    @if (session('valor_a_ser_enviado'))
                                     <input type="text" data-thousands="." data-decimal="," class="form-control"
+                                        data-bv-field="youSend" name="valor_enviado" id="youSend" value="{{session("valor_a_ser_enviado")}}"
+                                        placeholder="">
+                                        @else
+                                        <input type="text" data-thousands="." data-decimal="," class="form-control"
                                         data-bv-field="youSend" name="valor_enviado" id="youSend" value="25,00"
                                         placeholder="">
+
+                                        @endif
                                     <span class="input-group-text p-0">
                                         <select id="youSendCurrency" data-style="form-select bg-transparent border-0"
                                             data-container="body" data-live-search="true" name="moeda"

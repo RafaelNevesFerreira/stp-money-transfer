@@ -44,7 +44,7 @@
                         </div>
                         <p class="text-3 mb-4">Você enviou <span class="text-4 fw-500">{{ $valor }}
                                 {{ $moeda }}</span> para <span class="fw-500">{{ $receptor }}</span>
-                            foi-lhe debitado o valor de <span class="fw-500">{{ $valor_debitado }}</span> pois optou
+                            foi-lhe debitado o valor de <span class="fw-500">{{ $valor_debitado }}{{ $moeda }}</span> pois optou
                             por pagar em duas vezes, logo, O Proximo pagamento sera feito no dia <span
                                 class="fw-500">{{ date('d') }}</span> do proximo mês.
                             Veja Os Detalhes da Transação <a class="btn-link" href="#">Atividades</a></p>
