@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Jobs\PlansJob;
 use Illuminate\Http\Request;
 use App\Mail\PaimentFailedMail;
+use PhpParser\Node\Stmt\Foreach_;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PaymentRequest;
 use App\Http\Controllers\PaymentController;
 use App\Repositories\Contracts\PlansRepositoryInterface;
-use PhpParser\Node\Stmt\Foreach_;
 
 class AbonementController extends Controller
 {
@@ -32,14 +33,29 @@ class AbonementController extends Controller
             $users_plans_exist = $this->plans->ifExist();
 
             // dd($users_plans_exist);
-            if ($users_plans_exist->count() > 0):
+            if ($users_plans_exist->count() > 0) :
                 foreach ($users_plans_exist as $user_plans) {
-                    if ($user_plans->created_at == now()) {
+                    $dataSubtracted1 = strtotime('-2 month');
 
-                    }
+                    $datetime1 = new DateTime(date("Y-4-d"));
+                    $datetime2 = new DateTime($user_plans->created_at->format("Y-m-d"));
+                    $interval = $datetime1->diff($datetime2);
+                    $restar = $interval->format('%r%m');
+                    return $restar;
+
+                    echo "<br>";
+
+                    echo date("m", $dataSubtracted1);
+
+                    echo "<hr>";
+
+                    echo $user_plans->created_at->format("d-m-Y");
+
                 }
-                // return redirect()->back()->withErrors("memes");
+            // return redirect()->back()->withErrors("memes");
             endif;
+
+            return;
 
             //prepara o total, somando o total que ja vem com as nossas taxas normais e adiciona uma taxa
             //de 20% em cima do valor
