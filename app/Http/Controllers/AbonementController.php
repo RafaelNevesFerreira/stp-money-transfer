@@ -12,6 +12,7 @@ class AbonementController extends Controller
 {
     const STRIPE_KEY = "sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId";
     const VALOR_MAXIMO = 700;
+    const VALOR_MINIMO = 100;
     const TAX_POR_ENVIO_EM_PERCENTAGEM = 20;
 
 
@@ -67,13 +68,20 @@ class AbonementController extends Controller
             //de 20% em cima do valor
             $total = number_format((session("total") / 100 * self::TAX_POR_ENVIO_EM_PERCENTAGEM + session("total")) / 2, 2, ".", ",");
 
+
+            //caso o valor que o usuario queira enviar seja maior do que o valor setado na constante VALOR_MAXIMO
+            //e que ele seja maior do que o valor da constante VALOR_MINIMO
             if (session("valor_a_ser_enviado") >= self::VALOR_MAXIMO) {
-                return redirect()->back()->withErrors("desculpe por enquanto so sera posivel enviar um valor a baixo de "
+                return redirect()->back()->withErrors("desculpe por enquanto so é posivel enviar um valor a baixo de "
                     . self::VALOR_MAXIMO . session("moeda") . " caso queira pagar em prestações, clique no link a baixo e digite um valor abaixo de "
                     . self::VALOR_MAXIMO . session("moeda") . " Obrigado" . "<br><a href='" . route("send") . "' class='btn-link'>Inserir Novo Valor</a>");
+            } else if (session("valor_a_ser_enviado") < self::VALOR_MINIMO) {
+                return redirect()->back()->withErrors("desculpe por enquanto apenas é posivel enviar um valor a cima de "
+                    . self::VALOR_MINIMO . session("moeda") . " caso queira pagar em prestações, clique no link a baixo e digite um valor a cima de "
+                    . self::VALOR_MINIMO . session("moeda") . " Obrigado" . "<br><a href='" . route("send") . "' class='btn-link'>Inserir Novo Valor</a>");
             }
 
-            //adiciona o valor certo da moeda para a variavel
+            //adiciona o valor certo da moeda para a variavel cuurency
             switch (session("moeda")) {
                 case "€":
                     $currency = "eur";
@@ -105,6 +113,8 @@ class AbonementController extends Controller
                         'quantity' => 1,
                     ],
                 ],
+
+                //quando o pagamento for sucedido, ele redireciona o usuario para a nossa rota de confirmação
                 "after_completion" => [
                     "redirect" => [
                         "url" => route("plan_success")
@@ -123,14 +133,23 @@ class AbonementController extends Controller
 
     public function success()
     {
+        //verifica se tem dados na sesseion name
+        //faz isso para caso o usuario dar um reload na pagina
+        //ele redirecionar directamente para a pagina de inicio
         if (!session("name")) {
             return redirect()->route("home");
         }
+
+        //atribui os valores da session para variaveis
+        //dessa forma elas poderão ser compactadas e passadas para a
+        //view
         $valor = session("valor_a_ser_enviado");
         $moeda = session("moeda");
         $receptor = session("receptor");
         $valor_debitado = (session("total") / 100 * 20 + session("total")) / 2;
 
+        //inicia a session plan, dessa forma quando chamar o strore do transfer o campo plan na tabela transfer
+        //recebera true, dessa forma poderemos saber que pagamento foi feito em prestações
         session()->put(["plan" => true]);
 
         //guarda os dados na table plans
@@ -140,8 +159,9 @@ class AbonementController extends Controller
         $this->transfer->store();
 
         //apaga todos os valores na seção relacionado com o envio
-        session()->forget(["moeda","plan", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
+        session()->forget(["moeda", "plan", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
 
+        //retorna a view de confirmação de envio de dinheiro
         return view("site.plan_confirmation", compact("valor", "moeda", "valor_debitado", "receptor"));
     }
 }
