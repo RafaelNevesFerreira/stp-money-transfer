@@ -5,6 +5,7 @@ namespace App\Repositories\Eloquent;
 use App\Jobs\PaimentSuccess;
 use App\Models\Transfer;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 
 class TransfersRepository extends AbstractRepository implements TransfersRepositoryInterface
 {
@@ -31,7 +32,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         $transfer_code = uniqid("SMT");
         if (session("plan")) {
             $plan = session("plan");
-        }else{
+        } else {
             $plan = false;
         }
         $this->model::create([
@@ -47,6 +48,11 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             "transfer_code" => $transfer_code,
         ]);
 
-        PaimentSuccess::dispatch(session("email"),session("name"),$transfer_code,session("receptor"))->delay(now());
+        PaimentSuccess::dispatch(session("email"), session("name"), $transfer_code, session("receptor"))->delay(now());
+    }
+
+    public function get_by_user_email()
+    {
+        return $this->model::Where("email",Auth::user()->email)->get();
     }
 }

@@ -42,7 +42,7 @@ Route::controller(BlogController::class)->group(function () {
     });
 });
 
-//profile.change.data
+
 
 Route::get("success/{id}", [PaymentController::class, "response"])->name("stripeResponse");
 Route::get("plans/success", [AbonementController::class, "success"])->name("plan_success");
@@ -53,19 +53,16 @@ Route::controller(SendMoneyController::class)->group(function () {
     Route::post("/details", "details")->name("details");
     Route::post("/identification", "identification")->name("identification.submit");
 });
-// profile.change.data
+
 
 Route::controller(ProfileController::class)->group(function () {
-    Route::middleware(["auth"])->group(function () {
+    Route::middleware(["user"])->group(function () {
         Route::prefix("user")->group(function () {
-            Route::get("profile", "profille")->name("profile");
+            Route::get("profile", "profille")->name("profile.dashboard");
+            Route::get("settings", "settings")->name("profile.settings");
             Route::post("change_data", "profilleChangeDta")->name("profille.change.data");
         });
     });
 });
-
-// Route::get('/dashboard', function () {
-//     return view("profile.settings");
-// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
