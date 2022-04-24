@@ -53,6 +53,6 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function get_by_user_email()
     {
-        return $this->model::Where("email",Auth::user()->email)->get();
+        return $this->model::Where("email",Auth::user()->email)->limit(6)->latest()->get();
     }
 }
