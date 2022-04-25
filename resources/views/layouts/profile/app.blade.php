@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="_token" content="{{csrf_token()}}" />
+    <meta name="_token" content="{{ csrf_token() }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/apple-touch-icon.png') }}">
@@ -30,6 +30,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/currency-flags.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/stylesheet.css') }}" />
+    <link rel="stylesheet" type="text/css"
+        href="http://demo.harnishdesign.net/html/payyed/vendor/daterangepicker/daterangepicker.css" />
+
     <!-- Colors Css -->
     <link id="color-switcher" type="text/css" rel="stylesheet" href="#" />
 </head>
@@ -50,7 +53,7 @@
         @include('layouts.navigation')
         <!-- Header End -->
         <!-- Secondary Menu============================================= -->
-        @include("layouts.profile.secondary_menu")
+        @include('layouts.profile.secondary_menu')
         <!-- Secondary Menu end -->
         @yield("content")
 
@@ -85,8 +88,45 @@
     <script src="{{ asset('assets/js/bootstrap-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('assets/js/owl-carousel.min.js') }}"></script>
+    <script src="http://demo.harnishdesign.net/html/payyed/vendor/daterangepicker/moment.min.js"></script>
+    <script src="http://demo.harnishdesign.net/html/payyed/vendor/daterangepicker/daterangepicker.js"></script>
+    <script>
+        $(function() {
+            'use strict';
+
+            // Date Range Picker
+            $(function() {
+                var start = moment().subtract(29, 'days');
+                var end = moment();
+
+                function cb(start, end) {
+                    $('#dateRange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format(
+                        'MMMM D, YYYY'));
+                }
+                $('#dateRange').daterangepicker({
+                    locale: {
+                        format: 'DD/MM/YYYY'
+                    },
+                    startDate: start,
+                    endDate: end,
+                    ranges: {
+                        'Hoje': [moment(), moment()],
+                        'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Ultimos 7 dias': [moment().subtract(6, 'days'), moment()],
+                        'Ultimos 30 dias': [moment().subtract(29, 'days'), moment()],
+                        'Este Mês': [moment().startOf('month'), moment().endOf('month')],
+                        'Mês Pasado': [moment().subtract(1, 'month').startOf('month'), moment()
+                            .subtract(1, 'month').endOf('month')
+                        ]
+                    }
+                }, cb);
+                cb(start, end);
+            });
+        });
+    </script>
     <!-- Style Switcher -->
     <script src="{{ asset('assets/js/theme.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
+
 
     @yield("scripts")

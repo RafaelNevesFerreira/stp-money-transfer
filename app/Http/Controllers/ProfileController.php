@@ -23,6 +23,11 @@ class ProfileController extends Controller
         return view("profile.settings");
     }
 
+    public function transactions(){
+        $transfers  = $this->transfers->get_by_user_email();
+        return view("profile.transactions",compact("transfers"));
+    }
+
 
     public function transfer_details(Request $request)
     {
