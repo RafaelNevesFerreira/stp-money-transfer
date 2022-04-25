@@ -164,8 +164,8 @@
 
                         <!-- View all Link
                                                                                                                                                             =============================== -->
-                        <div class="text-center mt-4"><a href="http://demo.harnishdesign.net/html/payyed/transactions.html"
-                                class="btn-link text-3">View all<i class="fas fa-chevron-right text-2 ms-2"></i></a></div>
+                        <div class="text-center mt-4"><a href="{{route("profile.transactions")}}"
+                                class="btn-link text-3">Ver Todas<i class="fas fa-chevron-right text-2 ms-2"></i></a></div>
                         <!-- View all Link End -->
 
                     </div>
