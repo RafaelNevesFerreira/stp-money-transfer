@@ -11,7 +11,7 @@
             </div>
         </div>
         <p class="text-3 fw-500 mb-2">Ola, {{ Str::limit(Auth::user()->name, 10, '..') }}</p>
-        <p class="mb-2"><a href="settings-profile.html" class="text-5 text-light"
+        <p class="mb-2"><a href="{{route("profile.settings")}}" class="text-5 text-light"
                 data-bs-toggle="tooltip" title="Dados"><i class="fas fa-edit"></i></a></p>
     </div>
     <!-- Profile Details End -->
