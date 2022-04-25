@@ -61,8 +61,13 @@ Route::controller(ProfileController::class)->group(function () {
             Route::get("profile", "profille")->name("profile.dashboard");
             Route::get("settings", "settings")->name("profile.settings");
             Route::post("change_data", "profilleChangeDta")->name("profille.change.data");
+            Route::post("transfer_details", "transfer_details")->name("profille.transfer_details");
         });
     });
+});
+
+Route::middleware(["dashboard"])->group(function () {
+        Route::get("dashboard");
 });
 
 require __DIR__ . '/auth.php';

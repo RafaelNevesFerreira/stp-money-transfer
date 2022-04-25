@@ -19,6 +19,7 @@ class Transfer extends Model
         "value_sended",
         "receveid_at",
         "plan",
+        "tax",
         "destinatary_name",
         "transfer_code",
         "status",

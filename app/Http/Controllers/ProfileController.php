@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\ProfilleChangeData;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
@@ -14,12 +15,22 @@ class ProfileController extends Controller
     {
         $transfers  = $this->transfers->get_by_user_email();
 
-        return view("profile.profille",compact("transfers"));
+        return view("profile.profille", compact("transfers"));
     }
 
     public function settings()
     {
         return view("profile.settings");
+    }
+
+
+    public function transfer_details(Request $request)
+    {
+        $request->validate([
+            "id" => "required|numeric|min:0"
+        ]);
+        $details = $this->transfers->details($request->id);
+        return $details;
     }
 
     public function profilleChangeDta(ProfilleChangeData $request)

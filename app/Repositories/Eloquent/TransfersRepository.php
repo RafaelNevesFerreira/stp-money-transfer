@@ -43,6 +43,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             "phone_number" => session("phone_number"),
             "plan" => $plan,
             "email" => session("email"),
+            "tax" => session("tax"),
             "value_sended" => session("valor_a_ser_enviado"),
             "destinatary_name" => session("receptor"),
             "transfer_code" => $transfer_code,
@@ -53,6 +54,11 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function get_by_user_email()
     {
-        return $this->model::Where("email",Auth::user()->email)->limit(6)->latest()->get();
+        return $this->model::Where("email", Auth::user()->email)->limit(6)->latest()->get();
+    }
+
+    public function details($id)
+    {
+        return $this->model::where("id", $id)->firstOrFail();
     }
 }

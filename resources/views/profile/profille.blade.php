@@ -1,26 +1,26 @@
 @extends("layouts.profile.app")
 @section('content')
     <!-- Content
-                                      ============================================= -->
+                                          ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
             <div class="row">
                 <!-- Left Panel
-                                            ============================================= -->
+                                                ============================================= -->
                 @include('layouts.profile.left-painel')
                 <!-- Left Panel End -->
 
                 <!-- Middle Panel
-                                            ============================================= -->
+                                                ============================================= -->
                 <div class="col-lg-9">
 
                     <!-- Recent Activity
-                                              =============================== -->
+                                                  =============================== -->
                     <div class="bg-white shadow-sm rounded py-4 mb-4">
                         <h3 class="text-5 fw-400 d-flex align-items-center px-4 mb-4">Atividades Recentes</h3>
 
                         <!-- Title
-                                                =============================== -->
+                                                    =============================== -->
                         <div class="transaction-title py-2 px-4">
                             <div class="row fw-00">
                                 <div class="col-2 col-sm-1 text-center"><span class="">Data</span></div>
@@ -31,13 +31,11 @@
                         </div>
                         <!-- Title End -->
 
-                        <!-- Transaction List
-                                                =============================== -->
+                        <!-- Transaction List         =============================== -->
 
                         @forelse ($transfers as $transfer)
                             <div class="transaction-list">
-                                <div class="transaction-item px-4 py-3" data-bs-toggle="modal"
-                                    data-bs-target="#transaction-detail">
+                                <div class="transaction-item px-4 py-3 transfer-id" id="{{ $transfer->id }}">
                                     <div class="row align-items-center flex-row">
                                         <div class="col-2 col-sm-1 text-center">
                                             <span
@@ -107,7 +105,7 @@
                         <!-- Transaction List End -->
 
                         <!-- Transaction Item Details Modal
-                                                                            =========================================== -->
+                                                                                    =========================================== -->
                         <div id="transaction-detail" class="modal fade" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered transaction-details" role="document">
                                 <div class="modal-content">
@@ -116,9 +114,9 @@
                                             <div class="col-sm-5 d-flex justify-content-center bg-primary rounded-start py-4">
                                                 <div class="my-auto text-center">
                                                     <div class="text-17 text-white my-3"><i class="fas fa-building"></i></div>
-                                                    <h3 class="text-4 text-white fw-400 my-3">Envato Pty Ltd</h3>
-                                                    <div class="text-8 fw-500 text-white my-4">$557.20</div>
-                                                    <p class="text-white">15 March 2021</p>
+                                                    <h3 class="text-4 text-white fw-400 my-3">{{env("APP_NAME")}}</h3>
+                                                    <div class="text-8 fw-500 text-white my-4" id="transfer_value">$557.20</div>
+                                                    <p class="text-white" id="transfer_date">15 March 2021</p>
                                                 </div>
                                             </div>
                                             <div class="col-sm-7">
@@ -166,7 +164,7 @@
                         <!-- Transaction Item Details Modal End -->
 
                         <!-- View all Link
-                                                                            =============================== -->
+                                                                                    =============================== -->
                         <div class="text-center mt-4"><a href="http://demo.harnishdesign.net/html/payyed/transactions.html"
                                 class="btn-link text-3">View all<i class="fas fa-chevron-right text-2 ms-2"></i></a></div>
                         <!-- View all Link End -->
@@ -179,4 +177,29 @@
         </div>
         </div>
         <!-- Content end -->
+    @endsection
+
+    @section('scripts')
+        <script>
+            $(".transfer-id").click(function() {
+                var id;
+                id = $(this).attr("id")
+                $.ajaxSetup({
+                    headers: {
+                        "X-CSRF-TOKEN": $("meta[name='_token']").attr("content")
+                    }
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('profille.transfer_details') }}",
+                    data: {"id" : id},
+                    success: function(data) {
+                        console.log(data);
+                        // $("#success").html('Inserted into database').delay(3000).fadeOut();
+                    }
+                });
+                $("#transaction-detail").modal('show');
+            })
+        </script>
     @endsection

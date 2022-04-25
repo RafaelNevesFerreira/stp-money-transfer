@@ -165,7 +165,7 @@ class PaymentController extends Controller
             $valor = session("valor_a_ser_enviado");
             $moeda = session("moeda");
             $receptor = session("receptor");
-            session()->forget(["moeda", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
+            session()->forget(["moeda","tax", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
 
             return view("site.payment_confirm", compact("valor", "moeda", "receptor"));
         }
@@ -202,7 +202,7 @@ class PaymentController extends Controller
                 $valor = session("valor_a_ser_enviado");
                 $moeda = session("moeda");
                 $receptor = session("receptor");
-                session()->forget(["moeda", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
+                session()->forget(["moeda","tax", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
 
                 return view("site.payment_confirm", compact("valor", "moeda", "receptor"));
             } elseif (isset($get_data['error']['message']) && $get_data['error']['message'] != null) {
