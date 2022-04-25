@@ -7,7 +7,7 @@
                             href="{{ route('profile.dashboard') }}">Dashboard</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('profile.settings') }}">Dados</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="{{route("profile.transactions")}}">Transactions</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route("profile.transactions")}}">Transações</a></li>
                     <li class="nav-item"> <a class="nav-link"
                             href="http://demo.harnishdesign.net/html/payyed/settings-notifications.html">Notifications</a>
                     </li>
