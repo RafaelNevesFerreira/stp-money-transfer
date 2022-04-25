@@ -1,26 +1,26 @@
 @extends("layouts.profile.app")
 @section('content')
     <!-- Content
-                                          ============================================= -->
+                                                                              ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
             <div class="row">
                 <!-- Left Panel
-                                                ============================================= -->
+                                                                                    ============================================= -->
                 @include('layouts.profile.left-painel')
                 <!-- Left Panel End -->
 
                 <!-- Middle Panel
-                                                ============================================= -->
+                                                                                    ============================================= -->
                 <div class="col-lg-9">
 
                     <!-- Recent Activity
-                                                  =============================== -->
+                                                                                      =============================== -->
                     <div class="bg-white shadow-sm rounded py-4 mb-4">
                         <h3 class="text-5 fw-400 d-flex align-items-center px-4 mb-4">Atividades Recentes</h3>
 
                         <!-- Title
-                                                    =============================== -->
+                                                                                        =============================== -->
                         <div class="transaction-title py-2 px-4">
                             <div class="row fw-00">
                                 <div class="col-2 col-sm-1 text-center"><span class="">Data</span></div>
@@ -105,7 +105,7 @@
                         <!-- Transaction List End -->
 
                         <!-- Transaction Item Details Modal
-                                                                                    =========================================== -->
+                                                                                                                                                            =========================================== -->
                         <div id="transaction-detail" class="modal fade" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered transaction-details" role="document">
                                 <div class="modal-content">
@@ -114,43 +114,43 @@
                                             <div class="col-sm-5 d-flex justify-content-center bg-primary rounded-start py-4">
                                                 <div class="my-auto text-center">
                                                     <div class="text-17 text-white my-3"><i class="fas fa-building"></i></div>
-                                                    <h3 class="text-4 text-white fw-400 my-3">{{env("APP_NAME")}}</h3>
+                                                    <h3 class="text-4 text-white fw-400 my-3">{{ env('APP_NAME') }}</h3>
                                                     <div class="text-8 fw-500 text-white my-4" id="transfer_value">$557.20</div>
                                                     <p class="text-white" id="transfer_date">15 March 2021</p>
                                                 </div>
                                             </div>
                                             <div class="col-sm-7">
-                                                <h5 class="text-5 fw-400 m-3">Transaction Details
+                                                <h5 class="text-5 fw-400 m-3">Detalhes
                                                     <button type="button" class="btn-close text-2 float-end"
                                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </h5>
                                                 <hr>
                                                 <div class="px-3">
                                                     <ul class="list-unstyled">
-                                                        <li class="mb-2">Payment Amount <span
-                                                                class="float-end text-3">$562.00</span></li>
-                                                        <li class="mb-2">Fee <span
-                                                                class="float-end text-3">-$4.80</span></li>
+                                                        <li class="mb-2">Valor enviado <span class="float-end text-3"
+                                                                id="transfer_valor_sem_taxa"></span></li>
+                                                        <li class="mb-2">Taxa <span class="float-end text-3"
+                                                                id="transfer_tax"></span></li>
                                                     </ul>
                                                     <hr class="mb-2">
-                                                    <p class="d-flex align-items-center fw-500 mb-0">Total Amount <span
-                                                            class="text-3 ms-auto">$557.20</span></p>
+                                                    <p class="d-flex align-items-center fw-500 mb-0">Total Pago <span
+                                                            class="text-3 ms-auto" id="transfer_total"></span></p>
                                                     <hr class="mb-4 mt-2">
                                                     <ul class="list-unstyled">
-                                                        <li class="fw-500">Paid By:</li>
-                                                        <li class="text-muted">Envato Pty Ltd</li>
+                                                        <li class="fw-500">Receptor:</li>
+                                                        <li class="text-muted" id="transfer_receptor"></li>
                                                     </ul>
                                                     <ul class="list-unstyled">
-                                                        <li class="fw-500">Transaction ID:</li>
-                                                        <li class="text-muted">26566689645685976589</li>
+                                                        <li class="fw-500">Codigo Transferência:</li>
+                                                        <li class="text-muted" id="transfer_id"></li>
                                                     </ul>
                                                     <ul class="list-unstyled">
-                                                        <li class="fw-500">Description:</li>
-                                                        <li class="text-muted">Envato March 2021 Member Payment</li>
+                                                        <li class="fw-500">Pagamento:</li>
+                                                        <li class="text-muted" id="description"></li>
                                                     </ul>
                                                     <ul class="list-unstyled">
-                                                        <li class="fw-500">Status:</li>
-                                                        <li class="text-muted">Completed<span
+                                                        <li class="fw-500">Estado:</li>
+                                                        <li class="text-muted" id="transfer_status"><span
                                                                 class="text-success text-3 ms-1"><i
                                                                     class="fas fa-check-circle"></i></span></li>
                                                     </ul>
@@ -164,7 +164,7 @@
                         <!-- Transaction Item Details Modal End -->
 
                         <!-- View all Link
-                                                                                    =============================== -->
+                                                                                                                                                            =============================== -->
                         <div class="text-center mt-4"><a href="http://demo.harnishdesign.net/html/payyed/transactions.html"
                                 class="btn-link text-3">View all<i class="fas fa-chevron-right text-2 ms-2"></i></a></div>
                         <!-- View all Link End -->
@@ -193,10 +193,62 @@
                 $.ajax({
                     type: "POST",
                     url: "{{ route('profille.transfer_details') }}",
-                    data: {"id" : id},
+                    data: {
+                        "id": id
+                    },
                     success: function(data) {
-                        console.log(data);
-                        // $("#success").html('Inserted into database').delay(3000).fadeOut();
+
+                        var today = new Date(data["created_at"]);
+                        var dd = String(today.getDate()).padStart(2, '0');
+                        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                        var yyyy = today.getFullYear();
+                        today = dd + '/' + mm + '/' + yyyy;
+
+
+                        switch (data["currency"]) {
+                            case "eur":
+                                var currency = "€"
+                                break;
+                            case "usd":
+                                var currency = "$"
+                                break;
+                            case "gbp":
+                                var currency = "£"
+                                break;
+                        }
+
+
+                        switch (data["plan"]) {
+                            case 1:
+                                var plan = "A Pagar em prestações "+ ((data["value_sended"] + data["tax"])/ 100 * 20 + (data["value_sended"] + data["tax"])) / 2 + currency +" por mês"
+                                break;
+                            case 0:
+                                var plan = "Pago por cartão bancário"
+                                break;
+                        }
+
+                        switch (data["status"]) {
+                            case "sended":
+                                var status = "O Valor esta disponível para ser levantado"
+                                break;
+                            case "receveid":
+                                var status = "O Valor ja foi levantado"
+                                break;
+                        }
+
+
+
+
+                        $("#transfer_value").text(data["value_sended"]+ data["tax"] + currency)
+                        $("#transfer_date").text(today)
+                        $("#transfer_valor_sem_taxa").text(data["value_sended"] + currency)
+                        $("#transfer_tax").text(data["tax"] + currency)
+                        $("#transfer_total").text(data["value_sended"] + data["tax"] + currency)
+                        $("#transfer_receptor").text(data["destinatary_name"])
+                        $("#transfer_id").text(data["transfer_code"])
+                        $("#transfer_status").text(status)
+                        $("#description").text(plan)
+
                     }
                 });
                 $("#transaction-detail").modal('show');
