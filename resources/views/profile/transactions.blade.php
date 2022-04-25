@@ -11,7 +11,7 @@
                 <!-- Middle Panel
                     ============================================= -->
                 <div class="col-lg-9">
-                    <h2 class="fw-400 mb-3">Transactions</h2>
+                    <h2 class="fw-400 mb-3">Transação</h2>
 
                     <!-- Filter
                       ============================================= -->
@@ -70,7 +70,7 @@
                     <!-- All Transactions
                       ============================================= -->
                     <div class="bg-white shadow-sm rounded py-4 mb-4">
-                        <h3 class="text-5 fw-400 d-flex align-items-center px-4 mb-4">Todas  Transições</h3>
+                        <h3 class="text-5 fw-400 d-flex align-items-center px-4 mb-4">Todas  Transações</h3>
                         <!-- Title     =============================== -->
                         <div class="transaction-title py-2 px-4">
                             <div class="row fw-00">
@@ -213,19 +213,9 @@
                             </div>
                         </div>
                         <!-- Transaction Item Details Modal End -->
-                        <!-- Pagination
-                            ============================================= -->
-                        <ul class="pagination justify-content-center mt-4 mb-0">
-                            <li class="page-item disabled"> <a class="page-link" href="#" tabindex="-1"><i
-                                        class="fas fa-angle-left"></i></a> </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item d-flex align-content-center flex-wrap text-muted text-5 mx-1">......</li>
-                            <li class="page-item"><a class="page-link" href="#">15</a></li>
-                            <li class="page-item"> <a class="page-link" href="#"><i
-                                        class="fas fa-angle-right"></i></a> </li>
-                        </ul>
+                        <!-- Pagination   ============================================= -->
+                            {{ $transfers->links('pagination::default') }}
+
                         <!-- Paginations end -->
 
                     </div>
