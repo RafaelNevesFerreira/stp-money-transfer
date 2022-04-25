@@ -25,6 +25,7 @@ class ProfileController extends Controller
 
     public function transactions(){
         $transfers  = $this->transfers->get_by_user_email();
+
         return view("profile.transactions",compact("transfers"));
     }
 

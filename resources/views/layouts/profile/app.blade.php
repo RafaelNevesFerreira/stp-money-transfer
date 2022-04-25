@@ -30,8 +30,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/currency-flags.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/stylesheet.css') }}" />
-    <link rel="stylesheet" type="text/css"
-        href="http://demo.harnishdesign.net/html/payyed/vendor/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="{{asset("assets/css/daterangepicker.css")}}" />
 
     <!-- Colors Css -->
     <link id="color-switcher" type="text/css" rel="stylesheet" href="#" />
@@ -88,8 +87,8 @@
     <script src="{{ asset('assets/js/bootstrap-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('assets/js/owl-carousel.min.js') }}"></script>
-    <script src="http://demo.harnishdesign.net/html/payyed/vendor/daterangepicker/moment.min.js"></script>
-    <script src="http://demo.harnishdesign.net/html/payyed/vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="{{asset("assets/js/moment.min.js")}}"></script>
+    <script src="{{asset("assets/js/daterangepicker.js")}}"></script>
     <script>
         $(function() {
             'use strict';
@@ -128,5 +127,79 @@
     <script src="{{ asset('assets/js/theme.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
+    <script>
+        $(".transfer-id").click(function() {
+            var id;
+            id = $(this).attr("id")
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": $("meta[name='_token']").attr("content")
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "{{ route('profille.transfer_details') }}",
+                data: {
+                    "id": id
+                },
+                success: function(data) {
+
+                    var today = new Date(data["created_at"]);
+                    var dd = String(today.getDate()).padStart(2, '0');
+                    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                    var yyyy = today.getFullYear();
+                    today = dd + '/' + mm + '/' + yyyy;
+
+
+                    switch (data["currency"]) {
+                        case "eur":
+                            var currency = "€"
+                            break;
+                        case "usd":
+                            var currency = "$"
+                            break;
+                        case "gbp":
+                            var currency = "£"
+                            break;
+                    }
+
+
+                    switch (data["plan"]) {
+                        case 1:
+                            var plan = "A Pagar em prestações "+ ((data["value_sended"] + data["tax"])/ 100 * 20 + (data["value_sended"] + data["tax"])) / 2 + currency +" por mês"
+                            break;
+                        case 0:
+                            var plan = "Pago por cartão bancário"
+                            break;
+                    }
+
+                    switch (data["status"]) {
+                        case "sended":
+                            var status = "O Valor esta disponível para ser levantado"
+                            break;
+                        case "receveid":
+                            var status = "O Valor ja foi Recebido"
+                            break;
+                    }
+
+
+
+
+                    $("#transfer_value").text(data["value_sended"]+ data["tax"] + currency)
+                    $("#transfer_date").text(today)
+                    $("#transfer_valor_sem_taxa").text(data["value_sended"] + currency)
+                    $("#transfer_tax").text(data["tax"] + currency)
+                    $("#transfer_total").text(data["value_sended"] + data["tax"] + currency)
+                    $("#transfer_receptor").text(data["destinatary_name"])
+                    $("#transfer_id").text(data["transfer_code"])
+                    $("#transfer_status").text(status)
+                    $("#description").text(plan)
+
+                }
+            });
+            $("#transaction-detail").modal('show');
+        })
+    </script>
 
     @yield("scripts")

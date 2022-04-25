@@ -2,10 +2,13 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Jobs\PaimentSuccess;
 use App\Models\Transfer;
-use App\Repositories\Contracts\TransfersRepositoryInterface;
+use App\Pipes\DateFilter;
+use App\Pipes\StatusFilter;
+use App\Jobs\PaimentSuccess;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pipeline\Pipeline;
+use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class TransfersRepository extends AbstractRepository implements TransfersRepositoryInterface
 {
@@ -54,11 +57,22 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function get_by_user_email()
     {
-        return $this->model::Where("email", Auth::user()->email)->limit(6)->latest()->get();
+
+        return app(Pipeline::class)
+        ->send($this->model::where("email", Auth::user()->email))
+        ->through([
+            StatusFilter::class,
+
+            DateFilter::class,
+        ])
+        ->thenReturn()
+        ->latest()
+        ->paginate(6);
     }
 
     public function details($id)
     {
+
         return $this->model::where("id", $id)->firstOrFail();
     }
 }
