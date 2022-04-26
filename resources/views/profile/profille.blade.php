@@ -200,7 +200,7 @@
                     // })
                 },
                 onError: function(message, element, status) {
-                    console.log(status);
+                    console.log(message);
 
                     // $.toast({
                     //     heading: 'Attention',
