@@ -63,11 +63,11 @@ class ProfileController extends Controller
 
             $update = $this->user->update_avatar($new_name);
 
-            // if (!$update) {
-            //     return response()->json(["status" => 0, "msg" => "algo de erado aconteceu"]);
-            // } else {
-            //     return response()->json(["status" => 1, "msg" => "imagem actualizada com sucesso"]);
-            // }
+            if (!$update) {
+                return response()->json(["status" => 0, "msg" => "algo de erado aconteceu"]);
+            } else {
+                return response()->json(["status" => 1, "msg" => "imagem actualizada com sucesso"]);
+            }
         }
     }
 

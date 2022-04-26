@@ -189,7 +189,7 @@
                 processUrl: '{{ route('profile.change.photo') }}',
                 withCSRF: ['_token', '{{ csrf_token() }}'],
                 onSuccess: function(message, element, status) {
-                    console.log(message);
+                    console.log(msg);
                     // $.toast({
                     //     heading: 'Success',
                     //     text: 'Votre photo a été modifiée avec succès.',
@@ -200,7 +200,7 @@
                     // })
                 },
                 onError: function(message, element, status) {
-                    console.log(message);
+                    console.log(msg);
 
                     // $.toast({
                     //     heading: 'Attention',
