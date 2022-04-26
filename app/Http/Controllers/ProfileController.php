@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProfilleChangeData;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
@@ -41,7 +43,7 @@ class ProfileController extends Controller
 
     public function change_photo(Request $request)
     {
-        $path = "/admin/images/";
+        $path = "/profille/images/";
         $file = $request->file("file");
         $new_name = "UIMG" . date('Ymd') . uniqid() . ".jpg";
 

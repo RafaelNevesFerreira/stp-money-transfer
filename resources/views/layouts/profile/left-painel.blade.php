@@ -7,7 +7,7 @@
                 src="{{ asset('profile/images') . '/' . Auth::user()->avatar }}" alt="user avatar">
             <div class="profile-thumb-edit bg-primary text-white" data-bs-toggle="tooltip"
                 title="Mudar foto"> <i class="fas fa-camera position-absolute"></i>
-                <input type="file" class="custom-file-input" id="customFile">
+                <input type="file" class="custom-file-input" id="file">
             </div>
         </div>
         <p class="text-3 fw-500 mb-2">Ola, {{ Str::limit(Auth::user()->name, 10, '..') }}</p>
