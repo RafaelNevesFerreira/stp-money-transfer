@@ -38,6 +38,12 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         } else {
             $plan = false;
         }
+
+        if (Auth::check()) {
+            $email = Auth::user()->email;
+        }else{
+            $email = session("email");
+        }
         $this->model::create([
             "name" => session("name"),
             "address" => session("address"),
@@ -45,14 +51,14 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             "country" => session("country"),
             "phone_number" => session("phone_number"),
             "plan" => $plan,
-            "email" => session("email"),
+            "email" => $email,
             "tax" => session("tax"),
             "value_sended" => session("valor_a_ser_enviado"),
             "destinatary_name" => session("receptor"),
             "transfer_code" => $transfer_code,
         ]);
 
-        PaimentSuccess::dispatch(session("email"), session("name"), $transfer_code, session("receptor"))->delay(now());
+        PaimentSuccess::dispatch($email, session("name"), $transfer_code, session("receptor"))->delay(now());
     }
 
     public function get_by_user_email()
