@@ -43,8 +43,6 @@ class ProfileController extends Controller
 
     public function change_photo(Request $request)
     {
-        return response()->json(["status" => 1, "message" => "imagem actualizada com sucesso"]);
-
         $path = "/profille/images/";
         $file = $request->file("file");
         $new_name = "UIMG" . date('Ymd') . uniqid() . ".jpg";
@@ -65,9 +63,9 @@ class ProfileController extends Controller
             // $update = $this->user->update_avatar($new_name);
 
             // if (!$update) {
-                // return response()->json(["status" => 0, "msg" => "algo de erado aconteceu"]);
+            //     return response()->json(["status" => 0, "msg" => "algo de erado aconteceu"]);
             // } else {
-                return response()->json(["status" => 1, "msg" => "imagem actualizada com sucesso"]);
+            //     return response()->json(["status" => 1, "msg" => "imagem actualizada com sucesso"]);
             // }
         }
     }
