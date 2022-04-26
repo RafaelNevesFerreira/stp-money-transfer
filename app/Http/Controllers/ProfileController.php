@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProfilleChangeData;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 
 class ProfileController extends Controller
 {
-    public function __construct(public TransfersRepositoryInterface $transfers)
+    public function __construct(public TransfersRepositoryInterface $transfers, public UserRepositoryInterface $user)
     {
     }
     public function profille()
