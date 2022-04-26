@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("layouts.profile.app")
 @section('content')
     <!-- Content
                                   ============================================= -->
