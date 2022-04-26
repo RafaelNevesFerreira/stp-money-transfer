@@ -8,7 +8,7 @@ o seu receptor devera ir acompanhado da sua peça de identidade ou da peça de i
 identifique o receptor denominado <b>{{$receptor}}</b>, o dinheiro não sera entrege sem uma peça
 de identidade com o mesmo nome.
 
-@component('mail::button', ['url' => ''])
+@component('mail::button', ['url' => env("APP_URL"). "/user/transactions"])
 Ver Os Detalhes
 @endcomponent
 
