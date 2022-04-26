@@ -47,7 +47,7 @@
                             foi-lhe debitado o valor de <span class="fw-500">{{ $valor_debitado }}{{ $moeda }}</span> pois optou
                             por pagar em duas vezes, logo, O Proximo pagamento sera feito no dia <span
                                 class="fw-500">{{ date('d') }}</span> do proximo mês.
-                            Veja Os Detalhes da Transação <a class="btn-link" href="#">Atividades</a></p>
+                            Veja Os Detalhes da Transação <a class="btn-link" href="{{route("profile.transactions")}}">Detalhes</a></p>
                         <div class="d-grid"><a href="{{ route('send') }}" class="btn btn-primary">Novo Envio</a>
                         </div>
                     </div>

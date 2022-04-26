@@ -44,7 +44,7 @@
                         </div>
                         <p class="text-3 mb-4">Você enviou <span class="text-4 fw-500">{{$valor}} {{$moeda }}</span> para <span
                                 class="fw-500">{{$receptor}}</span>, See transaction details under <a
-                                class="btn-link" href="#">Activity</a>.</p>
+                                class="btn-link" href="{{route("profile.transactions")}}">Detalhes</a>.</p>
                         <div class="d-grid"><a href="{{ route("send") }}" class="btn btn-primary">Novo Envio</a></div>
                     </div>
                 </div>
