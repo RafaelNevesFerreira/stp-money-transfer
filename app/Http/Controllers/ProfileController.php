@@ -43,7 +43,7 @@ class ProfileController extends Controller
 
     public function change_photo(Request $request)
     {
-        return response()->json(["status" => 1, "msg" => "imagem actualizada com sucesso"]);
+        return response()->json(["status" => 1, "message" => "imagem actualizada com sucesso"]);
 
         $path = "/profille/images/";
         $file = $request->file("file");
