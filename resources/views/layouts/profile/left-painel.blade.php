@@ -3,16 +3,20 @@
     <!-- Profile Details
   =============================== -->
     <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
-        <div class="profile-thumb mt-3 mb-4"> <img class="rounded-circle img-fluid user-image"
+        <div class="profile-thumb mt-3 mb-4">
+            <img class="rounded-circle img-fluid user-image"
                 src="{{ asset('profile/images') . '/' . Auth::user()->avatar }}" alt="user avatar">
-            <div class="profile-thumb-edit bg-primary text-white" data-bs-toggle="tooltip"
-                title="Mudar foto"> <i class="fas fa-camera position-absolute"></i>
+            <div class="profile-thumb-edit bg-primary text-white" data-bs-toggle="tooltip" title="Mudar foto">
+                <i class="fas fa-camera position-absolute"></i>
                 <input type="file" class="custom-file-input" id="file">
             </div>
         </div>
         <p class="text-3 fw-500 mb-2">Ola, {{ Str::limit(Auth::user()->name, 10, '..') }}</p>
-        <p class="mb-2"><a href="{{route("profile.settings")}}" class="text-5 text-light"
-                data-bs-toggle="tooltip" title="Dados"><i class="fas fa-edit"></i></a></p>
+        <p class="mb-2">
+            <a href="{{ route('profile.settings') }}" class="text-5 text-light" data-bs-toggle="tooltip" title="Dados">
+                <i class="fas fa-edit"></i>
+            </a>
+        </p>
     </div>
     <!-- Profile Details End -->
 
