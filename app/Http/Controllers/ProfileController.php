@@ -39,6 +39,35 @@ class ProfileController extends Controller
         return $details;
     }
 
+    public function change_photo(Request $request)
+    {
+        $path = "/admin/images/";
+        $file = $request->file("file");
+        $new_name = "UIMG" . date('Ymd') . uniqid() . ".jpg";
+
+        $upload = $file->move(public_path($path), $new_name);
+
+        if (!$upload) {
+            return response()->json(["status" => 0, "msg" => "algo de erado aconteceu"]);
+        } else {
+
+            $old_picture = Auth::user()->avatar;
+            if ($old_picture != "") {
+                if (File::exists(public_path($path . $old_picture))) {
+                    File::delete(public_path($path . $old_picture));
+                };
+            }
+
+            $update = $this->user->update_avatar($new_name);
+
+            if (!$update) {
+                return response()->json(["status" => 0, "msg" => "algo de erado aconteceu"]);
+            } else {
+                return response()->json(["status" => 1, "msg" => "imagem actualizada com sucesso"]);
+            }
+        }
+    }
+
     public function profilleChangeDta(ProfilleChangeData $request)
     {
         dd($request->all());
