@@ -34,8 +34,7 @@
             <h2 class="fw-400 text-center mt-3 mb-4">Enviar Dinheiro</h2>
             <div class="row">
                 <div class="col-md-9 col-lg-7 col-xl-6 mx-auto">
-                    <!-- Send Money Success
-                  ============================================= -->
+                    <!-- Send Money Success  ============================================= -->
                     <div class="bg-white text-center shadow-sm rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4">
                         <div class="my-4">
                             <p class="text-success text-20 lh-1"><i class="fas fa-check-circle"></i></p>
