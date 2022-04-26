@@ -18,7 +18,7 @@
                     </div>
                     <a href="{{ route('identification') }}" class="step-dot"></a>
                 </div>
-                <div class="col-4 step complete">
+                <div class="col-4 step active">
                     <div class="step-name">Pagamento</div>
                     <div class="progress">
                         <div class="progress-bar"></div>

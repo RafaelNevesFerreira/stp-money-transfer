@@ -79,7 +79,7 @@
                                         <div class="col-md-12">
                                             <label for="email" class="form-label">Email</label>
                                             <input type="text" class="form-control" id="email" required
-                                                placeholder="Digite o seu email" value="{{ auth()->user()->email }}"
+                                                placeholder="Digite o seu email" disabled value="{{ auth()->user()->email }}"
                                                 name="email">
                                         </div>
 

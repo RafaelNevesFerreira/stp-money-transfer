@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class IdentificationRequest extends FormRequest
@@ -23,11 +24,17 @@ class IdentificationRequest extends FormRequest
      */
     public function rules()
     {
+    if(Auth::check()){
+        $required = "";
+    }else{
+        $required = "required";
+    }
+
         return [
             "name" => "required|string|max:255",
             "address" => "required|string|max:200",
             "country" => "required|string|max:120",
-            "email" => "required|email",
+            "email" => "$required|email",
             "phone_number" => "required|alpha_num",
         ];
     }
