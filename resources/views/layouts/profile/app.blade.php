@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/currency-flags.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/stylesheet.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{asset("assets/css/daterangepicker.css")}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/daterangepicker.css') }}" />
 
     <!-- Colors Css -->
     <link id="color-switcher" type="text/css" rel="stylesheet" href="#" />
@@ -90,8 +90,8 @@
     <script src="{{ asset('assets/js/bootstrap-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('assets/js/owl-carousel.min.js') }}"></script>
-    <script src="{{asset("assets/js/moment.min.js")}}"></script>
-    <script src="{{asset("assets/js/daterangepicker.js")}}"></script>
+    <script src="{{ asset('assets/js/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/js/daterangepicker.js') }}"></script>
 
     <script>
         $(function() {
@@ -132,6 +132,22 @@
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
     <script>
+        //User Photo change
+        $('#file').ijaboCropTool({
+            preview: '.user-image',
+            setRatio: 1,
+            allowedExtensions: ['jpg', 'jpeg', 'png'],
+            buttonsText: ['CROP', 'QUIT'],
+            buttonsColor: ['#30bf7d', '#ee5155', -15],
+            processUrl: '{{ route('profile.change.photo') }}',
+            withCSRF: ['_token', '{{ csrf_token() }}'],
+            onSuccess: function(message, element, status) {},
+            onError: function(message, element, status) {}
+        });
+
+        /////////////////////////////////////////////////////////////////////////////////
+
+
         $(".transfer-id").click(function() {
             var id;
             id = $(this).attr("id")
@@ -171,7 +187,9 @@
 
                     switch (data["plan"]) {
                         case 1:
-                            var plan = "A Pagar em prestações "+ ((data["value_sended"] + data["tax"])/ 100 * 20 + (data["value_sended"] + data["tax"])) / 2 + currency +" por mês"
+                            var plan = "A Pagar em prestações " + ((data["value_sended"] + data[
+                                    "tax"]) / 100 * 20 + (data["value_sended"] + data["tax"])) / 2 +
+                                currency + " por mês"
                             break;
                         case 0:
                             var plan = "Pago por cartão bancário"
@@ -190,7 +208,7 @@
 
 
 
-                    $("#transfer_value").text(data["value_sended"]+ data["tax"] + currency)
+                    $("#transfer_value").text(data["value_sended"] + data["tax"] + currency)
                     $("#transfer_date").text(today)
                     $("#transfer_valor_sem_taxa").text(data["value_sended"] + currency)
                     $("#transfer_tax").text(data["tax"] + currency)
