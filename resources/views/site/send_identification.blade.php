@@ -1,7 +1,6 @@
 @extends("layouts.app")
 @section('content')
-    <!-- Content
-                                                                                  ============================================= -->
+    <!-- Content  ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
 
@@ -50,8 +49,8 @@
                                         <div class="col-md-6">
                                             <label for="name" class="form-label">Nome Completo</label>
                                             <input type="text" class="form-control c" id="name" required
-                                                placeholder="Digite o seu nome completo" value="{{ auth()->user()->name }}"
-                                                name="name">
+                                                placeholder="Digite o seu nome completo"
+                                                value="{{ auth()->user()->name }}" name="name">
                                         </div>
                                         <div class="col-md-6">
 
@@ -79,8 +78,8 @@
                                         <div class="col-md-12">
                                             <label for="email" class="form-label">Email</label>
                                             <input type="text" class="form-control" id="email" required
-                                                placeholder="Digite o seu email" disabled value="{{ auth()->user()->email }}"
-                                                name="email">
+                                                placeholder="Digite o seu email" disabled
+                                                value="{{ auth()->user()->email }}" name="email">
                                         </div>
 
                                     </div>
@@ -118,9 +117,15 @@
                                         </div>
                                         <div class="col-md-12">
                                             <label for="email" class="form-label">Email</label>
-                                            <input type="text" class="form-control" id="email" required
-                                                placeholder="Digite o seu email" value="{{ session('email') }}"
-                                                name="email">
+                                            @if (Auth::check())
+                                                <input type="text" class="form-control" id="email" required
+                                                    placeholder="Digite o seu email" disabled value="{{ Auth::user()->email }}"
+                                                    name="email">
+                                            @else
+                                                <input type="text" class="form-control" id="email" required
+                                                    placeholder="Digite o seu email" value="{{ session('email') }}"
+                                                    name="email">
+                                            @endif
                                         </div>
 
                                     </div>
