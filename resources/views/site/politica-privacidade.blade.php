@@ -1,7 +1,6 @@
 @extends("layouts.app")
 @section('content')
-    <!-- Page Header
-                                                                                                                                                            ============================================= -->
+    <!-- Page Header  ============================================= -->
     <div class="page-header page-header-text-light bg-dark">
         <div class="container">
             <div class="row align-items-center">
