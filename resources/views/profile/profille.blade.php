@@ -190,24 +190,26 @@
                 withCSRF: ['_token', '{{ csrf_token() }}'],
                 onSuccess: function(message, element, status) {
                     console.log(message);
-                    $.toast({
-                        heading: 'Success',
-                        text: 'Votre photo a été modifiée avec succès.',
-                        showHideTransition: 'slide',
-                        hideAfter: 10000,
-                        icon: 'success',
-                        position: "top-right"
-                    })
+                    // $.toast({
+                    //     heading: 'Success',
+                    //     text: 'Votre photo a été modifiée avec succès.',
+                    //     showHideTransition: 'slide',
+                    //     hideAfter: 10000,
+                    //     icon: 'success',
+                    //     position: "top-right"
+                    // })
                 },
                 onError: function(message, element, status) {
-                    $.toast({
-                        heading: 'Attention',
-                        hideAfter: 15000,
-                        text: "En raison d'une erreur, nous n'avons pas pu mettre à jour votre photo, veuillez vérifier que l'extension est correcte et réessayer.",
-                        showHideTransition: 'slide',
-                        icon: 'warning',
-                        position: "top-right"
-                    })
+                    console.log(message);
+
+                    // $.toast({
+                    //     heading: 'Attention',
+                    //     hideAfter: 15000,
+                    //     text: "En raison d'une erreur, nous n'avons pas pu mettre à jour votre photo, veuillez vérifier que l'extension est correcte et réessayer.",
+                    //     showHideTransition: 'slide',
+                    //     icon: 'warning',
+                    //     position: "top-right"
+                    // })
                 }
             });
         </script>
