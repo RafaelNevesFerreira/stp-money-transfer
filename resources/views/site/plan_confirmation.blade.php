@@ -40,7 +40,7 @@
                         <div class="my-4">
                             <p class="text-success text-20 lh-1"><i class="fas fa-check-circle"></i></p>
                             <p class="text-success text-8 fw-500 lh-1">Sucesso!</p>
-                            <p class="lead">Sua Transição Foi Feita Com Sucesso</p>
+                            <p class="lead">Sua Transação Foi Feita Com Sucesso</p>
                         </div>
                         <p class="text-3 mb-4">Você enviou <span class="text-4 fw-500">{{ $valor }}
                                 {{ $moeda }}</span> para <span class="fw-500">{{ $receptor }}</span>
