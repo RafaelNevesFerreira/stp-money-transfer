@@ -84,13 +84,14 @@
     <!-- Video Modal end -->
 
     <!-- Script -->
+    <script src="{{ asset('plugins/ijaboCropTool.min.js') }}"></script>
+
     <script src="{{ asset('assets/js/maskmoney.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('assets/js/owl-carousel.min.js') }}"></script>
     <script src="{{asset("assets/js/moment.min.js")}}"></script>
     <script src="{{asset("assets/js/daterangepicker.js")}}"></script>
-    <script src="{{ asset('plugins/ijaboCropTool.min.js') }}"></script>
 
     <script>
         $(function() {
