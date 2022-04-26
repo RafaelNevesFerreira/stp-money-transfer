@@ -24,6 +24,7 @@
 ============================================= -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/all.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('plugins/ijaboCropTool.min.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-select.min.css') }}" />
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
@@ -89,6 +90,8 @@
     <script src="{{ asset('assets/js/owl-carousel.min.js') }}"></script>
     <script src="{{asset("assets/js/moment.min.js")}}"></script>
     <script src="{{asset("assets/js/daterangepicker.js")}}"></script>
+    <script src="{{ asset('plugins/ijaboCropTool.min.js') }}"></script>
+
     <script>
         $(function() {
             'use strict';
