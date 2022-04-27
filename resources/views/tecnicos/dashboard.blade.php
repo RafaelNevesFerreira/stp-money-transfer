@@ -36,7 +36,7 @@
                                             <div class="col-sm-6 col-lg-3">
                                                 <div class="card shadow-none m-0">
                                                     <div class="card-body text-center">
-                                                        <i class="dripicons-briefcase text-muted" style="font-size: 24px;"></i>
+                                                        <i class="dripicons-calendar text-muted" style="font-size: 24px;"></i>
                                                         <h3><span>29</span></h3>
                                                         <p class="text-muted font-15 mb-0">Total Projects</p>
                                                     </div>
