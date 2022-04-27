@@ -72,9 +72,9 @@ Route::controller(ProfileController::class)->group(function () {
 Route::controller(TecnicoController::class)->group(function () {
     Route::middleware(["tecnico"])->group(function () {
         Route::prefix("tecnico")->group(function () {
-            //tecnico.dashboard
             Route::get("dashboard", "dashboard")->name("tecnico.dashboard");
             Route::get("transactions", "transactions")->name("tecnico.transactions");
+            Route::get("transactions/{id}", "transaction_details")->name("tecnico.transaction.details");
         });
     });
 });

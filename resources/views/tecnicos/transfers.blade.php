@@ -101,7 +101,7 @@
                                                     </td>
 
                                                     <td>
-                                                        <a href="#" class="action-icon"> <i
+                                                        <a href="{{ route("tecnico.transaction.details",$transfer->id)}}" class="action-icon"> <i
                                                                 class="mdi mdi-square-edit-outline"></i>
                                                         </a>
                                                     </td>

@@ -32,6 +32,11 @@ class TecnicoController extends Controller
     public function transactions()
     {
         $transfers = $this->transfer->all();
-        return view("tecnicos.transfers",compact("transfers"));
+        return view("tecnicos.transfers", compact("transfers"));
+    }
+
+    public function transaction_details($id)
+    {
+        return view("tecnicos.details");
     }
 }
