@@ -16,12 +16,12 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                                    <li class="breadcrumb-item active">Sellers</li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">DashBoard</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Transações</a></li>
+                                    <li class="breadcrumb-item active">Todas</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Sellers</h4>
+                            <h4 class="page-title">Transações</h4>
                         </div>
                     </div>
                 </div>
@@ -33,9 +33,8 @@
                             <div class="card-body">
 
                                 <div class="table-responsive">
-                                    <table
-                                        class="table table-centered table-borderless table-hover w-100 dt-responsive nowrap"
-                                        id="products-datatable">
+                                    <table id="products-datatable"
+                                        class="table table-centered table-borderless table-hover w-100 dt-responsive nowrap">
                                         <thead class="table-light">
                                             <tr>
                                                 <th style="width: 20px;">
@@ -44,12 +43,12 @@
                                                         <label class="form-check-label" for="customCheck1">&nbsp;</label>
                                                     </div>
                                                 </th>
-                                                <th>Seller</th>
-                                                <th>Store Name</th>
-                                                <th>Products</th>
-                                                <th>Wallet Balance</th>
-                                                <th>Create Date</th>
-                                                <th>Revenue</th>
+                                                <th>De</th>
+                                                <th>Para</th>
+                                                <th>Valor enviado</th>
+                                                <th>Codigo</th>
+                                                <th>Status</th>
+                                                <th>Enviado</th>
                                                 <th style="width: 75px;">Action</th>
                                             </tr>
                                         </thead>
@@ -60,39 +59,44 @@
                                                         <div class="form-check">
                                                             <input type="checkbox" class="form-check-input"
                                                                 id="customCheck2">
-                                                            <label class="form-check-label"
-                                                                for="customCheck2">&nbsp;</label>
+
                                                         </div>
                                                     </td>
                                                     <td class="table-user">
-                                                        <img src="assets/images/users/avatar-4.jpg" alt="table-user"
-                                                            class="me-2 rounded-circle">
-                                                        <a href="javascript:void(0);" class="text-body fw-semibold">Paul J.
-                                                            Friend</a>
+                                                        <a href="javascript:void(0);" class="text-body fw-semibold">
+                                                            {{ $transfer->name }}
+                                                        </a>
+                                                    </td>
+
+                                                    <td>
+                                                        <span
+                                                            class="fw-semibold">{{ $transfer->destinatary_name }}</span>
                                                     </td>
                                                     <td>
-                                                        Homovee
+                                                        {{ $transfer->value_sended }} {{ $transfer->currency }}
+
                                                     </td>
                                                     <td>
-                                                        <span class="fw-semibold">128</span>
+                                                        {{ $transfer->transfer_code }}
+                                                    </td>
+
+                                                    <td>
+                                                        @if ($transfer->status === 'received')
+                                                            <span class="badge badge-success-lighten">Recebido</span>
+                                                        @elseif ($transfer->status === 'sended')
+                                                            <span class="badge badge-warning-lighten">A receber</span>
+                                                        @else
+                                                            <span class="badge badge-danger-lighten">Reemborsado</span>
+                                                        @endif
                                                     </td>
                                                     <td>
-                                                        $128,250
-                                                    </td>
-                                                    <td>
-                                                        07/07/2018
-                                                    </td>
-                                                    <td>
-                                                        <div class="spark-chart"
-                                                            data-dataset="[25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54]">
-                                                        </div>
+                                                        {{ $transfer->created_at }}
                                                     </td>
 
                                                     <td>
                                                         <a href="javascript:void(0);" class="action-icon"> <i
-                                                                class="mdi mdi-square-edit-outline"></i></a>
-                                                        <a href="javascript:void(0);" class="action-icon"> <i
-                                                                class="mdi mdi-delete"></i></a>
+                                                                class="mdi mdi-square-edit-outline"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @empty

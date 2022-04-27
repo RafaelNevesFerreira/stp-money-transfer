@@ -6,9 +6,7 @@ class AbstractRepository
 {
     public function all()
     {
-        return $this->model::query()->when(request()->has("title"), function ($query) {
-            $query->where("title", "like", "%" . request("title") . "%");
-        })->latest()->get();
+        return $this->model::latest()->get();
     }
 
     public function whereSlug($slug)
