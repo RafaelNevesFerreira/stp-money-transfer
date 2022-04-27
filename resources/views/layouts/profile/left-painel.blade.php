@@ -24,9 +24,9 @@
   =============================== -->
     <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
         <div class="text-17 text-light my-3"><i class="fas fa-comments"></i></div>
-        <h3 class="text-5 fw-400 my-4">Need Help?</h3>
-        <p class="text-muted opacity-8 mb-4">Have questions or concerns regrading your account?<br>
-            Our experts are here to help!.</p>
+        <h3 class="text-5 fw-400 my-4">Precisa de ajuda?</h3>
+        <p class="text-muted opacity-8 mb-4">Tem alguma duvida em relação as funcionalidades do site?<br>
+            Nosso pessoal està disponivel 24/24, não esite em fazer contato!.</p>
         <div class="d-grid"><a href="#" class="btn btn-primary">Chate with Us</a></div>
     </div>
     <!-- Need Help? End -->
