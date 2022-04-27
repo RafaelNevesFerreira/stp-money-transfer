@@ -78,7 +78,9 @@ Route::controller(TecnicoController::class)->group(function () {
 });
 
 Route::middleware(["dashboard"])->group(function () {
-    Route::get("dashboard");
+    Route::get("dashboard",function(){
+        return "memes";
+    });
 });
 
 require __DIR__ . '/auth.php';
