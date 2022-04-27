@@ -51,6 +51,7 @@
                                                 <th>Status</th>
                                                 <th>Enviado</th>
                                                 <th>Dobras</th>
+                                                <th style="width: 75px;">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -74,13 +75,12 @@
                                                             class="fw-semibold">{{ $transfer->destinatary_name }}</span>
                                                     </td>
                                                     <td>
-                                                        {{ $transfer->value_sended }}
                                                         @if ($transfer->currency === 'eur')
-                                                            €
+                                                            {{ number_format($transfer->value_sended * (int)env('EUR_CAMBIO_VALUE'),2,",",".") }}
                                                         @elseif ($transfer->currency === 'usd')
-                                                            $
+                                                            {{ number_format($transfer->value_sended * (int)env("USD_CAMBIO_VALUE"),2,",",".") }}
                                                         @else
-                                                            £
+                                                            {{ number_format($transfer->value_sended * (int)env("GBP_CAMBIO_VALUE"),2,",",".") }}
                                                         @endif
 
                                                     </td>
@@ -102,13 +102,9 @@
                                                     </td>
 
                                                     <td>
-                                                        @if ($transfer->currency === 'eur')
-                                                            {{ number_format($transfer->value_sended * (int)env('EUR_CAMBIO_VALUE'),2,",",".") }}
-                                                        @elseif ($transfer->currency === 'usd')
-                                                            {{ number_format($transfer->value_sended * (int)env("USD_CAMBIO_VALUE"),2,",",".") }}
-                                                        @else
-                                                            {{ number_format($transfer->value_sended * (int)env("GBP_CAMBIO_VALUE"),2,",",".") }}
-                                                        @endif
+                                                        <a href="javascript:void(0);" class="action-icon"> <i
+                                                                class="mdi mdi-square-edit-outline"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @empty
