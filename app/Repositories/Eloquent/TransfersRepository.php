@@ -99,6 +99,6 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function to_received_this_month()
     {
-        return $this->model::where("status", "reimbursed")->whereMonth('created_at', date("m"))->count();
+        return $this->model::where("status", "sended")->whereMonth('created_at', date("m"))->count();
     }
 }
