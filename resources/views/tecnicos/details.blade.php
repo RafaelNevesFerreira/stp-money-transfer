@@ -54,15 +54,15 @@
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title mb-3">Shipping Information</h4>
+                                <h4 class="header-title mb-3">Informações do Emisor</h4>
 
-                                <h5>Stanley Jones</h5>
+                                <h5>{{$transfer->name}}</h5>
 
                                 <address class="mb-0 font-14 address-lg">
-                                    795 Folsom Ave, Suite 600<br>
-                                    San Francisco, CA 94107<br>
-                                    <abbr title="Phone">P:</abbr> (123) 456-7890 <br />
-                                    <abbr title="Mobile">M:</abbr> (+01) 12345 67890
+                                    {{$transfer->address}}<br>
+                                    {{$transfer->country}}<br>
+                                    <abbr title="Phone">P:</abbr> {{$transfer->phone_number}} <br />
+                                    <abbr title="Email">Email:</abbr> {{$transfer->email}}
                                 </address>
 
                             </div>
@@ -72,12 +72,17 @@
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title mb-3">Billing Information</h4>
+                                <h4 class="header-title mb-3">Informações do Pagamento</h4>
 
                                 <ul class="list-unstyled mb-0">
                                     <li>
-                                        <p class="mb-2"><span class="fw-bold me-2">Payment Type:</span> Credit
-                                            Card</p>
+                                        <p class="mb-2"><span class="fw-bold me-2">Tipo de Pagamento:</span>
+                                            @if ($transfer->plan)
+                                            Pago em prestções
+                                            @else
+                                            Pago na totalidade
+                                            @endif
+                                            </p>
                                         <p class="mb-2"><span class="fw-bold me-2">Provider:</span> Visa
                                             ending in 2851</p>
                                         <p class="mb-2"><span class="fw-bold me-2">Valid Date:</span> 02/2020
