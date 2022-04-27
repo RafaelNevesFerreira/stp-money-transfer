@@ -13,11 +13,11 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
     <!-- App css -->
-    <link href="{{ asset('dashboard/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('dashboard/css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style" />
-    <link href="{{ asset('dashboard/css/app-dark.min.css') }}" rel="stylesheet" type="text/css" id="dark-style" />
+    <link href="{{ asset('assets/dashboard/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/dashboard/css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style" />
+    <link href="{{ asset('assets/dashboard/css/app-dark.min.css') }}" rel="stylesheet" type="text/css" id="dark-style" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="{{ asset('dashboard/js/chart.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/chart.min.js') }}"></script>
 
 </head>
 
@@ -42,8 +42,8 @@
     <!-- /End-bar -->
 
     <!-- bundle -->
-    <script src="{{ asset('dashboard/js/vendor.min.js') }}"></script>
-    <script src="{{ asset('dashboard/js/app.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/vendor.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/app.min.js') }}"></script>
 
 </body>
 

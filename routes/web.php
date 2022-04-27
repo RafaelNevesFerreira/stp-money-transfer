@@ -78,7 +78,7 @@ Route::controller(TecnicoController::class)->group(function () {
 });
 
 Route::middleware(["dashboard"])->group(function () {
-    Route::get("dashboard",function(){
+    Route::get("dashboard", function () {
         return "memes";
     });
 });
