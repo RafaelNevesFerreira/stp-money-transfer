@@ -125,7 +125,7 @@
                                                             {{ $transfer->created_at->diffForHumans() }}</h5>
                                                     </td>
                                                     <td class="table-action" style="width: 90px;">
-                                                        <a href="#" title="Detalhes" class="action-icon"> <i
+                                                        <a href="{{route("tecnico.transaction.details",$transfer->id)}}" title="Detalhes" class="action-icon"> <i
                                                                 class="mdi mdi-pencil" ></i></a>
                                                     </td>
                                                 </tr>

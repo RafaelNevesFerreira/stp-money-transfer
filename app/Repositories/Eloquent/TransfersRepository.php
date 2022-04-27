@@ -106,4 +106,12 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     {
         return $this->model::whereDay('created_at', date("d"))->limit(4)->get();
     }
+
+    public function change_status($id)
+    {
+        $this->model::where("id", $id)->update([
+            "status" => "received",
+            "received_at" => now()
+        ]);
+    }
 }

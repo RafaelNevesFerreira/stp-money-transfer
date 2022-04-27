@@ -12,4 +12,5 @@ interface TransfersRepositoryInterface{
     public function abonement_this_month();
     public function to_received_this_month();
     public function transfers_today();
+    public function change_status($id);
 }

@@ -35,13 +35,29 @@
                                     <span data-bs-container="#tooltip-container" data-bs-toggle="tooltip"
                                         data-bs-placement="bottom" title="{{ $transfer->created_at }}">Processado</span>
                                 </div>
+
+                                <div class="step-item">
+                                    <span data-bs-container="#tooltip-container" data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom">Disponivel</span>
+                                </div>
                                 <div class="step-item current">
                                     <span data-bs-container="#tooltip-container" data-bs-toggle="tooltip"
-                                        data-bs-placement="bottom" title="{{ $transfer->received_at }}">Recebido</span>
+                                        data-bs-placement="bottom" title="{{ $transfer->received_at }}">
+                                        @if ($transfer->status === 'reimbursed')
+                                            Cancelado
+                                        @else
+                                            Recebido
+                                        @endif
+
+                                    </span>
                                 </div>
                             </div>
 
-                            <div class="process-line" style="width: 50%;"></div>
+                            @if ($transfer->received_at || $transfer->status === 'reimbursed')
+                                <div class="process-line" style="width: 100%;"></div>
+                            @else
+                                <div class="process-line" style="width: 50%;"></div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -78,18 +94,35 @@
                                     <li>
                                         <p class="mb-2"><span class="fw-bold me-2">Tipo de Pagamento:</span>
                                             @if ($transfer->plan)
-                                                Pago em prestções
-                                                {{ (($transfer->value_sended + $transfer->tax) / 100) * 20 + (($transfer->value_sended + $transfer->tax) / 2) }}
+                                                Pagar em prestações
+                                                {{ ((((int) $transfer->value_sended + $transfer->tax) * 20) / 100 +($transfer->value_sended + $transfer->tax)) /2 }}
+                                                @if ($transfer->currency === 'eur')
+                                                    €
+                                                @elseif ($transfer->currency === 'usd')
+                                                    $
+                                                @else
+                                                    £
+                                                @endif
                                                 por mês
                                             @else
                                                 Pago na totalidade
                                             @endif
                                         </p>
-                                        <p class="mb-2"><span class="fw-bold me-2">Valor:</span>
-                                            Visa ending in 2851</p>
-                                        <p class="mb-2"><span class="fw-bold me-2">Valid Date:</span> 02/2020
+                                        <p class="mb-2"><span class="fw-bold me-2">Valor enviado:</span>
+                                            {{ number_format($transfer->value_sended, 2, ',', '.') }}
+                                            @if ($transfer->currency === 'eur')
+                                                €
+                                            @elseif ($transfer->currency === 'usd')
+                                                $
+                                            @else
+                                                £
+                                            @endif
                                         </p>
-                                        <p class="mb-0"><span class="fw-bold me-2">CVV:</span> xxx</p>
+
+                                        <p class="mb-2"><span class="fw-bold me-2">Data de Envio:</span>
+                                            {{ $transfer->created_at->format("d-m-Y") }} às {{ $transfer->created_at->format("H:i:s") }}
+                                        </p>
+
                                     </li>
                                 </ul>
 
@@ -100,13 +133,36 @@
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title mb-3">Delivery Info</h4>
+                                <h4 class="header-title mb-3">Informações Recepção</h4>
 
                                 <div class="text-center">
-                                    <i class="mdi mdi-truck-fast h2 text-muted"></i>
-                                    <h5><b>UPS Delivery</b></h5>
-                                    <p class="mb-1"><b>Order ID :</b> xxxx235</p>
-                                    <p class="mb-0"><b>Payment Mode :</b> COD</p>
+                                    {{-- <i class="mdi mdi-truck-fast h2 text-muted"></i> --}}
+                                    <h5><b>{{ $transfer->destinatary_name }}</b></h5>
+                                    <p class="mb-1"><b>Codigo :</b> #{{ $transfer->transfer_code }}</p>
+                                    <p class="mb-0"><span class="fw-bold me-2">Valor a receber:</span>
+                                        @if ($transfer->currency === 'eur')
+                                            {{ number_format($transfer->value_sended * (int) env('EUR_CAMBIO_VALUE'), 2, ',', '.') }}
+                                            dbs
+                                        @elseif ($transfer->currency === 'usd')
+                                            {{ number_format($transfer->value_sended * (int) env('USD_CAMBIO_VALUE'), 2, ',', '.') }}
+                                            dbs
+                                        @else
+                                            {{ number_format($transfer->value_sended * (int) env('GBP_CAMBIO_VALUE'), 2, ',', '.') }}
+                                            dbs
+                                        @endif
+                                    </p>
+                                    <p class="mt-1">
+                                        @if (!$transfer->received_at)
+                                            <span class="fw-bold me-2 ">Recebido:</span>
+                                            <input type="checkbox" id="recebido" data-id="{{ $transfer->id }}"
+                                                data-switch="success" />
+                                            <label for="recebido" class="label_recebido" data-on-label="Sim"
+                                                data-off-label="não"></label>
+                                        @else
+                                            <span class="fw-bold me-2">Recebido:</span>
+                                            {{ $transfer->received_at }}
+                                        @endif
+                                    </p>
                                 </div>
                             </div>
                         </div>
