@@ -33,11 +33,11 @@
                             <div class="horizontal-steps-content">
                                 <div class="step-item">
                                     <span data-bs-container="#tooltip-container" data-bs-toggle="tooltip"
-                                        data-bs-placement="bottom" title="{{$transfer->created_at}}">Processado</span>
+                                        data-bs-placement="bottom" title="{{ $transfer->created_at }}">Processado</span>
                                 </div>
                                 <div class="step-item current">
                                     <span data-bs-container="#tooltip-container" data-bs-toggle="tooltip"
-                                        data-bs-placement="bottom" title="{{$transfer->received_at}}">Recebido</span>
+                                        data-bs-placement="bottom" title="{{ $transfer->received_at }}">Recebido</span>
                                 </div>
                             </div>
 
@@ -56,13 +56,13 @@
                             <div class="card-body">
                                 <h4 class="header-title mb-3">Informações do Emisor</h4>
 
-                                <h5>{{$transfer->name}}</h5>
+                                <h5>{{ $transfer->name }}</h5>
 
                                 <address class="mb-0 font-14 address-lg">
-                                    {{$transfer->address}}<br>
-                                    {{$transfer->country}}<br>
-                                    <abbr title="Phone">P:</abbr> {{$transfer->phone_number}} <br />
-                                    <abbr title="Email">Email:</abbr> {{$transfer->email}}
+                                    {{ $transfer->address }}<br>
+                                    {{ $transfer->country }}<br>
+                                    <abbr title="Phone">P:</abbr> {{ $transfer->phone_number }} <br />
+                                    <abbr title="Email">Email:</abbr> {{ $transfer->email }}
                                 </address>
 
                             </div>
@@ -78,13 +78,15 @@
                                     <li>
                                         <p class="mb-2"><span class="fw-bold me-2">Tipo de Pagamento:</span>
                                             @if ($transfer->plan)
-                                            Pago em prestções
+                                                Pago em prestções
+                                                {{ (($transfer->value_sended + $transfer->tax) / 100) * 20 + ($transfer->value_sended + $transfer->tax) / 2 }}
+                                                por mês
                                             @else
-                                            Pago na totalidade
+                                                Pago na totalidade
                                             @endif
-                                            </p>
-                                        <p class="mb-2"><span class="fw-bold me-2">Provider:</span> Visa
-                                            ending in 2851</p>
+                                        </p>
+                                        <p class="mb-2"><span class="fw-bold me-2">Valor:</span>
+                                            Visa ending in 2851</p>
                                         <p class="mb-2"><span class="fw-bold me-2">Valid Date:</span> 02/2020
                                         </p>
                                         <p class="mb-0"><span class="fw-bold me-2">CVV:</span> xxx</p>

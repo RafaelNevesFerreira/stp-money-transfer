@@ -178,9 +178,3 @@
         </div>
         <!-- Content end -->
     @endsection
-
-    @section('scripts')
-        <script>
-
-        </script>
-    @endsection
