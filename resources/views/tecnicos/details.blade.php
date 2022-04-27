@@ -33,11 +33,11 @@
                             <div class="horizontal-steps-content">
                                 <div class="step-item">
                                     <span data-bs-container="#tooltip-container" data-bs-toggle="tooltip"
-                                        data-bs-placement="bottom" title="20/08/2018 07:24 PM">Processado</span>
+                                        data-bs-placement="bottom" title="{{$transfer->created_at}}">Processado</span>
                                 </div>
                                 <div class="step-item current">
                                     <span data-bs-container="#tooltip-container" data-bs-toggle="tooltip"
-                                        data-bs-placement="bottom" title="21/08/2018 11:32 AM">Recebido</span>
+                                        data-bs-placement="bottom" title="{{$transfer->received_at}}">Recebido</span>
                                 </div>
                             </div>
 
