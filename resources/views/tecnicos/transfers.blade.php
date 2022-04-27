@@ -101,7 +101,7 @@
                                                     </td>
 
                                                     <td>
-                                                        <a href="javascript:void(0);" class="action-icon"> <i
+                                                        <a href="#" class="action-icon"> <i
                                                                 class="mdi mdi-square-edit-outline"></i>
                                                         </a>
                                                     </td>
