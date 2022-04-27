@@ -3,7 +3,7 @@
     <div class="content-page">
         <div class="content">
             <!-- Topbar Start -->
-            @include("tecnicos.topbar")
+            @include('tecnicos.topbar')
             <!-- end Topbar -->
 
             <!-- Start Content-->
@@ -33,117 +33,21 @@
                             <div class="horizontal-steps-content">
                                 <div class="step-item">
                                     <span data-bs-container="#tooltip-container" data-bs-toggle="tooltip"
-                                        data-bs-placement="bottom" title="20/08/2018 07:24 PM">Order Placed</span>
+                                        data-bs-placement="bottom" title="20/08/2018 07:24 PM">Processado</span>
                                 </div>
                                 <div class="step-item current">
                                     <span data-bs-container="#tooltip-container" data-bs-toggle="tooltip"
-                                        data-bs-placement="bottom" title="21/08/2018 11:32 AM">Packed</span>
-                                </div>
-                                <div class="step-item">
-                                    <span>Shipped</span>
-                                </div>
-                                <div class="step-item">
-                                    <span>Delivered</span>
+                                        data-bs-placement="bottom" title="21/08/2018 11:32 AM">Recebido</span>
                                 </div>
                             </div>
 
-                            <div class="process-line" style="width: 33%;"></div>
+                            <div class="process-line" style="width: 50%;"></div>
                         </div>
                     </div>
                 </div>
                 <!-- end row -->
 
 
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title mb-3">Items from Order #12537</h4>
-
-                                <div class="table-responsive">
-                                    <table class="table mb-0">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th>Item</th>
-                                                <th>Quantity</th>
-                                                <th>Price</th>
-                                                <th>Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>The Military Duffle Bag</td>
-                                                <td>3</td>
-                                                <td>$128</td>
-                                                <td>$384</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mountain Basket Ball</td>
-                                                <td>1</td>
-                                                <td>$199</td>
-                                                <td>$199</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Wavex Canvas Messenger Bag</td>
-                                                <td>5</td>
-                                                <td>$180</td>
-                                                <td>$900</td>
-                                            </tr>
-                                            <tr>
-                                                <td>The Utility Shirt</td>
-                                                <td>2</td>
-                                                <td>$79</td>
-                                                <td>$158</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- end table-responsive -->
-
-                            </div>
-                        </div>
-                    </div> <!-- end col -->
-
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title mb-3">Order Summary</h4>
-
-                                <div class="table-responsive">
-                                    <table class="table mb-0">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th>Description</th>
-                                                <th>Price</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Grand Total :</td>
-                                                <td>$1641</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Shipping Charge :</td>
-                                                <td>$23</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Estimated Tax : </td>
-                                                <td>$19.22</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Total :</th>
-                                                <th>$1683.22</th>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- end table-responsive -->
-
-                            </div>
-                        </div>
-                    </div> <!-- end col -->
-                </div>
-                <!-- end row -->
 
 
                 <div class="row">
