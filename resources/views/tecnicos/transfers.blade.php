@@ -50,7 +50,7 @@
                                                 <th>Codigo</th>
                                                 <th>Status</th>
                                                 <th>Enviado</th>
-                                                <th style="width: 75px;">Action</th>
+                                                <th style="width: 75px;">Ação</th>
                                             </tr>
                                         </thead>
                                         <tbody>
