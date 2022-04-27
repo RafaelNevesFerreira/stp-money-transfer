@@ -21,8 +21,8 @@ class UserProfilleMiddleware
             return $next($request);
         }else if(!Auth::check()){
             return redirect()->route("login");
-        }else{
-            return abort(404);
+        }else if (Auth::check() && Auth::user()->role === 2) {
+            return redirect()->route("tecnico.dashboard");
         }
     }
 }
