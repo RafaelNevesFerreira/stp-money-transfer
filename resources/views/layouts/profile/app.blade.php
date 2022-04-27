@@ -198,7 +198,7 @@
 
                     switch (data["status"]) {
                         case "sended":
-                            var status = "O Valor esta disponível para ser levantado"
+                            var status = "O Valor está  disponível para ser levantado"
                             break;
                         case "receveid":
                             var status = "O Valor ja foi Recebido"

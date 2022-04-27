@@ -39,7 +39,7 @@
                             sobre os tipos de dados que são coletados, os motivos da coleta e a forma como os usuários podem
                             gerenciar
                             ou excluir as suas informações pessoais.
-                            Esta Política de Privacidade aplica-se a todos os usuários e visitantes site
+                            Está  Política de Privacidade aplica-se a todos os usuários e visitantes site
                             {{ env('APP_NAME') }} e
                             integra os Termos e Condições Gerais de Uso do site {{ env('APP_NAME') }}.
                         </p>
