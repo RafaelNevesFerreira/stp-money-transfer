@@ -46,7 +46,7 @@
                                             <div class="col-sm-6 col-lg-3">
                                                 <div class="card shadow-none m-0 border-start">
                                                     <div class="card-body text-center">
-                                                        <i class="dripicons-checklist text-muted" style="font-size: 24px;"></i>
+                                                        <i class=" dripicons-warning text-muted" style="font-size: 24px;"></i>
                                                         <h3><span>715</span></h3>
                                                         <p class="text-muted font-15 mb-0">Total Tasks</p>
                                                     </div>
