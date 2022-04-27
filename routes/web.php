@@ -68,8 +68,16 @@ Route::controller(ProfileController::class)->group(function () {
     });
 });
 
+Route::controller(TecnicoController::class)->group(function () {
+    Route::middleware(["tecnico"])->group(function () {
+        Route::prefix("tecnico")->group(function () {
+            Route::get("dashboard", "dashboard")->name("tecnico.dashboard");
+        });
+    });
+});
+
 Route::middleware(["dashboard"])->group(function () {
-        Route::get("dashboard");
+    Route::get("dashboard");
 });
 
 require __DIR__ . '/auth.php';
