@@ -18,7 +18,7 @@ class Transfer extends Model
         "phone_number",
         "email",
         "value_sended",
-        "receveid_at",
+        "received_at",
         "plan",
         "tax",
         "destinatary_name",
