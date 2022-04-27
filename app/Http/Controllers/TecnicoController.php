@@ -28,4 +28,9 @@ class TecnicoController extends Controller
             "transfers_today"
         ));
     }
+
+    public function transactions()
+    {
+        return view("tecnicos.transfers");
+    }
 }

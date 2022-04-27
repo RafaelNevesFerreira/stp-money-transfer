@@ -82,70 +82,9 @@
 
 
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="dropdown float-end">
-                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="mdi mdi-dots-vertical"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Weekly Report</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Monthly Report</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Settings</a>
-                                    </div>
-                                </div>
-                                <h4 class="header-title mb-4">Project Status</h4>
 
-                                <div class="my-4 chartjs-chart" style="height: 202px;">
-                                    <canvas id="project-status-chart" data-colors="#0acf97,#727cf5,#fa5c7c"></canvas>
-                                </div>
 
-                                <div class="row text-center mt-2 py-2">
-                                    <div class="col-sm-4">
-                                        <div class="my-2 my-sm-0">
-                                            <i class="mdi mdi-trending-up text-success mt-3 h3"></i>
-                                            <h3 class="fw-normal">
-                                                <span>64%</span>
-                                            </h3>
-                                            <p class="text-muted mb-0">Completed</p>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="my-2 my-sm-0">
-                                            <i class="mdi mdi-trending-down text-primary mt-3 h3"></i>
-                                            <h3 class="fw-normal">
-                                                <span>26%</span>
-                                            </h3>
-                                            <p class="text-muted mb-0"> In-progress</p>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="my-2 my-sm-0">
-                                            <i class="mdi mdi-trending-down text-danger mt-3 h3"></i>
-                                            <h3 class="fw-normal">
-                                                <span>10%</span>
-                                            </h3>
-                                            <p class="text-muted mb-0"> Behind</p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- end row-->
-
-                            </div> <!-- end card body-->
-                        </div> <!-- end card -->
-                    </div><!-- end col-->
-
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="header-title mb-3">Transações do dia</h4>

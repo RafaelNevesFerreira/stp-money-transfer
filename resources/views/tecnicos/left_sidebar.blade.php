@@ -37,10 +37,10 @@
                 <div class="collapse" id="sidebarDashboards">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{route("tecnico.dashboard")}}">Analytics</a>
+                            <a href="{{route("tecnico.dashboard")}}">Home</a>
                         </li>
                         <li>
-                            <a href="dashboard-crm.html">CRM</a>
+                            <a href="{{route("tecnico.transactions")}}">Transactions</a>
                         </li>
                         <li>
                             <a href="index.html">Ecommerce</a>
