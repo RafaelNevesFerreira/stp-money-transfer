@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("phone_number");
             $table->string("country");
             $table->string("address");
-            $table->date("receveid_at")->nullable();
+            $table->date("received_at")->nullable();
             $table->float("value_sended");
             $table->string("currency");
             $table->boolean("plans");
