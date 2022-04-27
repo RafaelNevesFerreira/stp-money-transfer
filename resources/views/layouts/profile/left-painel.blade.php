@@ -5,7 +5,7 @@
     <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
         <div class="profile-thumb mt-3 mb-4">
             <img class="rounded-circle img-fluid user-image"
-                src="{{ asset('profile/images') . '/' . Auth::user()->avatar }}" alt="user avatar">
+                src="{{ asset('images/profile') . '/' . Auth::user()->avatar }}" alt="user avatar">
             <div class="profile-thumb-edit bg-primary text-white" data-bs-toggle="tooltip" title="Mudar foto">
                 <i class="fas fa-camera position-absolute"></i>
                 <input type="file" name="file" class="custom-file-input" id="file">
