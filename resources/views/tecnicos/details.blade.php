@@ -79,7 +79,7 @@
                                         <p class="mb-2"><span class="fw-bold me-2">Tipo de Pagamento:</span>
                                             @if ($transfer->plan)
                                                 Pago em prestções
-                                                {{ (($transfer->value_sended + $transfer->tax) / 100)  + ($transfer->value_sended + $transfer->tax) / 2 }}
+                                                {{ (($transfer->value_sended + $transfer->tax) / 100) * 20  }}
                                                 por mês
                                             @else
                                                 Pago na totalidade
