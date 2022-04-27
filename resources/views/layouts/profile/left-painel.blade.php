@@ -27,7 +27,7 @@
         <h3 class="text-5 fw-400 my-4">Precisa de ajuda?</h3>
         <p class="text-muted opacity-8 mb-4">Tem alguma duvida em relação as funcionalidades do site?<br>
             Nosso pessoal està disponivel 24/24, não esite em fazer contato!.</p>
-        <div class="d-grid"><a href="#" class="btn btn-primary">Chate with Us</a></div>
+        <div class="d-grid"><a href="#" class="btn btn-primary">Entre em contato</a></div>
     </div>
     <!-- Need Help? End -->
 
