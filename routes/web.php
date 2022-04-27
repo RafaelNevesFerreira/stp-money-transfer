@@ -7,6 +7,7 @@ use App\Http\Controllers\PaymentTipeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SendMoneyController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\TecnicoController;
 use Illuminate\Support\Facades\Route;
 
 /*

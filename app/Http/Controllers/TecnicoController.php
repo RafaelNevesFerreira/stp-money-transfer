@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class TecnicoController extends Controller
 {
-    //
+    public function dashboard()
+    {
+        return view("tecnicos.dashboard");
+    }
 }
