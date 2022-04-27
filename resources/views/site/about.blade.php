@@ -119,7 +119,7 @@
                     <div class="item mh-100">
                         <div class="testimonial rounded text-center p-4">
                             <p class="text-9 text-muted opacity-2 mb-0"><i class="fa fa-quote-left"></i></p>
-                            <p class="text-4">“Envios rápidos e fáceis, disponivel para muitas moedas
+                            <p class="text-4">“Envios rápidos e fáceis, disponível para muitas moedas
                                 diferentes. Muito
                                 melhor que as transferências bancarias.”</p>
                             <strong class="d-block fw-500">Garcia Neves</strong> <span class="text-muted">Portugal<span>

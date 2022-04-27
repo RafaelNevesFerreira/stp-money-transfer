@@ -213,7 +213,7 @@
                         <div class="featured-box style-1">
                             <div class="featured-box-icon text-primary"> <i class="far fa-check-circle"></i> </div>
                             <h3>24/7 serviço cliente</h3>
-                            <p>O Nosso suporte està disponivel 24/7 para o ajudar da melhor forma possivel.</p>
+                            <p>O Nosso suporte està disponível 24/7 para o ajudar da melhor forma possivel.</p>
                         </div>
                     </div>
                 </div>
@@ -272,7 +272,7 @@
                             <div class="item">
                                 <div class="testimonial rounded text-center p-4">
                                     <p class="text-9 text-muted opacity-2 mb-2"><i class="fa fa-quote-left"></i></p>
-                                    <p class="text-4">"Envios rápidos e fáceis, disponivel para muitas moedas
+                                    <p class="text-4">"Envios rápidos e fáceis, disponível para muitas moedas
                                         diferentes. Muito
                                         melhor que as transferências bancarias.”</p>
                                     <strong class="d-block fw-500">Garcia Neves</strong> <span
