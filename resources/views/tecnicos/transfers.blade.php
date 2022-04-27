@@ -16,7 +16,8 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="{{ route('tecnico.dashboard') }}">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('tecnico.dashboard') }}">Dashboard</a>
+                                    </li>
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Transações</a></li>
                                     <li class="breadcrumb-item active">Todas</li>
                                 </ol>
@@ -49,7 +50,7 @@
                                                 <th>Codigo</th>
                                                 <th>Status</th>
                                                 <th>Enviado</th>
-                                                <th style="width: 75px;">Action</th>
+                                                <th>Dobras</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -101,9 +102,13 @@
                                                     </td>
 
                                                     <td>
-                                                        <a href="javascript:void(0);" class="action-icon"> <i
-                                                                class="mdi mdi-square-edit-outline"></i>
-                                                        </a>
+                                                        @if ($transfer->currency === 'eur')
+                                                            {{ number_format($transfer->value_sended * (int)env('EUR_CAMBIO_VALUE'),2,",",".") }}
+                                                        @elseif ($transfer->currency === 'usd')
+                                                            {{ number_format($transfer->value_sended * (int)env("USD_CAMBIO_VALUE"),2,",",".") }}
+                                                        @else
+                                                            {{ number_format($transfer->value_sended * (int)env("GBP_CAMBIO_VALUE"),2,",",".") }}
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @empty
