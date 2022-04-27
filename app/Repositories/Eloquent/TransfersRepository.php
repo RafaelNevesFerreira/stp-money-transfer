@@ -41,7 +41,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
         if (Auth::check()) {
             $email = Auth::user()->email;
-        }else{
+        } else {
             $email = session("email");
         }
         $this->model::create([
@@ -65,20 +65,40 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     {
 
         return app(Pipeline::class)
-        ->send($this->model::where("email", Auth::user()->email))
-        ->through([
-            StatusFilter::class,
+            ->send($this->model::where("email", Auth::user()->email))
+            ->through([
+                StatusFilter::class,
 
-            DateFilter::class,
-        ])
-        ->thenReturn()
-        ->latest()
-        ->paginate(6);
+                DateFilter::class,
+            ])
+            ->thenReturn()
+            ->latest()
+            ->paginate(6);
     }
 
     public function details($id)
     {
 
         return $this->model::where("id", $id)->firstOrFail();
+    }
+
+    public function received_this_month()
+    {
+        return $this->model::where("status", "received")->whereMonth('created_at', date("m"))->count();
+    }
+
+    public function reimbursed_this_month()
+    {
+        return $this->model::where("status", "reimbursed")->whereMonth('created_at', date("m"))->count();
+    }
+
+    public function abonement_this_month()
+    {
+        return $this->model::where("plan", 1)->whereMonth('created_at', date("m"))->count();
+    }
+
+    public function to_received_this_month()
+    {
+        return $this->model::where("status", "reimbursed")->whereMonth('created_at', date("m"))->count();
     }
 }

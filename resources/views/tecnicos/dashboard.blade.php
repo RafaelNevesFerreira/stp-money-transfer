@@ -37,8 +37,8 @@
                                                 <div class="card shadow-none m-0">
                                                     <div class="card-body text-center">
                                                         <i class="dripicons-calendar text-muted" style="font-size: 24px;"></i>
-                                                        <h3><span>29</span></h3>
-                                                        <p class="text-muted font-15 mb-0">Hoje</p>
+                                                        <h3><span>{{$abonement_this_month}}</span></h3>
+                                                        <p class="text-muted font-15 mb-0">Prestações</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -47,7 +47,7 @@
                                                 <div class="card shadow-none m-0 border-start">
                                                     <div class="card-body text-center">
                                                         <i class=" dripicons-warning text-muted" style="font-size: 24px;"></i>
-                                                        <h3><span>715</span></h3>
+                                                        <h3><span>{{$reimbursed_this_month}}</span></h3>
                                                         <p class="text-muted font-15 mb-0">Canceladas</p>
                                                     </div>
                                                 </div>
@@ -57,7 +57,7 @@
                                                 <div class="card shadow-none m-0 border-start">
                                                     <div class="card-body text-center">
                                                         <i class="dripicons-broadcast text-muted" style="font-size: 24px;"></i>
-                                                        <h3><span>31</span></h3>
+                                                        <h3><span>{{$received_this_month}}</span></h3>
                                                         <p class="text-muted font-15 mb-0">Recebido</p>
                                                     </div>
                                                 </div>
