@@ -11,4 +11,5 @@ interface TransfersRepositoryInterface{
     public function reimbursed_this_month();
     public function abonement_this_month();
     public function to_received_this_month();
+    public function transfers_today();
 }

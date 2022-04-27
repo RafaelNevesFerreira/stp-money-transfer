@@ -101,4 +101,9 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     {
         return $this->model::where("status", "sended")->whereMonth('created_at', date("m"))->count();
     }
+
+    public function transfers_today()
+    {
+        return $this->model::whereDay('created_at', date("d"))->count();
+    }
 }
