@@ -8,7 +8,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
                 <form class="p-3">
-                    <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                    <input type="text" class="form-control" placeholder="Pesquisar ..." aria-label="Recipient's username">
                 </form>
             </div>
         </li>
@@ -20,14 +20,14 @@
                     <img src="{{asset("images/tecnicos/UIMG202204266268204a466bc.jpg")}}" alt="user-image" class="rounded-circle">
                 </span>
                 <span>
-                    <span class="account-user-name">Dominic Keller</span>
-                    <span class="account-position">Founder</span>
+                    <span class="account-user-name">{{Auth::user()->name}}</span>
+                    <span class="account-position">Tecnico</span>
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                 <!-- item-->
                 <div class=" dropdown-header noti-title">
-                    <h6 class="text-overflow m-0">Welcome !</h6>
+                    <h6 class="text-overflow m-0">Bem-vindo !</h6>
                 </div>
 
                 <!-- item-->
@@ -69,9 +69,9 @@
     <div class="app-search dropdown d-none d-lg-block">
         <form>
             <div class="input-group">
-                <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
+                <input type="text" class="form-control dropdown-toggle" placeholder="Pesquisar..." id="top-search">
                 <span class="mdi mdi-magnify search-icon"></span>
-                <button class="input-group-text btn-primary" type="submit">Search</button>
+                <button class="input-group-text btn-primary" type="submit">Pesquisar</button>
             </div>
         </form>
 

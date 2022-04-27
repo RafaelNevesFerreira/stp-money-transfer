@@ -34,13 +34,6 @@
     </div>
     <!-- END wrapper -->
 
-
-    <!-- Right Sidebar -->
-    @include("tecnicos.right_sidebar")
-
-    <div class="rightbar-overlay"></div>
-    <!-- /End-bar -->
-
     <!-- bundle -->
     <script src="{{ asset('assets/dashboard/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/dashboard/js/app.min.js') }}"></script>
