@@ -3,9 +3,10 @@
     <div class="content-page">
         <div class="content">
             <!-- Topbar Start -->
-            @include("tecnicos.topbar")
+            @include('tecnicos.topbar')
             <!-- end Topbar -->
 
+            <!-- Start Content-->
             <!-- Start Content-->
             <div class="container-fluid">
 
@@ -15,12 +16,12 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="{{route("tecnico.dashboard")}}">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="#">Transactions</a></li>
-                                    <li class="breadcrumb-item active">All</li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
+                                    <li class="breadcrumb-item active">Sellers</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Orders</h4>
+                            <h4 class="page-title">Sellers</h4>
                         </div>
                     </div>
                 </div>
@@ -30,42 +31,11 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="row mb-2">
-                                    <div class="col-xl-8">
-                                        <form
-                                            class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
-                                            <div class="col-auto">
-                                                <label for="inputPassword2" class="visually-hidden">Search</label>
-                                                <input type="search" class="form-control" id="inputPassword2"
-                                                    placeholder="Search...">
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="d-flex align-items-center">
-                                                    <label for="status-select" class="me-2">Status</label>
-                                                    <select class="form-select" id="status-select">
-                                                        <option selected>Choose...</option>
-                                                        <option value="1">Paid</option>
-                                                        <option value="2">Awaiting Authorization</option>
-                                                        <option value="3">Payment failed</option>
-                                                        <option value="4">Cash On Delivery</option>
-                                                        <option value="5">Fulfilled</option>
-                                                        <option value="6">Unfulfilled</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="col-xl-4">
-                                        <div class="text-xl-end mt-xl-0 mt-2">
-                                            <button type="button" class="btn btn-danger mb-2 me-2"><i
-                                                    class="mdi mdi-basket me-1"></i> Add New Order</button>
-                                            <button type="button" class="btn btn-light mb-2">Export</button>
-                                        </div>
-                                    </div><!-- end col-->
-                                </div>
 
                                 <div class="table-responsive">
-                                    <table class="table table-centered table-nowrap mb-0">
+                                    <table
+                                        class="table table-centered table-borderless table-hover w-100 dt-responsive nowrap"
+                                        id="products-datatable">
                                         <thead class="table-light">
                                             <tr>
                                                 <th style="width: 20px;">
@@ -74,13 +44,13 @@
                                                         <label class="form-check-label" for="customCheck1">&nbsp;</label>
                                                     </div>
                                                 </th>
-                                                <th>Order ID</th>
-                                                <th>Date</th>
-                                                <th>Payment Status</th>
-                                                <th>Total</th>
-                                                <th>Payment Method</th>
-                                                <th>Order Status</th>
-                                                <th style="width: 125px;">Action</th>
+                                                <th>Seller</th>
+                                                <th>Store Name</th>
+                                                <th>Products</th>
+                                                <th>Wallet Balance</th>
+                                                <th>Create Date</th>
+                                                <th>Revenue</th>
+                                                <th style="width: 75px;">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -91,27 +61,30 @@
                                                         <label class="form-check-label" for="customCheck2">&nbsp;</label>
                                                     </div>
                                                 </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
-                                                        class="text-body fw-bold">#BM9708</a> </td>
-                                                <td>
-                                                    August 05 2018 <small class="text-muted">10:29 PM</small>
+                                                <td class="table-user">
+                                                    <img src="assets/images/users/avatar-4.jpg" alt="table-user"
+                                                        class="me-2 rounded-circle">
+                                                    <a href="javascript:void(0);" class="text-body fw-semibold">Paul J.
+                                                        Friend</a>
                                                 </td>
                                                 <td>
-                                                    <h5><span class="badge badge-success-lighten"><i
-                                                                class="mdi mdi-bitcoin"></i> Paid</span></h5>
+                                                    Homovee
                                                 </td>
                                                 <td>
-                                                    $176.41
+                                                    <span class="fw-semibold">128</span>
                                                 </td>
                                                 <td>
-                                                    Mastercard
+                                                    $128,250
                                                 </td>
                                                 <td>
-                                                    <h5><span class="badge badge-info-lighten">Shipped</span></h5>
+                                                    07/07/2018
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
+                                                    <div class="spark-chart"
+                                                        data-dataset="[25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54]"></div>
+                                                </td>
+
+                                                <td>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
                                                             class="mdi mdi-square-edit-outline"></i></a>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
@@ -126,26 +99,30 @@
                                                         <label class="form-check-label" for="customCheck3">&nbsp;</label>
                                                     </div>
                                                 </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
-                                                        class="text-body fw-bold">#BM9707</a> </td>
-                                                <td>August 04 2018 <small class="text-muted">08:18 AM</small></td>
-                                                <td>
-                                                    <h5><span class="badge badge-warning-lighten"><i
-                                                                class="mdi mdi-timer-sand"></i> Awaiting
-                                                            Authorization</span></h5>
+                                                <td class="table-user">
+                                                    <img src="assets/images/users/avatar-3.jpg" alt="table-user"
+                                                        class="me-2 rounded-circle">
+                                                    <a href="javascript:void(0);" class="text-body fw-semibold">Bryan J.
+                                                        Luellen</a>
                                                 </td>
                                                 <td>
-                                                    $1,458.65
+                                                    Execucy
                                                 </td>
                                                 <td>
-                                                    Visa
+                                                    <span class="fw-semibold">09</span>
                                                 </td>
                                                 <td>
-                                                    <h5><span class="badge badge-warning-lighten">Processing</span></h5>
+                                                    $78,410
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
+                                                    09/12/2018
+                                                </td>
+                                                <td>
+                                                    <div class="spark-chart"
+                                                        data-dataset="[25, 66, 41, 45, 63, 25, 66, 12, 45, 9, 54]"></div>
+                                                </td>
+
+                                                <td>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
                                                             class="mdi mdi-square-edit-outline"></i></a>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
@@ -159,25 +136,30 @@
                                                         <label class="form-check-label" for="customCheck4">&nbsp;</label>
                                                     </div>
                                                 </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
-                                                        class="text-body fw-bold">#BM9706</a> </td>
-                                                <td>August 04 2018 <small class="text-muted">10:29 PM</small></td>
-                                                <td>
-                                                    <h5><span class="badge badge-success-lighten"><i
-                                                                class="mdi mdi-bitcoin"></i> Paid</span></h5>
+                                                <td class="table-user">
+                                                    <img src="assets/images/users/avatar-3.jpg" alt="table-user"
+                                                        class="me-2 rounded-circle">
+                                                    <a href="javascript:void(0);" class="text-body fw-semibold">Kathryn S.
+                                                        Collier</a>
                                                 </td>
                                                 <td>
-                                                    $801.99
+                                                    Epiloo
                                                 </td>
                                                 <td>
-                                                    Credit Card
+                                                    <span class="fw-semibold">78</span>
                                                 </td>
                                                 <td>
-                                                    <h5><span class="badge badge-warning-lighten">Processing</span></h5>
+                                                    $89,458
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
+                                                    06/30/2018
+                                                </td>
+                                                <td>
+                                                    <div class="spark-chart"
+                                                        data-dataset="[25, 66, 41, 34, 63, 25, 34, 12, 434, 9, 54]"></div>
+                                                </td>
+
+                                                <td>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
                                                             class="mdi mdi-square-edit-outline"></i></a>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
@@ -191,25 +173,30 @@
                                                         <label class="form-check-label" for="customCheck5">&nbsp;</label>
                                                     </div>
                                                 </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
-                                                        class="text-body fw-bold">#BM9705</a> </td>
-                                                <td>August 03 2018 <small class="text-muted">07:56 AM</small></td>
-                                                <td>
-                                                    <h5><span class="badge badge-success-lighten"><i
-                                                                class="mdi mdi-bitcoin"></i> Paid</span></h5>
+                                                <td class="table-user">
+                                                    <img src="assets/images/users/avatar-1.jpg" alt="table-user"
+                                                        class="me-2 rounded-circle">
+                                                    <a href="javascript:void(0);" class="text-body fw-semibold">Timothy
+                                                        Kauper</a>
                                                 </td>
                                                 <td>
-                                                    $215.35
+                                                    Uberer
                                                 </td>
                                                 <td>
-                                                    Mastercard
+                                                    <span class="fw-semibold">847</span>
                                                 </td>
                                                 <td>
-                                                    <h5><span class="badge badge-success-lighten">Delivered</span></h5>
+                                                    $258,125
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
+                                                    09/08/2018
+                                                </td>
+                                                <td>
+                                                    <div class="spark-chart"
+                                                        data-dataset="[25, 66, 41, 34, 33, 25, 34, 50, 65, 9, 54]"></div>
+                                                </td>
+
+                                                <td>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
                                                             class="mdi mdi-square-edit-outline"></i></a>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
@@ -223,25 +210,30 @@
                                                         <label class="form-check-label" for="customCheck6">&nbsp;</label>
                                                     </div>
                                                 </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
-                                                        class="text-body fw-bold">#BM9704</a> </td>
-                                                <td>May 22 2018 <small class="text-muted">07:22 PM</small></td>
-                                                <td>
-                                                    <h5><span class="badge badge-danger-lighten"><i
-                                                                class="mdi mdi-cancel"></i> Payment Failed</span></h5>
+                                                <td class="table-user">
+                                                    <img src="assets/images/users/avatar-5.jpg" alt="table-user"
+                                                        class="me-2 rounded-circle">
+                                                    <a href="javascript:void(0);" class="text-body fw-semibold">Zara
+                                                        Raws</a>
                                                 </td>
                                                 <td>
-                                                    $2,514.36
+                                                    Symic
                                                 </td>
                                                 <td>
-                                                    Paypal
+                                                    <span class="fw-semibold">235</span>
                                                 </td>
                                                 <td>
-                                                    <h5><span class="badge badge-danger-lighten">Cancelled</span></h5>
+                                                    $56,210
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
+                                                    07/15/2018
+                                                </td>
+                                                <td>
+                                                    <div class="spark-chart"
+                                                        data-dataset="[25, 66, 45, 34, 33, 34, 34, 50, 55, 9, 54]"></div>
+                                                </td>
+
+                                                <td>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
                                                             class="mdi mdi-square-edit-outline"></i></a>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
@@ -255,32 +247,36 @@
                                                         <label class="form-check-label" for="customCheck7">&nbsp;</label>
                                                     </div>
                                                 </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
-                                                        class="text-body fw-bold">#BM9703</a> </td>
-                                                <td>April 02 2018 <small class="text-muted">03:02 AM</small></td>
-                                                <td>
-                                                    <h5><span class="badge badge-success-lighten"><i
-                                                                class="mdi mdi-bitcoin"></i> Paid</span></h5>
+                                                <td class="table-user">
+                                                    <img src="assets/images/users/avatar-6.jpg" alt="table-user"
+                                                        class="me-2 rounded-circle">
+                                                    <a href="javascript:void(0);" class="text-body fw-semibold">Annette P.
+                                                        Kelsch</a>
                                                 </td>
                                                 <td>
-                                                    $183.20
+                                                    Insulore
                                                 </td>
                                                 <td>
-                                                    Payoneer
+                                                    <span class="fw-semibold">485</span>
                                                 </td>
                                                 <td>
-                                                    <h5><span class="badge badge-info-lighten">Shipped</span></h5>
+                                                    $330,251
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
+                                                    09/05/2018
+                                                </td>
+                                                <td>
+                                                    <div class="spark-chart"
+                                                        data-dataset="[25, 66, 30, 67, 33, 25, 34, 56, 65, 9, 54]"></div>
+                                                </td>
+
+                                                <td>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
                                                             class="mdi mdi-square-edit-outline"></i></a>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
                                                             class="mdi mdi-delete"></i></a>
                                                 </td>
                                             </tr>
-
                                             <tr>
                                                 <td>
                                                     <div class="form-check">
@@ -288,33 +284,36 @@
                                                         <label class="form-check-label" for="customCheck8">&nbsp;</label>
                                                     </div>
                                                 </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
-                                                        class="text-body fw-bold">#BM9702</a> </td>
-                                                <td>March 18 2018 <small class="text-muted">11:19 PM</small></td>
-                                                <td>
-                                                    <h5><span class="badge badge-warning-lighten"><i
-                                                                class="mdi mdi-timer-sand"></i> Awaiting
-                                                            Authorization</span></h5>
+                                                <td class="table-user">
+                                                    <img src="assets/images/users/avatar-7.jpg" alt="table-user"
+                                                        class="me-2 rounded-circle">
+                                                    <a href="javascript:void(0);" class="text-body fw-semibold">Jenny C.
+                                                        Gero</a>
                                                 </td>
                                                 <td>
-                                                    $1,768.41
+                                                    Susadmin
                                                 </td>
                                                 <td>
-                                                    Visa
+                                                    <span class="fw-semibold">38</span>
                                                 </td>
                                                 <td>
-                                                    <h5><span class="badge badge-warning-lighten">Processing</span></h5>
+                                                    $12,000
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
+                                                    08/02/2018
+                                                </td>
+                                                <td>
+                                                    <div class="spark-chart"
+                                                        data-dataset="[25, 66, 30, 45, 33, 25, 44, 56, 33, 9, 33]"></div>
+                                                </td>
+
+                                                <td>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
                                                             class="mdi mdi-square-edit-outline"></i></a>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
                                                             class="mdi mdi-delete"></i></a>
                                                 </td>
                                             </tr>
-
                                             <tr>
                                                 <td>
                                                     <div class="form-check">
@@ -322,25 +321,30 @@
                                                         <label class="form-check-label" for="customCheck9">&nbsp;</label>
                                                     </div>
                                                 </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
-                                                        class="text-body fw-bold">#BM9701</a> </td>
-                                                <td>February 01 2018 <small class="text-muted">07:22 AM</small></td>
-                                                <td>
-                                                    <h5><span class="badge badge-info-lighten"><i
-                                                                class="mdi mdi-cash"></i> Unpaid</span></h5>
+                                                <td class="table-user">
+                                                    <img src="assets/images/users/avatar-8.jpg" alt="table-user"
+                                                        class="me-2 rounded-circle">
+                                                    <a href="javascript:void(0);" class="text-body fw-semibold">Edward
+                                                        Roseby</a>
                                                 </td>
                                                 <td>
-                                                    $3,582.99
+                                                    Hyperill
                                                 </td>
                                                 <td>
-                                                    Paypal
+                                                    <span class="fw-semibold">77</span>
                                                 </td>
                                                 <td>
-                                                    <h5><span class="badge badge-info-lighten">Shipped</span></h5>
+                                                    $45,216
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
+                                                    08/23/2018
+                                                </td>
+                                                <td>
+                                                    <div class="spark-chart"
+                                                        data-dataset="[25, 43, 30, 67, 34, 25, 34, 56, 43, 9, 56]"></div>
+                                                </td>
+
+                                                <td>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
                                                             class="mdi mdi-square-edit-outline"></i></a>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
@@ -354,25 +358,30 @@
                                                         <label class="form-check-label" for="customCheck10">&nbsp;</label>
                                                     </div>
                                                 </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
-                                                        class="text-body fw-bold">#BM9700</a> </td>
-                                                <td>January 22 2018 <small class="text-muted">08:09 PM</small></td>
-                                                <td>
-                                                    <h5><span class="badge badge-success-lighten"><i
-                                                                class="mdi mdi-bitcoin"></i> Paid</span></h5>
+                                                <td class="table-user">
+                                                    <img src="assets/images/users/avatar-9.jpg" alt="table-user"
+                                                        class="me-2 rounded-circle">
+                                                    <a href="javascript:void(0);" class="text-body fw-semibold">Anna
+                                                        Ciantar</a>
                                                 </td>
                                                 <td>
-                                                    $923.95
+                                                    Vicedel
                                                 </td>
                                                 <td>
-                                                    Credit Card
+                                                    <span class="fw-semibold">347</span>
                                                 </td>
                                                 <td>
-                                                    <h5><span class="badge badge-success-lighten">Delivered</span></h5>
+                                                    $7,815
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
+                                                    05/06/2018
+                                                </td>
+                                                <td>
+                                                    <div class="spark-chart"
+                                                        data-dataset="[25, 23, 30, 67, 34, 56, 34, 56, 85, 9, 56]"></div>
+                                                </td>
+
+                                                <td>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
                                                             class="mdi mdi-square-edit-outline"></i></a>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
@@ -386,32 +395,110 @@
                                                         <label class="form-check-label" for="customCheck11">&nbsp;</label>
                                                     </div>
                                                 </td>
-                                                <td><a href="apps-ecommerce-orders-details.html"
-                                                        class="text-body fw-bold">#BM9699</a> </td>
-                                                <td>January 17 2018 <small class="text-muted">02:30 PM</small></td>
-                                                <td>
-                                                    <h5><span class="badge badge-success-lighten"><i
-                                                                class="mdi mdi-bitcoin"></i> Paid</span></h5>
+                                                <td class="table-user">
+                                                    <img src="assets/images/users/avatar-10.jpg" alt="table-user"
+                                                        class="me-2 rounded-circle">
+                                                    <a href="javascript:void(0);" class="text-body fw-semibold">Dean
+                                                        Smithies</a>
                                                 </td>
                                                 <td>
-                                                    $5,177.68
+                                                    Circumous
                                                 </td>
                                                 <td>
-                                                    Mastercard
+                                                    <span class="fw-semibold">506</span>
                                                 </td>
                                                 <td>
-                                                    <h5><span class="badge badge-info-lighten">Shipped</span></h5>
+                                                    $68,143
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
+                                                    04/09/2018
+                                                </td>
+                                                <td>
+                                                    <div class="spark-chart"
+                                                        data-dataset="[25, 82, 30, 67, 65, 25, 34, 56, 44, 9, 22]"></div>
+                                                </td>
+
+                                                <td>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
                                                             class="mdi mdi-square-edit-outline"></i></a>
                                                     <a href="javascript:void(0);" class="action-icon"> <i
                                                             class="mdi mdi-delete"></i></a>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" id="customCheck12">
+                                                        <label class="form-check-label" for="customCheck12">&nbsp;</label>
+                                                    </div>
+                                                </td>
+                                                <td class="table-user">
+                                                    <img src="assets/images/users/avatar-1.jpg" alt="table-user"
+                                                        class="me-2 rounded-circle">
+                                                    <a href="javascript:void(0);" class="text-body fw-semibold">Labeeb
+                                                        Ghali</a>
+                                                </td>
+                                                <td>
+                                                    Laudent
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">121</span>
+                                                </td>
+                                                <td>
+                                                    $17,514
+                                                </td>
+                                                <td>
+                                                    06/19/2018
+                                                </td>
+                                                <td>
+                                                    <div class="spark-chart"
+                                                        data-dataset="[25, 54, 30, 44, 65, 25, 34, 33, 44, 9, 23]"></div>
+                                                </td>
 
+                                                <td>
+                                                    <a href="javascript:void(0);" class="action-icon"> <i
+                                                            class="mdi mdi-square-edit-outline"></i></a>
+                                                    <a href="javascript:void(0);" class="action-icon"> <i
+                                                            class="mdi mdi-delete"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" id="customCheck13">
+                                                        <label class="form-check-label" for="customCheck13">&nbsp;</label>
+                                                    </div>
+                                                </td>
+                                                <td class="table-user">
+                                                    <img src="assets/images/users/avatar-2.jpg" alt="table-user"
+                                                        class="me-2 rounded-circle">
+                                                    <a href="javascript:void(0);" class="text-body fw-semibold">Rory
+                                                        Seekamp</a>
+                                                </td>
+                                                <td>
+                                                    Centinte
+                                                </td>
+                                                <td>
+                                                    <span class="fw-semibold">89</span>
+                                                </td>
+                                                <td>
+                                                    $14,384
+                                                </td>
+                                                <td>
+                                                    03/24/2018
+                                                </td>
+                                                <td>
+                                                    <div class="spark-chart"
+                                                        data-dataset="[25, 82, 23, 67, 65, 67, 65, 56, 32, 19, 22]"></div>
+                                                </td>
+
+                                                <td>
+                                                    <a href="javascript:void(0);" class="action-icon"> <i
+                                                            class="mdi mdi-square-edit-outline"></i></a>
+                                                    <a href="javascript:void(0);" class="action-icon"> <i
+                                                            class="mdi mdi-delete"></i></a>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

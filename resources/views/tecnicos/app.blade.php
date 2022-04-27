@@ -13,11 +13,13 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
     <!-- App css -->
+    <link href="{{ asset('assets/dashboard/css/vendor/dataTables.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/dashboard/css/vendor/responsive.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
+
     <link href="{{ asset('assets/dashboard/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/dashboard/css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style" />
     <link href="{{ asset('assets/dashboard/css/app-dark.min.css') }}" rel="stylesheet" type="text/css" id="dark-style" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="{{ asset('assets/dashboard/js/chart.min.js') }}"></script>
 
 </head>
 
@@ -37,6 +39,14 @@
     <!-- bundle -->
     <script src="{{ asset('assets/dashboard/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/dashboard/js/app.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/vendor/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/vendor/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/vendor/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/vendor/responsive.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/vendor/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/vendor/dataTables.checkboxes.min.js') }}"></script>
+
+    <script src="{{ asset('assets/dashboard/js/pages/demo.sellers.js') }}"></script>
 
 </body>
 
