@@ -54,43 +54,50 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input" id="customCheck2">
-                                                        <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                                    </div>
-                                                </td>
-                                                <td class="table-user">
-                                                    <img src="assets/images/users/avatar-4.jpg" alt="table-user"
-                                                        class="me-2 rounded-circle">
-                                                    <a href="javascript:void(0);" class="text-body fw-semibold">Paul J.
-                                                        Friend</a>
-                                                </td>
-                                                <td>
-                                                    Homovee
-                                                </td>
-                                                <td>
-                                                    <span class="fw-semibold">128</span>
-                                                </td>
-                                                <td>
-                                                    $128,250
-                                                </td>
-                                                <td>
-                                                    07/07/2018
-                                                </td>
-                                                <td>
-                                                    <div class="spark-chart"
-                                                        data-dataset="[25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54]"></div>
-                                                </td>
+                                            @forelse ($transfers as $transfer)
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="customCheck2">
+                                                            <label class="form-check-label"
+                                                                for="customCheck2">&nbsp;</label>
+                                                        </div>
+                                                    </td>
+                                                    <td class="table-user">
+                                                        <img src="assets/images/users/avatar-4.jpg" alt="table-user"
+                                                            class="me-2 rounded-circle">
+                                                        <a href="javascript:void(0);" class="text-body fw-semibold">Paul J.
+                                                            Friend</a>
+                                                    </td>
+                                                    <td>
+                                                        Homovee
+                                                    </td>
+                                                    <td>
+                                                        <span class="fw-semibold">128</span>
+                                                    </td>
+                                                    <td>
+                                                        $128,250
+                                                    </td>
+                                                    <td>
+                                                        07/07/2018
+                                                    </td>
+                                                    <td>
+                                                        <div class="spark-chart"
+                                                            data-dataset="[25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54]">
+                                                        </div>
+                                                    </td>
 
-                                                <td>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-square-edit-outline"></i></a>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-delete"></i></a>
-                                                </td>
-                                            </tr>
+                                                    <td>
+                                                        <a href="javascript:void(0);" class="action-icon"> <i
+                                                                class="mdi mdi-square-edit-outline"></i></a>
+                                                        <a href="javascript:void(0);" class="action-icon"> <i
+                                                                class="mdi mdi-delete"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                            @endforelse
+
                                         </tbody>
                                     </table>
                                 </div>
