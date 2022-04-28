@@ -3,7 +3,7 @@
     <div class="content-page">
         <div class="content">
             <!-- Topbar Start -->
-            @include("layouts.admin.topbar")
+            @include('layouts.admin.topbar')
             <!-- end Topbar -->
 
             <!-- Start Content-->
@@ -143,8 +143,8 @@
 
                                 <h4 class="header-title mb-1">Campaigns</h4>
 
-                                <div id="dash-campaigns-chart" class="apex-charts"
-                                    data-colors="#ffbc00,#727cf5,#0acf97"></div>
+                                <div id="dash-campaigns-chart" class="apex-charts" data-colors="#ffbc00,#727cf5,#0acf97">
+                                </div>
 
                                 <div class="row text-center mt-2">
                                     <div class="col-sm-4">
@@ -478,4 +478,20 @@
         @include('layouts.admin.footer')
 
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        var memes = [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54];
+    </script>
+
+        <!-- Apex js -->
+        <script src="{{ asset('assets/dashboard/js/vendor/apexcharts.min.js') }}"></script>
+
+        <!-- Todo js -->
+        <script src="{{ asset('assets/dashboard/js/ui/component.todo.js') }}"></script>
+
+        <!-- demo app -->
+        <script src="{{ asset('assets/dashboard/js/pages/demo.dashboard-crm.js') }}"></script>
+        <!-- end demo js-->
 @endsection

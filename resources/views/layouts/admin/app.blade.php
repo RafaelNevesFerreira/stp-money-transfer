@@ -55,17 +55,6 @@
     <script src="{{ asset('assets/dashboard/js/vendor/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/dashboard/js/vendor/dataTables.checkboxes.min.js') }}"></script>
 
-
-        <!-- Apex js -->
-        <script src="{{ asset('assets/dashboard/js/vendor/apexcharts.min.js') }}"></script>
-
-        <!-- Todo js -->
-        <script src="{{ asset('assets/dashboard/js/ui/component.todo.js') }}"></script>
-
-        <!-- demo app -->
-        <script src="{{ asset('assets/dashboard/js/pages/demo.dashboard-crm.js') }}"></script>
-        <!-- end demo js-->
-
     <script src="{{ asset('assets/dashboard/js/pages/demo.sellers.js') }}"></script>
     <script>
         $("#logout").click(function() {
@@ -84,6 +73,8 @@
             });
         })
     </script>
+
+    @yield("scripts")
 </body>
 
 </html>
