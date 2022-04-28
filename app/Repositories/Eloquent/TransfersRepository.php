@@ -146,4 +146,9 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     {
         return $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where("plan", 1)->count();
     }
+
+    public function saldo_semanal()
+    {
+        return $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where("plan", 1)->count();
+    }
 }

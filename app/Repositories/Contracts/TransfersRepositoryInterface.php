@@ -16,4 +16,5 @@ interface TransfersRepositoryInterface{
     public function transfers_esta_semana();
     public function aumento_em_relacao_a_semana_passada();
     public function numero_de_prestações_da_semana();
+    public function saldo_semanal();
 }
