@@ -58,7 +58,7 @@ class Kernel extends HttpKernel
         'user' => \App\Http\Middleware\UserProfilleMiddleware::class,
         'tecnico' => \App\Http\Middleware\TecnicoMiddleware::class,
         'dashboard' => \App\Http\Middleware\DashboardMiddleware::class,
-        'superior' => \App\Http\Middleware\AdminMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,

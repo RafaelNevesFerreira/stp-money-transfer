@@ -19,9 +19,11 @@ class AdminMiddleware
     {
 
         if (Auth::check() && Auth::user()->role === 3) {
+            dd(Auth::check());
             return $next($request);
         } else {
             dd(Auth::check());
+
             return redirect()->route("home");
         }
     }

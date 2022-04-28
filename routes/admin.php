@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/dashboard", function () {
-    return "memes";
-});
+
 
 Route::middleware(["dashboard"])->group(function () {
     Route::get("dashboard", function () {

@@ -76,10 +76,15 @@ Route::controller(TecnicoController::class)->group(function () {
             Route::get("transactions", "transactions")->name("tecnico.transactions");
             Route::get("transactions/{id}", "transaction_details")->name("tecnico.transaction.details");
             Route::post("change_status", "change_status")->name("tecnico.change.status");
-
         });
     });
 });
+Route::middleware("admin")->group(function () {
+    Route::get("/admin/dashboard", function () {
+        return "memes";
+    })->name("admin.dashboard");
+});
+
 
 Route::middleware(["dashboard"])->group(function () {
     Route::get("dashboard", function () {
