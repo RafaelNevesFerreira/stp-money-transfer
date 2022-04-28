@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Contracts\TransfersRepositoryInterface;
-use App\Repositories\Contracts\UserRepositoryInterface;
+use DateTime;
 use Illuminate\Http\Request;
+use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class AdminController extends Controller
 {
@@ -29,6 +30,13 @@ class AdminController extends Controller
         $lucros_ano_passado = $this->transfers->dados_grafico_receita_ano_passado();
 
         $saldo_semana_passada = $this->transfers->saldo_semana_passada();
+
+        $date = new DateTime("2022-03-31");
+
+        $stripe = new \Stripe\StripeClient(
+            'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
+        );
+        dd($stripe->subscriptions->all(['created' => ["gte" => $date->getTimestamp()]])->data);
 
         return view("admin.dashboard", compact(
             "transfers_esta_semana",

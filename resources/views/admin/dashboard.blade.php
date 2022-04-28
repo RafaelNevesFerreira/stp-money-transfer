@@ -163,7 +163,7 @@
 
                                 <h4 class="header-title mb-1">Campaigns</h4>
 
-                                <div id="dash-campaigns-chart" class="apex-charts" data-colors="#ffbc00,#727cf5,#0acf97">
+                                <div id="dash-campaigns-chart" class="apex-charts" data-colors="#dc3545,#727cf5,#0acf97">
                                 </div>
 
                                 <div class="row text-center mt-2">
@@ -172,8 +172,9 @@
                                         <h3 class="fw-normal mt-3">
                                             <span>6,510</span>
                                         </h3>
-                                        <p class="text-muted mb-0 mb-2"><i
-                                                class="mdi mdi-checkbox-blank-circle text-warning"></i> Total Sent</p>
+                                        <p class="text-muted mb-0 mb-2">
+                                            <i class="mdi mdi-checkbox-blank-circle text-danger"></i> Total Reembolsado
+                                        </p>
                                     </div>
                                     <div class="col-sm-4">
                                         <i
@@ -181,8 +182,10 @@
                                         <h3 class="fw-normal mt-3">
                                             <span>3,487</span>
                                         </h3>
-                                        <p class="text-muted mb-0 mb-2"><i
-                                                class="mdi mdi-checkbox-blank-circle text-primary"></i> Reached</p>
+                                        <p class="text-muted mb-0 mb-2">
+                                            <i class="mdi mdi-checkbox-blank-circle text-primary"></i>
+                                            Total a Receber
+                                        </p>
                                     </div>
                                     <div class="col-sm-4">
                                         <i
@@ -190,8 +193,9 @@
                                         <h3 class="fw-normal mt-3">
                                             <span>1,568</span>
                                         </h3>
-                                        <p class="text-muted mb-0 mb-2"><i
-                                                class="mdi mdi-checkbox-blank-circle text-success"></i> Opened</p>
+                                        <p class="text-muted mb-0 mb-2">
+                                            <i class="mdi mdi-checkbox-blank-circle text-success"></i> Total Recebido
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -452,9 +456,10 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-start align-items-center">
                                     <div class="w-100 overflow-hidden">
-                                        <h2 class="mt-0"><i class="mdi mdi-bullhorn-outline"></i>&nbsp;</h2>
-                                        <h3 class="m-0 fw-normal cta-box-title">Enhance your <b>Campaign</b> for better
-                                            outreach <i class="mdi mdi-arrow-right"></i></h3>
+                                        <h2 class="mt-0">
+                                            <i <h3 class="m-0 fw-normal cta-box-title">Enhance your <b>Campaign</b> for
+                                                better
+                                                outreach <i class="mdi mdi-arrow-right"></i></h3>
                                     </div>
                                     {{-- <img class="ms-3" src="assets/images/email-campaign.svg" width="120"
                                         alt="Generic placeholder image"> --}}

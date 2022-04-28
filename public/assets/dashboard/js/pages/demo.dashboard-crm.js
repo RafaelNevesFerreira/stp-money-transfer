@@ -32,11 +32,20 @@ colors = ["#727cf5", "#0acf97", "#fa5c7c", "#ffbc00"];
 (dataColors = $("#booked-revenue-chart").data("colors")) && (colors = dataColors.split(","));
 var options4 = { chart: { type: "bar", height: 60, sparkline: { enabled: !0 } }, plotOptions: { bar: { columnWidth: "60%" } }, colors: colors, series: [{ data: [47, 45, 74, 14, 56, 74, 14, 11, 7, 39, 82] }], labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], xaxis: { crosshairs: { width: 1 } }, tooltip: { fixed: { enabled: !1 }, x: { show: !1 }, y: { title: { formatter: function(o) { return "" } } }, marker: { show: !1 } } };
 new ApexCharts(document.querySelector("#booked-revenue-chart"), options4).render();
-colors = ["#727cf5", "#0acf97", "#fa5c7c", "#ffbc00"];
+
+colors = [];
 (dataColors = $("#dash-campaigns-chart").data("colors")) && (colors = dataColors.split(","));
-var options = { chart: { height: 304, type: "radialBar" }, colors: colors, series: [86, 36, 50], labels: ["Total Sent", "Reached", "Opened"], plotOptions: { radialBar: { track: { margin: 8 } } } },
+var options = {
+        chart: { height: 304, type: "radialBar" },
+        colors: colors,
+        series: [86, 36, 50],
+        labels: ["Total Sent", "Reached", "Opened"],
+        plotOptions: { radialBar: { track: { margin: 8 } } }
+    },
     chart = new ApexCharts(document.querySelector("#dash-campaigns-chart"), options);
 chart.render();
+
+
 colors = ["#727cf5", "#0acf97", "#fa5c7c", "#ffbc00"];
 (dataColors = $("#dash-revenue-chart").data("colors")) && (colors = dataColors.split(","));
 options = {
