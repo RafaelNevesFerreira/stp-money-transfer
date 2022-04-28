@@ -129,8 +129,6 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         $start_week = date("Y-m-d",$start_week);
         $end_week = date("Y-m-d",$end_week);
 
-        return $start_week;
-
         return $this->model::whereBetween('created_at', [$start_week, $end_week])->get();
     }
 }
