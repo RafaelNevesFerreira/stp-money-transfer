@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-    Route::get("/admin/dashboard", function () {
+Route::middleware("admin")->group(function () {
+    Route::get("/dashboard", function () {
         return "memes";
     })->name("admin.dashboard");
+});
 
 // Route::middleware(["dashboard"])->group(function () {
 //     Route::get("dashboard", function () {

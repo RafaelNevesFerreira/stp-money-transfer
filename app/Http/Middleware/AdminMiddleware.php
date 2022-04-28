@@ -19,7 +19,7 @@ class AdminMiddleware
     {
 
         if (Auth::check() && Auth::user()->role === 3) {
-            dd(Auth::check());
+            dd("memes");
             return $next($request);
         } else {
             dd(Auth::check());
