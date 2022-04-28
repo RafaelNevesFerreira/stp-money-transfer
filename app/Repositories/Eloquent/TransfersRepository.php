@@ -193,7 +193,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return $sem_prestacoes + $com_prestacoes;
     }
 
-    public function saldo_semana_passada()
+    public function saldo_semana_passada($start_week =null, $end_week =null)
     {
         $previous_week = strtotime("-1 week +1 day");
         $start_week = strtotime("last Monday midnight", $previous_week);
