@@ -31,7 +31,7 @@ class AdminController extends Controller
 
         $saldo_semana_passada = $this->transfers->saldo_semana_passada();
 
-        $date = new DateTime("2022-03-31");
+        $date = new DateTime("2022-04-22");
 
         $stripe = new \Stripe\StripeClient(
             'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
