@@ -95,7 +95,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-12">
                                         <h5 class="text-muted fw-normal mt-0 " title="Prestações da semana">N⁰. Prestações da semana</h5>
-                                        <h3 class="my-2 py-1">861</h3>
+                                        <h3 class="my-2 py-1">{{$numero_de_prestações_da_semana}}</h3>
                                         <p class="mb-0 text-muted">
                                             <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>
                                                 4.87%</span>
