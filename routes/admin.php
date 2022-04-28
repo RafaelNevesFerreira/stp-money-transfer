@@ -13,11 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware("admin")->group(function () {
     Route::get("/dashboard", function () {
         return "memes";
     })->name("admin.dashboard");
-});
 
 // Route::middleware(["dashboard"])->group(function () {
 //     Route::get("dashboard", function () {
@@ -25,4 +23,4 @@ Route::middleware("admin")->group(function () {
 //     })->name("admin.dashboard");
 // });
 
-// require __DIR__ . '/auth.php';
+require __DIR__ . '/auth.php';
