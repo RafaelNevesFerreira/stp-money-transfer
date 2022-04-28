@@ -13,11 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(TecnicoController::class)->group(function () {
-    Route::get("dashboard", "dashboard")->name("tecnico.dashboard");
-    Route::get("transactions", "transactions")->name("tecnico.transactions");
-    Route::get("transactions/{id}", "transaction_details")->name("tecnico.transaction.details");
-    Route::post("change_status", "change_status")->name("tecnico.change.status");
+Route::get("dashboard", function () {
+    return "memes";
 });
 
 require __DIR__ . '/auth.php';
