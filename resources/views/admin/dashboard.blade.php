@@ -221,20 +221,20 @@
                                     </div>
                                 </div>
 
-                                <h4 class="header-title mb-3">Revenue</h4>
+                                <h4 class="header-title mb-3">Receita</h4>
 
                                 <div class="chart-content-bg">
                                     <div class="row text-center">
                                         <div class="col-sm-6">
-                                            <p class="text-muted mb-0 mt-3">Current Month</p>
+                                            <p class="text-muted mb-0 mt-3">Mês Corrente</p>
                                             <h2 class="fw-normal mb-3">
-                                                <span>$42,025</span>
+                                                <span>{{ $lucros_desse_ano[(int) date('m') -1] }}</span>
                                             </h2>
                                         </div>
                                         <div class="col-sm-6">
-                                            <p class="text-muted mb-0 mt-3">Previous Month</p>
-                                            <h2 class="fw-normal mb-3">
-                                                <span>$74,651</span>
+                                            <p class="text-muted mb-0 mt-3">Mês Passado</p>
+                                            <h2 class="fw-normal mb-3" id="meses" data-meses="{{ json_encode($lucros_desse_ano) }}">
+                                                <span>{{ $lucros_desse_ano[(int) date('m') - 2] }}</span>
                                             </h2>
                                         </div>
                                     </div>
@@ -501,7 +501,14 @@
 @endsection
 
 @section('scripts')
+
+
     <script>
+        var meses = jQuery.parseJSON($("#meses").attr("data-meses"))
+
+        console.log(jQuery.parseJSON($("#meses").attr("data-meses")))
+
+
         var memes = [2, 6, 4, 8, 6, 2, 4];
     </script>
 

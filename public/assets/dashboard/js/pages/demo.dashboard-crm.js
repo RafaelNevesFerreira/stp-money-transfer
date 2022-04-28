@@ -42,15 +42,15 @@ colors = ["#727cf5", "#0acf97", "#fa5c7c", "#ffbc00"];
 options = {
     chart: { height: 321, type: "line", toolbar: { show: !1 } },
     stroke: { curve: "smooth", width: 2 },
-    series: [{ name: "Este Mês", type: "area", data: [55, 55, 31, 47, 31, 43, 26, 41, 31, 47, 33, 43] },
-        { name: "Mês Passado", type: "line", data: [20, 69, 45, 61, 43, 54, 37, 52, 44, 61, 43, 56] }
+    series: [{ name: "Este Ano", type: "area", data: meses },
+        { name: "Ano Passado", type: "line", data: [20, 69, 45, 61, 43, 54, 37, 52, 44, 61, 43, 56] }
     ],
     fill: { type: "solid", opacity: [.35, 1] },
     labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Sep", "Out", "Nov", "Dez"],
     markers: { size: 0 },
     colors: colors,
     yaxis: [{ title: { text: "Rendimento (EUR)" }, min: 0 }],
-    tooltip: { shared: !0, intersect: !1, y: { formatter: function(o) { return void 0 !== o ? o.toFixed(0) + "k" : o } } },
+    tooltip: { shared: !0, intersect: !1, y: { formatter: function(o) { return void 0 !== o ? o.toFixed(0) : o } } },
     grid: { borderColor: "#f1f3fa", padding: { bottom: 5 } },
     legend: { fontSize: "14px", fontFamily: "14px", offsetY: 5 },
     responsive: [{ breakpoint: 600, options: { yaxis: { show: !1 }, legend: { show: !1 } } }]

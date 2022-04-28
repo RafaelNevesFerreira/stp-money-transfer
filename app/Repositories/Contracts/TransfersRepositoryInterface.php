@@ -18,4 +18,5 @@ interface TransfersRepositoryInterface{
     public function numero_de_prestações_da_semana();
     public function saldo_semanal();
     public function saldo_semana_passada($start_week =null, $end_week =null);
+    public function dados_grafico_receita();
 }
