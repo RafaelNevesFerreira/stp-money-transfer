@@ -43,6 +43,7 @@
                                                         {{ number_format($aumento_em_relacao_a_semana_passada, 1, ',', '.') }}%
                                                     </span>Semana passada
                                                 @break
+
                                                 @case($aumento_em_relacao_a_semana_passada >= 0)
                                                     <span class="text-success me-2">
                                                         <i class="mdi mdi-arrow-up-bold"></i>
@@ -63,9 +64,10 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-12">
-                                        <h5 class="text-muted fw-normal mt-0 " title="Novos Usuarios este mês">Novos Usuarios este mês
+                                        <h5 class="text-muted fw-normal mt-0 " title="Novos Usuarios este mês">Novos
+                                            Usuarios este mês
                                         </h5>
-                                        <h3 class="my-2 py-1">{{$novos_usuarios_esse_mes}}</h3>
+                                        <h3 class="my-2 py-1">{{ $novos_usuarios_esse_mes }}</h3>
                                         <p class="mb-0 text-muted">
                                             @switch($aumento_de_usuarios_em_relacao_aom_mes_passado)
                                                 @case($aumento_de_usuarios_em_relacao_aom_mes_passado < 0)
@@ -74,6 +76,7 @@
                                                         {{ number_format($aumento_de_usuarios_em_relacao_aom_mes_passado, 1, ',', '.') }}%
                                                     </span>Mês passado
                                                 @break
+
                                                 @case($aumento_de_usuarios_em_relacao_aom_mes_passado >= 0)
                                                     <span class="text-success me-2">
                                                         <i class="mdi mdi-arrow-up-bold"></i>
@@ -94,8 +97,9 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-12">
-                                        <h5 class="text-muted fw-normal mt-0 " title="Prestações da semana">N⁰. Prestações da semana</h5>
-                                        <h3 class="my-2 py-1">{{$numero_de_prestações_da_semana}}</h3>
+                                        <h5 class="text-muted fw-normal mt-0 " title="Prestações da semana">N⁰. Prestações
+                                            da semana</h5>
+                                        <h3 class="my-2 py-1">{{ $numero_de_prestações_da_semana }}</h3>
                                         <br>
                                     </div>
                                 </div> <!-- end row-->
@@ -110,10 +114,23 @@
                                     <div class="col-12">
                                         <h5 class="text-muted fw-normal mt-0" title="Saldo Semanal">
                                             Saldo Semanal</h5>
-                                        <h3 class="my-2 py-1">{{number_format($saldo_semanal,2,",",".")}}</h3>
+                                        <h3 class="my-2 py-1">{{ number_format($saldo_semanal, 2, ',', '.') }}</h3>
                                         <p class="mb-0 text-muted">
-                                            <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>
-                                                11.7%</span>
+                                            @switch($saldo_semana_passada)
+                                                @case($saldo_semana_passada < 0)
+                                                    <span class="text-danger me-2">
+                                                        <i class="mdi mdi-arrow-down-bold"></i>
+                                                        {{ number_format($saldo_semana_passada, 1, ',', '.') }}%
+                                                    </span>Semana passado
+                                                @break
+
+                                                @case($saldo_semana_passada >= 0)
+                                                    <span class="text-success me-2">
+                                                        <i class="mdi mdi-arrow-up-bold"></i>
+                                                        {{ number_format($saldo_semana_passada, 2, ',', '.') }}%
+                                                    </span>Semana passado
+                                                @break
+                                            @endswitch
                                         </p>
                                     </div>
                                 </div> <!-- end row-->
