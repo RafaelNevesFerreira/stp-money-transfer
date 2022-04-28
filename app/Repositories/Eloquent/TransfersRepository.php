@@ -6,8 +6,9 @@ use App\Models\Transfer;
 use App\Pipes\DateFilter;
 use App\Pipes\StatusFilter;
 use App\Jobs\PaimentSuccess;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 use Illuminate\Pipeline\Pipeline;
+use Illuminate\Support\Facades\Auth;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class TransfersRepository extends AbstractRepository implements TransfersRepositoryInterface
@@ -113,5 +114,15 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             "status" => "received",
             "received_at" => now()
         ]);
+    }
+
+    public function transfers_esta_semana()
+    {
+        return $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
+    }
+
+    public function aumento_em_relacao_a_semana_passada()
+    {
+        return $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
     }
 }

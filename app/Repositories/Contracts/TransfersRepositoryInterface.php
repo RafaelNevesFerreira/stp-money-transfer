@@ -13,4 +13,5 @@ interface TransfersRepositoryInterface{
     public function to_received_this_month();
     public function transfers_today();
     public function change_status($id);
+    public function transfers_esta_semana();
 }

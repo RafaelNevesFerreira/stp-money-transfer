@@ -31,20 +31,16 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <div class="col-6">
-                                        <h5 class="text-muted fw-normal mt-0 text-truncate" title="Campaign Sent">Campaign
-                                            Sent</h5>
-                                        <h3 class="my-2 py-1">9,184</h3>
+                                    <div class="col-12">
+                                        <h5 class="text-muted fw-normal mt-0" title="Transações da semana">
+                                            Transações da semana</h5>
+                                        <h3 class="my-2 py-1">{{ $transfers_esta_semana }}</h3>
                                         <p class="mb-0 text-muted">
                                             <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>
-                                                3.27%</span>
+                                                3.27% </span>semana passada
                                         </p>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="text-end">
-                                            <div id="campaign-sent-chart" data-colors="#727cf5"></div>
-                                        </div>
-                                    </div>
+
                                 </div> <!-- end row-->
                             </div> <!-- end card-body -->
                         </div> <!-- end card -->
@@ -63,11 +59,7 @@
                                                 5.38%</span>
                                         </p>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="text-end">
-                                            <div id="new-leads-chart" data-colors="#0acf97"></div>
-                                        </div>
-                                    </div>
+
                                 </div> <!-- end row-->
                             </div> <!-- end card-body -->
                         </div> <!-- end card -->
@@ -84,11 +76,6 @@
                                             <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>
                                                 4.87%</span>
                                         </p>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="text-end">
-                                            <div id="deals-chart" data-colors="#727cf5"></div>
-                                        </div>
                                     </div>
                                 </div> <!-- end row-->
                             </div> <!-- end card-body -->
@@ -107,11 +94,6 @@
                                             <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>
                                                 11.7%</span>
                                         </p>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="text-end">
-                                            <div id="booked-revenue-chart" data-colors="#0acf97"></div>
-                                        </div>
                                     </div>
                                 </div> <!-- end row-->
                             </div> <!-- end card-body -->
@@ -482,16 +464,16 @@
 
 @section('scripts')
     <script>
-        var memes = [25, 66, 41, 89, 63, 25, 44, 12, 36, 9, 54];
+        var memes = [2, 6, 4, 8, 6, 2, 4];
     </script>
 
-        <!-- Apex js -->
-        <script src="{{ asset('assets/dashboard/js/vendor/apexcharts.min.js') }}"></script>
+    <!-- Apex js -->
+    <script src="{{ asset('assets/dashboard/js/vendor/apexcharts.min.js') }}"></script>
 
-        <!-- Todo js -->
-        <script src="{{ asset('assets/dashboard/js/ui/component.todo.js') }}"></script>
+    <!-- Todo js -->
+    <script src="{{ asset('assets/dashboard/js/ui/component.todo.js') }}"></script>
 
-        <!-- demo app -->
-        <script src="{{ asset('assets/dashboard/js/pages/demo.dashboard-crm.js') }}"></script>
-        <!-- end demo js-->
+    <!-- demo app -->
+    <script src="{{ asset('assets/dashboard/js/pages/demo.dashboard-crm.js') }}"></script>
+    <!-- end demo js-->
 @endsection

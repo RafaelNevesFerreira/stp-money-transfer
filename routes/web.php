@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbonementController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentTipeController;
@@ -80,9 +81,11 @@ Route::controller(TecnicoController::class)->group(function () {
     });
 });
 Route::middleware("admin")->group(function () {
-    Route::get("/admin/dashboard", function () {
-        return view("admin.dashboard");
-    })->name("admin.dashboard");
+    Route::controller(AdminController::class)->group(function () {
+        Route::prefix("admin")->group(function () {
+            Route::get("/dashboard", "dashboard")->name("admin.dashboard");
+        });
+    });
 });
 
 
