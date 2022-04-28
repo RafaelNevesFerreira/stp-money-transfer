@@ -24,7 +24,9 @@ class AdminController extends Controller
 
         $saldo_semanal = $this->transfers->saldo_semanal();
 
-        dd($saldo_semanal);
+        dd(number_format($saldo_semanal));
+
+
 
         return view("admin.dashboard", compact(
             "transfers_esta_semana",
