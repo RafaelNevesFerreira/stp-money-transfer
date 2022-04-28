@@ -36,8 +36,20 @@
                                             Transações da semana</h5>
                                         <h3 class="my-2 py-1">{{ $transfers_esta_semana }}</h3>
                                         <p class="mb-0 text-muted">
-                                            <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>
-                                                3.27% </span>semana passada
+                                            @switch($aumento_em_relacao_a_semana_passada)
+                                                @case($aumento_em_relacao_a_semana_passada < 0)
+                                                    <span class="text-danger me-2">
+                                                        <i class="mdi mdi-arrow-down-bold"></i>
+                                                        {{ number_format($aumento_em_relacao_a_semana_passada, 1, ',', '.') }}%
+                                                    </span>semana passada
+                                                @break
+                                                @case($aumento_em_relacao_a_semana_passada == 0)
+                                                    <span class="text-success me-2">
+                                                        <i class="mdi mdi-arrow-up-bold"></i>
+                                                        {{ number_format($aumento_em_relacao_a_semana_passada, 2, ',', '.') }}%
+                                                    </span>semana passada
+                                                @break
+                                            @endswitch
                                         </p>
                                     </div>
 

@@ -19,4 +19,9 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             "avatar" => $name
         ]);
     }
+
+    public function novos_usuarios()
+    {
+        return $this->model;
+    }
 }

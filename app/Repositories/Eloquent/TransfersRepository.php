@@ -116,19 +116,27 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         ]);
     }
 
-    public function transfers_esta_semana()
+    public function transfers_esta_semana(): int
     {
         return $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
     }
 
-    public function aumento_em_relacao_a_semana_passada()
+    public function aumento_em_relacao_a_semana_passada(): float
     {
         $previous_week = strtotime("-1 week +1 day");
-        $start_week = strtotime("last Monday midnight",$previous_week);
-        $end_week = strtotime("next sunday",$start_week);
-        $start_week = date("Y-m-d",$start_week);
-        $end_week = date("Y-m-d",$end_week);
+        $start_week = strtotime("last Monday midnight", $previous_week);
+        $end_week = strtotime("next sunday", $start_week);
+        $start_week = date("Y-m-d", $start_week);
+        $end_week = date("Y-m-d", $end_week);
 
-        return $this->model::whereBetween('created_at', [$start_week, $end_week])->get();
+
+        $semana_passada =  $this->model::whereBetween('created_at', [$start_week, $end_week])->count();
+        $valor_inicial = $semana_passada;
+        $valor_final = $this->transfers_esta_semana();
+
+        $diferença = ($valor_final - $valor_inicial) / $valor_inicial * 100;
+
+        return $diferença;
     }
+
 }
