@@ -21,8 +21,24 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         ]);
     }
 
-    public function novos_usuarios()
+    public function novos_usuarios_esse_mes()
     {
-        return $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
+        return  $this->model::whereMonth('created_at', '=', date("m"))->count();
+    }
+
+    public function aumento_de_usuarios_em_relacao_aom_mes_passado(): float
+    {
+        $mes_pasado = $this->model::whereMonth('created_at', '=', Carbon::now()->subMonth()->month)->count();
+
+        $valor_inicial = $mes_pasado;
+        $valor_final = $this->novos_usuarios_esse_mes();
+
+        if ($valor_inicial > 0) {
+            $diferença = ($valor_final - $valor_inicial) / $valor_inicial * 100;
+        } else {
+            $diferença = 0;
+        }
+
+        return $diferença;
     }
 }

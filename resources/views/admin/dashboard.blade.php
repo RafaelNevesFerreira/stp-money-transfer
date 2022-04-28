@@ -62,13 +62,25 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <div class="col-6">
-                                        <h5 class="text-muted fw-normal mt-0 text-truncate" title="New Leads">New Leads
+                                    <div class="col-12">
+                                        <h5 class="text-muted fw-normal mt-0 " title="New Leads">Novos Usuarios este mês
                                         </h5>
-                                        <h3 class="my-2 py-1">3,254</h3>
+                                        <h3 class="my-2 py-1">{{$novos_usuarios_esse_mes}}</h3>
                                         <p class="mb-0 text-muted">
-                                            <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i>
-                                                5.38%</span>
+                                            @switch($aumento_em_relacao_a_semana_passada)
+                                                @case($aumento_em_relacao_a_semana_passada < 0)
+                                                    <span class="text-danger me-2">
+                                                        <i class="mdi mdi-arrow-down-bold"></i>
+                                                        {{ number_format($aumento_em_relacao_a_semana_passada, 1, ',', '.') }}%
+                                                    </span>semana passada
+                                                @break
+                                                @case($aumento_em_relacao_a_semana_passada == 0)
+                                                    <span class="text-success me-2">
+                                                        <i class="mdi mdi-arrow-up-bold"></i>
+                                                        {{ number_format($aumento_em_relacao_a_semana_passada, 2, ',', '.') }}%
+                                                    </span>semana passada
+                                                @break
+                                            @endswitch
                                         </p>
                                     </div>
 

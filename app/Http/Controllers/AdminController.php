@@ -18,9 +18,11 @@ class AdminController extends Controller
     {
         $transfers_esta_semana = $this->transfers->transfers_esta_semana();
         $aumento_em_relacao_a_semana_passada = (float)$this->transfers->aumento_em_relacao_a_semana_passada();
-        $novos_usuarios = (int)$this->users->novos_usuarios();
+        $novos_usuarios_esse_mes = (int)$this->users->novos_usuarios_esse_mes();
+        $aumento_de_usuarios_em_relacao_aom_mes_passado = (float)$this->users->aumento_de_usuarios_em_relacao_aom_mes_passado();
+        dd($aumento_de_usuarios_em_relacao_aom_mes_passado);
 
 
-        return view("admin.dashboard",compact("transfers_esta_semana","aumento_em_relacao_a_semana_passada","novos_usuarios"));
+        return view("admin.dashboard",compact("transfers_esta_semana","aumento_em_relacao_a_semana_passada","novos_usuarios_esse_mes"));
     }
 }

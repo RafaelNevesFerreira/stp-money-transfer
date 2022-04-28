@@ -6,5 +6,6 @@ interface UserRepositoryInterface{
     public function all();
     public function create($request);
     public function update_avatar($name);
-    public function novos_usuarios();
+    public function novos_usuarios_esse_mes();
+    public function aumento_de_usuarios_em_relacao_aom_mes_passado();
 }
