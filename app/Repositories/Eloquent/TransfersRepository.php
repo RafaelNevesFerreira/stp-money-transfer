@@ -8,6 +8,7 @@ use App\Pipes\StatusFilter;
 use App\Jobs\PaimentSuccess;
 use Illuminate\Support\Carbon;
 use Illuminate\Pipeline\Pipeline;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
@@ -149,6 +150,8 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function saldo_semanal()
     {
-        return $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where("plan", 1)->count();
+        return $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+        ->where("plan", 1)
+        ->withSum("transfers", DB::raw("tax + value_sended"))->get();
     }
 }
