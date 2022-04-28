@@ -121,14 +121,14 @@
                                                     <span class="text-danger me-2">
                                                         <i class="mdi mdi-arrow-down-bold"></i>
                                                         {{ number_format($saldo_semana_passada, 1, ',', '.') }}%
-                                                    </span>Semana passado
+                                                    </span>Semana passada
                                                 @break
 
                                                 @case($saldo_semana_passada >= 0)
                                                     <span class="text-success me-2">
                                                         <i class="mdi mdi-arrow-up-bold"></i>
                                                         {{ number_format($saldo_semana_passada, 2, ',', '.') }}%
-                                                    </span>Semana passado
+                                                    </span>Semana passada
                                                 @break
                                             @endswitch
                                         </p>
@@ -509,12 +509,10 @@
         var esse_ano = jQuery.parseJSON($("#esse_ano").attr("data-meses"))
         var ano_passado = jQuery.parseJSON($("#ano_passado").attr("data-meses"))
         $(document).ready(function() {
-            // console.log($("#SvgjsG1091").children("text").children("tspan").text())
             $("#SvgjsG1091").children("text").children("tspan").each(function(index) {
 
                 $(this).text(parseFloat($(this).text().substr(0, 7)).toLocaleString('pt-Pt') + " €");
             });
-
 
         })
     </script>
