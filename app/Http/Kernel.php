@@ -45,10 +45,6 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
-        'admin' => [
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            // \App\Http\Middleware\AdminMiddleware::class,
-        ],
     ];
 
     /**
@@ -62,8 +58,8 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'user' => \App\Http\Middleware\UserProfilleMiddleware::class,
         'tecnico' => \App\Http\Middleware\TecnicoMiddleware::class,
-        "superior" => \App\Http\Middleware\AdminMiddleware::class,
         'dashboard' => \App\Http\Middleware\DashboardMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,

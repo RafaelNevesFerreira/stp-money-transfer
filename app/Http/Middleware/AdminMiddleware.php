@@ -19,13 +19,8 @@ class AdminMiddleware
     {
 
         if (Auth::check() && Auth::user()->role === 3) {
-            dd("memes");
             return $next($request);
         } else {
-
-            dd("ainda");
-            dd(Auth::check());
-
             return redirect()->route("home");
         }
     }

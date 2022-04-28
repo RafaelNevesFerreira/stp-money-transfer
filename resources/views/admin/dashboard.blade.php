@@ -357,8 +357,8 @@
                                 <h4 class="header-title mb-4">Recent Leads</h4>
 
                                 <div class="d-flex align-items-start">
-                                    <img class="me-3 rounded-circle" src="assets/images/users/avatar-2.jpg" width="40"
-                                        alt="Generic placeholder image">
+                                    {{-- <img class="me-3 rounded-circle" src="assets/images/users/avatar-2.jpg" width="40"
+                                        alt="Generic placeholder image"> --}}
                                     <div class="w-100 overflow-hidden">
                                         <span class="badge badge-warning-lighten float-end">Cold lead</span>
                                         <h5 class="mt-0 mb-1">Risa Pearson</h5>
@@ -367,8 +367,8 @@
                                 </div>
 
                                 <div class="d-flex align-items-start mt-3">
-                                    <img class="me-3 rounded-circle" src="assets/images/users/avatar-3.jpg" width="40"
-                                        alt="Generic placeholder image">
+                                    {{-- <img class="me-3 rounded-circle" src="assets/images/users/avatar-3.jpg" width="40"
+                                        alt="Generic placeholder image"> --}}
                                     <div class="w-100 overflow-hidden">
                                         <span class="badge badge-danger-lighten float-end">Lost lead</span>
                                         <h5 class="mt-0 mb-1">Margaret D. Evans</h5>
@@ -377,8 +377,8 @@
                                 </div>
 
                                 <div class="d-flex align-items-start mt-3">
-                                    <img class="me-3 rounded-circle" src="assets/images/users/avatar-4.jpg" width="40"
-                                        alt="Generic placeholder image">
+                                    {{-- <img class="me-3 rounded-circle" src="assets/images/users/avatar-4.jpg" width="40"
+                                        alt="Generic placeholder image"> --}}
                                     <div class="w-100 overflow-hidden">
                                         <span class="badge badge-success-lighten float-end">Won lead</span>
                                         <h5 class="mt-0 mb-1">Bryan J. Luellen</h5>
@@ -387,8 +387,8 @@
                                 </div>
 
                                 <div class="d-flex align-items-start mt-3">
-                                    <img class="me-3 rounded-circle" src="assets/images/users/avatar-5.jpg" width="40"
-                                        alt="Generic placeholder image">
+                                    {{-- <img class="me-3 rounded-circle" src="assets/images/users/avatar-5.jpg" width="40"
+                                        alt="Generic placeholder image"> --}}
                                     <div class="w-100 overflow-hidden">
                                         <span class="badge badge-warning-lighten float-end">Cold lead</span>
                                         <h5 class="mt-0 mb-1">Kathryn S. Collier</h5>
@@ -397,8 +397,8 @@
                                 </div>
 
                                 <div class="d-flex align-items-start mt-3">
-                                    <img class="me-3 rounded-circle" src="assets/images/users/avatar-1.jpg" width="40"
-                                        alt="Generic placeholder image">
+                                    {{-- <img class="me-3 rounded-circle" src="assets/images/users/avatar-1.jpg" width="40"
+                                        alt="Generic placeholder image"> --}}
                                     <div class="w-100 overflow-hidden">
                                         <span class="badge badge-warning-lighten float-end">Cold lead</span>
                                         <h5 class="mt-0 mb-1">Timothy Kauper</h5>
@@ -407,8 +407,8 @@
                                 </div>
 
                                 <div class="d-flex align-items-start mt-3">
-                                    <img class="me-3 rounded-circle" src="assets/images/users/avatar-6.jpg" width="40"
-                                        alt="Generic placeholder image">
+                                    {{-- <img class="me-3 rounded-circle" src="assets/images/users/avatar-6.jpg" width="40"
+                                        alt="Generic placeholder image"> --}}
                                     <div class="w-100 overflow-hidden">
                                         <span class="badge badge-success-lighten float-end">Won lead</span>
                                         <h5 class="mt-0 mb-1">Zara Raws</h5>
@@ -432,8 +432,8 @@
                                         <h3 class="m-0 fw-normal cta-box-title">Enhance your <b>Campaign</b> for better
                                             outreach <i class="mdi mdi-arrow-right"></i></h3>
                                     </div>
-                                    <img class="ms-3" src="assets/images/email-campaign.svg" width="120"
-                                        alt="Generic placeholder image">
+                                    {{-- <img class="ms-3" src="assets/images/email-campaign.svg" width="120"
+                                        alt="Generic placeholder image"> --}}
                                 </div>
                             </div>
                             <!-- end card-body -->
