@@ -50,7 +50,24 @@ options = {
     markers: { size: 0 },
     colors: colors,
     yaxis: [{ title: { text: "Rendimento (EUR)" }, min: 0 }],
-    tooltip: { shared: !0, intersect: !1, y: { formatter: function(o) { return void 0 !== o ? o.toFixed(0) : o } } },
+    tooltip: {
+        shared: !0,
+        intersect: !1,
+        y: {
+            formatter: function(o) {
+                // return void 0 !== o ? o.toFixed(0) : o
+                o += '';
+                x = o.split('.');
+                x1 = x[0];
+                x2 = x.length > 1 ? '.' + x[1] : '';
+                var rgx = /(\d+)(\d{3})/;
+                while (rgx.test(x1)) {
+                    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                }
+                return x1 + x2;
+            }
+        }
+    },
     grid: { borderColor: "#f1f3fa", padding: { bottom: 5 } },
     legend: { fontSize: "14px", fontFamily: "14px", offsetY: 5 },
     responsive: [{ breakpoint: 600, options: { yaxis: { show: !1 }, legend: { show: !1 } } }]
