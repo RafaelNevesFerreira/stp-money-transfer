@@ -130,7 +130,7 @@
                                                     </td>
                                                 </tr>
                                             @empty
-                                            <div class="allert alert-warning">
+                                            <div class="allert alert-warning col">
                                                 <p>Nenhuma transação por enquanto</p>
                                             </div>
                                             @endforelse
