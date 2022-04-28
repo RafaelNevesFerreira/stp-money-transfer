@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Contracts\UserRepositoryInterface;
 
@@ -22,6 +23,6 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
     public function novos_usuarios()
     {
-        return $this->model;
+        return $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
     }
 }
