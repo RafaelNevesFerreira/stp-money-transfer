@@ -24,6 +24,10 @@ class AdminController extends Controller
 
         $saldo_semanal = $this->transfers->saldo_semanal();
 
+        $saldo_semana_passada = $this->transfers->saldo_semana_passada();
+
+        dd($saldo_semana_passada);
+
         return view("admin.dashboard", compact(
             "transfers_esta_semana",
             "aumento_em_relacao_a_semana_passada",

@@ -14,6 +14,10 @@ use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class TransfersRepository extends AbstractRepository implements TransfersRepositoryInterface
 {
+
+    public $DOLAR_EURO_PARA = 0.953370;
+    public $LIBRA_EURO_PARA = 1.18589;
+
     public $model;
     public function __construct()
     {
@@ -151,15 +155,95 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     public function saldo_semanal()
     {
         $pagos_em_prestacoes_com_libra = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
-        ->where("plan", 1)
-        ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+            ->where(["plan" => 1, "currency" => "gbp"])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
-        dd($pagos_em_prestacoes_com_libra);
+        $pagos_em_prestacoes_com_dolar = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+            ->where(["plan" => 1, "currency" => "usd"])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
-        $sem_restacoes = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
-        ->where("plan", 0)
-        ->sum(DB::raw("value_sended + tax"));
+        $dolar_para_euro_prestacoes = $pagos_em_prestacoes_com_dolar * $this->DOLAR_EURO_PARA / 1;
+        $libra_para_euro_prestacoes = $pagos_em_prestacoes_com_libra * $this->LIBRA_EURO_PARA / 1;
 
-        // return $sem_restacoes + $pagos_em_prestacoes;
+        $pagos_em_prestacoes_com_euro = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+            ->where(["plan" => 1, "currency" => "eur"])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+        //1 EUR = 1,05083 USD
+
+        $pagos_com_libra = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+            ->where(["plan" => 0, "currency" => "gbp"])
+            ->sum(DB::raw("value_sended + tax"));
+
+        $pagos_com_dolar = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+            ->where(["plan" => 0, "currency" => "usd"])
+            ->sum(DB::raw("value_sended + tax"));
+
+        $pagos_com_euro = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+            ->where(["plan" => 0, "currency" => "eur"])
+            ->sum(DB::raw("value_sended + tax"));
+
+        $dolar_para_euro = $pagos_com_dolar * $this->DOLAR_EURO_PARA / 1;
+        $libra_para_euro = $pagos_com_libra *  $this->LIBRA_EURO_PARA / 1;
+
+        $sem_prestacoes = $pagos_com_euro + $dolar_para_euro + $libra_para_euro;
+        $com_prestacoes = $pagos_em_prestacoes_com_euro + $dolar_para_euro_prestacoes + $libra_para_euro_prestacoes;
+
+        // dd($pagos_em_prestacoes_com_euro);
+        return $sem_prestacoes + $com_prestacoes;
+    }
+
+    public function saldo_semana_passada()
+    {
+        $previous_week = strtotime("-1 week +1 day");
+        $start_week = strtotime("last Monday midnight", $previous_week);
+        $end_week = strtotime("next sunday", $start_week);
+        $start_week = date("Y-m-d", $start_week);
+        $end_week = date("Y-m-d", $end_week);
+
+        $pagos_em_prestacoes_com_libra = $this->model::whereBetween('created_at', [$start_week, $end_week])
+            ->where(["plan" => 1, "currency" => "gbp"])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+        $pagos_em_prestacoes_com_dolar = $this->model::whereBetween('created_at', [$start_week, $end_week])
+            ->where(["plan" => 1, "currency" => "usd"])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+        $dolar_para_euro_prestacoes = $pagos_em_prestacoes_com_dolar * $this->DOLAR_EURO_PARA / 1;
+        $libra_para_euro_prestacoes = $pagos_em_prestacoes_com_libra * $this->LIBRA_EURO_PARA / 1;
+
+        $pagos_em_prestacoes_com_euro = $this->model::whereBetween('created_at', [$start_week, $end_week])
+            ->where(["plan" => 1, "currency" => "eur"])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+
+        $pagos_com_libra = $this->model::whereBetween('created_at', [$start_week, $end_week])
+            ->where(["plan" => 0, "currency" => "gbp"])
+            ->sum(DB::raw("value_sended + tax"));
+
+        $pagos_com_dolar = $this->model::whereBetween('created_at', [$start_week, $end_week])
+            ->where(["plan" => 0, "currency" => "usd"])
+            ->sum(DB::raw("value_sended + tax"));
+
+        $pagos_com_euro = $this->model::whereBetween('created_at', [$start_week, $end_week])
+            ->where(["plan" => 0, "currency" => "eur"])
+            ->sum(DB::raw("value_sended + tax"));
+
+        $dolar_para_euro = $pagos_com_dolar * $this->DOLAR_EURO_PARA / 1;
+        $libra_para_euro = $pagos_com_libra *  $this->LIBRA_EURO_PARA / 1;
+
+        $sem_prestacoes = $pagos_com_euro + $dolar_para_euro + $libra_para_euro;
+        $com_prestacoes = $pagos_em_prestacoes_com_euro + $dolar_para_euro_prestacoes + $libra_para_euro_prestacoes;
+
+        $semana_passada = $sem_prestacoes + $com_prestacoes;
+        $esta_semana = $this->saldo_semanal();
+
+
+        if ($semana_passada > 0) {
+            $diferença = ($esta_semana - $semana_passada) / $semana_passada * 100;
+        } else {
+            $diferença = 0;
+        }
+        return $diferença;
     }
 }
