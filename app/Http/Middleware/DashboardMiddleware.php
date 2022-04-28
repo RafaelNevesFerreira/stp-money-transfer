@@ -21,6 +21,8 @@ class DashboardMiddleware
             return redirect()->route("profile.dashboard");
         } else if (Auth::check() && Auth::user()->role === 2) {
             return redirect()->route("tecnico.dashboard");
+        } else if (Auth::check() && Auth::user()->role === 3) {
+            return redirect()->route("admin.dashboard");
         } else if (!Auth::check()) {
             return redirect()->route("login");
         }
