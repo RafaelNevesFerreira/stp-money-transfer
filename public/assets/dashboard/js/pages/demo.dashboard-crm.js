@@ -38,8 +38,8 @@ colors = [];
 var options = {
         chart: { height: 304, type: "radialBar" },
         colors: colors,
-        series: [86, 36, 50],
-        labels: ["Total Sent", "Reached", "Opened"],
+        series: [86, 36],
+        labels: ["Total Sent", "Reached"],
         plotOptions: { radialBar: { track: { margin: 8 } } }
     },
     chart = new ApexCharts(document.querySelector("#dash-campaigns-chart"), options);
