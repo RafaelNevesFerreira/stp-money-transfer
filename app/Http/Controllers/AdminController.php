@@ -27,8 +27,7 @@ class AdminController extends Controller
             "aumento_em_relacao_a_semana_passada",
             "novos_usuarios_esse_mes",
             "aumento_de_usuarios_em_relacao_aom_mes_passado",
-            "numero_de_prestações_da_semana
-            numero_de_prestações_da_semana"
+            "numero_de_prestações_da_semana"
         ));
     }
 }
