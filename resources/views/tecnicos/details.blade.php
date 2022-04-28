@@ -15,9 +15,9 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Transações</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route("tecnico.transactions")}}">Transações</a></li>
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Detalhes</a></li>
-                                    <li class="breadcrumb-item active">Detalhes </li>
+                                    <li class="breadcrumb-item active">#{{$transfer->transfer_code}} </li>
                                 </ol>
                             </div>
                             <h4 class="page-title">Detalhes</h4>
