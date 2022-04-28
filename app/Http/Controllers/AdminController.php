@@ -29,11 +29,10 @@ class AdminController extends Controller
 
         $saldo_semana_passada = $this->transfers->saldo_semana_passada();
 
-        $pago_emprestacoes = $this->transfers->pagos_em_prestacoes(1);
+        $pago_emprestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(1);
 
-        $pago_em_cash = $this->transfers->pagos_em_prestacoes(0);
+        $pago_em_cash = $this->transfers->pagos_em_prestacoes_ou_cash(0);
 
-        // dd($pago_em_cash);
 
         return view("admin.dashboard", compact(
             "transfers_esta_semana",

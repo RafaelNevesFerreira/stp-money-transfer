@@ -357,7 +357,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return $meses;
     }
 
-    public function pagos_em_prestacoes($plan)
+    public function pagos_em_prestacoes_ou_cash($plan)
     {
         $pagos_em_prestacoes_com_libra = $this->model::whereMonth('created_at', date("m"))
             ->whereYear("created_at", date("Y"))
