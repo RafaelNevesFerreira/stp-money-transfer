@@ -49,22 +49,21 @@ options = {
     labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Sep", "Out", "Nov", "Dez"],
     markers: { size: 0 },
     colors: colors,
-    yaxis: [{ title: { text: "Rendimento (EUR)" }, min: 0 }],
+    yaxis: [{ title: { text: "Rendimento (EUR)" } }],
     tooltip: {
         shared: !0,
         intersect: !1,
         y: {
             formatter: function(o) {
-                // return void 0 !== o ? o.toFixed(0) : o
                 o += '';
                 x = o.split('.');
                 x1 = x[0];
-                x2 = x.length > 1 ? '.' + x[1] : '';
-                var rgx = /(\d+)(\d{3})/;
+                x2 = x.length > 1 ? '.' + x[1] : '.';
+                var rgx = /(\d+)(\d{6})/;
                 while (rgx.test(x1)) {
-                    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                    x1 = x1.replace(rgx, ',');
                 }
-                return x1 + x2;
+                return parseFloat(x1 + x2.substr(0, 3)).toLocaleString('pt-Pt') + " €";
             }
         }
     },

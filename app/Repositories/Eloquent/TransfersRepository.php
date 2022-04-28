@@ -290,7 +290,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         $meses = [];
         for ($i = 1; $i < 13; $i++) {
             $mes = $this->mes($i);
-            array_push($meses,$mes);
+            array_push($meses, $mes);
         }
 
         return $meses;
