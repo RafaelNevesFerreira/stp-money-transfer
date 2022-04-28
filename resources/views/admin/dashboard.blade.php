@@ -169,20 +169,20 @@
                                 <div class="row text-center mt-2">
                                     <div class="col-sm-6">
                                         <i class="mdi mdi-send widget-icon rounded-circle bg-light-lighten text-muted"></i>
-                                        <h3 class="fw-normal mt-3">
-                                            <span>{{number_format($pago_emprestacoes,2,",",".")}} €</span>
+                                        <h3 class="fw-normal mt-4">
+                                            <span>{{ number_format($pago_emprestacoes, 2, ',', '.') }} €</span>
                                         </h3>
-                                        <p class="text-muted mb-0 mb-2">
+                                        <p class="text-muted  mb-3">
                                             <i class="mdi mdi-checkbox-blank-circle text-danger"></i> Pago em Prestações
                                         </p>
                                     </div>
                                     <div class="col-sm-6">
                                         <i
                                             class="mdi mdi-flag-variant widget-icon rounded-circle bg-light-lighten text-muted"></i>
-                                        <h3 class="fw-normal mt-3">
-                                            <span>{{number_format($pago_em_cash,2,",",".")}} €</span>
+                                        <h3 class="fw-normal mt-4">
+                                            <span>{{ number_format($pago_em_cash, 2, ',', '.') }} €</span>
                                         </h3>
-                                        <p class="text-muted mb-0 mb-2">
+                                        <p class="text-muted  mb-3">
                                             <i class="mdi mdi-checkbox-blank-circle text-primary"></i>
                                             Pago em Cartão
                                         </p>
@@ -504,8 +504,7 @@
         var esse_ano = jQuery.parseJSON($("#esse_ano").attr("data-meses"))
         var ano_passado = jQuery.parseJSON($("#ano_passado").attr("data-meses"))
         $(document).ready(function() {
-            $("#SvgjsG1091").children("text").children("tspan").each(function(index) {
-
+            $(".apexcharts-yaxis-texts-g").children("text").children("tspan").each(function(index) {
                 $(this).text(parseFloat($(this).text().substr(0, 7)).toLocaleString('pt-Pt') + " €");
             });
 
