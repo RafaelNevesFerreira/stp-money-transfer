@@ -33,8 +33,6 @@ class AdminController extends Controller
 
         $pago_em_cash = $this->transfers->pagos_em_prestacoes(0);
 
-        dd($pago_em_cash);
-
         return view("admin.dashboard", compact(
             "transfers_esta_semana",
             "aumento_em_relacao_a_semana_passada",
@@ -45,7 +43,8 @@ class AdminController extends Controller
             "saldo_semana_passada",
             "lucros_desse_ano",
             "lucros_ano_passado",
-            "pago_emprestacoes"
+            "pago_emprestacoes",
+            "pago_em_cash"
         ));
     }
 }

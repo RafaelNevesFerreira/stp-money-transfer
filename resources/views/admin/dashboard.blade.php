@@ -180,11 +180,11 @@
                                         <i
                                             class="mdi mdi-flag-variant widget-icon rounded-circle bg-light-lighten text-muted"></i>
                                         <h3 class="fw-normal mt-3">
-                                            <span>3,487</span>
+                                            <span>{{number_format($pago_em_cash,2,",",".")}} €</span>
                                         </h3>
                                         <p class="text-muted mb-0 mb-2">
                                             <i class="mdi mdi-checkbox-blank-circle text-primary"></i>
-                                            Total a Receber
+                                            Pago em Cartão
                                         </p>
                                     </div>
                                     <div class="col-sm-4">
