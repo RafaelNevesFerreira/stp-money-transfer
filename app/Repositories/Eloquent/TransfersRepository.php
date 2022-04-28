@@ -150,8 +150,14 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function saldo_semanal()
     {
-        return $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+        $pagos_em_prestacoes = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
         ->where("plan", 1)
-        ->sum(DB::raw("tax + (value_sended + 10)"));
+        ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+        $sem_restacoes = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+        ->where("plan", 0)
+        ->sum(DB::raw("value_sended + tax"));
+
+        return $sem_restacoes + $pagos_em_prestacoes;
     }
 }
