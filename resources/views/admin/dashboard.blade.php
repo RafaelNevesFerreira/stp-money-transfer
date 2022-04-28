@@ -110,7 +110,7 @@
                                     <div class="col-12">
                                         <h5 class="text-muted fw-normal mt-0" title="Saldo Semanal">
                                             Saldo Semanal</h5>
-                                        <h3 class="my-2 py-1">$253k</h3>
+                                        <h3 class="my-2 py-1">{{$saldo_semanal}}</h3>
                                         <p class="mb-0 text-muted">
                                             <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>
                                                 11.7%</span>
