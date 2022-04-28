@@ -170,10 +170,10 @@
                                     <div class="col-sm-4">
                                         <i class="mdi mdi-send widget-icon rounded-circle bg-light-lighten text-muted"></i>
                                         <h3 class="fw-normal mt-3">
-                                            <span>6,510</span>
+                                            <span>{{number_format($pago_emprestacoes,2,",",".")}} €</span>
                                         </h3>
                                         <p class="text-muted mb-0 mb-2">
-                                            <i class="mdi mdi-checkbox-blank-circle text-danger"></i> Total Reembolsado
+                                            <i class="mdi mdi-checkbox-blank-circle text-danger"></i> Pago em Prestações
                                         </p>
                                     </div>
                                     <div class="col-sm-4">

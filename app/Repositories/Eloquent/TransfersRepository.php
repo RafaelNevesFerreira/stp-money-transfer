@@ -351,45 +351,36 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return $meses;
     }
 
-    public function transfers_a_receber_este_mes()
+    public function pagos_em_prestacoes($plan)
     {
 
-        //pegos os valores que foram reembolsados
-        $pagos_em_prestacoes_com_libra = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
-            ->where(["currency" => "gbp", "status" => "reimbursed"])
+        //pegos os valores que foram pagos em prestacoes
+
+        $pagos_com_libra = $this->model::whereMonth('created_at', date("m"))
+            ->whereYear("created_at", date("Y"))
+            ->where(["plan" => $plan, "currency" => "gbp"])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
-        $pagos_em_prestacoes_com_dolar = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
-            ->where(["currency" => "usd", "status" => "reimbursed"])
+        $pagos_com_dolar = $this->model::whereMonth('created_at', date("m"))
+            ->whereYear("created_at", date("Y"))
+            ->where(["plan" => $plan, "currency" => "usd"])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
-        $dolar_para_euro_prestacoes = $pagos_em_prestacoes_com_dolar * $this->DOLAR_EURO_PARA / 1;
-        $libra_para_euro_prestacoes = $pagos_em_prestacoes_com_libra * $this->LIBRA_EURO_PARA / 1;
+        $dolar_para_euro = $pagos_com_dolar * $this->DOLAR_EURO_PARA / 1;
+        $libra_para_euro = $pagos_com_libra * $this->LIBRA_EURO_PARA / 1;
 
-        $pagos_em_prestacoes_com_euro = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
-            ->where(["currency" => "eur", "status" => "reimbursed"])
+        $pagos_com_euro = $this->model::whereMonth('created_at', date("m"))
+            ->whereYear("created_at", date("Y"))
+            ->where(["plan" => $plan, "currency" => "eur"])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
+        $total = $pagos_com_euro + $dolar_para_euro + $libra_para_euro;
 
-        // $pagos_com_libra = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
-        //     ->where(["plan" => 0, "currency" => "gbp", "status" => ""])
-        //     ->sum(DB::raw("value_sended + tax"));
+        return $total;
+    }
 
-        // $pagos_com_dolar = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
-        //     ->where(["plan" => 0, "currency" => "usd", "status" => ""])
-        //     ->sum(DB::raw("value_sended + tax"));
+    public function pago_em_cash()
+    {
 
-        // $pagos_com_euro = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
-        //     ->where(["plan" => 0, "currency" => "eur", "status" => ""])
-        //     ->sum(DB::raw("value_sended + tax"));
-
-        // $dolar_para_euro = $pagos_com_dolar * $this->DOLAR_EURO_PARA / 1;
-        // $libra_para_euro = $pagos_com_libra *  $this->LIBRA_EURO_PARA / 1;
-
-        // $sem_prestacoes = $pagos_com_euro + $dolar_para_euro + $libra_para_euro;
-        return $com_prestacoes = $pagos_em_prestacoes_com_euro + $dolar_para_euro_prestacoes + $libra_para_euro_prestacoes;
-
-        // dd($pagos_em_prestacoes_com_euro);
-        // return $sem_prestacoes + $com_prestacoes;
     }
 }
