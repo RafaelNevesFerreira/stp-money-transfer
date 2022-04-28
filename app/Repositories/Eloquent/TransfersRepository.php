@@ -141,4 +141,9 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         }
         return $diferença;
     }
+
+    public function numero_de_prestações_da_semana()
+    {
+        return $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where("plan", 1)->count();
+    }
 }
