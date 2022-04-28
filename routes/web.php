@@ -79,11 +79,7 @@ Route::controller(TecnicoController::class)->group(function () {
         });
     });
 });
-Route::middleware("admin")->group(function () {
-    Route::get("/admin/dashboard", function () {
-        return "memes";
-    })->name("admin.dashboard");
-});
+
 
 
 Route::middleware(["dashboard"])->group(function () {
