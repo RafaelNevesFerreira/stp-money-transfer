@@ -152,6 +152,6 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     {
         return $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
         ->where("plan", 1)
-        ->sum(DB::raw("tax + value_sended"));
+        ->sum(DB::raw("tax + (value_sended + 10)"));
     }
 }
