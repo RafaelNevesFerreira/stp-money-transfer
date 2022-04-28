@@ -22,6 +22,8 @@ class AdminMiddleware
             dd("memes");
             return $next($request);
         } else {
+
+            dd("ainda");
             dd(Auth::check());
 
             return redirect()->route("home");
