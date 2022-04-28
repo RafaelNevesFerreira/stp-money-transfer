@@ -227,14 +227,18 @@
                                     <div class="row text-center">
                                         <div class="col-sm-6">
                                             <p class="text-muted mb-0 mt-3">Mês Corrente</p>
-                                            <h2 class="fw-normal mb-3" id="ente_ano" data-meses="{{ json_encode($lucros_desse_ano) }}">
-                                                <span>{{ number_format($lucros_desse_ano[(int) date('m') - 1],2,",",".") }} €</span>
+                                            <h2 class="fw-normal mb-3" id="esse_ano"
+                                                data-meses="{{ json_encode($lucros_desse_ano) }}">
+                                                <span>{{ number_format($lucros_desse_ano[(int) date('m') - 1], 2, ',', '.') }}
+                                                    €</span>
                                             </h2>
                                         </div>
                                         <div class="col-sm-6">
                                             <p class="text-muted mb-0 mt-3">Mês Passado</p>
-                                            <h2 class="fw-normal mb-3" id="ano_passado" data-meses="{{ json_encode($lucros_ano_passado) }}">
-                                                <span>{{ number_format($lucros_desse_ano[(int) date('m') - 2],2,",",".") }} €</span>
+                                            <h2 class="fw-normal mb-3" id="ano_passado"
+                                                data-meses="{{ json_encode($lucros_ano_passado) }}">
+                                                <span>{{ number_format($lucros_desse_ano[(int) date('m') - 2], 2, ',', '.') }}
+                                                    €</span>
                                             </h2>
                                         </div>
                                     </div>
@@ -501,12 +505,18 @@
 @endsection
 
 @section('scripts')
-
-
     <script>
-        var meses = jQuery.parseJSON($("#ente_ano").attr("data-meses"))
+        var esse_ano = jQuery.parseJSON($("#esse_ano").attr("data-meses"))
+        var ano_passado = jQuery.parseJSON($("#ano_passado").attr("data-meses"))
+        $(document).ready(function() {
+            // console.log($("#SvgjsG1091").children("text").children("tspan").text())
+            $("#SvgjsG1091").children("text").children("tspan").each(function(index) {
 
-        var memes = [2, 6, 4, 8, 6, 2, 4];
+                $(this).text(parseFloat($(this).text().substr(0, 7)).toLocaleString('pt-Pt') + " €");
+            });
+
+
+        })
     </script>
 
     <!-- Apex js -->

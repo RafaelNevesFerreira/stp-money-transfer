@@ -5,7 +5,7 @@ var options1 = {
     chart: { type: "bar", height: 60, sparkline: { enabled: !0 } },
     plotOptions: { bar: { columnWidth: "60%" } },
     colors: colors,
-    series: [{ data: memes }],
+    series: [{ data: esse_ano }],
     labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
     xaxis: { crosshairs: { width: 1 } },
     tooltip: { fixed: { enabled: !1 }, x: { show: !1 }, y: { title: { formatter: function(o) { return "" } } }, marker: { show: !1 } }
@@ -42,8 +42,8 @@ colors = ["#727cf5", "#0acf97", "#fa5c7c", "#ffbc00"];
 options = {
     chart: { height: 321, type: "line", toolbar: { show: !1 } },
     stroke: { curve: "smooth", width: 2 },
-    series: [{ name: "Este Ano", type: "area", data: meses },
-        { name: "Ano Passado", type: "line", data: [20, 69, 45, 61, 43, 54, 37, 52, 44, 61, 43, 56] }
+    series: [{ name: "Este Ano", type: "area", data: esse_ano },
+        { name: "Ano Passado", type: "line", data: ano_passado }
     ],
     fill: { type: "solid", opacity: [.35, 1] },
     labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Sep", "Out", "Nov", "Dez"],
