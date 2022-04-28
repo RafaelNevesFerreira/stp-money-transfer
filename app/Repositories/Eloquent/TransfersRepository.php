@@ -131,12 +131,14 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
 
         $semana_passada =  $this->model::whereBetween('created_at', [$start_week, $end_week])->count();
-        $valor_inicial = 0;
+        $valor_inicial = $semana_passada;
         $valor_final = $this->transfers_esta_semana();
 
-        $diferença = ($valor_final - $valor_inicial) / $valor_inicial * 100;
-
+        if ($valor_inicial > 0) {
+            $diferença = ($valor_final - $valor_inicial) / $valor_inicial * 100;
+        } else {
+            $diferença = 0;
+        }
         return $diferença;
     }
-
 }
