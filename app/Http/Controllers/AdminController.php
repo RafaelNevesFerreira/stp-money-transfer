@@ -36,7 +36,7 @@ class AdminController extends Controller
         $stripe = new \Stripe\StripeClient(
             'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
         );
-        dd($stripe->subscriptions->all(['created' => ["gte" => $date->getTimestamp()]])->data);
+        // dd($stripe->subscriptions->all(['created' => ["gte" => $date->getTimestamp()]])->data);
 
         return view("admin.dashboard", compact(
             "transfers_esta_semana",
