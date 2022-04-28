@@ -17,7 +17,7 @@ class AdminController extends Controller
     {
         $transfers_esta_semana = $this->transfers->transfers_esta_semana();
 
-        // dd($transfers_esta_semana);
+        dd($this->transfers->aumento_em_relacao_a_semana_passada());
         return view("admin.dashboard",compact("transfers_esta_semana"));
     }
 }
