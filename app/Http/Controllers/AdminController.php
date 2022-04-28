@@ -26,6 +26,8 @@ class AdminController extends Controller
 
         $lucros_desse_ano = $this->transfers->dados_grafico_receita();
 
+        $lucros_ano_passado = $this->transfers->dados_grafico_receita_ano_passado();
+
         $saldo_semana_passada = $this->transfers->saldo_semana_passada();
 
         return view("admin.dashboard", compact(
@@ -36,7 +38,8 @@ class AdminController extends Controller
             "numero_de_prestações_da_semana",
             "saldo_semanal",
             "saldo_semana_passada",
-            "lucros_desse_ano"
+            "lucros_desse_ano",
+            "lucros_ano_passado",
         ));
     }
 }

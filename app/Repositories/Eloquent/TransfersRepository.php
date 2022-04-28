@@ -285,11 +285,66 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return $sem_prestacoes + $com_prestacoes;
     }
 
+    public function mes_ano_passado($mes)
+    {
+        $pagos_em_prestacoes_com_libra = $this->model::whereMonth('created_at', '=', $mes)
+            ->whereYear('created_at', date('Y', strtotime('-1 year')))
+            ->where(["plan" => 1, "currency" => "gbp"])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+        $pagos_em_prestacoes_com_dolar = $this->model::whereMonth('created_at', '=', $mes)
+            ->whereYear('created_at', date('Y', strtotime('-1 year')))
+            ->where(["plan" => 1, "currency" => "usd"])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+        $dolar_para_euro_prestacoes = $pagos_em_prestacoes_com_dolar * $this->DOLAR_EURO_PARA / 1;
+        $libra_para_euro_prestacoes = $pagos_em_prestacoes_com_libra * $this->LIBRA_EURO_PARA / 1;
+
+        $pagos_em_prestacoes_com_euro = $this->model::whereMonth('created_at', '=', $mes)
+            ->whereYear('created_at', date('Y', strtotime('-1 year')))
+            ->where(["plan" => 1, "currency" => "eur"])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+        $pagos_com_libra = $this->model::whereMonth('created_at', '=', $mes)
+            ->whereYear('created_at', date('Y', strtotime('-1 year')))
+            ->where(["plan" => 0, "currency" => "gbp"])
+            ->sum(DB::raw("value_sended + tax"));
+
+        $pagos_com_dolar = $this->model::whereMonth('created_at', '=', $mes)
+            ->whereYear('created_at', date('Y', strtotime('-1 year')))
+            ->where(["plan" => 0, "currency" => "usd"])
+            ->sum(DB::raw("value_sended + tax"));
+
+        $pagos_com_euro = $this->model::whereMonth('created_at', '=', $mes)
+            ->whereYear('created_at', date('Y', strtotime('-1 year')))
+            ->where(["plan" => 0, "currency" => "eur"])
+            ->sum(DB::raw("value_sended + tax"));
+
+        $dolar_para_euro = $pagos_com_dolar * $this->DOLAR_EURO_PARA / 1;
+        $libra_para_euro = $pagos_com_libra *  $this->LIBRA_EURO_PARA / 1;
+
+        $sem_prestacoes = $pagos_com_euro + $dolar_para_euro + $libra_para_euro;
+        $com_prestacoes = $pagos_em_prestacoes_com_euro + $dolar_para_euro_prestacoes + $libra_para_euro_prestacoes;
+
+        return $sem_prestacoes + $com_prestacoes;
+    }
+
     public function dados_grafico_receita()
     {
         $meses = [];
         for ($i = 1; $i < 13; $i++) {
             $mes = $this->mes($i);
+            array_push($meses, $mes);
+        }
+
+        return $meses;
+    }
+
+    public function dados_grafico_receita_ano_passado()
+    {
+        $meses = [];
+        for ($i = 1; $i < 13; $i++) {
+            $mes = $this->mes_ano_passado($i);
             array_push($meses, $mes);
         }
 
