@@ -219,7 +219,7 @@
                 <!-- end row-->
 
                 <div class="row">
-                    <div class="col-xl-4 col-lg-12">
+                    <div class="col-xl-8 col-lg-12">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="header-title mb-3">Transações Recentes
@@ -230,8 +230,8 @@
                                             <tr>
                                                 <th>Nome</th>
                                                 <th>Valor</th>
-                                                <th>Valor(dbs)</th>
                                                 <th>Tax</th>
+                                                <th>Valor(dbs)</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -254,6 +254,15 @@
                                                     </td>
                                                     <td>
                                                         @if ($transfer->currency === 'eur')
+                                                            {{ number_format($transfer->tax, 2, ',', '.') }} €
+                                                        @elseif ($transfer->currency === 'usd')
+                                                            {{ number_format($transfer->tax, 2, ',', '.') }} $
+                                                        @else
+                                                            {{ number_format($transfer->tax, 2, ',', '.') }} £
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($transfer->currency === 'eur')
                                                             {{ number_format($transfer->value_sended * (int) env('EUR_CAMBIO_VALUE'), 2, ',', '.') }}
                                                             dbs
                                                         @elseif ($transfer->currency === 'usd')
@@ -262,15 +271,6 @@
                                                         @else
                                                             {{ number_format($transfer->value_sended * (int) env('GBP_CAMBIO_VALUE'), 2, ',', '.') }}
                                                             dbs
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($transfer->currency === 'eur')
-                                                            {{ number_format($transfer->tax, 2, ',', '.') }} €
-                                                        @elseif ($transfer->currency === 'usd')
-                                                            {{ number_format($transfer->tax, 2, ',', '.') }} $
-                                                        @else
-                                                            {{ number_format($transfer->tax, 2, ',', '.') }} £
                                                         @endif
                                                     </td>
                                                     <td class="table-action">
