@@ -239,12 +239,12 @@
                                             @forelse ($transacoes_recentes as $transfers)
                                                 <tr>
                                                     <td>
-                                                        <h5 class="font-15 mb-1 fw-normal">Jeremy Young</h5>
-                                                        <span class="text-muted font-13">Senior Sales Executive</span>
+                                                        <h5 class="font-15 mb-1 fw-normal">{{$transfer->name}}</h5>
+                                                        <span class="text-muted font-13">{{$transfer->email}}</span>
                                                     </td>
-                                                    <td>187</td>
-                                                    <td>154</td>
-                                                    <td>49</td>
+                                                    <td>{{$transfer->value_sended}}</td>
+                                                    <td>{{$transfer->name}}</td>
+                                                    <td>{{$transfer->tax}}</td>
                                                     <td class="table-action">
                                                         <a href="javascript: void(0);" class="action-icon"> <i
                                                                 class="mdi mdi-eye"></i></a>
