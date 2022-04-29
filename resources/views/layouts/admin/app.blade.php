@@ -75,6 +75,22 @@
     </script>
 
     @yield("scripts")
+
+    <script>
+        var esse_ano = jQuery.parseJSON($("#esse_ano").attr("data-meses"))
+        var ano_passado = jQuery.parseJSON($("#ano_passado").attr("data-meses"))
+
+        var pago_em_prestacoes_percentagem =
+            {{ number_format(($pago_emprestacoes * 100) / ($pago_emprestacoes + $pago_em_cash)) }}
+        var pago_em_cash_percentagem = {{ number_format(($pago_em_cash * 100) / ($pago_emprestacoes + $pago_em_cash)) }}
+
+        $(document).ready(function() {
+            $(".apexcharts-yaxis-texts-g").children("text").children("tspan").each(function(index) {
+                $(this).text(parseFloat($(this).text().substr(0, 7)).toLocaleString('pt-Pt') + " €");
+            });
+
+        })
+    </script>
 </body>
 
 </html>
