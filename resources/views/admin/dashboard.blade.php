@@ -245,11 +245,11 @@
                                                     <td>{{ $transfer->value_sended }}</td>
                                                     <td>
                                                         @if ($transfer->currency === 'eur')
-                                                            {{ number_format($transfer->value_sended * (int) env('EUR_CAMBIO_VALUE'), 2, ',', '.') }} €
+                                                            {{ number_format($transfer->value_sended * (int) env('EUR_CAMBIO_VALUE'), 2, ',', '.') }} dbs
                                                         @elseif ($transfer->currency === 'usd')
-                                                            {{ number_format($transfer->value_sended * (int) env('USD_CAMBIO_VALUE'), 2, ',', '.') }} £
+                                                            {{ number_format($transfer->value_sended * (int) env('USD_CAMBIO_VALUE'), 2, ',', '.') }} dbs
                                                         @else
-                                                            {{ number_format($transfer->value_sended * (int) env('GBP_CAMBIO_VALUE'), 2, ',', '.') }} £
+                                                            {{ number_format($transfer->value_sended * (int) env('GBP_CAMBIO_VALUE'), 2, ',', '.') }} dbs
                                                         @endif
                                                     </td>
                                                     <td>{{ $transfer->tax }}</td>
