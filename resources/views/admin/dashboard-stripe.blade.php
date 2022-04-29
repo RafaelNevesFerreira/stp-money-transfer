@@ -3,7 +3,7 @@
     <div class="content-page">
         <div class="content">
             <!-- Topbar Start -->
-            @include("layouts.admin.topbar")
+            @include('layouts.admin.topbar')
             <!-- end Topbar -->
 
             <!-- Start Content-->
@@ -557,7 +557,18 @@
         </div>
         <!-- content -->
 
-        @include("layouts.admin.footer")
+        @include('layouts.admin.footer')
 
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/dashboard/js/vendor/apexcharts.min.js') }}"></script>
+
+    <!-- Todo js -->
+    <script src="{{ asset('assets/dashboard/js/ui/component.todo.js') }}"></script>
+
+    <!-- demo app -->
+    <script src="{{ asset('assets/dashboard/js/pages/demo.dashboard-crm.js') }}"></script>
+    <!-- end demo js-->
 @endsection
