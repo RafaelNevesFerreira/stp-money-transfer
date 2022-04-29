@@ -563,9 +563,6 @@
 @endsection
 
 @section('scripts')
-    <!-- bundle -->
-    <script src="assets/js/vendor.min.js"></script>
-    <script src="assets/js/app.min.js"></script>
 
     <!-- third party js -->
     <script src="{{ asset('assets/dashboard/js/vendor/jquery-jvectormap-1.2.2.min.js') }}"></script>
@@ -578,6 +575,6 @@
     <script src="{{ asset('assets/dashboard/js/ui/component.todo.js') }}"></script>
 
     <!-- demo app -->
-    <script src="{{ asset('assets/dashboard/js/pages/demo.dashboard-crm.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/pages/demo.dashboard.js') }}"></script>
     <!-- end demo js-->
 @endsection
