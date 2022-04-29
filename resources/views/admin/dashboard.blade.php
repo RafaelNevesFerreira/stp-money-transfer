@@ -218,7 +218,6 @@
                 </div>
                 <!-- end row-->
 
-
                 <div class="row">
                     <div class="col-xl-4 col-lg-12">
                         <div class="card">
