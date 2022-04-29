@@ -57,8 +57,8 @@ class AdminController extends Controller
 
     public function dashboard_stripe()
     {
-        $stripe = new \Stripe\StripeClient("sk_test_your_key");
-        dd($stripe->balance->retrieve());
+        $stripe = new \Stripe\StripeClient("sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId");
+        dd($stripe->paymentIntents->all(['limit' => 100]));
         return view("admin.dashboard-stripe");
     }
 }
