@@ -586,7 +586,7 @@
             $.ajax({
                 type: "GET",
                 url: "{{ route('admin.get.customers') }}",
-                success: function(data) {
+                 success: function(data) {
                     if (data.diferenca_mes_passado > 0) {
                         $(".diferenca_customers_mes_passado")
                             .html(
@@ -594,7 +594,7 @@
                                 data.diferenca_mes_passado +
                                 "%</span><span class='text-nowrap'>Mês Passado</span>")
                     } else {
-                        $(".diferenca_customers_mes_passado")
+                         $(".diferenca_customers_mes_passado")
                             .html(
                                 "<span class='text-danger me-2'><i class='mdi mdi-arrow-down-bold'></i>" +
                                 data.diferenca_mes_passado +

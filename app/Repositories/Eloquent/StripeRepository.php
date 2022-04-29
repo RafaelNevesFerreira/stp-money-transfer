@@ -48,7 +48,7 @@ class StripeRepository implements StripeRepositoryInterface
             $date = new DateTime(date("Y-$month-01"));
             $este_mes = new DateTime(date("Y-m-31"));
 
-            $paymentIntents = $stripe->paymentIntents->all(["created" => ["gte" => $este_mes->getTimestamp(), "lte" =>  $date->getTimestamp()]]);
+            $paymentIntents = $stripe->paymentIntents->all(["created" => ["gte" => $date->getTimestamp(), "lte" =>  $este_mes->getTimestamp()]]);
         }
         //esse mes
         else {
