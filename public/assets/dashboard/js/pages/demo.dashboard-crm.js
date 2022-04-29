@@ -51,7 +51,7 @@ colors = ["#727cf5", "#0acf97", "#fa5c7c", "#ffbc00"];
 options = {
     chart: { height: 321, type: "line", toolbar: { show: !1 } },
     stroke: { curve: "smooth", width: 2 },
-    series: [{ name: "Este Ano", type: "area", data: esse_ano },
+    series: [{ name: "Este Ano", type: "area", data: esse_ano || "" },
         { name: "Ano Passado", type: "line", data: ano_passado }
     ],
     fill: { type: "solid", opacity: [.35, 1] },
