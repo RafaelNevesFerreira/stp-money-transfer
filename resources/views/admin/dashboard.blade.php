@@ -231,7 +231,7 @@
                                                 <th>Nome</th>
                                                 <th>Valor</th>
                                                 <th>Valor(dbs)</th>
-                                                <th>Tasks</th>
+                                                <th>Tax</th>
                                                 <th></th>
                                             </tr>
                                         </thead>

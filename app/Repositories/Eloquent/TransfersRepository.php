@@ -402,4 +402,9 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             return   $pagos_com_euro + $dolar_para_euro + $libra_para_euro;
         }
     }
+
+    public function transferencias_recentes($month, $year)
+    {
+        return $this->model::whereMonth("created_at",$month)->whereYear("created_at",$year)->latests();
+    }
 }

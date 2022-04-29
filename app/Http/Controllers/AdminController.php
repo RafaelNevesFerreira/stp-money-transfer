@@ -35,6 +35,10 @@ class AdminController extends Controller
 
         $usuarios_desse_mes = $this->users->usuarios_mes_ano(date("m"), date("Y"));
 
+        $transacoes_recentes = $this->transfers->transferencias_recentes(date("m"), date("Y"));
+
+        dd($transacoes_recentes);
+
 
         return view("admin.dashboard", compact(
             "transfers_esta_semana",

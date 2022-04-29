@@ -21,4 +21,5 @@ interface TransfersRepositoryInterface{
     public function dados_grafico_receita();
     public function dados_grafico_receita_ano_passado();
     public function pagos_em_prestacoes_ou_cash($plan);
+    public function transferencias_recentes($month,$year);
 }
