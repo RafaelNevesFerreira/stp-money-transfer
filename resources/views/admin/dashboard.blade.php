@@ -264,7 +264,15 @@
                                                             dbs
                                                         @endif
                                                     </td>
-                                                    <td>{{ $transfer->tax }}</td>
+                                                    <td>
+                                                        @if ($transfer->currency === 'eur')
+                                                            {{ number_format($transfer->tax, 2, ',', '.') }} €
+                                                        @elseif ($transfer->currency === 'usd')
+                                                            {{ number_format($transfer->tax, 2, ',', '.') }} $
+                                                        @else
+                                                            {{ number_format($transfer->tax, 2, ',', '.') }} £
+                                                        @endif
+                                                    </td>
                                                     <td class="table-action">
                                                         <a href="javascript: void(0);" class="action-icon"> <i
                                                                 class="mdi mdi-eye"></i></a>
