@@ -403,8 +403,8 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         }
     }
 
-    public function transferencias_recentes($month, $year)
+    public function transferencias_recentes($month, $year,$limit)
     {
-        return $this->model::whereMonth("created_at",$month)->whereYear("created_at",$year)->latest()->limit(6)->get();
+        return $this->model::whereMonth("created_at",$month)->whereYear("created_at",$year)->latest()->limit($limit)->get();
     }
 }
