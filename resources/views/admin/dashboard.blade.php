@@ -239,12 +239,20 @@
                                             @forelse ($transacoes_recentes as $transfers)
                                                 <tr>
                                                     <td>
-                                                        <h5 class="font-15 mb-1 fw-normal">{{$transfer->name}}</h5>
-                                                        <span class="text-muted font-13">{{$transfer->email}}</span>
+                                                        <h5 class="font-15 mb-1 fw-normal">{{ $transfer->name }}</h5>
+                                                        <span class="text-muted font-13">{{ $transfer->email }}</span>
                                                     </td>
-                                                    <td>{{$transfer->value_sended}}</td>
-                                                    <td>{{$transfer->name}}</td>
-                                                    <td>{{$transfer->tax}}</td>
+                                                    <td>{{ $transfer->value_sended }}</td>
+                                                    <td>
+                                                        @if ($transfer->currency === 'eur')
+                                                            {{ number_format($transfer->value_sended * (int) env('EUR_CAMBIO_VALUE'), 2, ',', '.') }} €
+                                                        @elseif ($transfer->currency === 'usd')
+                                                            {{ number_format($transfer->value_sended * (int) env('USD_CAMBIO_VALUE'), 2, ',', '.') }} £
+                                                        @else
+                                                            {{ number_format($transfer->value_sended * (int) env('GBP_CAMBIO_VALUE'), 2, ',', '.') }} £
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $transfer->tax }}</td>
                                                     <td class="table-action">
                                                         <a href="javascript: void(0);" class="action-icon"> <i
                                                                 class="mdi mdi-eye"></i></a>
