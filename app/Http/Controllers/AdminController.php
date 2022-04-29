@@ -69,9 +69,15 @@ class AdminController extends Controller
         $cliente_mes_passado = $this->stripe->count_customers(Carbon::now()->subMonth()->month);
         $cliente_este_mes = $this->stripe->count_customers(date("m"));
 
+        if ($cliente_mes_passado > 0) {
+            $diferenca = ($cliente_este_mes - $cliente_mes_passado) / $cliente_mes_passado * 100;
+        } else {
+            $diferenca = 0;
+        }
         $data = [
             "este_mes" => $cliente_mes_passado,
-            "mes_passado" => $cliente_este_mes
+            "mes_passado" => $cliente_este_mes,
+            "diferença_mes_passado" => $diferenca
         ];
 
         return $data;
