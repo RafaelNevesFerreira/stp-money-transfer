@@ -45,12 +45,12 @@
                                         <div class="float-end">
                                             <i class="mdi mdi-account-multiple widget-icon"></i>
                                         </div>
-                                        <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Clientes este mês</h5>
+                                        <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Clientes este mês
+                                        </h5>
                                         <h3 class="mt-3 mb-3" id="count_customers"></h3>
-                                        <p class="mb-0 text-muted">
-                                            <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>
-                                                5.27%</span>
-                                            <span class="text-nowrap">Mês Passado</span>
+                                        <p class="mb-0 text-muted diferenca_customers_mes_passado">
+
+
                                         </p>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -67,7 +67,7 @@
                                         <p class="mb-0 text-muted">
                                             <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i>
                                                 1.08%</span>
-                                            <span class="text-nowrap">Since last month</span>
+                                            <span class="text-nowrap">Mês Passado</span>
                                         </p>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -84,9 +84,11 @@
                                         <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Revenue</h5>
                                         <h3 class="mt-3 mb-3">$6,254</h3>
                                         <p class="mb-0 text-muted">
-                                            <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i>
-                                                7.00%</span>
-                                            <span class="text-nowrap">Since last month</span>
+                                            <span class="text-danger me-2">
+                                                <i class="mdi mdi-arrow-down-bold"></i>
+                                                7.00%
+                                            </span>
+                                            <span class="text-nowrap">Mês Passado</span>
                                         </p>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -103,7 +105,7 @@
                                         <p class="mb-0 text-muted">
                                             <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>
                                                 4.87%</span>
-                                            <span class="text-nowrap">Since last month</span>
+                                            <span class="text-nowrap">Mês Passado</span>
                                         </p>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -585,8 +587,23 @@
                 type: "GET",
                 url: "{{ route('admin.get.customers') }}",
                 success: function(data) {
-                    console.log(data);
-                    // $("#count_customers").text(data)
+                    if (data.diferenca_mes_passado > 0) {
+                        $(".diferenca_customers_mes_passado")
+                            .html(
+                                "<span class='text-success me-2'><i class='mdi mdi-arrow-up-bold'></i>" +
+                                data.diferenca_mes_passado +
+                                "%</span><span class='text-nowrap'>Mês Passado</span>")
+                    } else {
+                        $(".diferenca_customers_mes_passado")
+                            .html(
+                                "<span class='text-danger me-2'><i class='mdi mdi-arrow-down-bold'></i>" +
+                                data.diferenca_mes_passado +
+                                "%</span><span class='text-nowrap'>Mês Passado</span>")
+                    }
+                    console.log("<span class='text-danger me-2'><i class='mdi mdi-arrow-down-bold'></i>" +
+                                data.diferenca_mes_passado +
+                                "%</span><span class='text-nowrap'>Mês Passado</span>");
+                    $("#count_customers").text(data.este_mes)
                 }
             });
         })

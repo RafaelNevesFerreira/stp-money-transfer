@@ -75,9 +75,8 @@ class AdminController extends Controller
             $diferenca = 0;
         }
         $data = [
-            "este_mes" => $cliente_mes_passado,
-            "mes_passado" => $cliente_este_mes,
-            "diferença_mes_passado" => $diferenca
+            "este_mes" => $cliente_este_mes,
+            "diferenca_mes_passado" => str_replace("-","",number_format($diferenca,2,",","."))
         ];
 
         return $data;

@@ -16,14 +16,18 @@ class StripeRepository implements StripeRepositoryInterface
     {
         $stripe = new \Stripe\StripeClient("sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId");
 
+        //mes passado
         if ($month != date("m")) {
             $date = new DateTime(date("Y-$month-01"));
             $este_mes = new DateTime(date("Y-m-31"));
-            $customers = $stripe->customers->all(["created" => ["gte" => $date->getTimestamp(), "lte" => $este_mes->getTimestamp()]]);
-        } else {
+
+            $customers = $stripe->customers->all(["created" => ["gte" => $este_mes->getTimestamp(), "lte" =>  $date->getTimestamp()]]);
+        }
+        //esse mes
+        else {
             $date = new DateTime(date("Y-$month-01"));
             $este_mes = new DateTime(date("Y-m-31"));
-            $customers = $stripe->customers->all(["created" => ["gte" => $este_mes->getTimestamp(), "lte" =>  $date->getTimestamp()]]);
+            $customers = $stripe->customers->all(["created" => ["gte" => $date->getTimestamp(), "lte" => $este_mes->getTimestamp()]]);
         }
 
         $count = 0;
