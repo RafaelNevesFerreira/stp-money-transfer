@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Repositories\Contracts\StripeRepositoryInterface;
+use DateTime;
 
 class StripeRepository implements StripeRepositoryInterface
 {
@@ -15,12 +16,14 @@ class StripeRepository implements StripeRepositoryInterface
     {
         $stripe = new \Stripe\StripeClient("sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId");
 
+        $date = new DateTime("2022-04-01");
 
-        $customers = $stripe->paymentIntents->all(["created" => ]);
+
+        $customers = $stripe->paymentIntents->all(["created" => ["gte" => $date->getTimestamp()]]);
         $count = 0;
 
         foreach ($customers->autoPagingIterator() as $customer) {
-            $count +=1;
+            $count += 1;
         }
 
         dd($count);
