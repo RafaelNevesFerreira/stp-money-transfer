@@ -33,6 +33,8 @@ class AdminController extends Controller
 
         $pago_em_cash = $this->transfers->pagos_em_prestacoes_ou_cash(0);
 
+        $usuarios_desse_mes = $this->users->usuarios_mes_ano(date("m"), date("Y"));
+
 
         return view("admin.dashboard", compact(
             "transfers_esta_semana",
@@ -45,7 +47,8 @@ class AdminController extends Controller
             "lucros_desse_ano",
             "lucros_ano_passado",
             "pago_emprestacoes",
-            "pago_em_cash"
+            "pago_em_cash",
+            "usuarios_desse_mes"
         ));
     }
 }
