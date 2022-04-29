@@ -84,6 +84,7 @@ Route::middleware("admin")->group(function () {
     Route::controller(AdminController::class)->group(function () {
         Route::prefix("admin")->group(function () {
             Route::get("/dashboard", "dashboard")->name("admin.dashboard");
+            Route::get("/dashboard/stripe", "dashboard_stripe")->name("admin.dashboard.stripe");
         });
     });
 });

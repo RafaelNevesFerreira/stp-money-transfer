@@ -33,9 +33,9 @@ class AdminController extends Controller
 
         $pago_em_cash = $this->transfers->pagos_em_prestacoes_ou_cash(0);
 
-        $usuarios_desse_mes = $this->users->usuarios_mes_ano(date("m"), date("Y"),6);
+        $usuarios_desse_mes = $this->users->usuarios_mes_ano(date("m"), date("Y"), 6);
 
-        $transacoes_recentes = $this->transfers->transferencias_recentes(date("m"), date("Y"),5);
+        $transacoes_recentes = $this->transfers->transferencias_recentes(date("m"), date("Y"), 5);
 
 
         return view("admin.dashboard", compact(
@@ -53,5 +53,10 @@ class AdminController extends Controller
             "usuarios_desse_mes",
             "transacoes_recentes"
         ));
+    }
+
+    public function dashboard_stripe()
+    {
+        return view("admin.dashboard-stripe");
     }
 }
