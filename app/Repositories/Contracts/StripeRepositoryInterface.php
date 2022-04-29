@@ -5,5 +5,5 @@ namespace App\Repositories\Contracts;
 
 interface StripeRepositoryInterface
 {
-    public function client_count();
+    public function count_customers();
 }

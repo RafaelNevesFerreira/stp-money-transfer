@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Contracts\StripeRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class AdminController extends Controller
 {
-    public function __construct(public TransfersRepositoryInterface $transfers, public UserRepositoryInterface $users)
+    public function __construct(public TransfersRepositoryInterface $transfers, public UserRepositoryInterface $users, public StripeRepositoryInterface $stripe)
     {
         $this->middleware('admin');
     }
@@ -57,17 +58,10 @@ class AdminController extends Controller
 
     public function dashboard_stripe()
     {
-        $stripe = new \Stripe\StripeClient("sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId");
-        $customers = $stripe->customers->all(['limit' => 3]);
-        // dd($customers->count());
 
-        // dd($stripe->customers->all(['limit' => 3]));
-        // foreach ($customers->autoPagingIterator() as $customer) {
-        //     echo "<br>";
-        //     echo $customer->name ;
-        // }
+        $this->stripe->count_customers();
 
-        // dd("done");
+        dd("done");
         return view("admin.dashboard-stripe");
     }
 }
