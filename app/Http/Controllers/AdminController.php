@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Contracts\StripeRepositoryInterface;
+use Illuminate\Support\Carbon;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\StripeRepositoryInterface;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class AdminController extends Controller
@@ -58,10 +59,21 @@ class AdminController extends Controller
 
     public function dashboard_stripe()
     {
-
-        $this->stripe->count_customers();
-
-        dd("done");
         return view("admin.dashboard-stripe");
+    }
+
+    public function custumers()
+    {
+        // $this->stripe->count_customers();
+
+        $cliente_mes_passado = $this->stripe->count_customers(Carbon::now()->subMonth()->month);
+        $cliente_este_mes = $this->stripe->count_customers(date("m"));
+
+        $data = [
+            "este_mes" => $cliente_mes_passado,
+            "mes_passado" => $cliente_este_mes
+        ];
+
+        return $data;
     }
 }
