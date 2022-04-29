@@ -242,14 +242,26 @@
                                                         <h5 class="font-15 mb-1 fw-normal">{{ $transfer->name }}</h5>
                                                         <span class="text-muted font-13">{{ $transfer->email }}</span>
                                                     </td>
-                                                    <td>{{ $transfer->value_sended }}</td>
+                                                    <td>
+
+                                                        @if ($transfer->currency === 'eur')
+                                                            {{ number_format($transfer->value_sended, 2, ',', '.') }} €
+                                                        @elseif ($transfer->currency === 'usd')
+                                                            {{ number_format($transfer->value_sended, 2, ',', '.') }} $
+                                                        @else
+                                                            {{ number_format($transfer->value_sended, 2, ',', '.') }} £
+                                                        @endif
+                                                    </td>
                                                     <td>
                                                         @if ($transfer->currency === 'eur')
-                                                            {{ number_format($transfer->value_sended * (int) env('EUR_CAMBIO_VALUE'), 2, ',', '.') }} dbs
+                                                            {{ number_format($transfer->value_sended * (int) env('EUR_CAMBIO_VALUE'), 2, ',', '.') }}
+                                                            dbs
                                                         @elseif ($transfer->currency === 'usd')
-                                                            {{ number_format($transfer->value_sended * (int) env('USD_CAMBIO_VALUE'), 2, ',', '.') }} dbs
+                                                            {{ number_format($transfer->value_sended * (int) env('USD_CAMBIO_VALUE'), 2, ',', '.') }}
+                                                            dbs
                                                         @else
-                                                            {{ number_format($transfer->value_sended * (int) env('GBP_CAMBIO_VALUE'), 2, ',', '.') }} dbs
+                                                            {{ number_format($transfer->value_sended * (int) env('GBP_CAMBIO_VALUE'), 2, ',', '.') }}
+                                                            dbs
                                                         @endif
                                                     </td>
                                                     <td>{{ $transfer->tax }}</td>
