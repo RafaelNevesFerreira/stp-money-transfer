@@ -600,9 +600,7 @@
                                 data.diferenca_mes_passado +
                                 "%</span><span class='text-nowrap'>Mês Passado</span>")
                     }
-                    console.log("<span class='text-danger me-2'><i class='mdi mdi-arrow-down-bold'></i>" +
-                                data.diferenca_mes_passado +
-                                "%</span><span class='text-nowrap'>Mês Passado</span>");
+                    console.log(data);
                     $("#count_customers").text(data.este_mes)
                 }
             });
