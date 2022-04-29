@@ -236,7 +236,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($transacoes_recentes as $transfers)
+                                            @forelse ($transacoes_recentes as $transfer)
                                                 <tr>
                                                     <td>
                                                         <h5 class="font-15 mb-1 fw-normal">{{ $transfer->name }}</h5>
