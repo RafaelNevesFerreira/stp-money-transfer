@@ -287,6 +287,34 @@
                             </div> <!-- end card-body-->
                         </div> <!-- end card-->
                     </div>
+                    <!-- end col-->
+
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title mb-4">Novos Usuarios</h4>
+
+                                @forelse ($usuarios_desse_mes as $user)
+                                    <div class="d-flex align-items-start">
+                                        <img class="me-3 rounded-circle"
+                                            src="{{ asset('images/profile') . '/' . $user->avatar }}" width="40"
+                                            alt="Generic placeholder image">
+                                        <div class="w-100 overflow-hidden">
+                                            <h5 class="mt-0 mb-1">{{ $user->name }}</h5>
+                                            <span class="font-13">{{ $user->email }}</span>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <div class="alert alert-warning">
+                                        <p>Nenhum Usuario registrado este mês</p>
+                                    </div>
+                                @endforelse
+                            </div>
+                            <!-- end card-body -->
+                        </div>
+                        <!-- end card-->
+                    </div>
+                    <!-- end col -->
                 </div>
                 <!-- end row-->
 
