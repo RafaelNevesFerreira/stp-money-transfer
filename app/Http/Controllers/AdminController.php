@@ -57,6 +57,8 @@ class AdminController extends Controller
 
     public function dashboard_stripe()
     {
+        $stripe = new \Stripe\StripeClient("sk_test_your_key");
+        dd($stripe->balance->retrieve());
         return view("admin.dashboard-stripe");
     }
 }
