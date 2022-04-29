@@ -41,4 +41,9 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
         return $diferença;
     }
+
+    public function usuarios_mes_ano($month, $year)
+    {
+        return $this->model::whereMonth("created_at", $month)->whereYear("created_at", $year)->latest();
+    }
 }
