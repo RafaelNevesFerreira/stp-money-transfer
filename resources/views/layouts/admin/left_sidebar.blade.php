@@ -15,10 +15,10 @@
                 <div class="collapse" id="sidebarDashboards">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('tecnico.dashboard') }}">Home</a>
+                            <a href="{{ route("admin.dashboard") }}">Home</a>
                         </li>
                         <li>
-                            <a href="{{ route('tecnico.transactions') }}">Transactions</a>
+                            <a href="{{ route("admin.dashboard.stripe") }}">Stripe</a>
                         </li>
                     </ul>
                 </div>
