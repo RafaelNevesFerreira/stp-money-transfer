@@ -37,8 +37,6 @@ class AdminController extends Controller
 
         $transacoes_recentes = $this->transfers->transferencias_recentes(date("m"), date("Y"));
 
-        dd($transacoes_recentes);
-
 
         return view("admin.dashboard", compact(
             "transfers_esta_semana",
@@ -52,7 +50,8 @@ class AdminController extends Controller
             "lucros_ano_passado",
             "pago_emprestacoes",
             "pago_em_cash",
-            "usuarios_desse_mes"
+            "usuarios_desse_mes",
+            "transacoes_recentes"
         ));
     }
 }

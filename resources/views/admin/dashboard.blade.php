@@ -236,71 +236,22 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <h5 class="font-15 mb-1 fw-normal">Jeremy Young</h5>
-                                                    <span class="text-muted font-13">Senior Sales Executive</span>
-                                                </td>
-                                                <td>187</td>
-                                                <td>154</td>
-                                                <td>49</td>
-                                                <td class="table-action">
-                                                    <a href="javascript: void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5 class="font-15 mb-1 fw-normal">Thomas Krueger</h5>
-                                                    <span class="text-muted font-13">Senior Sales Executive</span>
-                                                </td>
-                                                <td>235</td>
-                                                <td>127</td>
-                                                <td>83</td>
-                                                <td class="table-action">
-                                                    <a href="javascript: void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5 class="font-15 mb-1 fw-normal">Pete Burdine</h5>
-                                                    <span class="text-muted font-13">Senior Sales Executive</span>
-                                                </td>
-                                                <td>365</td>
-                                                <td>148</td>
-                                                <td>62</td>
-                                                <td class="table-action">
-                                                    <a href="javascript: void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5 class="font-15 mb-1 fw-normal">Mary Nelson</h5>
-                                                    <span class="text-muted font-13">Senior Sales Executive</span>
-                                                </td>
-                                                <td>753</td>
-                                                <td>159</td>
-                                                <td>258</td>
-                                                <td class="table-action">
-                                                    <a href="javascript: void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5 class="font-15 mb-1 fw-normal">Kevin Grove</h5>
-                                                    <span class="text-muted font-13">Senior Sales Executive</span>
-                                                </td>
-                                                <td>458</td>
-                                                <td>126</td>
-                                                <td>73</td>
-                                                <td class="table-action">
-                                                    <a href="javascript: void(0);" class="action-icon"> <i
-                                                            class="mdi mdi-eye"></i></a>
-                                                </td>
-                                            </tr>
+                                            @forelse ($transacoes_recentes as $transfers)
+                                                <tr>
+                                                    <td>
+                                                        <h5 class="font-15 mb-1 fw-normal">Jeremy Young</h5>
+                                                        <span class="text-muted font-13">Senior Sales Executive</span>
+                                                    </td>
+                                                    <td>187</td>
+                                                    <td>154</td>
+                                                    <td>49</td>
+                                                    <td class="table-action">
+                                                        <a href="javascript: void(0);" class="action-icon"> <i
+                                                                class="mdi mdi-eye"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div> <!-- end table-responsive-->
@@ -317,17 +268,18 @@
 
                                 @forelse ($usuarios_desse_mes as $user)
                                     <div class="d-flex align-items-start">
-                                        <img class="me-3 rounded-circle" src="{{asset("images/profile") . "/" . $user->avatar}}" width="40"
-                                        alt="Generic placeholder image">
+                                        <img class="me-3 rounded-circle"
+                                            src="{{ asset('images/profile') . '/' . $user->avatar }}" width="40"
+                                            alt="Generic placeholder image">
                                         <div class="w-100 overflow-hidden">
-                                            <h5 class="mt-0 mb-1">{{$user->name}}</h5>
-                                            <span class="font-13">{{$user->email}}</span>
+                                            <h5 class="mt-0 mb-1">{{ $user->name }}</h5>
+                                            <span class="font-13">{{ $user->email }}</span>
                                         </div>
                                     </div>
                                 @empty
-                                <div class="alert alert-warning">
-                                    <p>Nenhum Usuario registrado este mês</p>
-                                </div>
+                                    <div class="alert alert-warning">
+                                        <p>Nenhum Usuario registrado este mês</p>
+                                    </div>
                                 @endforelse
                             </div>
                             <!-- end card-body -->
