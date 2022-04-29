@@ -10,7 +10,7 @@
                 </span>
                 <span>
                     <span class="account-user-name">{{Auth::user()->name}}</span>
-                    <span class="account-position">Tecnico</span>
+                    <span class="account-position">Administrador</span>
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">

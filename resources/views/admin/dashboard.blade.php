@@ -144,24 +144,7 @@
                     <div class="col-lg-5">
                         <div class="card">
                             <div class="card-body">
-                                <div class="dropdown float-end">
-                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="mdi mdi-dots-vertical"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Today</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Yesterday</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Last Week</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Last Month</a>
-                                    </div>
-                                </div>
-
-                                <h4 class="header-title mb-1">Campaigns</h4>
+                                <h4 class="header-title mb-1">Receita do Mês</h4>
 
                                 <div id="dash-campaigns-chart" class="apex-charts" data-colors="#dc3545,#727cf5,#0acf97">
                                 </div>
@@ -184,7 +167,7 @@
                                         </h3>
                                         <p class="text-muted  mb-3">
                                             <i class="mdi mdi-checkbox-blank-circle text-primary"></i>
-                                            Pago em Cartão
+                                            Pago na Totalidade
                                         </p>
                                     </div>
                                 </div>
@@ -198,23 +181,6 @@
                     <div class="col-lg-7">
                         <div class="card">
                             <div class="card-body">
-                                <div class="dropdown float-end">
-                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="mdi mdi-dots-vertical"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Today</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Yesterday</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Last Week</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Last Month</a>
-                                    </div>
-                                </div>
-
                                 <h4 class="header-title mb-3">Receita</h4>
 
                                 <div class="chart-content-bg">
@@ -447,7 +413,7 @@
                                 <div class="d-flex align-items-start align-items-center">
                                     <div class="w-100 overflow-hidden">
                                         <h2 class="mt-0">
-                                            <i <h3 class="m-0 fw-normal cta-box-title">Enhance your <b>Campaign</b> for
+                                            <h3 class="m-0 fw-normal cta-box-title">Enhance your <b>Campaign</b> for
                                                 better
                                                 outreach <i class="mdi mdi-arrow-right"></i></h3>
                                     </div>
@@ -503,6 +469,11 @@
     <script>
         var esse_ano = jQuery.parseJSON($("#esse_ano").attr("data-meses"))
         var ano_passado = jQuery.parseJSON($("#ano_passado").attr("data-meses"))
+
+        var pago_em_prestacoes_percentagem =
+            {{ number_format(($pago_emprestacoes * 100) / ($pago_emprestacoes + $pago_em_cash)) }}
+        var pago_em_cash_percentagem = {{ number_format(($pago_em_cash * 100) / ($pago_emprestacoes + $pago_em_cash)) }}
+
         $(document).ready(function() {
             $(".apexcharts-yaxis-texts-g").children("text").children("tspan").each(function(index) {
                 $(this).text(parseFloat($(this).text().substr(0, 7)).toLocaleString('pt-Pt') + " €");
