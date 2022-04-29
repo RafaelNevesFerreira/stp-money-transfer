@@ -33,9 +33,9 @@ class AdminController extends Controller
 
         $pago_em_cash = $this->transfers->pagos_em_prestacoes_ou_cash(0);
 
-        $usuarios_desse_mes = $this->users->usuarios_mes_ano(date("m"), date("Y"));
+        $usuarios_desse_mes = $this->users->usuarios_mes_ano(date("m"), date("Y"),6);
 
-        $transacoes_recentes = $this->transfers->transferencias_recentes(date("m"), date("Y"),4);
+        $transacoes_recentes = $this->transfers->transferencias_recentes(date("m"), date("Y"),5);
 
 
         return view("admin.dashboard", compact(
