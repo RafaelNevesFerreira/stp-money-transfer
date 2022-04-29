@@ -228,9 +228,9 @@
                                     <table class="table table-striped table-sm table-nowrap table-centered mb-0">
                                         <thead>
                                             <tr>
-                                                <th>User</th>
-                                                <th>Leads</th>
-                                                <th>Deals</th>
+                                                <th>Nome</th>
+                                                <th>Valor</th>
+                                                <th>Valor(dbs)</th>
                                                 <th>Tasks</th>
                                                 <th></th>
                                             </tr>
