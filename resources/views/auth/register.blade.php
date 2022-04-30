@@ -7,8 +7,8 @@
                     <div class="bg-white shadow-md rounded p-3 pt-sm-4 pb-sm-5 px-sm-5">
                         <h3 class="fw-400 text-center mb-4">Criar Uma Conta</h3>
                         <hr class="mx-n3 mx-sm-n5">
-                        <p class="lead text-center">We are glad to see you again!</p>
-                        <form id="loginForm" method="post" action="{{ route('login') }}">
+                        <p class="lead text-center">Todos os dias, Nós deixamos milhares de clientes satisfeitos!</p>
+                        <form id="loginForm" method="post" action="{{ route('register') }}">
                             @csrf
                             <div class="row g-3">
                                 <div class="mb-3 col">
@@ -17,10 +17,10 @@
                                         id="name" required placeholder="Digite seu nome">
                                 </div>
                                 <div class="mb-3 col">
-                                    <label for="phone_number" class="form-label">Telemovel</label>
+                                    <label for="phone_number" class="form-label">Telemóvel</label>
                                     <input type="number" name="phone_number" value="{{ old('phone_number') }}"
                                         class="form-control" id="phone_number" required
-                                        placeholder="Digite seu numero de telemovel">
+                                        placeholder="Digite seu número de Telemóvel">
                                 </div>
                             </div>
 
@@ -43,12 +43,12 @@
                             </div>
                             <div class="row g-3">
                                 <div class="mb-3 col">
-                                    <label for="emailAddress" class="form-label">Password</label>
+                                    <label for="emailAddress" class="form-label">Senha</label>
                                     <input type="password" name="password" class="form-control" id="emailAddress" required
                                         placeholder="Digite Sua Senha">
                                 </div>
                                 <div class="mb-3 col">
-                                    <label for="emailAddress" class="form-label">Email Address</label>
+                                    <label for="emailAddress" class="form-label">Confirmar Senha</label>
                                     <input type="password" name="password_confirmation" class="form-control"
                                         id="emailAddress" required placeholder="Confirme Sua Senha">
                                 </div>
@@ -65,7 +65,7 @@
                             <div class="d-grid mb-3"><button class="btn btn-primary" type="submit">Criar Conta</button></div>
                         </form>
                         <p class="text-3 text-muted text-center mb-0">Ja tem uma conta? <a class="btn-link"
-                                href="signup-3.html">Logue-se</a></p>
+                                href="{{route("login")}}">Login</a></p>
                     </div>
                 </div>
             </div>

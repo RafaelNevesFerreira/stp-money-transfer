@@ -222,6 +222,22 @@
             });
             $("#transaction-detail").modal('show');
         })
+
+        $("#logout").click(function() {
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": $("meta[name='_token']").attr("content")
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "{{ route('logout') }}",
+                success: function(data) {
+                    location.reload(true);
+                }
+            });
+        })
     </script>
 
     @yield("scripts")

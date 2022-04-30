@@ -4,7 +4,7 @@
             <div class="header-column justify-content-start">
                 <!-- Logo  ============================= -->
                 <div class="logo me-3">
-                        {{-- <a class="d-flex" href="{{ route('home') }}" title="Payyed - HTML Template"><img
+                    {{-- <a class="d-flex" href="{{ route('home') }}" title="Payyed - HTML Template"><img
                                 src="{{ asset('assets/images/logos.png') }}" alt="Payyed" /></a> --}}
                 </div>
                 <!-- Logo end -->
@@ -40,7 +40,17 @@
                                     href="{{ route('register') }}">Sign Up</a></li>
                         @endguest
                         @auth
-                            <li class="align-items-center h-auto ms-sm-3"><a class="btn btn-primary" href="{{ route('login') }}">DashBoard</a> </li>
+                            <li>
+                                <a href="#" id="logout">
+                                    Sair
+                                </a>
+                            </li>
+
+                            <li class="align-items-center h-auto ms-sm-3">
+                                <a class="btn btn-primary" href="{{ route('login') }}">
+                                    DashBoard
+                                </a>
+                            </li>
                         @endauth
                     </ul>
                 </nav>

@@ -1,7 +1,7 @@
 @extends("layouts.profile.app")
 @section('content')
     <!-- Content
-              ============================================= -->
+                  ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
             <div class="row">
@@ -9,18 +9,18 @@
                 @include('layouts.profile.left-painel')
 
                 <!-- Middle Panel
-                    ============================================= -->
+                        ============================================= -->
                 <div class="col-lg-9">
                     <h2 class="fw-400 mb-3">Transações</h2>
 
                     <!-- Filter
-                      ============================================= -->
+                          ============================================= -->
                     <div class="row">
                         <div class="col mb-2">
                             <form id="filterTransactions" method="get" action="{{ route('profile.transactions') }}">
                                 <div class="row g-3 mb-3">
                                     <!-- Date Range
-                              ========================= -->
+                                  ========================= -->
                                     <div class="col-sm-6 col-md-5">
                                         <div class="position-relative">
                                             <input id="dateRange" type="text" class="form-control"
@@ -68,9 +68,9 @@
                     <!-- Filter End -->
 
                     <!-- All Transactions
-                      ============================================= -->
+                          ============================================= -->
                     <div class="bg-white shadow-sm rounded py-4 mb-4">
-                        <h3 class="text-5 fw-400 d-flex align-items-center px-4 mb-4">Todas  Transações</h3>
+                        <h3 class="text-5 fw-400 d-flex align-items-center px-4 mb-4">Todas Transações</h3>
                         <!-- Title     =============================== -->
                         <div class="transaction-title py-2 px-4">
                             <div class="row fw-00">
@@ -85,7 +85,7 @@
 
 
                         <!-- Transaction Item Details Modal
-                        =========================================== -->
+                            =========================================== -->
                         @forelse ($transfers as $transfer)
                             <div class="transaction-list">
                                 <div class="transaction-item px-4 py-3 transfer-id" id="{{ $transfer->id }}">
@@ -152,11 +152,16 @@
                                 </div>
                             </div>
                             @empty
+                                <div class="row">
+                                    <div class="col col-lg-12 text-center mt-3">
+                                        <p>Nenhuma Transação Feita</p>
+                                    </div>
+                                </div>
                             @endforelse
 
                         </div>
                         <!-- Transaction Item Details Modal
-                                                                                                                                                                    =========================================== -->
+                                                                                                                                                                            =========================================== -->
                         <div id="transaction-detail" class="modal fade" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered transaction-details" role="document">
                                 <div class="modal-content">
@@ -214,7 +219,7 @@
                         </div>
                         <!-- Transaction Item Details Modal End -->
                         <!-- Pagination   ============================================= -->
-                            {{ $transfers->links('pagination::default') }}
+                        {{ $transfers->links('pagination::default') }}
 
                         <!-- Paginations end -->
 
