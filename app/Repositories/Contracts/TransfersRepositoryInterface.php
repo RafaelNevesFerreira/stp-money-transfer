@@ -24,4 +24,5 @@ interface TransfersRepositoryInterface
     public function pagos_em_prestacoes_ou_cash($plan);
     public function transferencias_recentes($month, $year, $limit);
     public function lucro_mensal($month, $year);
+    public function saldo_semanal_em_dias($days);
 }

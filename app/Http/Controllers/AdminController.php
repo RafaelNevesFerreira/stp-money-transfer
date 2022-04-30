@@ -87,6 +87,16 @@ class AdminController extends Controller
         $euro = "[" . $euro . "]";
 
 
+
+        $data = [];
+        for ($i = 1; $i < 8; $i++) {
+            $saldo = $this->transfers->saldo_semanal_em_dias($i);
+            array_push($data, $saldo);
+        }
+        dd(array_reverse($data));
+        return;
+
+
         return view("admin.dashboard-stripe", compact("data", "dolar", "libra", "euro"));
     }
 }

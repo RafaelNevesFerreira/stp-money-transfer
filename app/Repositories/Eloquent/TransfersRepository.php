@@ -411,13 +411,6 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function lucro_mensal($mes, $year)
     {
-        $data = [];
-        for ($i = 1; $i < 8; $i++) {
-            $saldo = $this->saldo_semanal_em_dias($i);
-            array_push($data, $saldo);
-        }
-        dd(array_reverse($data));
-        return;
         $pagos_em_prestacoes_com_libra = $this->model::whereMonth('created_at', $mes)
             ->whereYear("created_at", date("Y"))
             ->where(["plan" => 1, "currency" => "gbp"])
