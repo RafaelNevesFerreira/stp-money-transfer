@@ -22,11 +22,10 @@
 
                             @if (session('status'))
                                 <div class="alert alert-success">
-                                    <p>Um novo link de verificação foi enviado para o endereço de e-mail fornecido durante o registro.</p>
+                                    <p>Um novo link de verificação foi enviado para o endereço de e-mail fornecido durante o
+                                        registro.</p>
                                 </div>
                             @endif
-
-
                             <div class="d-grid mb-3"><button class="btn btn-primary" type="submit">Reenviar</button></div>
 
                         </form>
