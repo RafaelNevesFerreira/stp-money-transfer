@@ -17,6 +17,9 @@
                         <li>
                             <a href="{{ route("admin.dashboard") }}">Home</a>
                         </li>
+                        <li>
+                            <a href="{{ route("admin.dashboard.stripe") }}">Stripe</a>
+                        </li>
                     </ul>
                 </div>
             </li>

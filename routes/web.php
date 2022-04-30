@@ -58,7 +58,7 @@ Route::controller(SendMoneyController::class)->group(function () {
 
 
 Route::controller(ProfileController::class)->group(function () {
-    Route::middleware(["user", "verified"])->group(function () {
+    Route::middleware(["user","verified"])->group(function () {
         Route::prefix("user")->group(function () {
             Route::get("profile", "profille")->name("profile.dashboard");
             Route::post("/change_photo", "change_photo")->name("profile.change.photo");
@@ -84,6 +84,7 @@ Route::middleware("admin")->group(function () {
     Route::controller(AdminController::class)->group(function () {
         Route::prefix("admin")->group(function () {
             Route::get("/dashboard", "dashboard")->name("admin.dashboard");
+            Route::get("/dashboard/stripe", "dashboard_stripe")->name("admin.dashboard.stripe");
         });
     });
 });

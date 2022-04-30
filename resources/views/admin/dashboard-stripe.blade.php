@@ -47,10 +47,11 @@
                                         </div>
                                         <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Clientes este mês
                                         </h5>
-                                        <h3 class="mt-3 mb-3" id="count_customers"></h3>
-                                        <p class="mb-0 text-muted diferenca_customers_mes_passado">
-
-
+                                        <h3 class="mt-3 mb-3">3</h3>
+                                        <p class="mb-0 text-muted">
+                                            <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i>
+                                                1.08%</span>
+                                            <span class="text-nowrap">Mês Passado</span>
                                         </p>
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -579,31 +580,4 @@
     <script src="{{ asset('assets/dashboard/js/pages/demo.dashboard.js') }}"></script>
 
     <!-- end demo js-->
-
-
-    <script>
-        $(document).ready(function() {
-            $.ajax({
-                type: "GET",
-                url: "{{ route('admin.get.customers') }}",
-                 success: function(data) {
-                    if (data.diferenca_mes_passado > 0) {
-                        $(".diferenca_customers_mes_passado")
-                            .html(
-                                "<span class='text-success me-2'><i class='mdi mdi-arrow-up-bold'></i>" +
-                                data.diferenca_mes_passado +
-                                "%</span><span class='text-nowrap'>Mês Passado</span>")
-                    } else {
-                         $(".diferenca_customers_mes_passado")
-                            .html(
-                                "<span class='text-danger me-2'><i class='mdi mdi-arrow-down-bold'></i>" +
-                                data.diferenca_mes_passado +
-                                "%</span><span class='text-nowrap'>Mês Passado</span>")
-                    }
-                    console.log(data);
-                    $("#count_customers").text(data.este_mes)
-                }
-            });
-        })
-    </script>
 @endsection
