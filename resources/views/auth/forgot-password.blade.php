@@ -27,7 +27,7 @@
                             @endif
 
                             @if (session('status'))
-                                <div class="alert alert-success">
+                                <div class="alert alert-primary">
                                     <p>{{ session('status') }}</p>
                                 </div>
                             @endif
