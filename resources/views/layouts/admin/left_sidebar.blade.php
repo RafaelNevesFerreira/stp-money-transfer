@@ -12,16 +12,6 @@
                     <i class="uil-home-alt"></i>
                     <span> Dashboard</span>
                 </a>
-                <div class="collapse" id="sidebarDashboards">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a href="{{ route("admin.dashboard") }}">Home</a>
-                        </li>
-                        <li>
-                            <a href="{{ route("admin.dashboard.stripe") }}">Stripe</a>
-                        </li>
-                    </ul>
-                </div>
             </li>
 
 
