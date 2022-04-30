@@ -58,7 +58,7 @@ Route::controller(SendMoneyController::class)->group(function () {
 
 
 Route::controller(ProfileController::class)->group(function () {
-    Route::middleware(["user"])->group(function () {
+    Route::middleware(["user","verified"])->group(function () {
         Route::prefix("user")->group(function () {
             Route::get("profile", "profille")->name("profile.dashboard");
             Route::post("/change_photo", "change_photo")->name("profile.change.photo");

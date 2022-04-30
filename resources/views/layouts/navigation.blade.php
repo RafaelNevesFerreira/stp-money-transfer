@@ -37,7 +37,7 @@
                         @guest
                             <li><a href="{{ route('login') }}">Login</a> </li>
                             <li class="align-items-center h-auto ms-sm-3"><a class="btn btn-primary"
-                                    href="{{ route('register') }}">Sign Up</a></li>
+                                    href="{{ route('register') }}">Registrar</a></li>
                         @endguest
                         @auth
                             <li>

@@ -12,12 +12,6 @@
                             e-mail, teremos o prazer de lhe enviar outro.</p>
                         <form id="loginForm" method="post" action="{{ route('verification.send') }}">
                             @csrf
-                            <div class="mb-3">
-                                <label for="emailAddress" class="form-label">Email</label>
-                                <input type="email" name="email" value="{{ old('email') }}" class="form-control"
-                                    id="emailAddress" required placeholder="Digite seu email">
-                            </div>
-
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     @foreach ($errors->all() as $error)
@@ -27,9 +21,8 @@
                             @endif
 
                             @if (session('status'))
-                                <div class="alert alert-primary">
-                                    <p>A new verification link has been sent to the email address you provided during
-                                        registration.</p>
+                                <div class="alert alert-success">
+                                    <p>Um novo link de verificação foi enviado para o endereço de e-mail fornecido durante o registro.</p>
                                 </div>
                             @endif
 
