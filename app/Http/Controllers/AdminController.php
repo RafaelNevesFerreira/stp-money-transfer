@@ -62,8 +62,31 @@ class AdminController extends Controller
         $numero_clientes = $this->users->all()->count();
         $numero_transactions = $this->transfers->all()->count();
 
-        $data = $this->transfers->lucro_mensal(date("m"),date("Y"));
+        $data = $this->transfers->lucro_mensal(date("m"), date("Y"));
 
-        return view("admin.dashboard-stripe",compact("data"));
+        $data_2 = [];
+
+        for ($i = 1; $i < 13; $i++) {
+            $ls = $this->transfers->lucro_mensal($i, date("Y"));
+            array_push($data_2, $ls);
+        }
+
+        $libra = "";
+        $dolar = "";
+        $euro = "";
+        foreach ($data_2 as $datas) {
+            if (count($data) < 12) {
+                $libra .=  $datas["libra"] . "," ;
+                $dolar .=  $datas["dolar"] . ",";
+                $euro .=  $datas["euro"] . ",";
+            }
+        }
+
+        $libra = "[" . $libra . "]";
+        $dolar = "[" . $dolar . "]";
+        $euro = "[" . $euro . "]";
+
+
+        return view("admin.dashboard-stripe", compact("data", "dolar", "libra", "euro"));
     }
 }

@@ -442,11 +442,12 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             ->sum(DB::raw("value_sended + tax"));
 
         $data = [
-            "libra" => $pagos_com_libra + $pagos_em_prestacoes_com_libra,
-            "euro" => $pagos_com_euro + $pagos_em_prestacoes_com_euro,
-            "dolar" => $pagos_com_dolar + $pagos_em_prestacoes_com_dolar
+            "libra" => number_format($pagos_com_libra + $pagos_em_prestacoes_com_libra),
+            "euro" => number_format($pagos_com_euro + $pagos_em_prestacoes_com_euro),
+            "dolar" => number_format($pagos_com_dolar + $pagos_em_prestacoes_com_dolar)
         ];
 
         return $data;
     }
+
 }

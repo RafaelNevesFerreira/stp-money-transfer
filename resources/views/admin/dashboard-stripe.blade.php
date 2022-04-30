@@ -538,6 +538,12 @@
 @endsection
 
 @section('scripts')
+    <script>
+        var dolar = {{ $dolar }}
+        var libra = {{ $libra }}
+        var euro = {{ $euro }}
+        // console.log(libra);
+    </script>
     <!-- third party js -->
     <script src="{{ asset('assets/dashboard/js/vendor/jquery-jvectormap-1.2.2.min.js') }}"></script>
     <script src="{{ asset('assets/dashboard/js/vendor/jquery-jvectormap-world-mill-en.js') }}"></script>

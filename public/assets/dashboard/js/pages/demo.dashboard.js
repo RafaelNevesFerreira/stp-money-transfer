@@ -51,9 +51,9 @@
                 plotOptions: { bar: { horizontal: !1, columnWidth: "20%" } },
                 dataLabels: { enabled: !1 },
                 stroke: { show: !0, width: 2, colors: ["transparent"] },
-                series: [{ name: "Actual", data: [65, 59, 80, 81, 56, 89, 40, 32, 65, 59, 80, 81] },
-                    { name: "Actual", data: [65, 59, 80, 81, 56, 89, 40, 32, 65, 59, 80, 81] },
-                    { name: "Actual", data: [65, 59, 80, 81, 56, 89, 40, 32, 65, 59, 80, 81] }
+                series: [{ name: "Actual", data: libra },
+                    { name: "Actual", data: dolar },
+                    { name: "Actual", data: euro }
 
                 ],
                 zoom: { enabled: !1 },
