@@ -10,42 +10,48 @@
                         <p class="lead text-center">We are glad to see you again!</p>
                         <form id="loginForm" method="post" action="{{ route('login') }}">
                             @csrf
-                            <div class="row col-sm-6">
-                                <div class="mb-3">
-                                    <label for="emailAddress" class="form-label">Email Address</label>
-                                    <input type="email" name="email" value="{{ old('email') }}" class="form-control"
-                                        id="emailAddress" required placeholder="Enter Your Email">
+                            <div class="row g-3">
+                                <div class="mb-3 col">
+                                    <label for="name" class="form-label">Nome Completo</label>
+                                    <input type="text" name="name" value="{{ old('name') }}" class="form-control"
+                                        id="name" required placeholder="Digite seu nome">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="emailAddress" class="form-label">Email Address</label>
-                                    <input type="email" name="email" value="{{ old('email') }}" class="form-control"
-                                        id="emailAddress" required placeholder="Enter Your Email">
+                                <div class="mb-3 col">
+                                    <label for="phone_number" class="form-label">Telemovel</label>
+                                    <input type="number" name="phone_number" value="{{ old('phone_number') }}"
+                                        class="form-control" id="phone_number" required
+                                        placeholder="Digite seu numero de telemovel">
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="emailAddress" class="form-label">Email Address</label>
-                                <input type="email" name="email" value="{{ old('email') }}" class="form-control"
-                                    id="emailAddress" required placeholder="Enter Your Email">
+
+                            <div class="mb-3 col">
+                                <label for="address" class="form-label">Morada</label>
+                                <input type="text" name="address" value="{{ old('address') }}" class="form-control"
+                                    id="address" required placeholder="Digite a sua morada">
                             </div>
-                            <div class="mb-3">
-                                <label for="emailAddress" class="form-label">Email Address</label>
-                                <input type="email" name="email" value="{{ old('email') }}" class="form-control"
-                                    id="emailAddress" required placeholder="Enter Your Email">
+                            <div class="row g-3">
+                                <div class="mb-3 col">
+                                    <label for="country" class="form-label">País</label>
+                                    <input type="text" name="country" value="{{ old('country') }}" class="form-control"
+                                        id="country" required placeholder="Digite Seu País De Residência">
+                                </div>
+                                <div class="mb-3 col">
+                                    <label for="emailAddress" class="form-label">Email </label>
+                                    <input type="email" name="email" value="{{ old('email') }}" class="form-control"
+                                        id="emailAddress" required placeholder="Digite Seu Email">
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="emailAddress" class="form-label">Email Address</label>
-                                <input type="email" name="email" value="{{ old('email') }}" class="form-control"
-                                    id="emailAddress" required placeholder="Enter Your Email">
-                            </div>
-                            <div class="mb-3">
-                                <label for="emailAddress" class="form-label">Email Address</label>
-                                <input type="email" name="email" value="{{ old('email') }}" class="form-control"
-                                    id="emailAddress" required placeholder="Enter Your Email">
-                            </div>
-                            <div class="mb-3">
-                                <label for="loginPassword" class="form-label">Password</label>
-                                <input type="password" name="password" required autocomplete="current-password"
-                                    class="form-control" id="loginPassword" required placeholder="Enter Password">
+                            <div class="row g-3">
+                                <div class="mb-3 col">
+                                    <label for="emailAddress" class="form-label">Password</label>
+                                    <input type="password" name="password" class="form-control" id="emailAddress" required
+                                        placeholder="Digite Sua Senha">
+                                </div>
+                                <div class="mb-3 col">
+                                    <label for="emailAddress" class="form-label">Email Address</label>
+                                    <input type="password" name="password_confirmation" class="form-control"
+                                        id="emailAddress" required placeholder="Confirme Sua Senha">
+                                </div>
                             </div>
 
                             @if ($errors->any())
@@ -56,29 +62,10 @@
                                 </div>
                             @endif
 
-                            <div class="row mb-3">
-                                <div class="col-sm">
-                                    <div class="form-check form-check-inline">
-                                        <label for="remember_me" class="inline-flex items-center">
-                                            <input id="remember_me" type="checkbox"
-                                                class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                                name="remember">
-                                            <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                @if (Route::has('password.request'))
-                                    <div class="col-sm text-end">
-                                        <a class="btn-link" href="{{ route('password.request') }}">
-                                            Forgot Password ?
-                                        </a>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="d-grid mb-3"><button class="btn btn-primary" type="submit">Sign In</button></div>
+                            <div class="d-grid mb-3"><button class="btn btn-primary" type="submit">Criar Conta</button></div>
                         </form>
-                        <p class="text-3 text-muted text-center mb-0">Don't have an account? <a class="btn-link"
-                                href="signup-3.html">Sign Up</a></p>
+                        <p class="text-3 text-muted text-center mb-0">Ja tem uma conta? <a class="btn-link"
+                                href="signup-3.html">Logue-se</a></p>
                     </div>
                 </div>
             </div>
