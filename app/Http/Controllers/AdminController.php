@@ -70,8 +70,10 @@ class AdminController extends Controller
         $cliente_este_mes = $this->stripe->count_customers(date("m"));
 
 
-        // $pagamentos_mes_passado = $this->stripe->count_payments(Carbon::now()->subMonth()->month);
-        // $pagamentos_este_mes = $this->stripe->count_payments(date("m"));
+        $pagamentos_mes_passado = $this->stripe->count_payments(Carbon::now()->subMonth()->month);
+        $pagamentos_este_mes = $this->stripe->count_payments(date("m"));
+
+        return $pagamentos_mes_passado . "" . $pagamentos_este_mes;
 
         if ($cliente_mes_passado > 0) {
             $diferenca = ($cliente_este_mes - $cliente_mes_passado) / $cliente_mes_passado * 100;
