@@ -259,8 +259,8 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             ->where(["plan" => 1, "currency" => "usd"])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
-        $dolar_para_euro_prestacoes = $pagos_em_prestacoes_com_dolar * $this->DOLAR_EURO_PARA / 1;
-        $libra_para_euro_prestacoes = $pagos_em_prestacoes_com_libra * $this->LIBRA_EURO_PARA / 1;
+        $dolar_para_euro_prestacoes = $pagos_em_prestacoes_com_dolar * $this->DOLAR_EURO_PARA;
+        $libra_para_euro_prestacoes = $pagos_em_prestacoes_com_libra * $this->LIBRA_EURO_PARA;
 
         $pagos_em_prestacoes_com_euro = $this->model::whereMonth('created_at', $mes)
             ->whereYear("created_at", date("Y"))
@@ -282,8 +282,8 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             ->where(["plan" => 0, "currency" => "eur"])
             ->sum(DB::raw("value_sended + tax"));
 
-        $dolar_para_euro = $pagos_com_dolar * $this->DOLAR_EURO_PARA / 1;
-        $libra_para_euro = $pagos_com_libra *  $this->LIBRA_EURO_PARA / 1;
+        $dolar_para_euro = $pagos_com_dolar * $this->DOLAR_EURO_PARA;
+        $libra_para_euro = $pagos_com_libra *  $this->LIBRA_EURO_PARA;
 
         $sem_prestacoes = $pagos_com_euro + $dolar_para_euro + $libra_para_euro;
         $com_prestacoes = $pagos_em_prestacoes_com_euro + $dolar_para_euro_prestacoes + $libra_para_euro_prestacoes;

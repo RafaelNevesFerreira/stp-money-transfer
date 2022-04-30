@@ -62,8 +62,8 @@ class AdminController extends Controller
         $numero_clientes = $this->users->all()->count();
         $numero_transactions = $this->transfers->all()->count();
 
-        dd($this->transfers->lucro_mensal(date("m"),date("Y")));
+        $data = $this->transfers->lucro_mensal(date("m"),date("Y"));
 
-        return view("admin.dashboard-stripe",compact("numero_clientes","numero_transactions"));
+        return view("admin.dashboard-stripe",compact("data"));
     }
 }
