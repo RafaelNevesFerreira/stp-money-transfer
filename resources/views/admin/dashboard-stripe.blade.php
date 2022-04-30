@@ -45,9 +45,9 @@
                                         <div class="float-end">
                                             <i class="mdi mdi-account-multiple widget-icon"></i>
                                         </div>
-                                        <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Libra
+                                        <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Prestações
                                         </h5>
-                                        <h3 class="mt-3 mb-3">{{ number_format($data['libra'], 2, ',', '.') }} £</h3>
+                                        <h3 class="mt-3 mb-3">{{ number_format($sem_prestacoes,2,",",".") }} €</h3>
 
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -59,8 +59,8 @@
                                         <div class="float-end">
                                             <i class="mdi mdi-cart-plus widget-icon"></i>
                                         </div>
-                                        <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Euro</h5>
-                                        <h3 class="mt-3 mb-3">{{ number_format($data['euro'], 2, ',', '.') }} €</h3>
+                                        <h5 class="text-muted fw-normal mt-0" title="Number of Orders"> Sem Prestações</h5>
+                                        <h3 class="mt-3 mb-3" >{{ number_format($prestacoes ,2,",",".") }} €</h3>
 
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -75,7 +75,7 @@
                                             <i class="mdi mdi-currency-usd widget-icon"></i>
                                         </div>
                                         <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Dolar</h5>
-                                        <h3 class="mt-3 mb-3">{{ number_format($data['dolar'], 2, ',', '.') }} $</h3>
+                                        <h3 class="mt-3 mb-3">{{ $sem_prestacoes }} $</h3>
 
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -109,7 +109,7 @@
                                 <h4 class="header-title mb-3">receita anual</h4>
 
                                 <div dir="ltr">
-                                    <div id="high-performing-product" class="apex-charts" data-colors="#727cf5,#fa5c7c,#0acf97">
+                                    <div id="high-performing-product" class="apex-charts" data-colors="#fa5c7c,#727cf5">
                                     </div>
                                 </div>
 
@@ -165,12 +165,7 @@
 
                                 <div class="dash-item-overlay d-none d-md-block" dir="ltr">
                                     <h5>Today's Earning: $2,562.30</h5>
-                                    <p class="text-muted font-13 mb-3 mt-2">Etiam ultricies nisi vel augue. Curabitur
-                                        ullamcorper ultricies nisi. Nam eget dui.
-                                        Etiam rhoncus...</p>
-                                    <a href="javascript: void(0);" class="btn btn-outline-primary">View Statements
-                                        <i class="mdi mdi-arrow-right ms-2"></i>
-                                    </a>
+
                                 </div>
                                 <div dir="ltr">
                                     <div id="revenue-chart" class="apex-charts mt-3" data-colors="#727cf5,#0acf97"></div>
@@ -539,10 +534,10 @@
 
 @section('scripts')
     <script>
-        var dolar = {{ $dolar }}
-        var libra = {{ $libra }}
-        var euro = {{ $euro }}
-        // console.log(libra);
+        var sem_prestacoes = {{ $sem_prestacoes }}
+        var prestacoes = {{ $prestacoes }}
+        var saldo = {{ $saldo }}
+        console.log(sem_prestacoes);
     </script>
     <!-- third party js -->
     <script src="{{ asset('assets/dashboard/js/vendor/jquery-jvectormap-1.2.2.min.js') }}"></script>

@@ -23,7 +23,7 @@
                 },
                 dataLabels: { enabled: !1 },
                 stroke: { curve: "smooth", width: 4 },
-                series: [{ name: "Current Week", data: [10, 20, 15, 25, 20, 30, 20] },
+                series: [{ name: "Current Week", data: saldo },
                     { name: "Previous Week", data: [0, 15, 10, 30, 15, 35, 25] }
                 ],
                 colors: e,
@@ -51,9 +51,8 @@
                 plotOptions: { bar: { horizontal: !1, columnWidth: "20%" } },
                 dataLabels: { enabled: !1 },
                 stroke: { show: !0, width: 2, colors: ["transparent"] },
-                series: [{ name: "Libra", data: libra },
-                    { name: "Dolar", data: dolar },
-                    { name: "Euro", data: euro }
+                series: [{ name: "Prestacoes", data: prestacoes },
+                    { name: "Sem prestacoes", data: sem_prestacoes },
 
                 ],
                 zoom: { enabled: !1 },
@@ -69,7 +68,7 @@
                     y: {
                         formatter: function(e) {
 
-                            return "$" + e
+                            return "€" + e
                         }
                     }
                 }

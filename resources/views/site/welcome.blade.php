@@ -1,11 +1,11 @@
 @extends("layouts.app")
 @section('content')
     <!-- Content
-                                              ============================================= -->
+                                                  ============================================= -->
     <div id="content">
 
         <!-- Send Money
-                                            ============================================= -->
+                                                ============================================= -->
         <section class="hero-wrap">
             <div class="hero-mask opacity-7 bg-dark"></div>
             <div class="hero-bg" style="background-image:url('{{ asset('assets/images/image-6.jpg') }}');"></div>
@@ -47,39 +47,13 @@
                                                 data-bv-field="youSend" name="valor_enviado" id="youSend" value="25,00"
                                                 placeholder="">
                                             <span class="input-group-text p-0">
-                                                <select id="youSendCurrency" data-style="form-select bg-transparent border-0"
-                                                    data-container="body" data-live-search="true" name="moeda"
+                                                <select id="youSendCurrency"
+                                                    data-style="form-select bg-transparent border-0" data-container="body"
+                                                    data-live-search="true" name="moeda"
                                                     class="selectpicker form-control bg-transparent" required="">
-                                                    <optgroup label="Popular Currency">
-                                                        @if (session('moeda') == '€')
-                                                            <option data-icon="currency-flag currency-flag-usd me-1"
-                                                                data-subtext="Dolar" value="usd">USD</option>
-                                                            <option data-icon="currency-flag currency-flag-gbp me-1"
-                                                                data-subtext="Libras" value="gbp">GBP</option>
-                                                            <option data-icon="currency-flag currency-flag-eur me-1"
-                                                                data-subtext="Euro" selected="selected" value="eur">EUR
-                                                            @elseif (session('moeda' == "$"))
-                                                            <option data-icon="currency-flag currency-flag-usd me-1"
-                                                                data-subtext="Dolar" selected="selected" value="usd">USD</option>
-                                                            <option data-icon="currency-flag currency-flag-gbp me-1"
-                                                                data-subtext="Libras" value="gbp">GBP</option>
-                                                            <option data-icon="currency-flag currency-flag-eur me-1"
-                                                                data-subtext="Euro" value="eur">EUR
-                                                            @elseif (session('moeda') == '£')
-                                                            <option data-icon="currency-flag currency-flag-usd me-1"
-                                                                data-subtext="Dolar" selected="selected" value="usd">USD</option>
-                                                            <option data-icon="currency-flag currency-flag-gbp me-1"
-                                                                data-subtext="Libras" value="gbp">GBP</option>
-                                                            <option data-icon="currency-flag currency-flag-eur me-1"
-                                                                data-subtext="Euro" value="eur">EUR
-                                                            @else
-                                                            <option data-icon="currency-flag currency-flag-usd me-1"
-                                                                data-subtext="Dolar" value="usd">USD</option>
-                                                            <option data-icon="currency-flag currency-flag-gbp me-1"
-                                                                data-subtext="Libras" value="gbp">GBP</option>
-                                                            <option data-icon="currency-flag currency-flag-eur me-1"
-                                                                data-subtext="Euro" selected="selected" value="eur">EUR
-                                                        @endif
+                                                    <optgroup label="Moedas Disponiveis">
+                                                        <option data-icon="currency-flag currency-flag-eur me-1"
+                                                            data-subtext="Euro" selected="selected" value="eur">EUR
                                                         </option>
                                                     </optgroup>
                                                 </select>
@@ -90,7 +64,8 @@
                                         <label for="recipientGets" class="form-label">Valor a ser recebido</label>
                                         <div class="input-group">
                                             <span class="input-group-text">Dbs</span>
-                                            <input type="text" disabled class="form-control" id="recipientGets" value="625,00">
+                                            <input type="text" disabled class="form-control" id="recipientGets"
+                                                value="625,00">
                                             <span class="input-group-text p-0">
                                                 <select id="recipientCurrency" disabled
                                                     data-style="form-select bg-transparent border-0" data-container="body"
@@ -106,8 +81,8 @@
                                     <p>Total Taxas<span class="float-end" id="taxas">6.05 <span
                                                 class="moeda_mudar">€</span></span></p>
                                     <hr>
-                                    <p class="text-4 fw-500">Total a Pagar<span class="float-end" id="total">31.05 <span
-                                                class="moeda_mudar">€</span>
+                                    <p class="text-4 fw-500">Total a Pagar<span class="float-end" id="total">31.05
+                                            <span class="moeda_mudar">€</span>
                                         </span></p>
                                     <div class="d-grid"><button class="btn btn-primary">Continuar</button></div>
                                 </form>
@@ -120,7 +95,7 @@
         <!-- Send Money End -->
 
         <!-- How it works
-                                            ============================================= -->
+                                                ============================================= -->
         <section class="section bg-white">
             <div class="container">
                 <h2 class="text-9 text-center"> A Maneira Mais Simple De Enviar Dinheiro
@@ -155,14 +130,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-center mt-3"><a href="{{route("register")}}" class="btn btn-outline-primary shadow-none text-uppercase">Criar
+                <div class="text-center mt-3"><a href="{{ route('register') }}"
+                        class="btn btn-outline-primary shadow-none text-uppercase">Criar
                         Uma Conta</a></div>
             </div>
         </section>
         <!-- How it works End -->
 
         <!-- Why choose us
-                                            ============================================= -->
+                                                ============================================= -->
         <section class="section">
             <div class="container">
                 <h2 class="text-9 text-center">Porquê nos escolher?</h2>
@@ -184,8 +160,9 @@
                                 <h2 class="text-6 text-white mb-3">Enviar dinheiro com {{ env('APP_NAME') }}</h2>
                                 <p class="text-light">Enviar dinheiro pela internet sempre foi algo um pouco duvidos,
                                     pois ao longo do tempo mais têm sido os ataque ciberneticos.</p>
-                                <p class="text-light mb-0">Por esse motivo {{env("APP_NAME")}} investiu em uma plataforma segura e facil de ser usada, para facilitar a
-                                     vida das pessoas que queiram enviar dinheiro para são tomé.</p>
+                                <p class="text-light mb-0">Por esse motivo {{ env('APP_NAME') }} investiu em uma plataforma
+                                    segura e facil de ser usada, para facilitar a
+                                    vida das pessoas que queiram enviar dinheiro para são tomé.</p>
                             </div>
                         </div>
                     </div>
@@ -222,7 +199,7 @@
         <!-- Why choose us End -->
 
         <!-- How work
-                                            ============================================= -->
+                                                ============================================= -->
         <section class="hero-wrap section shadow-md">
             <div class="hero-mask opacity-9 bg-primary"></div>
             <div class="hero-bg" style="background-image:url('{{ asset('assets/images/image-1.jpg') }}');"></div>
@@ -239,7 +216,7 @@
         <!-- How work End -->
 
         <!-- Testimonial
-                                            ============================================= -->
+                                                ============================================= -->
         <section class="section">
             <div class="container">
                 <h2 class="text-9 text-center">O que as pessoas acham de nós?</h2>
@@ -263,7 +240,8 @@
                             <div class="item">
                                 <div class="testimonial rounded text-center p-4">
                                     <p class="text-9 text-muted opacity-2 mb-2"><i class="fa fa-quote-left"></i></p>
-                                    <p class="text-4">“Estou Feliz Enviando dinheiro com a {{ env('APP_NAME') }},
+                                    <p class="text-4">“Estou Feliz Enviando dinheiro com a
+                                        {{ env('APP_NAME') }},
                                         ganhei 20% de desconto no segundo envio, fantastico”</p>
                                     <strong class="d-block fw-500">Alves Sousa</strong> <span
                                         class="text-muted">Londres</span>
@@ -287,7 +265,7 @@
         <!-- Testimonial end -->
 
         <!-- Frequently asked questions
-                                            ============================================= -->
+                                                ============================================= -->
         <section class="section bg-white">
             <div class="container">
                 <h2 class="text-9 text-center">Dúvidas Frequentes</h2>
@@ -367,7 +345,8 @@
                                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                                     data-bs-parent="#popularTopics">
                                     <div class="accordion-body">
-                                        Se você quiser enviar dinheiro sem pagar as taxas, temos um post que fala especialmente sobre isso, leia e siga as etapas
+                                        Se você quiser enviar dinheiro sem pagar as taxas, temos um post que fala
+                                        especialmente sobre isso, leia e siga as etapas
 
                                     </div>
                                 </div>
@@ -376,14 +355,14 @@
                         <hr class="mt-0">
                     </div>
                 </div>
-                <div class="text-center mt-4"><a href="{{route("help")}}" class="btn-link text-4">Mais Dúvidas<i
+                <div class="text-center mt-4"><a href="{{ route('help') }}" class="btn-link text-4">Mais Dúvidas<i
                             class="fas fa-chevron-right text-2 ms-2"></i></a></div>
             </div>
         </section>
         <!-- Frequently asked questions end -->
 
         <!-- Special Offer
-                                            ============================================= -->
+                                                ============================================= -->
         <section class="hero-wrap py-5">
             <div class="hero-mask opacity-8 bg-dark"></div>
             <div class="hero-bg" style="background-image:url('{{ asset('assets/images/image-2.jpg') }}');"></div>
@@ -391,7 +370,8 @@
                 <div class="container d-md-flex text-center text-md-start align-items-center justify-content-center">
                     <h2 class="text-6 fw-400 text-white mb-3 mb-md-0">Cadastre-se hoje e receba sua primeira taxa de
                         transação grátis!</h2>
-                    <a href="{{route("register")}}" class="btn btn-outline-light text-nowrap ms-0 ms-md-4">Criar Conta</a>
+                    <a href="{{ route('register') }}" class="btn btn-outline-light text-nowrap ms-0 ms-md-4">Criar
+                        Conta</a>
                 </div>
             </div>
         </section>

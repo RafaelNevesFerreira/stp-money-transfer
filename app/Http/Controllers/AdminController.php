@@ -31,9 +31,9 @@ class AdminController extends Controller
 
         $saldo_semana_passada = $this->transfers->saldo_semana_passada();
 
-        $pago_emprestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(1);
+        $pago_emprestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(1, date("m"), date("Y"));
 
-        $pago_em_cash = $this->transfers->pagos_em_prestacoes_ou_cash(0);
+        $pago_em_cash = $this->transfers->pagos_em_prestacoes_ou_cash(0, date("m"), date("Y"));
 
         $usuarios_desse_mes = $this->users->usuarios_mes_ano(date("m"), date("Y"), 6);
 
@@ -62,41 +62,22 @@ class AdminController extends Controller
         $numero_clientes = $this->users->all()->count();
         $numero_transactions = $this->transfers->all()->count();
 
-        $data = $this->transfers->lucro_mensal(date("m"), date("Y"));
 
-        $data_2 = [];
+        $prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(1, date("m"), date("Y"));
 
-        for ($i = 1; $i < 13; $i++) {
-            $ls = $this->transfers->lucro_mensal($i, date("Y"));
-            array_push($data_2, $ls);
-        }
-
-        $libra = "";
-        $dolar = "";
-        $euro = "";
-        foreach ($data_2 as $datas) {
-            if (count($data) < 12) {
-                $libra .=  $datas["libra"] . "," ;
-                $dolar .=  $datas["dolar"] . ",";
-                $euro .=  $datas["euro"] . ",";
-            }
-        }
-
-        $libra = "[" . $libra . "]";
-        $dolar = "[" . $dolar . "]";
-        $euro = "[" . $euro . "]";
+        $sem_prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(0, date("m"), date("Y"));
 
 
-
-        $data = [];
+        $saldo = "";
         for ($i = 1; $i < 8; $i++) {
-            $saldo = $this->transfers->saldo_semanal_em_dias($i);
-            array_push($data, $saldo);
+            $valor = $this->transfers->saldo_semanal_em_dias($i);
+            $saldo .= $valor . ",";
         }
-        dd(array_reverse($data));
-        return;
+
+        $saldo = "[" . $saldo . "]";
 
 
-        return view("admin.dashboard-stripe", compact("data", "dolar", "libra", "euro"));
+
+        return view("admin.dashboard-stripe", compact( "prestacoes", "sem_prestacoes", "saldo"));
     }
 }

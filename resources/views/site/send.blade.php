@@ -71,36 +71,9 @@
                                         <select id="youSendCurrency" data-style="form-select bg-transparent border-0"
                                             data-container="body" data-live-search="true" name="moeda"
                                             class="selectpicker form-control bg-transparent" required="">
-                                            <optgroup label="Popular Currency">
-                                                @if (session('moeda') == '€')
-                                                    <option data-icon="currency-flag currency-flag-usd me-1"
-                                                        data-subtext="Dolar" value="usd">USD</option>
-                                                    <option data-icon="currency-flag currency-flag-gbp me-1"
-                                                        data-subtext="Libras" value="gbp">GBP</option>
+                                            <optgroup label="Moedas Disponiveis">
                                                     <option data-icon="currency-flag currency-flag-eur me-1"
                                                         data-subtext="Euro" selected="selected" value="eur">EUR
-                                                    @elseif (session('moeda' == "$"))
-                                                    <option data-icon="currency-flag currency-flag-usd me-1"
-                                                        data-subtext="Dolar" selected="selected" value="usd">USD</option>
-                                                    <option data-icon="currency-flag currency-flag-gbp me-1"
-                                                        data-subtext="Libras" value="gbp">GBP</option>
-                                                    <option data-icon="currency-flag currency-flag-eur me-1"
-                                                        data-subtext="Euro" value="eur">EUR
-                                                    @elseif (session('moeda') == '£')
-                                                    <option data-icon="currency-flag currency-flag-usd me-1"
-                                                        data-subtext="Dolar" selected="selected" value="usd">USD</option>
-                                                    <option data-icon="currency-flag currency-flag-gbp me-1"
-                                                        data-subtext="Libras" value="gbp">GBP</option>
-                                                    <option data-icon="currency-flag currency-flag-eur me-1"
-                                                        data-subtext="Euro" value="eur">EUR
-                                                    @else
-                                                    <option data-icon="currency-flag currency-flag-usd me-1"
-                                                        data-subtext="Dolar" value="usd">USD</option>
-                                                    <option data-icon="currency-flag currency-flag-gbp me-1"
-                                                        data-subtext="Libras" value="gbp">GBP</option>
-                                                    <option data-icon="currency-flag currency-flag-eur me-1"
-                                                        data-subtext="Euro" selected="selected" value="eur">EUR
-                                                @endif
                                                 </option>
                                             </optgroup>
                                         </select>
