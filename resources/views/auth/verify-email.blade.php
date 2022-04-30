@@ -1,39 +1,44 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends("layouts.app")
+@section('content')
+    <div id="content">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9 col-lg-7 col-xl-5 mx-auto">
+                    <div class="bg-white shadow-md rounded p-3 pt-sm-4 pb-sm-5 px-sm-5">
+                        <h3 class="fw-400 text-center mb-4">Sign In</h3>
+                        <hr class="mx-n3 mx-sm-n5">
+                        <p class=" text-center">Esqueceu sua senha? Sem problemas. Basta nos informar seu endereço de
+                            e-mail e nós lhe enviaremos um link de redefinição de senha que permitirá que você escolha uma
+                            nova.</p>
+                        <form id="loginForm" method="post" action="{{ route('verification.send') }}">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="emailAddress" class="form-label">Email</label>
+                                <input type="email" name="email" value="{{ old('email') }}" class="form-control"
+                                    id="emailAddress" required placeholder="Digite seu email">
+                            </div>
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-        </div>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                        <p>{{ $error }}</p>
+                                    @endforeach
+                                </div>
+                            @endif
 
-        @if (session('status') == 'verification-link-sent')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-            </div>
-        @endif
+                            @if (session('status'))
+                                <div class="alert alert-primary">
+                                    <p>A new verification link has been sent to the email address you provided during registration.</p>
+                                </div>
+                            @endif
 
-        <div class="mt-4 flex items-center justify-between">
-            <form method="POST" action="{{ route('verification.send') }}">
-                @csrf
 
-                <div>
-                    <x-button>
-                        {{ __('Resend Verification Email') }}
-                    </x-button>
+                            <div class="d-grid mb-3"><button class="btn btn-primary" type="submit">Enviar</button></div>
+
+                        </form>
+                    </div>
                 </div>
-            </form>
-
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-
-                <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    {{ __('Log Out') }}
-                </button>
-            </form>
+            </div>
         </div>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+@endsection
