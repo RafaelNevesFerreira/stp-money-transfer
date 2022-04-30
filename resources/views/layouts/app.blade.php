@@ -3,13 +3,14 @@
 
     <head>
         <meta charset="UTF-8" />
+        <meta name="_token" content="{{ csrf_token() }}" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{asset("assets/images/apple-touch-icon.png")}}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{asset("assets/images/favicon-32x32.png")}}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{asset("assets/images/favicon-16x16.png")}}">
-        <link rel="manifest" href="{{asset("assets/images/site.webmanifest")}}">
-        <title>{{env("APP_NAME")}} - Money Transfer</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{ asset('assets/images/site.webmanifest') }}">
+        <title>{{ env('APP_NAME') }} - Money Transfer</title>
         <meta name="description"
             content="This professional design html template is for build a Money Transfer and online payments website.">
         <meta name="author" content="Rafael Ferreira">
@@ -48,13 +49,13 @@
             <!-- Header
     ============================================= -->
 
-            @include("layouts.navigation")
+            @include('layouts.navigation')
             <!-- Header End -->
             @yield("content")
 
             <!-- Footer
     ============================================= -->
-            @include("layouts.footer")
+            @include('layouts.footer')
             <!-- Footer end -->
 
         </div>
@@ -92,6 +93,24 @@
         <script src="{{ asset('assets/js/app.js') }}"></script>
 
         @yield("scripts")
+
+        <script>
+            $("#logout").click(function() {
+                $.ajaxSetup({
+                    headers: {
+                        "X-CSRF-TOKEN": $("meta[name='_token']").attr("content")
+                    }
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('logout') }}",
+                    success: function(data) {
+                        location.reload(true);
+                    }
+                });
+            })
+        </script>
 
     </body>
 
