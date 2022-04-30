@@ -25,6 +25,14 @@
                                     @endforeach
                                 </div>
                             @endif
+
+                            @if (session('status'))
+                                <div class="alert alert-success">
+                                    <p>{{ session('status') }}</p>
+                                </div>
+                            @endif
+
+
                             <div class="d-grid mb-3"><button class="btn btn-primary" type="submit">Enviar</button></div>
 
                         </form>
