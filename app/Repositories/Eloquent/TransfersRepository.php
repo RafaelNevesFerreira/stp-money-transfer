@@ -154,6 +154,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function saldo_semanal()
     {
+
         $pagos_em_prestacoes_com_libra = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
             ->where(["plan" => 1, "currency" => "gbp"])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
@@ -410,6 +411,13 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function lucro_mensal($mes, $year)
     {
+        $data = [];
+        for ($i = 1; $i < 8; $i++) {
+            $saldo = $this->saldo_semanal_em_dias($i);
+            array_push($data, $saldo);
+        }
+        dd(array_reverse($data));
+        return;
         $pagos_em_prestacoes_com_libra = $this->model::whereMonth('created_at', $mes)
             ->whereYear("created_at", date("Y"))
             ->where(["plan" => 1, "currency" => "gbp"])
@@ -450,4 +458,13 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return $data;
     }
 
+    public function saldo_semanal_em_dias($date)
+    {
+        $memes = $this->model::where("created_at", ">", Carbon::now()->endOfWeek()->subdays($date))
+            ->where("created_at", "<=", Carbon::now()->endOfWeek()->subdays($date - 1))
+            ->where(["plan" => 0, "currency" => "eur"])
+            ->sum(DB::raw("value_sended + tax"));
+
+        return number_format($memes, 2, ",", ".");
+    }
 }
