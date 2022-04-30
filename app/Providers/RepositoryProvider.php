@@ -39,10 +39,6 @@ class RepositoryProvider extends ServiceProvider
             'App\Repositories\Contracts\UserRepositoryInterface',
             'App\Repositories\Eloquent\UserRepository',
         );
-        $this->app->bind(
-            'App\Repositories\Contracts\StripeRepositoryInterface',
-            'App\Repositories\Eloquent\StripeRepository',
-        );
     }
 
 

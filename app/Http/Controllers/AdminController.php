@@ -9,7 +9,7 @@ use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class AdminController extends Controller
 {
-    public function __construct(public TransfersRepositoryInterface $transfers, public UserRepositoryInterface $users, public StripeRepositoryInterface $stripe)
+    public function __construct(public TransfersRepositoryInterface $transfers, public UserRepositoryInterface $users)
     {
         $this->middleware('admin');
     }
@@ -60,41 +60,5 @@ class AdminController extends Controller
     public function dashboard_stripe()
     {
         return view("admin.dashboard-stripe");
-    }
-
-    public function custumers()
-    {
-        // $this->stripe->count_customers();
-
-        // $cliente_mes_passado = $this->stripe->count_customers(Carbon::now()->subMonth()->month);
-        // $cliente_este_mes = $this->stripe->count_customers(date("m"));
-
-
-        $pagamentos_mes_passado = $this->stripe->count_payments(Carbon::now()->subMonth()->month);
-        $pagamentos_este_mes = $this->stripe->count_payments(date("m"));
-
-        return $pagamentos_mes_passado . "  " . $pagamentos_este_mes;
-
-        // if ($cliente_mes_passado > 0) {
-        //     $diferenca = ($cliente_este_mes - $cliente_mes_passado) / $cliente_mes_passado * 100;
-        // } else {
-        //     $diferenca = 0;
-        // }
-
-        // if ($pagamentos_mes_passado > 0) {
-        //     $pagamentos_diferenca = ($pagamentos_este_mes - $pagamentos_mes_passado) / $pagamentos_mes_passado * 100;
-        // } else {
-        //     $pagamentos_diferenca = 0;
-        // }
-        // $data = [
-        //     "este_mes" => $cliente_este_mes,
-        //     "diferenca_mes_passado" => str_replace("-", "", number_format($diferenca, 2, ",", ".")),
-        //     // "pagamentos_este_mes" => $pagamentos_este_mes,
-        //     // "pagamentos_mes_passado" => $pagamentos_mes_passado,
-        //     // "pagamentos_diferenca_mes_passado" => str_replace("-", "", number_format($pagamentos_diferenca, 2, ",", ".")),
-
-        // ];
-
-        // return $data;
     }
 }
