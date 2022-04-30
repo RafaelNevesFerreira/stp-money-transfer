@@ -106,10 +106,10 @@
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </a>
                                 </div>
-                                <h4 class="header-title mb-3">lucro anual</h4>
+                                <h4 class="header-title mb-3">receita anual</h4>
 
                                 <div dir="ltr">
-                                    <div id="high-performing-product" class="apex-charts" data-colors="#727cf5,#e3eaef">
+                                    <div id="high-performing-product" class="apex-charts" data-colors="#727cf5,#fa5c7c,#0acf97">
                                     </div>
                                 </div>
 

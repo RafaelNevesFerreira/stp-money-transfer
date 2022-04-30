@@ -51,21 +51,28 @@
                 plotOptions: { bar: { horizontal: !1, columnWidth: "20%" } },
                 dataLabels: { enabled: !1 },
                 stroke: { show: !0, width: 2, colors: ["transparent"] },
-                series: [{ name: "Actual", data: libra },
-                    { name: "Actual", data: dolar },
-                    { name: "Actual", data: euro }
+                series: [{ name: "Libra", data: libra },
+                    { name: "Dolar", data: dolar },
+                    { name: "Euro", data: euro }
 
                 ],
                 zoom: { enabled: !1 },
                 legend: { show: !1 },
                 colors: e,
                 xaxis: {
-                    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    categories: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
                     axisBorder: { show: !1 }
                 },
-                yaxis: { labels: { formatter: function(e) { return e + "k" }, offsetX: -15 } },
+                yaxis: { labels: { formatter: function(e) { return e }, offsetX: -15 } },
                 fill: { opacity: 1 },
-                tooltip: { y: { formatter: function(e) { return "$" + e + "k" } } }
+                tooltip: {
+                    y: {
+                        formatter: function(e) {
+
+                            return "$" + e
+                        }
+                    }
+                }
             };
             new ApexCharts(document.querySelector("#high-performing-product"), r).render();
 
