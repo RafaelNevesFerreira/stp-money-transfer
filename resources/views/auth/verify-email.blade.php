@@ -27,7 +27,7 @@
                             @endif
 
 
-                            <div class="d-grid mb-3"><button class="btn btn-primary" type="submit">Enviar</button></div>
+                            <div class="d-grid mb-3"><button class="btn btn-primary" type="submit">Reenviar</button></div>
 
                         </form>
                     </div>
