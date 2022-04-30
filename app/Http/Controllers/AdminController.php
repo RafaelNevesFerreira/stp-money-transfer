@@ -59,6 +59,11 @@ class AdminController extends Controller
 
     public function dashboard_stripe()
     {
-        return view("admin.dashboard-stripe");
+        $numero_clientes = $this->users->all()->count();
+        $numero_transactions = $this->transfers->all()->count();
+
+        dd($this->transfers->lucro_mensal(date("m"),date("Y")));
+
+        return view("admin.dashboard-stripe",compact("numero_clientes","numero_transactions"));
     }
 }

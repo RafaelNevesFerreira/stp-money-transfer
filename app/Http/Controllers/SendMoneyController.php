@@ -25,7 +25,7 @@ class SendMoneyController extends Controller
         } else {
             $minha_tax = 10;
         }
-        $tax = $valor * 0.030 + 0.3 + $minha_tax;
+        $tax = $valor * 0.029 + 0.3 + $minha_tax;
 
 
         $total = $valor + $tax;

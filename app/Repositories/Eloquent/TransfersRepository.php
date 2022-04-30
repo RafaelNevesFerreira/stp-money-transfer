@@ -16,7 +16,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 {
 
     public $DOLAR_EURO_PARA = 0.953370;
-    public $LIBRA_EURO_PARA = 1.18589;
+    public $LIBRA_EURO_PARA = 1.16866;
 
     public $model;
     public function __construct()
@@ -403,8 +403,50 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         }
     }
 
-    public function transferencias_recentes($month, $year,$limit)
+    public function transferencias_recentes($month, $year, $limit)
     {
-        return $this->model::whereMonth("created_at",$month)->whereYear("created_at",$year)->latest()->limit($limit)->get();
+        return $this->model::whereMonth("created_at", $month)->whereYear("created_at", $year)->latest()->limit($limit)->get();
+    }
+
+    public function lucro_mensal($mes, $year)
+    {
+        $pagos_em_prestacoes_com_libra = $this->model::whereMonth('created_at', $mes)
+            ->whereYear("created_at", date("Y"))
+            ->where(["plan" => 1, "currency" => "gbp"])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+        $pagos_em_prestacoes_com_dolar = $this->model::whereMonth('created_at', $mes)
+            ->whereYear("created_at", date("Y"))
+            ->where(["plan" => 1, "currency" => "usd"])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+
+        $pagos_em_prestacoes_com_euro = $this->model::whereMonth('created_at', $mes)
+            ->whereYear("created_at", date("Y"))
+            ->where(["plan" => 1, "currency" => "eur"])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+        $pagos_com_libra = $this->model::whereMonth('created_at', $mes)
+            ->whereYear("created_at", date("Y"))
+            ->where(["plan" => 0, "currency" => "gbp"])
+            ->sum(DB::raw("value_sended + tax"));
+
+        $pagos_com_dolar = $this->model::whereMonth('created_at', $mes)
+            ->whereYear("created_at", date("Y"))
+            ->where(["plan" => 0, "currency" => "usd"])
+            ->sum(DB::raw("value_sended + tax"));
+
+        $pagos_com_euro = $this->model::whereMonth('created_at', $mes)
+            ->whereYear("created_at", date("Y"))
+            ->where(["plan" => 0, "currency" => "eur"])
+            ->sum(DB::raw("value_sended + tax"));
+
+        $data = [
+            "libra" => $pagos_com_libra + $pagos_em_prestacoes_com_libra,
+            "euro" => $pagos_com_euro + $pagos_em_prestacoes_com_euro,
+            "dolar" => $pagos_com_dolar + $pagos_em_prestacoes_com_dolar
+        ];
+
+        return $data;
     }
 }

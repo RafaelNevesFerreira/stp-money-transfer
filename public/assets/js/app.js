@@ -27,7 +27,7 @@
                 } else {
                     minha_tax = 10;
                 }
-                var tax = valor * 0.030 + 0.3 + minha_tax
+                var tax = valor * 0.029 + 0.3 + minha_tax
 
                 var total = valor + tax;
                 $("#taxas").text(tax.toFixed(2));
