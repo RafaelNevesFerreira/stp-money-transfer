@@ -66,10 +66,10 @@ class AdminController extends Controller
         $sem_prestacao = "";
         for ($i = 1; $i < 13; $i++) {
             $prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(1, $i, date("Y"));
-            $prestacao .= $prestacoes . ",";
+            $prestacao .= number_format($prestacoes,2,".",".") . ",";
 
             $sem_prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(0, $i, date("Y"));
-            $sem_prestacao .= $sem_prestacoes . ",";
+            $sem_prestacao .= number_format($sem_prestacoes,2,".",".") . ",";
         }
 
         $prestacoes_grafico = "[" . $prestacao . "]";
@@ -96,8 +96,12 @@ class AdminController extends Controller
         }
         $saldo = "[" . $saldo . "]";
 
+        $saldo_semanal = $this->transfers->saldo_semanal();
+
+        $saldo_semana_passada = $this->transfers->saldo_semana_passada(true);
 
 
-        return view("admin.dashboard-stripe", compact("prestacoes", "sem_prestacoes", "saldo", "prestacoes_grafico", "sem_prestacoes_grafico"));
+
+        return view("admin.dashboard-stripe", compact("saldo_semanal","saldo_semana_passada","prestacoes", "sem_prestacoes", "saldo", "prestacoes_grafico", "sem_prestacoes_grafico"));
     }
 }

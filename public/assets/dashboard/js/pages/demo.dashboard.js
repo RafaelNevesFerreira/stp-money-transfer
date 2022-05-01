@@ -23,7 +23,7 @@
                 },
                 dataLabels: { enabled: !1 },
                 stroke: { curve: "smooth", width: 4 },
-                series: [{ name: "Current Week", data: saldo }, ],
+                series: [{ name: "Esta Semana", data: saldo }, ],
                 colors: e,
                 zoom: { enabled: !1 },
                 legend: { show: !1 },

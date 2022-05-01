@@ -145,26 +145,26 @@
                                 <div class="chart-content-bg">
                                     <div class="row text-center">
                                         <div class="col-sm-6">
-                                            <p class="text-muted mb-0 mt-3">Current Week</p>
+                                            <p class="text-muted mb-0 mt-3">Esta Semana</p>
                                             <h2 class="fw-normal mb-3">
                                                 <small
                                                     class="mdi mdi-checkbox-blank-circle text-primary align-middle me-1"></small>
-                                                <span>$58,254</span>
+                                                <span>{{number_format($saldo_semanal,2,",",".")}} €</span>
                                             </h2>
                                         </div>
                                         <div class="col-sm-6">
-                                            <p class="text-muted mb-0 mt-3">Previous Week</p>
+                                            <p class="text-muted mb-0 mt-3">Semana Passada</p>
                                             <h2 class="fw-normal mb-3">
                                                 <small
                                                     class="mdi mdi-checkbox-blank-circle text-success align-middle me-1"></small>
-                                                <span>$69,524</span>
+                                                <span>{{number_format($saldo_semana_passada,2,",",".")}} €</span>
                                             </h2>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="dash-item-overlay d-none d-md-block" dir="ltr">
-                                    <h5>Today's Earning: $2,562.30</h5>
+                                    <h5>Today's Earning: {{number_format($saldo_semanal,2,",",".")}} €</h5>
 
                                 </div>
                                 <div dir="ltr">
@@ -537,7 +537,6 @@
         var sem_prestacoes = {{ $sem_prestacoes_grafico }}
         var prestacoes = {{ $prestacoes_grafico }}
         var saldo = {{ $saldo }}
-        console.log(prestacoes);
     </script>
     <!-- third party js -->
     <script src="{{ asset('assets/dashboard/js/vendor/jquery-jvectormap-1.2.2.min.js') }}"></script>

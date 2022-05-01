@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use DateTime;
 use App\Models\Transfer;
 use App\Pipes\DateFilter;
 use App\Pipes\StatusFilter;
@@ -167,7 +168,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return $pagos_com_euro + $pagos_em_prestacoes_com_euro;
     }
 
-    public function saldo_semana_passada($start_week = null, $end_week = null)
+    public function saldo_semana_passada($total = false, $start_week = null, $end_week = null)
     {
         $previous_week = strtotime("-1 week +1 day");
         $start_week = strtotime("last Monday midnight", $previous_week);
@@ -184,7 +185,9 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             ->where(["plan" => 0])
             ->sum(DB::raw("value_sended + tax"));
 
-
+        if ($total == true) {
+            return $pagos_em_prestacoes_com_euro + $pagos_com_euro;
+        }
         $semana_passada = $pagos_em_prestacoes_com_euro + $pagos_com_euro;
         $esta_semana = $this->saldo_semanal();
 
@@ -285,8 +288,33 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             ->where(["plan" => 1])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
+
+
         return number_format($pegos + $prestacoes, 2, ".", ".");
     }
 
+    public function saldo_semana_passada_em_dias($date = 1)
+    {
+        $previous_week = strtotime("-1 week +1 day");
+        $start_week = strtotime("last Monday midnight", $previous_week);
+        $end_week = strtotime("next sunday", $start_week);
+        $start_week = date("Y-m-d", $start_week);
+        $end_week = date("Y-m-d", $end_week);
+        $start_week = new DateTime($start_week);
 
+
+        echo 'date before day adding: ' . $start_week->format('Y-m-d H:i:s');
+        $i = 6;
+        $start_week->modify("+$i day");
+        echo 'date after adding 1 day: ' . $start_week->format('Y-m-d H:i:s');
+
+
+        $pagos_em_prestacoes_com_euro = $this->model::whereBetween('created_at', [$start_week, $end_week])
+            ->where(["plan" => 1])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+        $pagos_com_euro = $this->model::whereBetween('created_at', [$start_week, $end_week])
+            ->where(["plan" => 0])
+            ->sum(DB::raw("value_sended + tax"));
+    }
 }
