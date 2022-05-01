@@ -104,9 +104,16 @@ class AdminController extends Controller
             $saldo_semana_passada_grafico .= $this->transfers->saldo_semana_passada_em_dias($i) . ",";
         }
 
-        // dd($this->transfers->paises());
+        foreach ($this->transfers->paises() as $country) {
+            echo "<br>";
+            echo $country->country . " - " . $this->transfers->money_by_country($country->country);
+        }
+
+        return;
+
+        dd($this->transfers->paises());
         $saldo_semana_passada_grafico = "[" . $saldo_semana_passada_grafico . "]";
 
-        return view("admin.dashboard-stripe", compact("saldo_semana_passada_grafico","saldo_semanal", "saldo_semana_passada", "prestacoes", "sem_prestacoes", "saldo", "prestacoes_grafico", "sem_prestacoes_grafico"));
+        return view("admin.dashboard-stripe", compact("saldo_semana_passada_grafico", "saldo_semanal", "saldo_semana_passada", "prestacoes", "sem_prestacoes", "saldo", "prestacoes_grafico", "sem_prestacoes_grafico"));
     }
 }

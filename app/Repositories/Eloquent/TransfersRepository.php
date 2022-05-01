@@ -327,4 +327,19 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     {
         return $this->model::distinct("country")->get("country");
     }
+
+    public function money_by_country($country)
+    {
+        $pagos = $this->model::whereMonth('created_at', date("m"))
+            ->whereYear("created_at", date("Y"))
+            ->where(["plan" => 0, "country" => $country])
+            ->sum(DB::raw("value_sended + tax"));
+
+        $prestacoes = $this->model::whereMonth('created_at', date("m"))
+            ->whereYear("created_at", date("Y"))
+            ->where(["plan" => 1, "country" => $country])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+        return number_format($pagos + $prestacoes, 2, ".", ".");
+    }
 }
