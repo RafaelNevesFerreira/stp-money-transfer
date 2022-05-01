@@ -46,7 +46,6 @@
                                                 </th>
                                                 <th>Nome</th>
                                                 <th>Pais</th>
-                                                <th>Valor enviado</th>
                                                 <th>Data de verificação</th>
                                                 <th>Email</th>
                                                 <th>Registrado</th>
