@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt_BR">
 
-<!-- Mirrored from coderthemes.com/hyper_2/saas/dashboard-projects.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 04 Feb 2022 07:47:55 GMT -->
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,49 +30,77 @@
 
 </head>
 
-<body class="loading"
-    data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
-    <!-- Begin page -->
-    <div class="wrapper">
-        <!-- ========== Left Sidebar Start ========== -->
-        @include('layouts.admin.left_sidebar')
-        <!-- Left Sidebar End -->
-        @yield("content")
+@if (Auth::user()->theme_color == 'dark')
+
+    <body class="loading"
+        data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":true, "showRightSidebarOnStart": true}'>
+    @else
+
+        <body class="loading"
+            data-layout-config='{"leftSideBarTheme":"ligth","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+@endif <!-- Begin page -->
+<!-- Begin page -->
+<div class="wrapper">
+    <!-- ========== Left Sidebar Start ========== -->
+    @include('layouts.admin.left_sidebar')
+    <!-- Left Sidebar End -->
+
+    @include('layouts.admin.right_sidebar')
+
+    @yield("content")
 
 
-    </div>
-    <!-- END wrapper -->
+</div>
+<!-- END wrapper -->
 
-    <!-- bundle -->
-    <script src="{{ asset('assets/dashboard/js/vendor.min.js') }}"></script>
-    <script src="{{ asset('assets/dashboard/js/app.min.js') }}"></script>
-    <script src="{{ asset('assets/dashboard/js/vendor/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/dashboard/js/vendor/dataTables.bootstrap5.js') }}"></script>
-    <script src="{{ asset('assets/dashboard/js/vendor/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('assets/dashboard/js/vendor/responsive.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('assets/dashboard/js/vendor/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('assets/dashboard/js/vendor/dataTables.checkboxes.min.js') }}"></script>
+<!-- bundle -->
+<script src="{{ asset('assets/dashboard/js/vendor.min.js') }}"></script>
+<script src="{{ asset('assets/dashboard/js/app.min.js') }}"></script>
+<script src="{{ asset('assets/dashboard/js/vendor/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/dashboard/js/vendor/dataTables.bootstrap5.js') }}"></script>
+<script src="{{ asset('assets/dashboard/js/vendor/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/dashboard/js/vendor/responsive.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('assets/dashboard/js/vendor/apexcharts.min.js') }}"></script>
+<script src="{{ asset('assets/dashboard/js/vendor/dataTables.checkboxes.min.js') }}"></script>
 
-    <script src="{{ asset('assets/dashboard/js/pages/demo.sellers.js') }}"></script>
-    <script>
-        $("#logout").click(function() {
-            $.ajaxSetup({
-                headers: {
-                    "X-CSRF-TOKEN": $("meta[name='_token']").attr("content")
-                }
-            });
+<script src="{{ asset('assets/dashboard/js/pages/demo.sellers.js') }}"></script>
+<script>
+    $(".theme_color").click(function() {
+        $.ajax({
+            type: "post",
+            url: "/admin/change_theme",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            data: {
+                theme: $(this).val(),
+            },
+            success: function(data) {
+                location.reload();
+            },
+            error: function(error) {
+                alert("sory, we have an error, try later")
+            }
+        });
+    })
+    $("#logout").click(function() {
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name='_token']").attr("content")
+            }
+        });
 
-            $.ajax({
-                type: "POST",
-                url: "{{ route('logout') }}",
-                success: function(data) {
-                    location.reload(true);
-                }
-            });
-        })
-    </script>
+        $.ajax({
+            type: "POST",
+            url: "{{ route('logout') }}",
+            success: function(data) {
+                location.reload(true);
+            }
+        });
+    })
+</script>
 
-    @yield("scripts")
+@yield("scripts")
 
 
 </body>
