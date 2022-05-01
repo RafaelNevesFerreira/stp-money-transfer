@@ -62,22 +62,42 @@ class AdminController extends Controller
         $numero_clientes = $this->users->all()->count();
         $numero_transactions = $this->transfers->all()->count();
 
+        $prestacao = "";
+        $sem_prestacao = "";
+        for ($i = 1; $i < 13; $i++) {
+            $prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(1, $i, date("Y"));
+            $prestacao .= $prestacoes . ",";
+
+            $sem_prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(0, $i, date("Y"));
+            $sem_prestacao .= $sem_prestacoes . ",";
+        }
+
+        $prestacoes_grafico = "[" . $prestacao . "]";
+
+        $sem_prestacoes_grafico = "[" . $sem_prestacao . "]";
 
         $prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(1, date("m"), date("Y"));
+        $sem_prestacoes =  $this->transfers->pagos_em_prestacoes_ou_cash(0, date("m"), date("Y"));
 
-        $sem_prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(0, date("m"), date("Y"));
+
+
+        $saldos = [];
+        for ($i = 1; $i < 8; $i++) {
+            $valor = $this->transfers->saldo_semanal_em_dias($i);
+            array_push($saldos, $valor);
+        }
 
 
         $saldo = "";
-        for ($i = 1; $i < 8; $i++) {
-            $valor = $this->transfers->saldo_semanal_em_dias($i);
-            $saldo .= $valor . ",";
-        }
 
+
+        for ($i = 0; $i < count($saldos); $i++) {
+            $saldo .= $saldos[6 - $i] . ',';
+        }
         $saldo = "[" . $saldo . "]";
 
 
 
-        return view("admin.dashboard-stripe", compact( "prestacoes", "sem_prestacoes", "saldo"));
+        return view("admin.dashboard-stripe", compact("prestacoes", "sem_prestacoes", "saldo", "prestacoes_grafico", "sem_prestacoes_grafico"));
     }
 }

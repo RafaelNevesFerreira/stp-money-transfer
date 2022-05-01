@@ -23,15 +23,13 @@
                 },
                 dataLabels: { enabled: !1 },
                 stroke: { curve: "smooth", width: 4 },
-                series: [{ name: "Current Week", data: saldo },
-                    { name: "Previous Week", data: [0, 15, 10, 30, 15, 35, 25] }
-                ],
+                series: [{ name: "Current Week", data: saldo }, ],
                 colors: e,
                 zoom: { enabled: !1 },
                 legend: { show: !1 },
                 xaxis: {
                     type: "string",
-                    categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+                    categories: ["Seg", "Ter", "Quar", "Quin", "Sex", "Sab", "Dom"],
                     tooltip: { enabled: !1 },
                     axisBorder: { show: !1 }
                 },

@@ -250,7 +250,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return $meses;
     }
 
-    public function pagos_em_prestacoes_ou_cash($plan,$month, $year)
+    public function pagos_em_prestacoes_ou_cash($plan, $month, $year)
     {
 
 
@@ -274,11 +274,19 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function saldo_semanal_em_dias($date)
     {
-        $memes = $this->model::where("created_at", ">", Carbon::now()->endOfWeek()->subdays($date))
+        $pegos = $this->model::where("created_at", ">", Carbon::now()->endOfWeek()->subdays($date))
             ->where("created_at", "<=", Carbon::now()->endOfWeek()->subdays($date - 1))
             ->where(["plan" => 0])
             ->sum(DB::raw("value_sended + tax"));
 
-        return number_format($memes, 2, ".", ".");
+
+        $prestacoes = $this->model::where("created_at", ">", Carbon::now()->endOfWeek()->subdays($date))
+            ->where("created_at", "<=", Carbon::now()->endOfWeek()->subdays($date - 1))
+            ->where(["plan" => 1])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+        return number_format($pegos + $prestacoes, 2, ".", ".");
     }
+
+
 }

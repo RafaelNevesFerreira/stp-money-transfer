@@ -534,10 +534,10 @@
 
 @section('scripts')
     <script>
-        var sem_prestacoes = {{ $sem_prestacoes }}
-        var prestacoes = {{ $prestacoes }}
+        var sem_prestacoes = {{ $sem_prestacoes_grafico }}
+        var prestacoes = {{ $prestacoes_grafico }}
         var saldo = {{ $saldo }}
-        console.log(sem_prestacoes);
+        console.log(prestacoes);
     </script>
     <!-- third party js -->
     <script src="{{ asset('assets/dashboard/js/vendor/jquery-jvectormap-1.2.2.min.js') }}"></script>
