@@ -304,7 +304,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
         $i = 6;
         $start_week->modify("+$i day");
-        dd($start_week);
+        dd($start_week->date);
         echo 'date after adding 1 day: ' . $start_week->format('Y-m-d H:i:s');
 
 
