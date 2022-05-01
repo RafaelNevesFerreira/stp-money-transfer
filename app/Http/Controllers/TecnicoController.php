@@ -43,6 +43,6 @@ class TecnicoController extends Controller
 
     public function change_status(Request $request)
     {
-        $this->transfer->change_status($request->id);
+        $this->transfer->change_status($request->id,false);
     }
 }

@@ -131,6 +131,27 @@ class AdminController extends Controller
         return view("admin.dashboard-stripe", compact("top_5", "paises", "saldo_semana_passada_grafico", "saldo_semanal", "saldo_semana_passada", "prestacoes", "sem_prestacoes", "saldo", "prestacoes_grafico", "sem_prestacoes_grafico"));
     }
 
+    public function transfers()
+    {
+        $transfers = $this->transfers->all();
+        return view("admin.transfers.transfers", compact("transfers"));
+    }
+
+    public function transaction_details($id)
+    {
+        $transfer = $this->transfers->details($id);
+        return view("admin.transfers.details", compact("transfer"));
+    }
+
+    public function change_status(Request $request)
+    {
+        if ($request->status === "recebido") {
+            $this->transfers->change_status($request->id, false);
+        } else {
+            $this->transfers->change_status($request->id, true);
+        }
+    }
+
     public function change_theme(Request $request)
     {
         $this->users->change_theme($request->theme);

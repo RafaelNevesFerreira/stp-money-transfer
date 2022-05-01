@@ -114,12 +114,18 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return $this->model::whereDay('created_at', date("d"))->limit(4)->get();
     }
 
-    public function change_status($id)
+    public function change_status($id, $reembolsado = false)
     {
-        $this->model::where("id", $id)->update([
-            "status" => "received",
-            "received_at" => now()
-        ]);
+        if ($reembolsado) {
+            $this->model::where("id", $id)->update([
+                "status" => "reimbursed",
+            ]);
+        } else {
+            $this->model::where("id", $id)->update([
+                "status" => "received",
+                "received_at" => now()
+            ]);
+        }
     }
 
     public function transfers_esta_semana(): int

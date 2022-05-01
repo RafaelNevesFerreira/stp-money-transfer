@@ -15,16 +15,21 @@
                 <div class="collapse" id="sidebarDashboards">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route("admin.dashboard") }}">Dashboard 1</a>
+                            <a href="{{ route('admin.dashboard') }}">Dashboard 1</a>
                         </li>
                         <li>
-                            <a href="{{ route("admin.dashboard.stripe") }}">Dashboard 2</a>
+                            <a href="{{ route('admin.dashboard.stripe') }}">Dashboard 2</a>
                         </li>
                     </ul>
                 </div>
             </li>
 
-
+            <li class="side-nav-item menuitem">
+                <a href="{{ route('admin.transfers') }}" class="side-nav-link ">
+                    <i class="uil-calender"></i>
+                    <span> Transações </span>
+                </a>
+            </li>
         </ul>
 
         <!-- End Sidebar -->

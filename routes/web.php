@@ -85,6 +85,9 @@ Route::middleware("admin")->group(function () {
         Route::prefix("admin")->group(function () {
             Route::get("/dashboard", "dashboard")->name("admin.dashboard");
             Route::get("/dashboard/stripe", "dashboard_stripe")->name("admin.dashboard.stripe");
+            Route::get("/transactions", "transfers")->name("admin.transfers");
+            Route::get("/transactions/{id}", "transaction_details")->name("admin.transaction.details");
+            Route::post("change_status", "change_status")->name("admin.change.status");
             Route::post("/change_theme", "change_theme")->name("admin.change_theme");
         });
     });
