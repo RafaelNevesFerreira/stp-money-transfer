@@ -75,8 +75,8 @@
                                         <div class="float-end">
                                             <i class="mdi mdi-currency-usd widget-icon"></i>
                                         </div>
-                                        <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Dolar</h5>
-                                        <h3 class="mt-3 mb-3">{{ $sem_prestacoes }} $</h3>
+                                        <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Total</h5>
+                                        <h3 class="mt-3 mb-3">{{ number_format($prestacoes + $sem_prestacoes, 2, ',', '.') }} €</h3>
 
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -89,7 +89,7 @@
                                             <i class="mdi mdi-pulse widget-icon"></i>
                                         </div>
                                         <h5 class="text-muted fw-normal mt-0" title="Growth">Atenção</h5>
-                                        <h4 class="mt-3 mb-3">Valores Referentes ao mês corente</h4>
+                                        <h6 class="mt-3 mb-3">Valores Referentes ao mês corrente</h6>
 
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->

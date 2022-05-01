@@ -47,7 +47,7 @@
                                                 @case($aumento_em_relacao_a_semana_passada >= 0)
                                                     <span class="text-success me-2">
                                                         <i class="mdi mdi-arrow-up-bold"></i>
-                                                        {{ number_format($aumento_em_relacao_a_semana_passada, 2, ',', '.') }}%
+                                                        {{ number_format($aumento_em_relacao_a_semana_passada, 1, ',', '.') }}%
                                                     </span>Semana passada
                                                 @break
                                             @endswitch
