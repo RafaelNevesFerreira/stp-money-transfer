@@ -88,6 +88,7 @@ Route::middleware("admin")->group(function () {
             Route::get("/transactions", "transfers")->name("admin.transfers");
             Route::get("/transactions/{id}", "transaction_details")->name("admin.transaction.details");
             Route::get("/users", "users")->name("admin.users");
+            Route::get("/users/{id}", "users_details")->name("admin.user.details");
             Route::post("change_status", "change_status")->name("admin.change.status");
             Route::post("/change_theme", "change_theme")->name("admin.change_theme");
         });

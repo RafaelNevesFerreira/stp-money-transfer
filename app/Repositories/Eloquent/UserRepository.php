@@ -49,7 +49,9 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
     public function change_theme($theme)
     {
-        $this->model::where("id",Auth::user()->id)
-        ->update(["theme_color" => $theme]);
+        $this->model::where("id", Auth::user()->id)
+            ->update(["theme_color" => $theme]);
     }
+
+
 }

@@ -158,6 +158,29 @@ class AdminController extends Controller
         return view("admin.users.users", compact("users"));
     }
 
+    public function users_details($id)
+    {
+        $user = $this->users->whereId($id);
+        $user_total_transactions = $this->transfers->user_count_transactions($user->email);
+
+        $user_total_transactions_prestacoes = $this->transfers->user_count_transactions($user->email, 1);
+        $user_total_transactions_sem_prestacoes = $this->transfers->user_count_transactions($user->email, 0);
+
+
+        $este_ano = "";
+        $ano_passado = "";
+        for ($i = 1; $i < 13; $i++) {
+            $este_ano .= number_format($this->transfers->user_transaction_by_month($user->email, $i, date("Y")), 2, ".", ".") . ",";
+            $ano_passado .= number_format($this->transfers->user_transaction_by_month($user->email, $i, date('Y', strtotime('-1 year'))), 2, ".", ".") . ",";
+        }
+
+        $este_ano = "[" . $este_ano . "]";
+
+        $ano_passado = "[" . $ano_passado . "]";
+
+        return view("admin.users.details", compact("ano_passado", "este_ano", "user_total_transactions_prestacoes", "user_total_transactions_sem_prestacoes", "user", "user_total_transactions"));
+    }
+
     public function change_theme(Request $request)
     {
         $this->users->change_theme($request->theme);

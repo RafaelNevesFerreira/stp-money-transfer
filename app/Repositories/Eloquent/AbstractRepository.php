@@ -23,4 +23,9 @@ class AbstractRepository
     {
         $this->model::create($request);
     }
+
+    public function whereId($id)
+    {
+        return $this->model::where("id", $id)->firstOrFail();
+    }
 }

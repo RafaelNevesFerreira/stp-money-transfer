@@ -359,4 +359,34 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             ->limit($limit)
             ->get();
     }
+
+    public function user_count_transactions($email, $prestacoes = 3)
+    {
+        if ($prestacoes == 1) {
+            return $this->model::where("plan", 1)
+                ->where("email", $email)
+                ->count();
+        } elseif ($prestacoes == 0) {
+            return $this->model::where("email", $email)
+                ->where("plan", 0)
+                ->count();
+        } else {
+            return $this->model::where("email", $email)->count();
+        }
+    }
+
+    public function user_transaction_by_month($email, $month, $year)
+    {
+        $pagos_em_prestacoes_com_euro = $this->model::whereMonth('created_at', $month)
+            ->whereYear("created_at", $year)
+            ->where(["plan" => 1, "email" => $email])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
+
+        $pagos_com_euro = $this->model::whereMonth('created_at', $month)
+            ->whereYear("created_at", $year)
+            ->where(["plan" => 0, "email" => $email])
+            ->sum(DB::raw("value_sended + tax"));
+
+        return $pagos_em_prestacoes_com_euro + $pagos_com_euro;
+    }
 }

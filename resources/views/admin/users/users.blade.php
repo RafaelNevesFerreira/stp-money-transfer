@@ -89,9 +89,9 @@
                                                     </td>
 
                                                     <td>
-                                                        <a href="{{ route('admin.transaction.details', $user->id) }}"
+                                                        <a href="{{ route('admin.user.details', $user->id) }}"
                                                             class="action-icon"> <i
-                                                                class="mdi mdi-square-edit-outline"></i>
+                                                                class="mdi mdi-eye"></i>
                                                         </a>
                                                     </td>
                                                 </tr>

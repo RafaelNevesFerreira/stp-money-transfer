@@ -11,4 +11,5 @@ interface UserRepositoryInterface
     public function aumento_de_usuarios_em_relacao_aom_mes_passado();
     public function usuarios_mes_ano($month, $year,$limit);
     public function change_theme($theme);
+    public function whereId($id);
 }
