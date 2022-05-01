@@ -383,28 +383,20 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             ->where(["plan" => 1, "email" => $email])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
-        $date   = DateTime::createFromFormat('m', 3);
-        dd($date->sub(new DateInterval('P2M')));
+        $date   = DateTime::createFromFormat('m', $month);
 
-        $prestacoes_concluidas = $this->model::whereMonth('created_at', "<", $date->add(new DateInterval('P2M')))
-            ->whereMonth('created_at', ">=", date($month, strtotime("-2 months")))
+        $prestacoes_concluidas = $this->model::whereMonth('created_at', "<", $month)
+            ->whereMonth('created_at', ">=", $date->sub(new DateInterval('P2M')))
             ->whereYear("created_at", $year)
             ->where(["plan" => 1, "email" => $email])
             ->sum(DB::raw("value_sended + tax"));
-
-
-
-
-        // dd(date($date->format("m"), strtotime("+2 months")));
-
-        dd($prestacoes_concluidas);
 
         $pagos_com_euro = $this->model::whereMonth('created_at', $month)
             ->whereYear("created_at", $year)
             ->where(["plan" => 0, "email" => $email])
             ->sum(DB::raw("value_sended + tax"));
 
-        return $pagos_em_prestacoes_com_euro + $pagos_com_euro;
+        return $pagos_em_prestacoes_com_euro + $pagos_com_euro+ $prestacoes_concluidas;
     }
 
     public function transaction_by_user($email)
