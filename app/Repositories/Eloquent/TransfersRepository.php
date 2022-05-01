@@ -293,7 +293,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return number_format($pegos + $prestacoes, 2, ".", ".");
     }
 
-    public function saldo_semana_passada_em_dias($date = 1)
+    public function saldo_semana_passada_em_dias($date)
     {
         $previous_week = strtotime("-1 week +1 day");
         $start_week = strtotime("last Monday midnight", $previous_week);
@@ -303,24 +303,28 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         $start_week = new DateTime($start_week);
         $end_week = new DateTime($end_week);
 
-        $i = 6;
-        $start_week->modify("+$i day");
-        $end_week->modify("-$i day");
-        dd($end_week);
-        echo 'date after adding 1 day: ' . $start_week->format('Y-m-d H:i:s');
 
+        $i = $date - 1;
+        $i2 = 6 - $date;
+        $start_week->modify("+$i day");
+        $end_week->modify("-$i2 days");
 
         $pagos = $this->model::where("created_at", ">", $start_week)
-            ->where("created_at", "<=", Carbon::now()->endOfWeek()->subdays($date - 1))
+            ->where("created_at", "<", $end_week)
             ->where(["plan" => 0])
             ->sum(DB::raw("value_sended + tax"));
 
-
-        $prestacoes = $this->model::where("created_at", ">", Carbon::now()->endOfWeek()->subdays($date))
-            ->where("created_at", "<=", Carbon::now()->endOfWeek()->subdays($date - 1))
+        $prestacoes = $this->model::where("created_at", ">", $start_week)
+            ->where("created_at", "<", $end_week)
             ->where(["plan" => 1])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
+
         return number_format($pagos + $prestacoes, 2, ".", ".");
+    }
+
+    public function paises()
+    {
+        return $this->model::distinct("country")->get("country");
     }
 }

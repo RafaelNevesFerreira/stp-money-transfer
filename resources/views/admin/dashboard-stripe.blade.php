@@ -140,7 +140,7 @@
                                         <a href="javascript:void(0);" class="dropdown-item">Action</a>
                                     </div>
                                 </div>
-                                <h4 class="header-title mb-3">Revenue</h4>
+                                <h4 class="header-title mb-3">Receita</h4>
 
                                 <div class="chart-content-bg">
                                     <div class="row text-center">
@@ -164,7 +164,7 @@
                                 </div>
 
                                 <div class="dash-item-overlay d-none d-md-block" dir="ltr">
-                                    <h5>Today's Earning: {{number_format($saldo_semanal,2,",",".")}} €</h5>
+                                    <h5>Esta Semana: {{number_format($saldo_semanal,2,",",".")}} €</h5>
 
                                 </div>
                                 <div dir="ltr">
@@ -537,6 +537,7 @@
         var sem_prestacoes = {{ $sem_prestacoes_grafico }}
         var prestacoes = {{ $prestacoes_grafico }}
         var saldo = {{ $saldo }}
+        var semana_passada = {{ $saldo_semana_passada_grafico }}
     </script>
     <!-- third party js -->
     <script src="{{ asset('assets/dashboard/js/vendor/jquery-jvectormap-1.2.2.min.js') }}"></script>

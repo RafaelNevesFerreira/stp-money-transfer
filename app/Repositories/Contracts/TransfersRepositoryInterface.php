@@ -24,5 +24,6 @@ interface TransfersRepositoryInterface
     public function pagos_em_prestacoes_ou_cash($plan,$month, $year);
     public function transferencias_recentes($month, $year, $limit);
     public function saldo_semanal_em_dias($days);
-    public function saldo_semana_passada_em_dias($date = 1);
+    public function saldo_semana_passada_em_dias($date);
+    public function paises();
 }

@@ -23,7 +23,9 @@
                 },
                 dataLabels: { enabled: !1 },
                 stroke: { curve: "smooth", width: 4 },
-                series: [{ name: "Esta Semana", data: saldo }, ],
+                series: [{ name: "Esta Semana", data: saldo },
+                    { name: "Semana Passada", data: semana_passada }
+                ],
                 colors: e,
                 zoom: { enabled: !1 },
                 legend: { show: !1 },
@@ -106,7 +108,7 @@
                     hover: { stroke: "#fff", "fill-opacity": 1, "stroke-width": 1.5 }
                 },
                 backgroundColor: "transparent",
-                markers: [{ latLng: [40.71, -74], name: "New York" }, { latLng: [37.77, -122.41], name: "San Francisco" },
+                markers: [{ latLng: [45.89997479, 6.116670287], name: "France" }, { latLng: [37.77, -122.41], name: "San Francisco" },
                     { latLng: [-33.86, 151.2], name: "Sydney" }, { latLng: [1.3, 103.8], name: "Singapore" }
                 ],
                 zoomOnScroll: !1
