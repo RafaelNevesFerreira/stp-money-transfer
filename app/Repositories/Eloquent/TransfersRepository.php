@@ -301,19 +301,26 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         $start_week = date("Y-m-d", $start_week);
         $end_week = date("Y-m-d", $end_week);
         $start_week = new DateTime($start_week);
+        $end_week = new DateTime($end_week);
 
         $i = 6;
         $start_week->modify("+$i day");
-        dd($start_week["date"]);
+        $end_week->modify("-$i day");
+        dd($end_week);
         echo 'date after adding 1 day: ' . $start_week->format('Y-m-d H:i:s');
 
 
-        $pagos_em_prestacoes_com_euro = $this->model::whereBetween('created_at', [$start_week, $end_week])
+        $pagos = $this->model::where("created_at", ">", $start_week)
+            ->where("created_at", "<=", Carbon::now()->endOfWeek()->subdays($date - 1))
+            ->where(["plan" => 0])
+            ->sum(DB::raw("value_sended + tax"));
+
+
+        $prestacoes = $this->model::where("created_at", ">", Carbon::now()->endOfWeek()->subdays($date))
+            ->where("created_at", "<=", Carbon::now()->endOfWeek()->subdays($date - 1))
             ->where(["plan" => 1])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
-        $pagos_com_euro = $this->model::whereBetween('created_at', [$start_week, $end_week])
-            ->where(["plan" => 0])
-            ->sum(DB::raw("value_sended + tax"));
+        return number_format($pagos + $prestacoes, 2, ".", ".");
     }
 }
