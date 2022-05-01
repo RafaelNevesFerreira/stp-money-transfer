@@ -302,8 +302,6 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         $end_week = date("Y-m-d", $end_week);
         $start_week = new DateTime($start_week);
 
-
-        echo 'date before day adding: ' . $start_week->format('Y-m-d H:i:s');
         $i = 6;
         $start_week->modify("+$i day");
         dd($start_week);
