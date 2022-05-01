@@ -48,6 +48,7 @@
                                                 <th>Pais</th>
                                                 <th>Data de verificação</th>
                                                 <th>Email</th>
+                                                <th>Telemovel</th>
                                                 <th>Registrado</th>
                                                 <th style="width: 75px;">Ação</th>
                                             </tr>
