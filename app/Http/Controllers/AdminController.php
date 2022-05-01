@@ -152,6 +152,12 @@ class AdminController extends Controller
         }
     }
 
+    public function users()
+    {
+        $users = $this->users->all();
+        return view("admin.users.users", compact("users"));
+    }
+
     public function change_theme(Request $request)
     {
         $this->users->change_theme($request->theme);

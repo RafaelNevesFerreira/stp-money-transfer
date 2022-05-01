@@ -30,6 +30,13 @@
                     <span> Transações </span>
                 </a>
             </li>
+
+            <li class="side-nav-item menuitem">
+                <a href="{{ route('admin.users') }}" class="side-nav-link ">
+                    <i class="uil-users-alt"></i>
+                    <span> Usuarios </span>
+                </a>
+            </li>
         </ul>
 
         <!-- End Sidebar -->
