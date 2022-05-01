@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt_BR">
 
 <!-- Mirrored from coderthemes.com/hyper_2/saas/dashboard-projects.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 04 Feb 2022 07:47:55 GMT -->
 

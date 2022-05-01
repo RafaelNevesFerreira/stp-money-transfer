@@ -46,4 +46,5 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         return $this->model::whereMonth("created_at", $month)->whereYear("created_at", $year)->latest()->limit($limit)->get();
     }
+
 }
