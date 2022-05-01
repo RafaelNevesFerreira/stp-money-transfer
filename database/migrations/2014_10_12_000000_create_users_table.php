@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('address');
             $table->string('avatar')->default("avatar.jpg");
+            $table->integer('status')->default(1);
             $table->string('theme_color')->default("dark");
             $table->string('password');
             $table->rememberToken();
