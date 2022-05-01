@@ -100,7 +100,7 @@ class AdminController extends Controller
 
         $saldo_semana_passada = $this->transfers->saldo_semana_passada(true);
 
-
+        $this->transfers->saldo_semana_passada_em_dias($date = 1);
 
         return view("admin.dashboard-stripe", compact("saldo_semanal","saldo_semana_passada","prestacoes", "sem_prestacoes", "saldo", "prestacoes_grafico", "sem_prestacoes_grafico"));
     }
