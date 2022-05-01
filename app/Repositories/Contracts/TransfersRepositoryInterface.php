@@ -31,4 +31,6 @@ interface TransfersRepositoryInterface
     public function user_count_transactions($email, $prestacoes = null);
     public function user_transaction_by_month($email, $month, $year);
     public function transaction_by_user($email);
+    public function prestacoes_pagas($email, $month, $year);
+    public function prestacoes_a_pagar($email, $month, $year);
 }

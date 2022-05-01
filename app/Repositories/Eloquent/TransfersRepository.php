@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use DateTime;
+use DateInterval;
 use App\Models\Transfer;
 use App\Pipes\DateFilter;
 use App\Pipes\StatusFilter;
@@ -382,6 +383,22 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             ->where(["plan" => 1, "email" => $email])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
+        $date   = DateTime::createFromFormat('m', 3);
+        dd($date->sub(new DateInterval('P2M')));
+
+        $prestacoes_concluidas = $this->model::whereMonth('created_at', "<", $date->add(new DateInterval('P2M')))
+            ->whereMonth('created_at', ">=", date($month, strtotime("-2 months")))
+            ->whereYear("created_at", $year)
+            ->where(["plan" => 1, "email" => $email])
+            ->sum(DB::raw("value_sended + tax"));
+
+
+
+
+        // dd(date($date->format("m"), strtotime("+2 months")));
+
+        dd($prestacoes_concluidas);
+
         $pagos_com_euro = $this->model::whereMonth('created_at', $month)
             ->whereYear("created_at", $year)
             ->where(["plan" => 0, "email" => $email])
@@ -393,5 +410,22 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     public function transaction_by_user($email)
     {
         return $this->model::where("email", $email)->get();
+    }
+
+    public function prestacoes_pagas($email, $month, $year)
+    {
+        return $this->model::whereMonth('created_at', "<", $month)
+            ->whereYear("created_at", $year)
+            ->where(["plan" => 1, "email" => $email])
+            ->sum(DB::raw("value_sended + tax"));
+    }
+
+    public function prestacoes_a_pagar($email, $month, $year)
+    {
+        return $this->model::whereMonth('created_at', "<", $month)
+            ->whereMonth('created_at', ">=", date("m", strtotime("-1 months")))
+            ->whereYear("created_at", $year)
+            ->where(["plan" => 1, "email" => $email])
+            ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
     }
 }

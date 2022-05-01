@@ -158,10 +158,9 @@
                                 <div class="card tilebox-one">
                                     <div class="card-body">
                                         <i class="dripicons-basket float-end text-muted"></i>
-                                        <h6 class="text-muted text-uppercase mt-0">Orders</h6>
-                                        <h2 class="m-b-20">1,587</h2>
-                                        <span class="badge bg-primary"> +11% </span> <span class="text-muted">From
-                                            previous period</span>
+                                        <h6 class="text-muted text-uppercase mt-0">Prestações a pagar</h6>
+                                        <h2 class="m-b-20">€<span>{{number_format($prestacoes_a_pagas,2,",",".")}}</span></h2>
+                                        <span class="text-muted">O valor a pagar</span>
                                     </div> <!-- end card-body-->
                                 </div>
                                 <!--end card-->
@@ -171,10 +170,9 @@
                                 <div class="card tilebox-one">
                                     <div class="card-body">
                                         <i class="dripicons-box float-end text-muted"></i>
-                                        <h6 class="text-muted text-uppercase mt-0">Revenue</h6>
-                                        <h2 class="m-b-20">$<span>46,782</span></h2>
-                                        <span class="badge bg-danger"> -29% </span> <span class="text-muted">From
-                                            previous period</span>
+                                        <h6 class="text-muted text-uppercase mt-0">Prestações Pagas</h6>
+                                        <h2 class="m-b-20">€<span>{{number_format($prestacoes_pagas,2,",",".")}}</span></h2>
+                                        <span class="text-muted">Total Pago</span>
                                     </div> <!-- end card-body-->
                                 </div>
                                 <!--end card-->
