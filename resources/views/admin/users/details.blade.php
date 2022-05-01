@@ -103,90 +103,38 @@
 
                                 <div class="text-start">
                                     <p class="text-muted"><strong>Nome :</strong> <span
-                                            class="ms-2">{{$user->name}}</span></p>
+                                            class="ms-2">{{ $user->name }}</span></p>
 
-                                    <p class="text-muted"><strong>Telemovel :</strong><span class="ms-2">{{$user->phone_number}}</span></p>
+                                    <p class="text-muted"><strong>Telemovel :</strong><span
+                                            class="ms-2">{{ $user->phone_number }}</span></p>
 
                                     <p class="text-muted"><strong>Email :</strong> <span
-                                            class="ms-2">{{$user->email}}</span></p>
+                                            class="ms-2">{{ $user->email }}</span></p>
 
                                     <p class="text-muted"><strong>Pais :</strong> <span
-                                            class="ms-2">{{$user->country}}</span></p>
+                                            class="ms-2">{{ $user->country }}</span></p>
 
+                                    <p class="text-muted"><strong>Ultima Atualização :</strong>
+                                        <span class="ms-2"> {{ $user->updated_at->format("d-m-Y") }} </span>
+                                    </p>
                                     <p class="text-muted"><strong>Morada :</strong>
-                                        <span class="ms-2"> {{$user->address}} </span>
+                                        <span class="ms-2"> {{ $user->address }} </span>
+                                    </p>
+                                    <p class="text-muted mb-0" id="tooltip-container">
+                                        <strong>Estado :</strong>
+                                        @if ($user->status === 1 && $user->email_verified_at)
+                                            <span>O Usuario Esta Ativo</span>
+                                        @elseif ($user->status === 1 && $user->email_verified_at)
+                                            <span>O Usuario Esta Inativo</span>
+                                        @else
+                                            <span>O Usuario Inativo Pois Ainda Nõ confirmou o seu email</span>
+                                        @endif
                                     </p>
 
                                 </div>
                             </div>
                         </div>
                         <!-- Personal-Information -->
-
-                        <!-- Toll free number box-->
-                        <div class="card text-white bg-info overflow-hidden">
-                            <div class="card-body">
-                                <div class="toll-free-box text-center">
-                                    <h4> <i class="mdi mdi-deskphone"></i> Toll Free : 1-234-567-8901</h4>
-                                </div>
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card-->
-                        <!-- End Toll free number box-->
-
-                        <!-- Messages-->
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title mb-3">Messages</h4>
-
-                                <div class="inbox-widget">
-                                    <div class="inbox-item">
-                                        <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg"
-                                                class="rounded-circle" alt=""></div>
-                                        <p class="inbox-item-author">Tomaslau</p>
-                                        <p class="inbox-item-text">I've finished it! See you so...</p>
-                                        <p class="inbox-item-date">
-                                            <a href="#" class="btn btn-sm btn-link text-info font-13"> Reply </a>
-                                        </p>
-                                    </div>
-                                    <div class="inbox-item">
-                                        <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg"
-                                                class="rounded-circle" alt=""></div>
-                                        <p class="inbox-item-author">Stillnotdavid</p>
-                                        <p class="inbox-item-text">This theme is awesome!</p>
-                                        <p class="inbox-item-date">
-                                            <a href="#" class="btn btn-sm btn-link text-info font-13"> Reply </a>
-                                        </p>
-                                    </div>
-                                    <div class="inbox-item">
-                                        <div class="inbox-item-img"><img src="assets/images/users/avatar-4.jpg"
-                                                class="rounded-circle" alt=""></div>
-                                        <p class="inbox-item-author">Kurafire</p>
-                                        <p class="inbox-item-text">Nice to meet you</p>
-                                        <p class="inbox-item-date">
-                                            <a href="#" class="btn btn-sm btn-link text-info font-13"> Reply </a>
-                                        </p>
-                                    </div>
-
-                                    <div class="inbox-item">
-                                        <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg"
-                                                class="rounded-circle" alt=""></div>
-                                        <p class="inbox-item-author">Shahedk</p>
-                                        <p class="inbox-item-text">Hey! there I'm available...</p>
-                                        <p class="inbox-item-date">
-                                            <a href="#" class="btn btn-sm btn-link text-info font-13"> Reply </a>
-                                        </p>
-                                    </div>
-                                    <div class="inbox-item">
-                                        <div class="inbox-item-img"><img src="assets/images/users/avatar-6.jpg"
-                                                class="rounded-circle" alt=""></div>
-                                        <p class="inbox-item-author">Adhamdannaway</p>
-                                        <p class="inbox-item-text">This theme is awesome!</p>
-                                        <p class="inbox-item-date">
-                                            <a href="#" class="btn btn-sm btn-link text-info font-13"> Reply </a>
-                                        </p>
-                                    </div>
-                                </div> <!-- end inbox-widget -->
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card-->
 
                     </div> <!-- end col-->
 
@@ -249,59 +197,97 @@
                         <!-- end row -->
 
 
-                        <div class="card">
+
+
+                    </div>
+                    <!-- end col -->
+                    <div class="row">
+                        <div class="card col-sm-12">
                             <div class="card-body">
-                                <h4 class="header-title mb-3">My Products</h4>
+                                <h4 class="header-title mb-3">Transações </h4>
 
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-centered mb-0">
-                                        <thead>
+                                    <table id="products-datatable"
+                                        class="table table-centered table-borderless table-hover w-100 dt-responsive nowrap">
+                                        <thead class="table-light">
                                             <tr>
-                                                <th>Product</th>
-                                                <th>Price</th>
-                                                <th>Stock</th>
-                                                <th>Amount</th>
+                                                <th style="width: 20px;">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" id="customCheck1">
+                                                        <label class="form-check-label" for="customCheck1">&nbsp;</label>
+                                                    </div>
+                                                </th>
+                                                <th>De</th>
+                                                <th>Para</th>
+                                                <th>Valor enviado</th>
+                                                <th>Codigo</th>
+                                                <th>Status</th>
+                                                <th>Enviado</th>
+                                                <th style="width: 75px;">Ação</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>ASOS Ridley High Waist</td>
-                                                <td>$79.49</td>
-                                                <td><span class="badge bg-primary">82 Pcs</span></td>
-                                                <td>$6,518.18</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Marco Lightweight Shirt</td>
-                                                <td>$128.50</td>
-                                                <td><span class="badge bg-primary">37 Pcs</span></td>
-                                                <td>$4,754.50</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Half Sleeve Shirt</td>
-                                                <td>$39.99</td>
-                                                <td><span class="badge bg-primary">64 Pcs</span></td>
-                                                <td>$2,559.36</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Lightweight Jacket</td>
-                                                <td>$20.00</td>
-                                                <td><span class="badge bg-primary">184 Pcs</span></td>
-                                                <td>$3,680.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Marco Shoes</td>
-                                                <td>$28.49</td>
-                                                <td><span class="badge bg-primary">69 Pcs</span></td>
-                                                <td>$1,965.81</td>
-                                            </tr>
+                                            @forelse ($transfers as $transfer)
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="customCheck2">
+
+                                                        </div>
+                                                    </td>
+                                                    <td class="table-user">
+                                                        <a href="javascript:void(0);" class="text-body fw-semibold">
+                                                            {{ $transfer->name }}
+                                                        </a>
+                                                    </td>
+
+                                                    <td>
+                                                        <span
+                                                            class="fw-semibold">{{ $transfer->destinatary_name }}</span>
+                                                    </td>
+                                                    <td>
+                                                        @if ($transfer->currency === 'eur')
+                                                            {{ number_format($transfer->value_sended * (int)env('EUR_CAMBIO_VALUE'),2,",",".") }}
+                                                        @elseif ($transfer->currency === 'usd')
+                                                            {{ number_format($transfer->value_sended * (int)env("USD_CAMBIO_VALUE"),2,",",".") }}
+                                                        @else
+                                                            {{ number_format($transfer->value_sended * (int)env("GBP_CAMBIO_VALUE"),2,",",".") }}
+                                                        @endif
+
+                                                    </td>
+                                                    <td>
+                                                        {{ $transfer->transfer_code }}
+                                                    </td>
+
+                                                    <td>
+                                                        @if ($transfer->status === 'received')
+                                                            <span class="badge badge-success-lighten">Recebido</span>
+                                                        @elseif ($transfer->status === 'sended')
+                                                            <span class="badge badge-warning-lighten">A receber</span>
+                                                        @else
+                                                            <span class="badge badge-danger-lighten">Reemborsado</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        {{ $transfer->created_at }}
+                                                    </td>
+
+                                                    <td>
+                                                        <a href="{{ route("admin.transaction.details",$transfer->id)}}" class="action-icon"> <i
+                                                                class="mdi mdi-square-edit-outline"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                            @endforelse
+
                                         </tbody>
                                     </table>
                                 </div> <!-- end table responsive-->
                             </div> <!-- end col-->
                         </div> <!-- end row-->
-
                     </div>
-                    <!-- end col -->
 
                 </div>
                 <!-- end row -->

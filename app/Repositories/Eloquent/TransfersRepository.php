@@ -389,4 +389,9 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
         return $pagos_em_prestacoes_com_euro + $pagos_com_euro;
     }
+
+    public function transaction_by_user($email)
+    {
+        return $this->model::where("email", $email)->get();
+    }
 }

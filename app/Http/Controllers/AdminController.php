@@ -166,6 +166,7 @@ class AdminController extends Controller
         $user_total_transactions_prestacoes = $this->transfers->user_count_transactions($user->email, 1);
         $user_total_transactions_sem_prestacoes = $this->transfers->user_count_transactions($user->email, 0);
 
+        $transfers = $this->transfers->transaction_by_user($user->email);
 
         $este_ano = "";
         $ano_passado = "";
@@ -178,7 +179,7 @@ class AdminController extends Controller
 
         $ano_passado = "[" . $ano_passado . "]";
 
-        return view("admin.users.details", compact("ano_passado", "este_ano", "user_total_transactions_prestacoes", "user_total_transactions_sem_prestacoes", "user", "user_total_transactions"));
+        return view("admin.users.details", compact("transfers","ano_passado", "este_ano", "user_total_transactions_prestacoes", "user_total_transactions_sem_prestacoes", "user", "user_total_transactions"));
     }
 
     public function change_theme(Request $request)
