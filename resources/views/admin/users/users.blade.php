@@ -70,7 +70,7 @@
                                                     </td>
 
                                                     <td>
-                                                        <span class="fw-semibold">{{ $transfer->country }}</span>
+                                                        <span class="fw-semibold">{{ $user->country }}</span>
                                                     </td>
                                                     <td>
                                                         {{ $user->email_verified_at }}
