@@ -342,4 +342,15 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
         return number_format($pagos + $prestacoes, 2, ".", ".");
     }
+
+    public function top_5_transacoes($month, $year, $limit, $min, $max)
+    {
+        return $this->model::whereMonth("created_at", $month)
+            ->whereYear("created_at", $year)
+            ->where("plan", 0)
+            ->where("value_sended", ">", $min)
+            ->where("value_sended", "<", $max)
+            ->limit($limit)
+            ->get();
+    }
 }

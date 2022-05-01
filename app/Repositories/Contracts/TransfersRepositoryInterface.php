@@ -27,4 +27,5 @@ interface TransfersRepositoryInterface
     public function saldo_semana_passada_em_dias($date);
     public function paises();
     public function money_by_country($country);
+    public function top_5_transacoes($month, $year, $limit, $min, $max);
 }

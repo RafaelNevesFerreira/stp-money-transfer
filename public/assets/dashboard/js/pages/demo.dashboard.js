@@ -108,8 +108,8 @@
                     hover: { stroke: "#fff", "fill-opacity": 1, "stroke-width": 1.5 }
                 },
                 backgroundColor: "transparent",
-                markers: [{ latLng: [45.89997479, 6.116670287], name: "France" }, { latLng: [37.77, -122.41], name: "San Francisco" },
-                    { latLng: [-33.86, 151.2], name: "Sydney" }, { latLng: [1.3, 103.8], name: "Singapore" }
+                markers: [{ latLng: [45.89997479, 6.116670287], name: "França" }, { latLng: [40.64100311, -8.650997534], name: "Portugal" },
+                    { latLng: [55.93329002, -4.750030763], name: "Inglatera" }, { latLng: [53.00000109, 6.550002585], name: "Holanda" }
                 ],
                 zoomOnScroll: !1
             })

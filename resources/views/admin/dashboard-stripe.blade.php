@@ -47,7 +47,8 @@
                                         </div>
                                         <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Prestações
                                         </h5>
-                                        <h3 class="mt-3 mb-3">{{ number_format($sem_prestacoes,2,",",".") }} €</h3>
+                                        <h3 class="mt-3 mb-3">{{ number_format($sem_prestacoes, 2, ',', '.') }} €
+                                        </h3>
 
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -60,7 +61,7 @@
                                             <i class="mdi mdi-cart-plus widget-icon"></i>
                                         </div>
                                         <h5 class="text-muted fw-normal mt-0" title="Number of Orders"> Sem Prestações</h5>
-                                        <h3 class="mt-3 mb-3" >{{ number_format($prestacoes ,2,",",".") }} €</h3>
+                                        <h3 class="mt-3 mb-3">{{ number_format($prestacoes, 2, ',', '.') }} €</h3>
 
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -140,7 +141,7 @@
                                         <a href="javascript:void(0);" class="dropdown-item">Action</a>
                                     </div>
                                 </div>
-                                <h4 class="header-title mb-3">Receita</h4>
+                                <h4 class="header-title mb-3">Receita Diaria</h4>
 
                                 <div class="chart-content-bg">
                                     <div class="row text-center">
@@ -149,7 +150,7 @@
                                             <h2 class="fw-normal mb-3">
                                                 <small
                                                     class="mdi mdi-checkbox-blank-circle text-primary align-middle me-1"></small>
-                                                <span>{{number_format($saldo_semanal,2,",",".")}} €</span>
+                                                <span>{{ number_format($saldo_semanal, 2, ',', '.') }} €</span>
                                             </h2>
                                         </div>
                                         <div class="col-sm-6">
@@ -157,14 +158,14 @@
                                             <h2 class="fw-normal mb-3">
                                                 <small
                                                     class="mdi mdi-checkbox-blank-circle text-success align-middle me-1"></small>
-                                                <span>{{number_format($saldo_semana_passada,2,",",".")}} €</span>
+                                                <span>{{ number_format($saldo_semana_passada, 2, ',', '.') }} €</span>
                                             </h2>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="dash-item-overlay d-none d-md-block" dir="ltr">
-                                    <h5>Esta Semana: {{number_format($saldo_semanal,2,",",".")}} €</h5>
+                                    <h5>Esta Semana: {{ number_format($saldo_semanal, 2, ',', '.') }} €</h5>
 
                                 </div>
                                 <div dir="ltr">
@@ -177,62 +178,23 @@
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <div class="dropdown float-end">
-                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        <i class="mdi mdi-dots-vertical"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end">
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Profit</a>
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                    </div>
-                                </div>
-                                <h4 class="header-title">Revenue By Location</h4>
+
+                                <h4 class="header-title">RECEITA POR LOCAL</h4>
                                 <div class="mb-4 mt-4">
                                     <div id="world-map-markers" style="height: 224px"></div>
                                 </div>
-
-                                <h5 class="mb-1 mt-0 fw-normal">New York</h5>
-                                <div class="progress-w-percent">
-                                    <span class="progress-value fw-bold">72k </span>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar" role="progressbar" style="width: 72%;"
-                                            aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                                @foreach ($paises as $pais)
+                                    <h5 class="mb-1 mt-0 fw-normal">{{ $pais['name'] }}</h5>
+                                    <div class="progress-w-percent">
+                                        <span class="progress-value fw-bold">{{ number_format($pais['value']) }} €</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar" role="progressbar"
+                                                style="width: {{ number_format($pais['value']) / 100 }}%;"
+                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
                                     </div>
-                                </div>
+                                @endforeach
 
-                                <h5 class="mb-1 mt-0 fw-normal">San Francisco</h5>
-                                <div class="progress-w-percent">
-                                    <span class="progress-value fw-bold">39k </span>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar" role="progressbar" style="width: 39%;"
-                                            aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-
-                                <h5 class="mb-1 mt-0 fw-normal">Sydney</h5>
-                                <div class="progress-w-percent">
-                                    <span class="progress-value fw-bold">25k </span>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar" role="progressbar" style="width: 39%;"
-                                            aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-
-                                <h5 class="mb-1 mt-0 fw-normal">Singapore</h5>
-                                <div class="progress-w-percent mb-0">
-                                    <span class="progress-value fw-bold">61k </span>
-                                    <div class="progress progress-sm">
-                                        <div class="progress-bar" role="progressbar" style="width: 61%;"
-                                            aria-valuenow="61" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
                             </div> <!-- end card-body-->
                         </div> <!-- end card-->
                     </div> <!-- end col-->
@@ -247,101 +209,35 @@
                                 <a href="#" class="btn btn-sm btn-link float-end">Export
                                     <i class="mdi mdi-download ms-1"></i>
                                 </a>
-                                <h4 class="header-title mt-2 mb-3">Top Selling Products</h4>
+                                <h4 class="header-title mt-2 mb-3">Top 5 transações</h4>
 
                                 <div class="table-responsive">
                                     <table class="table table-centered table-nowrap table-hover mb-0">
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">ASOS Ridley High Waist</h5>
-                                                    <span class="text-muted font-13">07 April 2018</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">$79.49</h5>
-                                                    <span class="text-muted font-13">Price</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">82</h5>
-                                                    <span class="text-muted font-13">Quantity</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">$6,518.18</h5>
-                                                    <span class="text-muted font-13">Amount</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">Marco Lightweight Shirt</h5>
-                                                    <span class="text-muted font-13">25 March 2018</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">$128.50</h5>
-                                                    <span class="text-muted font-13">Price</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">37</h5>
-                                                    <span class="text-muted font-13">Quantity</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">$4,754.50</h5>
-                                                    <span class="text-muted font-13">Amount</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">Half Sleeve Shirt</h5>
-                                                    <span class="text-muted font-13">17 March 2018</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">$39.99</h5>
-                                                    <span class="text-muted font-13">Price</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">64</h5>
-                                                    <span class="text-muted font-13">Quantity</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">$2,559.36</h5>
-                                                    <span class="text-muted font-13">Amount</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">Lightweight Jacket</h5>
-                                                    <span class="text-muted font-13">12 March 2018</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">$20.00</h5>
-                                                    <span class="text-muted font-13">Price</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">184</h5>
-                                                    <span class="text-muted font-13">Quantity</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">$3,680.00</h5>
-                                                    <span class="text-muted font-13">Amount</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">Marco Shoes</h5>
-                                                    <span class="text-muted font-13">05 March 2018</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">$28.49</h5>
-                                                    <span class="text-muted font-13">Price</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">69</h5>
-                                                    <span class="text-muted font-13">Quantity</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="font-14 my-1 fw-normal">$1,965.81</h5>
-                                                    <span class="text-muted font-13">Amount</span>
-                                                </td>
-                                            </tr>
+                                            @forelse ($top_5 as $transactions)
+                                                <tr>
+                                                    <td>
+                                                        <h5 class="font-14 my-1 fw-normal">{{$transactions->name}}</h5>
+                                                        <span class="text-muted font-13">{{$transactions->created_at->format("l jS F Y")}}</span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="font-14 my-1 fw-normal">$79.49</h5>
+                                                        <span class="text-muted font-13">Price</span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="font-14 my-1 fw-normal">82</h5>
+                                                        <span class="text-muted font-13">Quantity</span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="font-14 my-1 fw-normal">$6,518.18</h5>
+                                                        <span class="text-muted font-13">Amount</span>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <div class="alert alert-warning">
+                                                    <p>Nenhuma Transação alta este mês</p>
+                                                </div>
+                                            @endforelse
 
                                         </tbody>
                                     </table>

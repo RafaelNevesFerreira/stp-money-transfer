@@ -104,16 +104,29 @@ class AdminController extends Controller
             $saldo_semana_passada_grafico .= $this->transfers->saldo_semana_passada_em_dias($i) . ",";
         }
 
-        foreach ($this->transfers->paises() as $country) {
-            echo "<br>";
-            echo $country->country . " - " . $this->transfers->money_by_country($country->country);
-        }
+        $paises = [
+            [
+                "name" => "Inglatera",
+                "value" => $this->transfers->money_by_country("United Kingdom")
+            ],
+            [
+                "name" => "França",
+                "value" => $this->transfers->money_by_country("France")
+            ],
+            [
+                "name" => "Portugal",
+                "value" => $this->transfers->money_by_country("Portugal"),
+            ],
 
-        // return;
+            [
+                "name" => "Holanda",
+                "value" => $this->transfers->money_by_country("Netherlands")
+            ],
+        ];
 
-        // dd($this->transfers->paises());
+        $top_5 = $this->transfers->top_5_transacoes(date("m"), date("Y"), 5, 200, 100000000);
         $saldo_semana_passada_grafico = "[" . $saldo_semana_passada_grafico . "]";
 
-        return view("admin.dashboard-stripe", compact("saldo_semana_passada_grafico", "saldo_semanal", "saldo_semana_passada", "prestacoes", "sem_prestacoes", "saldo", "prestacoes_grafico", "sem_prestacoes_grafico"));
+        return view("admin.dashboard-stripe", compact("top_5","paises", "saldo_semana_passada_grafico", "saldo_semanal", "saldo_semana_passada", "prestacoes", "sem_prestacoes", "saldo", "prestacoes_grafico", "sem_prestacoes_grafico"));
     }
 }
