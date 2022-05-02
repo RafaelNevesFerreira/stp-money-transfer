@@ -12,5 +12,5 @@ interface UserRepositoryInterface
     public function usuarios_mes_ano($month, $year, $limit);
     public function change_theme($theme);
     public function whereId($id);
-    public function desactive_user($id);
+    public function active_or_desactive_user($id);
 }

@@ -53,10 +53,18 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             ->update(["theme_color" => $theme]);
     }
 
-    public function desactive_user($id)
+    public function active_or_desactive_user($id)
     {
-        $this->model::first($id)->update([
-            "status" => 0
-        ]);
+        $status = $this->model::where("id", $id)->first("status");
+
+        if ($status->status === 0) {
+            $this->model::where("id", $id)->update([
+                "status" => 1
+            ]);
+        } else {
+            $this->model::where("id", $id)->update([
+                "status" => 0
+            ]);
+        }
     }
 }

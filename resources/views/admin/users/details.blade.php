@@ -67,7 +67,12 @@
                                             <form action="{{ route('admin.user.desactive', $user->id) }}" method="post">
                                                 @csrf
                                                 <button type="submit" class="btn btn-light">
-                                                    <i class="mdi mdi-account-edit me-1"></i> Desativar Usuario
+                                                    <i class="mdi mdi-account-edit me-1"></i>
+                                                    @if ($user->status === 0)
+                                                        Ativar Usuario
+                                                    @else
+                                                        Desativar Usuario
+                                                    @endif
                                                 </button>
                                             </form>
 
@@ -128,8 +133,8 @@
                                         <strong>Estado :</strong>
                                         @if ($user->status === 1 && $user->email_verified_at)
                                             <span>O Usuario Esta Ativo</span>
-                                        @elseif ($user->status === 1 && $user->email_verified_at)
-                                            <span>O Usuario Esta Inativo</span>
+                                        @elseif ($user->status === 0 && $user->email_verified_at)
+                                            <span>O Usuario Foi Desativado</span>
                                         @else
                                             <span>O Usuario Inativo Pois Ainda Nõ confirmou o seu email</span>
                                         @endif
@@ -294,6 +299,12 @@
 @endsection
 
 @section('scripts')
+    @if (session('message'))
+        <script>
+            $.NotificationApp.send("Sucesso", "Status Modificado com sucesso",
+                "bottom-right", "Background color", "success")
+        </script>
+    @endif
     <script>
         var ano_passado = {{ $ano_passado }}
         var este_ano = {{ $este_ano }}
