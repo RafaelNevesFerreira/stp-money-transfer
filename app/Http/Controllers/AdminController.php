@@ -186,6 +186,15 @@ class AdminController extends Controller
         return view("admin.users.details", compact("prestacoes_a_pagas", "prestacoes_pagas", "transfers", "ano_passado", "este_ano", "user_total_transactions_prestacoes", "user_total_transactions_sem_prestacoes", "user", "user_total_transactions"));
     }
 
+    public function users_desactive(Request $request)
+    {
+        $request->validate([
+            'user_id' => "required|unique:users,id"
+        ]);
+
+        $this->users->desactive_user($request->user_id);
+    }
+
     public function change_theme(Request $request)
     {
         $this->users->change_theme($request->theme);

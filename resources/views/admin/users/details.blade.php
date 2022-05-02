@@ -64,9 +64,13 @@
 
                                     <div class="col-sm-4">
                                         <div class="text-center mt-sm-0 mt-3 text-sm-end">
-                                            <button type="button" class="btn btn-light">
-                                                <i class="mdi mdi-account-edit me-1"></i> Desativar Usuario
-                                            </button>
+                                            <form action="{{ route('admin.user.desactive', $user->id) }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-light">
+                                                    <i class="mdi mdi-account-edit me-1"></i> Desativar Usuario
+                                                </button>
+                                            </form>
+
                                         </div>
                                     </div> <!-- end col-->
                                 </div> <!-- end row -->
@@ -115,7 +119,7 @@
                                             class="ms-2">{{ $user->country }}</span></p>
 
                                     <p class="text-muted"><strong>Ultima Atualização :</strong>
-                                        <span class="ms-2"> {{ $user->updated_at->format("d-m-Y") }} </span>
+                                        <span class="ms-2"> {{ $user->updated_at->format('d-m-Y') }} </span>
                                     </p>
                                     <p class="text-muted"><strong>Morada :</strong>
                                         <span class="ms-2"> {{ $user->address }} </span>
@@ -154,38 +158,27 @@
                         <!-- End Chart-->
 
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="card tilebox-one">
                                     <div class="card-body">
                                         <i class="dripicons-basket float-end text-muted"></i>
                                         <h6 class="text-muted text-uppercase mt-0">Prestações a pagar</h6>
-                                        <h2 class="m-b-20">€<span>{{number_format($prestacoes_a_pagas,2,",",".")}}</span></h2>
-                                        <span class="text-muted">O valor a pagar</span>
+                                        <h2 class="m-b-20">
+                                            €<span>{{ number_format($prestacoes_a_pagas, 2, ',', '.') }}</span></h2>
+                                        <span class="text-muted">O valor a pagar de prestações</span>
                                     </div> <!-- end card-body-->
                                 </div>
                                 <!--end card-->
                             </div><!-- end col -->
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="card tilebox-one">
                                     <div class="card-body">
                                         <i class="dripicons-box float-end text-muted"></i>
                                         <h6 class="text-muted text-uppercase mt-0">Prestações Pagas</h6>
-                                        <h2 class="m-b-20">€<span>{{number_format($prestacoes_pagas,2,",",".")}}</span></h2>
+                                        <h2 class="m-b-20">
+                                            €<span>{{ number_format($prestacoes_pagas, 2, ',', '.') }}</span></h2>
                                         <span class="text-muted">Total Pago</span>
-                                    </div> <!-- end card-body-->
-                                </div>
-                                <!--end card-->
-                            </div><!-- end col -->
-
-                            <div class="col-sm-4">
-                                <div class="card tilebox-one">
-                                    <div class="card-body">
-                                        <i class="dripicons-jewel float-end text-muted"></i>
-                                        <h6 class="text-muted text-uppercase mt-0">Product Sold</h6>
-                                        <h2 class="m-b-20">1,890</h2>
-                                        <span class="badge bg-primary"> +89% </span> <span class="text-muted">Last
-                                            year</span>
                                     </div> <!-- end card-body-->
                                 </div>
                                 <!--end card-->
@@ -232,8 +225,7 @@
                                             <tr>
                                                 <td>
                                                     <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input"
-                                                            id="customCheck2">
+                                                        <input type="checkbox" class="form-check-input" id="customCheck2">
 
                                                     </div>
                                                 </td>
@@ -244,16 +236,15 @@
                                                 </td>
 
                                                 <td>
-                                                    <span
-                                                        class="fw-semibold">{{ $transfer->destinatary_name }}</span>
+                                                    <span class="fw-semibold">{{ $transfer->destinatary_name }}</span>
                                                 </td>
                                                 <td>
                                                     @if ($transfer->currency === 'eur')
-                                                        {{ number_format($transfer->value_sended * (int)env('EUR_CAMBIO_VALUE'),2,",",".") }}
+                                                        {{ number_format($transfer->value_sended * (int) env('EUR_CAMBIO_VALUE'), 2, ',', '.') }}
                                                     @elseif ($transfer->currency === 'usd')
-                                                        {{ number_format($transfer->value_sended * (int)env("USD_CAMBIO_VALUE"),2,",",".") }}
+                                                        {{ number_format($transfer->value_sended * (int) env('USD_CAMBIO_VALUE'), 2, ',', '.') }}
                                                     @else
-                                                        {{ number_format($transfer->value_sended * (int)env("GBP_CAMBIO_VALUE"),2,",",".") }}
+                                                        {{ number_format($transfer->value_sended * (int) env('GBP_CAMBIO_VALUE'), 2, ',', '.') }}
                                                     @endif
 
                                                 </td>
@@ -275,8 +266,8 @@
                                                 </td>
 
                                                 <td>
-                                                    <a href="{{ route("admin.transaction.details",$transfer->id)}}" class="action-icon"> <i
-                                                            class="mdi mdi-square-edit-outline"></i>
+                                                    <a href="{{ route('admin.transaction.details', $transfer->id) }}"
+                                                        class="action-icon"> <i class="mdi mdi-square-edit-outline"></i>
                                                     </a>
                                                 </td>
                                             </tr>
