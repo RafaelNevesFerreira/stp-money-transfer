@@ -64,7 +64,7 @@
                                                         </div>
                                                     </td>
                                                     <td class="table-user">
-                                                        <a href="javascript:void(0);" class="text-body fw-semibold">
+                                                        <a href="{{ route('admin.transaction.details', $transfer->id) }}" class="text-body fw-semibold">
                                                             {{ $transfer->name }}
                                                         </a>
                                                     </td>

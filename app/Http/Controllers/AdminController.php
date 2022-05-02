@@ -182,6 +182,8 @@ class AdminController extends Controller
         $prestacoes_pagas = $this->transfers->prestacoes_pagas($user->email, date("m", strtotime("-1 months")), date("Y", strtotime("-2 months")));
         $prestacoes_a_pagas = $this->transfers->prestacoes_a_pagar($user->email, date("m", strtotime("+1 months")), date("Y", strtotime("-2 months")));
 
+        // $total_prestacoes
+
 
         return view("admin.users.details", compact("prestacoes_a_pagas", "prestacoes_pagas", "transfers", "ano_passado", "este_ano", "user_total_transactions_prestacoes", "user_total_transactions_sem_prestacoes", "user", "user_total_transactions"));
     }
