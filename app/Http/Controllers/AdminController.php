@@ -199,6 +199,7 @@ class AdminController extends Controller
     {
         try {
             $this->users->whereId($id)->sendEmailVerificationNotification();
+            return redirect()->back()->with(["message" => "Email de verificação Enviado com sucesso", "status" => 200]);
         } catch (\Throwable $th) {
             return redirect()->back()->with(["message" => "Erro, tente de novo mais tarde", "status" => 500]);
         }

@@ -44,44 +44,63 @@
                                             </div>
                                             <div class="col">
                                                 <div>
-                                                    <h4 class="mt-1 mb-1 text-white">{{ $user->name }}</h4>
+                                                    <h4 class="mt-1 mb-1 text-white mt-4">{{ $user->name }}</h4>
                                                     <p class="font-13 text-white-50">Usuario Convencional</p>
 
                                                     <ul class="mb-0 list-inline text-light">
                                                         <li class="list-inline-item me-3">
-                                                            <h5 class="mb-1">
+                                                            <h5 class="mb-1 mt-2">
                                                                 {{ $user_total_transactions_sem_prestacoes + $user_total_transactions_prestacoes }}
                                                             </h5>
-                                                            <p class="mb-0 font-13 text-white-50">Transações</p>
+                                                            <p class="mb-0 font-13 text-white-50 ">Transações</p>
                                                         </li>
                                                         <li class="list-inline-item">
-                                                            <h5 class="mb-1">
+                                                            <h5 class="mb-1 mt-2">
                                                                 {{ $user->created_at->diffForHumans() }}</h5>
-                                                            <p class="mb-0 font-13 text-white-50">Cadastrado</p>
+                                                            <p class="mb-0 font-13 text-white-50 ">Cadastrado</p>
                                                         </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </div> <!-- end col-->
+
+                                    <div class="col-sm-4 ">
+                                        <div class="text-center mt-sm-0 mt-3 text-sm-end">
+                                            <form action="{{ route('admin.user.desactive', $user->id) }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-light">
+                                                    <i class="mdi mdi-account-clock me-1"></i>
+                                                    @if ($user->status === 0)
+                                                        Ativar Usuario
+                                                    @else
+                                                        Desativar Usuario
+                                                    @endif
+                                                </button>
+                                            </form>
+                                            <form action="{{ route('admin.user.verify.email', $user->id) }}"
+                                                method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-light mt-3">
+                                                    <i class="mdi mdi-account-edit me-1"></i>
+                                                    Atualizar
+                                                </button>
+                                            </form>
+                                            @if ($user->email_verified_at === null)
+                                                <form action="{{ route('admin.user.verify.email', $user->id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-light mt-3">
+                                                        <i class="mdi mdi-email-alert me-1"></i>
+                                                        Reenviar Email de Verificação
+                                                    </button>
+                                                </form>
+                                            @endif
+
+                                        </div>
+
+                                    </div> <!-- end col-->
                                 </div> <!-- end row -->
-
-                                <div class="col-sm-4">
-                                    <div class="text-center mt-sm-0 mt-3 text-sm-end">
-                                        <form action="{{ route('admin.user.desactive', $user->id) }}" method="post">
-                                            @csrf
-                                            <button type="submit" class="btn btn-light">
-                                                <i class="mdi mdi-account-edit me-1"></i>
-                                                @if ($user->status === 0)
-                                                    Ativar Usuario
-                                                @else
-                                                    Desativar Usuario
-                                                @endif
-                                            </button>
-                                        </form>
-                                    </div>
-
-                                </div> <!-- end col-->
 
                             </div> <!-- end card-body/ profile-user-box-->
                         </div>
@@ -305,15 +324,15 @@
 @section('scripts')
     @if (session('message'))
         <script>
-            $.NotificationApp.send("Sucesso", "Status Modificado com sucesso",
-                "bottom-right", "Background color", "success")
+            $.NotificationApp.send("Sucesso", "{{ session('message') }}",
+                "bottom-right", "Background color", "success", "hideAfter", 3000)
         </script>
     @endif
 
     @if (session('status') === 500)
         <script>
-            $.NotificationApp.send("Erro", "Desculpe, Mas houve um erro ao tentar efetuar a ação, tete de novo mais terde",
-                "bottom-right", "Background color", "danger")
+            $.NotificationApp.send("Erro", "{{ session('message') }}",
+                "bottom-right", "Background color", "danger", "hideAfter", 3000)
         </script>
     @endif
     <script>
