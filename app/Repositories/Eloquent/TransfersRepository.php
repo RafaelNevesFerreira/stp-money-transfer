@@ -378,61 +378,12 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function user_transaction_by_month($email, $month, $year)
     {
-        // $pagos_em_prestacoes_com_euro = $this->model::whereMonth('created_at', $month)
-        //     ->whereYear("created_at", $year)
-        //     ->where(["plan" => 1, "email" => $email])
-        //     ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
-
-        // $month = 4;
-        //verificar se mes é menor do que o mes recente menos 3
-        //usera o mes recente e subtrair com month para saber se vair ser menor do que dois
-        if ($month - 2 > 0) {
-
-
-            $date   = DateTime::createFromFormat('m', $month - 2);
-            //vou buscar o mes de month - 2// nesse caso 2
-            $date_2 = DateTime::createFromFormat('m', $month);
-
-            $month = 4;
-            dd($date->format('Y-04-01 00:00:00'));
-            if ($month < date("m")) {
-                dd(date("04-Y", strtotime("-2 months")));
-            }
-
-            dd("mes");
-
-            dd(date("m", strtotime("-$month months")) < (date("m", strtotime("-2 months"))));
-            $prestacoes_concluidas = $this->model::whereMonth('created_at', ">=", $date->format('Y-m-01 00:00:00'))
-                ->whereMonth("created_at", "<", $date_2->format('Y-m-28 23:59:59'))
-                ->where(["plan" => 1, "email" => $email])
-                ->sum(DB::raw("value_sended + tax"));
-
-            // dd($month);
-
-            // dd($date->format('Y-m-01 00:00:00'), $date_2->format('Y-m-31 23:59:59'));
-        } else {
-            $prestacoes_concluidas = 0;
-        }
-
-        return $prestacoes_concluidas;
-        // dd($date);
-        // whereMonth('created_at', ">=", $date->sub(new DateInterval('P2M')))
-        //2022-12-20
-
-        $prestacoes_concluidas = $this->model::whereBetween('created_at', [$date->sub(new DateInterval('P0M')), "2022-$month-31"])
-            ->where(["plan" => 1, "email" => $email])
-            ->sum(DB::raw("value_sended + tax"));
-
-        // return $prestacoes_concluidas;
-        dd($prestacoes_concluidas);
-
-
         $pagos_com_euro = $this->model::whereMonth('created_at', $month)
             ->whereYear("created_at", $year)
             ->where(["plan" => 0, "email" => $email])
             ->sum(DB::raw("value_sended + tax"));
 
-        // return $pagos_em_prestacoes_com_euro + $pagos_com_euro + $prestacoes_concluidas;
+        return  $pagos_com_euro;
     }
 
     public function transaction_by_user($email)

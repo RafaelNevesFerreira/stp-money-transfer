@@ -143,7 +143,7 @@
                         <!-- Chart-->
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title mb-3">Orders & Revenue</h4>
+                                <h4 class="header-title mb-3">Receita sem prestações</h4>
                                 <div dir="ltr">
                                     <div style="height: 260px;" class="chartjs-chart">
                                         <canvas id="high-performing-product"></canvas>
