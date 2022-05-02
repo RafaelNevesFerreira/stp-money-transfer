@@ -28,6 +28,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
     public function aumento_de_usuarios_em_relacao_aom_mes_passado(): float
     {
+
         $mes_pasado = $this->model::whereMonth('created_at', '=', Carbon::now()->subMonth()->month)->count();
 
         $valor_inicial = $mes_pasado;
@@ -44,7 +45,6 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
     public function usuarios_mes_ano($month, $year, $limit)
     {
-        dd("ùeùes");
 
         return $this->model::whereMonth("created_at", $month)->whereYear("created_at", $year)->latest()->limit($limit)->get();
     }

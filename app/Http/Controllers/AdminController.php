@@ -167,6 +167,7 @@ class AdminController extends Controller
         $user_total_transactions_sem_prestacoes = $this->transfers->user_count_transactions($user->email, 0);
 
         $transfers = $this->transfers->transaction_by_user($user->email);
+        dd($this->users->whereId(2));
 
         $este_ano = "";
         $ano_passado = "";
@@ -192,7 +193,7 @@ class AdminController extends Controller
     {
         $this->users->active_or_desactive_user($id);
 
-        return redirect()->back()->with("message","Status Modificado com sucesso");
+        return redirect()->back()->with("message", "Status Modificado com sucesso");
     }
 
     public function change_theme(Request $request)
