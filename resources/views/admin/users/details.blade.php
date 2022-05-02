@@ -64,26 +64,24 @@
                                             </div>
                                         </div>
                                     </div> <!-- end col-->
-
-                                    <div class="col-sm-4">
-                                        <div class="text-center mt-sm-0 mt-3 text-sm-end">
-                                            <form action="{{ route('admin.user.desactive', $user->id) }}" method="post">
-                                                @csrf
-                                                <button type="submit" class="btn btn-light">
-                                                    <i class="mdi mdi-account-edit me-1"></i>
-                                                    @if ($user->status === 0)
-                                                        Ativar Usuario
-                                                    @else
-                                                        Desativar Usuario
-                                                    @endif
-                                                </button>
-
-                                            </form>
-
-                                        </div>
-
-                                    </div> <!-- end col-->
                                 </div> <!-- end row -->
+
+                                <div class="col-sm-4">
+                                    <div class="text-center mt-sm-0 mt-3 text-sm-end">
+                                        <form action="{{ route('admin.user.desactive', $user->id) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-light">
+                                                <i class="mdi mdi-account-edit me-1"></i>
+                                                @if ($user->status === 0)
+                                                    Ativar Usuario
+                                                @else
+                                                    Desativar Usuario
+                                                @endif
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                </div> <!-- end col-->
 
                             </div> <!-- end card-body/ profile-user-box-->
                         </div>
