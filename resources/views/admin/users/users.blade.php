@@ -46,7 +46,7 @@
                                                 </th>
                                                 <th>Nome</th>
                                                 <th>Pais</th>
-                                                <th>Data de verificação</th>
+                                                <th>Email Verificado</th>
                                                 <th>Email</th>
                                                 <th>Telemovel</th>
                                                 <th>Registrado</th>
@@ -64,7 +64,7 @@
                                                         </div>
                                                     </td>
                                                     <td class="table-user">
-                                                        <a href="javascript:void(0);" class="text-body fw-semibold">
+                                                        <a href="{{route("admin.user.details",$user->id)}}" class="text-body fw-semibold">
                                                             {{ $user->name }}
                                                         </a>
                                                     </td>
@@ -73,7 +73,7 @@
                                                         <span class="fw-semibold">{{ $user->country }}</span>
                                                     </td>
                                                     <td>
-                                                        {{ $user->email_verified_at }}
+                                                        {{$user->email_verified_at == null ? "Não Confirmado" : $user->email_verified_at->diffForHumans() }}
 
                                                     </td>
                                                     <td>
@@ -85,12 +85,12 @@
 
                                                     </td>
                                                     <td>
-                                                        {{ $user->created_at }}
+                                                        {{ $user->created_at->diffForHumans() }}
                                                     </td>
 
                                                     <td>
                                                         <a href="{{ route('admin.user.details', $user->id) }}"
-                                                            class="action-icon"> <i
+                                                            class="action-icon" title="Detalhes"> <i
                                                                 class="mdi mdi-eye"></i>
                                                         </a>
                                                     </td>

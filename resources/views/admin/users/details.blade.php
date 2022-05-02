@@ -74,9 +74,11 @@
                                                         Desativar Usuario
                                                     @endif
                                                 </button>
+
                                             </form>
 
                                         </div>
+
                                     </div> <!-- end col-->
                                 </div> <!-- end row -->
 
@@ -136,7 +138,7 @@
                                         @elseif ($user->status === 0 && $user->email_verified_at)
                                             <span>O Usuario Foi Desativado</span>
                                         @else
-                                            <span>O Usuario Inativo Pois Ainda Nõ confirmou o seu email</span>
+                                            <span>O Usuario Inativo Pois Ainda Não confirmou o seu email</span>
                                         @endif
                                     </p>
 
