@@ -49,11 +49,14 @@
 
                                                     <ul class="mb-0 list-inline text-light">
                                                         <li class="list-inline-item me-3">
-                                                            <h5 class="mb-1">{{$user_total_transactions_sem_prestacoes + $user_total_transactions_prestacoes}}</h5>
+                                                            <h5 class="mb-1">
+                                                                {{ $user_total_transactions_sem_prestacoes + $user_total_transactions_prestacoes }}
+                                                            </h5>
                                                             <p class="mb-0 font-13 text-white-50">Transações</p>
                                                         </li>
                                                         <li class="list-inline-item">
-                                                            <h5 class="mb-1">{{$user->created_at->diffForHumans()}}</h5>
+                                                            <h5 class="mb-1">
+                                                                {{ $user->created_at->diffForHumans() }}</h5>
                                                             <p class="mb-0 font-13 text-white-50">Cadastrado</p>
                                                         </li>
                                                     </ul>
@@ -237,7 +240,8 @@
                                                     </div>
                                                 </td>
                                                 <td class="table-user">
-                                                    <a href="{{ route('admin.transaction.details', $transfer->id) }}" class="text-body fw-semibold">
+                                                    <a href="{{ route('admin.transaction.details', $transfer->id) }}"
+                                                        class="text-body fw-semibold">
                                                         {{ $transfer->name }}
                                                     </a>
                                                 </td>
@@ -269,7 +273,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    {{ $transfer->created_at->format("d-m-Y H:m:s") }}
+                                                    {{ $transfer->created_at->format('d-m-Y H:m:s') }}
                                                 </td>
 
                                                 <td>
@@ -305,6 +309,13 @@
         <script>
             $.NotificationApp.send("Sucesso", "Status Modificado com sucesso",
                 "bottom-right", "Background color", "success")
+        </script>
+    @endif
+
+    @if (session('status') === 500)
+        <script>
+            $.NotificationApp.send("Erro", "Desculpe, Mas houve um erro ao tentar efetuar a ação, tete de novo mais terde",
+                "bottom-right", "Background color", "danger")
         </script>
     @endif
     <script>
