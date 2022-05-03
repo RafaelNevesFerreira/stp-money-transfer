@@ -101,8 +101,8 @@
                                                     </td>
 
                                                     <td>
-                                                        <a href="{{ route("admin.transaction.details",$transfer->id)}}" class="action-icon"> <i
-                                                                class="mdi mdi-square-edit-outline"></i>
+                                                        <a href="{{ route("admin.transaction.details",$transfer->id)}}" class="action-icon">
+                                                             <i class="mdi mdi-square-edit-outline"></i>
                                                         </a>
                                                     </td>
                                                 </tr>

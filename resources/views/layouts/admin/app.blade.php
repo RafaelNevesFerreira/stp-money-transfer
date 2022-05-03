@@ -72,22 +72,10 @@
 @endif
 
 @if (session('status') === 500)
-    <div id="status.error" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content modal-filled bg-danger">
-                <div class="modal-body p-4">
-                    <div class="text-center">
-                        <i class="dripicons-wrong h1"></i>
-                        <h4 class="mt-2">Cuidado!</h4>
-                        <p class="mt-3">{{ session('error') }}.</p>
-                        <button type="button" class="btn btn-light my-2" data-bs-dismiss="modal">Ok</button>
-                    </div>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+
     <script>
-        $("#status.error").modal('show');
+        $.NotificationApp.send("Erro", "{{ session('error') }}",
+            "bottom-right", "Background color", "danger", "hideAfter", 30)
     </script>
 @endif
 <script>

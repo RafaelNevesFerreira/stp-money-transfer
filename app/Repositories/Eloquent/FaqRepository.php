@@ -11,4 +11,8 @@ class FaqRepository extends AbstractRepository implements FaqRepositoryInterface
     {
     }
 
+    public function delete($id)
+    {
+        $this->model::where('id', $id)->delete();
+    }
 }

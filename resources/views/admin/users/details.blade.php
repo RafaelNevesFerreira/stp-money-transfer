@@ -423,7 +423,7 @@
                     },
                     success: function(data) {
                         if (data.status === 500) {
-                            $("#erro_na_senha").text(data.message)
+                            $("#erro_na_senha").text(data.error)
                             $("#esperando").remove()
                             $("#aguardar").html(
                                 "<button class='btn btn-primary' id='senha_colocada'>Continuar</button>"
@@ -471,7 +471,7 @@
                     },
                     success: function(data) {
                         if (data.status === 500) {
-                            $("#erro_email").text(data.message)
+                            $("#erro_email").text(data.error)
                             $("#esperando_email").remove()
                             $("#aguardar_email").html(
                                 "<button class='btn btn-primary' id='novo_email_colocado'>Continuar</button>"

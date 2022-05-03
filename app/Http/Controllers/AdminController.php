@@ -249,10 +249,24 @@ class AdminController extends Controller
         ]);
 
         try {
-            $this->faqs->create($request);
+            $this->faqs->create($request->all());
             return redirect()->back()->with(["message" => "Faq Criado com sucesso", "status" => 200]);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(["error" => "Erro ao criara Faq", "status" => 500]);
+            return redirect()->back()->with(["error" => "Erro ao criar a FAQ", "status" => 500]);
+        }
+    }
+
+    public function site_faq_delete(Request $request)
+    {
+        $request->validate([
+            "id" => "required|exists:faqs,id"
+        ]);
+
+        try {
+            $this->faqs->delete($request->id);
+            return redirect()->back()->with(["message" => "A FAQ foi apagada com sucesso", "status" => 200]);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(["error" => "Erro ao Apagar a FAQ", "status" => 500]);
         }
     }
 
