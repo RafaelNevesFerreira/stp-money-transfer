@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Repositories\Contracts\FaqRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
-use App\Repositories\Contracts\StripeRepositoryInterface;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class AdminController extends Controller
 {
-    public function __construct(public TransfersRepositoryInterface $transfers, public UserRepositoryInterface $users)
+    public function __construct(public TransfersRepositoryInterface $transfers, public UserRepositoryInterface $users, public FaqRepositoryInterface $faqs)
     {
         $this->middleware('admin');
     }
@@ -238,7 +236,9 @@ class AdminController extends Controller
 
     public function site_faq()
     {
-        return view("admin.site.faq");
+        $faqs = $this->faqs->all();
+
+        return view("admin.site.faq", compact("faqs"));
     }
 
     public function change_theme(Request $request)
