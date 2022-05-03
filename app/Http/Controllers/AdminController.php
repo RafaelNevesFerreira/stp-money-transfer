@@ -241,6 +241,21 @@ class AdminController extends Controller
         return view("admin.site.faq", compact("faqs"));
     }
 
+    public function site_faq_create(Request $request)
+    {
+        $request->validate([
+            "title" => "required|unique:faqs,title",
+            "content" => "required"
+        ]);
+
+        try {
+            $this->faqs->create($request);
+            redirect()->back()->with(["message" => "Faq Criado com sucesso", "status" => 200]);
+        } catch (\Throwable $th) {
+            redirect()->back()->with(["message" => "Erro ao criara Faq", "status" => 500]);
+        }
+    }
+
     public function change_theme(Request $request)
     {
         $this->users->change_theme($request->theme);

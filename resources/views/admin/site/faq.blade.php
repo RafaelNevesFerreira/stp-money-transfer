@@ -15,8 +15,9 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">{{ env('APP_NAME') }}</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Site</a></li>
                                     <li class="breadcrumb-item active">FAQ</li>
                                 </ol>
                             </div>
@@ -30,58 +31,29 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="text-center">
-                            <h3 class="">Frequently Asked Questions</h3>
-                            <p class="text-muted mt-3"> Nisi praesentium similique totam odio obcaecati, reprehenderit,
-                                dignissimos rem temporibus ea inventore alias!<br /> Beatae animi nemo ea
-                                tempora, temporibus laborum facilis ut!</p>
+                            <h3 class="">Dúvidas Frequentes</h3>
 
-                            <button type="button" class="btn btn-success btn-sm mt-2"><i
-                                    class="mdi mdi-email-outline me-1"></i> Email us your question</button>
-                            <button type="button" class="btn btn-info btn-sm mt-2 ms-1"><i class="mdi mdi-twitter me-1"></i>
-                                Send us a tweet</button>
+                            <button type="button" id="novo_faq" class="btn btn-success btn-sm mt-2">
+                                Criar Novo FAQ
+                            </button>
                         </div>
                     </div><!-- end col -->
                 </div><!-- end row -->
 
                 <div class="row pt-5">
-                    <div class="col-lg-5 offset-lg-1">
+                    <div class="col-lg-5 offset-lg-4">
                         <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question" data-wow-delay=".1s">What is Lorem Ipsum?</h4>
-                            <p class="faq-answer mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                        </div>
-
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question">Why use Lorem Ipsum?</h4>
-                            <p class="faq-answer mb-4">Lorem ipsum dolor sit amet, in mea nonumes dissentias dissentiunt,
-                                pro te solet oratio iriure. Cu sit consetetur moderatius intellegam, ius decore accusamus
-                                te. Ne primis suavitate disputando nam. Mutat convenirete.</p>
-                        </div>
-
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question">How many variations exist?</h4>
-                            <p class="faq-answer mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                        </div>
-
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question" data-wow-delay=".1s">What is Lorem Ipsum?</h4>
-                            <p class="faq-answer mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                        </div>
-
+                        @foreach ($faqs as $faq)
+                            <div>
+                                <div class="faq-question-q-box">Q</div>
+                                <h4 class="faq-question" data-wow-delay=".1s">{{ $faq->title }}</h4>
+                                <p class="faq-answer mb-4">{{ $faq->content }}</p>
+                            </div>
+                        @endforeach
                     </div>
                     <!--/col-md-5 -->
 
-                    <div class="col-lg-5">
+                    {{-- <div class="col-lg-5">
                         <!-- Question/Answer -->
                         <div>
                             <div class="faq-question-q-box">Q.</div>
@@ -116,7 +88,7 @@
                         </div>
 
                     </div>
-                    <!--/col-md-5-->
+                    <!--/col-md-5--> --}}
                 </div>
                 <!-- end row -->
 
@@ -129,4 +101,36 @@
         <!-- end Footer -->
 
     </div>
+    <div id="novo_faq_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <form class="ps-3 pe-3" action="{{route("admin.site.faq.create")}}">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Titulo</label>
+                            <input class="form-control" type="text" name="title" id="titulo" required placeholder="Titulo da FAQ">
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descrição</label>
+                            <input class="form-control" type="text" name="content" id="description" required placeholder="Descrição">
+                        </div>
+                        <div class="mb-3 text-center">
+                            <button class="btn btn-primary" type="submit">Criar</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+@endsection
+
+@section('scripts')
+    <script>
+        $("#novo_faq").click(function() {
+            $("#novo_faq_modal").modal("show")
+        })
+    </script>
 @endsection
