@@ -66,7 +66,9 @@ class PaymentController extends Controller
             }
 
             if (session("total")) {
-                $total = number_format(session("total"), 2, '.', ',');
+                // dd(str_replace(",","",number_format(session("total"))));
+                $total = str_replace(",", "", number_format(session("total")));
+                session("total", $total);
             } else {
                 return abort(500);
             }
@@ -165,7 +167,7 @@ class PaymentController extends Controller
             $valor = session("valor_a_ser_enviado");
             $moeda = session("moeda");
             $receptor = session("receptor");
-            session()->forget(["moeda","tax", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
+            session()->forget(["moeda", "tax", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
 
             return view("site.payment_confirm", compact("valor", "moeda", "receptor"));
         }
@@ -202,7 +204,7 @@ class PaymentController extends Controller
                 $valor = session("valor_a_ser_enviado");
                 $moeda = session("moeda");
                 $receptor = session("receptor");
-                session()->forget(["moeda","tax", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
+                session()->forget(["moeda", "tax", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
 
                 return view("site.payment_confirm", compact("valor", "moeda", "receptor"));
             } elseif (isset($get_data['error']['message']) && $get_data['error']['message'] != null) {

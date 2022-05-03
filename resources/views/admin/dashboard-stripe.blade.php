@@ -38,7 +38,7 @@
                                         </div>
                                         <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Prestações
                                         </h5>
-                                        <h3 class="mt-3 mb-3">{{ number_format($sem_prestacoes, 2, ',', '.') }} €
+                                        <h3 class="mt-3 mb-3">{{ number_format($prestacoes, 2, ',', '.') }} €
                                         </h3>
 
                                     </div> <!-- end card-body-->
@@ -52,7 +52,7 @@
                                             <i class="mdi mdi-cart-plus widget-icon"></i>
                                         </div>
                                         <h5 class="text-muted fw-normal mt-0" title="Number of Orders"> Sem Prestações</h5>
-                                        <h3 class="mt-3 mb-3">{{ number_format($prestacoes, 2, ',', '.') }} €</h3>
+                                        <h3 class="mt-3 mb-3">{{ number_format($sem_prestacoes, 2, ',', '.') }} €</h3>
 
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -161,10 +161,10 @@
                                 @foreach ($paises as $pais)
                                     <h5 class="mb-1 mt-0 fw-normal">{{ $pais['name'] }}</h5>
                                     <div class="progress-w-percent">
-                                        <span class="progress-value fw-bold">{{ number_format($pais['value']) }} €</span>
+                                        <span class="progress-value fw-bold">{{ $pais['value'] }} €</span>
                                         <div class="progress progress-sm">
                                             <div class="progress-bar" role="progressbar"
-                                                style="width: {{ number_format($pais['value']) / 100 }}%;"
+
                                                 aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
@@ -251,6 +251,8 @@
 
     <script src="{{ asset('assets/dashboard/js/vendor/apexcharts.min.js') }}"></script>
 
+    <!-- Todo js -->
+    <script src="{{ asset('assets/dashboard/js/ui/component.todo.js') }}"></script>
 
     <!-- demo app -->
     <script src="{{ asset('assets/dashboard/js/pages/demo.dashboard.js') }}"></script>

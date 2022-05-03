@@ -75,12 +75,13 @@ class AdminController extends Controller
             $prestacao .= number_format($prestacoes, 2, ".", ".") . ",";
 
             $sem_prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(0, $i, date("Y"));
-            $sem_prestacao .= number_format($sem_prestacoes, 2, ".", ".") . ",";
+            $sem_prestacao .= number_format($sem_prestacoes, 0, ".",'.') . ",";
         }
 
         $prestacoes_grafico = "[" . $prestacao . "]";
 
         $sem_prestacoes_grafico = "[" . $sem_prestacao . "]";
+
 
         $prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(1, date("m"), date("Y"));
         $sem_prestacoes =  $this->transfers->pagos_em_prestacoes_ou_cash(0, date("m"), date("Y"));
@@ -105,10 +106,14 @@ class AdminController extends Controller
 
         $saldo_semana_passada = $this->transfers->saldo_semana_passada(true);
 
+
         $saldo_semana_passada_grafico = "";
         for ($i = 1; $i < 8; $i++) {
             $saldo_semana_passada_grafico .= $this->transfers->saldo_semana_passada_em_dias($i) . ",";
         }
+
+        // dd($saldo_semana_passada_grafico);
+
 
         $paises = [
             [
@@ -130,9 +135,11 @@ class AdminController extends Controller
             ],
         ];
 
+        // dd($paises);
+
         $top_5 = $this->transfers->top_5_transacoes(date("m"), date("Y"), 5, 200, 100000000);
         $saldo_semana_passada_grafico = "[" . $saldo_semana_passada_grafico . "]";
-        dd($saldo_semana_passada_grafico, $saldo);
+        // dd($saldo_semana_passada_grafico, $saldo);
 
         return view("admin.dashboard-stripe", compact(
             "top_5",

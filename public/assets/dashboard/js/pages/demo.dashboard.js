@@ -35,7 +35,7 @@
                     tooltip: { enabled: !1 },
                     axisBorder: { show: !1 }
                 },
-                yaxis: { labels: { formatter: function(e) { return e + "k" }, offsetX: -15 } }
+                yaxis: { labels: { formatter: function(e) { return e }, offsetX: -15 } }
             };
             new ApexCharts(document.querySelector("#revenue-chart"), r).render();
 
