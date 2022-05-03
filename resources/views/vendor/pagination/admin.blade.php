@@ -43,17 +43,11 @@
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
                 <li class="page-item">
-                    <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')"
-                        class="page-link">
-                        <i class="fas fa-angle-right"></i>
+                    <a class="page-link" href="{{ $paginator->nextPageUrl() }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
             @else
-                <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
-                    <a class="page-link" href="#">
-                        <i class="fas fa-angle-right"></i>
-                    </a>
-                </li>
             @endif
         </ul>
     </nav>

@@ -11,9 +11,12 @@ use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class AdminController extends Controller
 {
-    public function __construct(public TransfersRepositoryInterface $transfers,
-    public UserRepositoryInterface $users, public FaqRepositoryInterface $faqs, public ReviewsRepositoryInterface $reviews)
-    {
+    public function __construct(
+        public TransfersRepositoryInterface $transfers,
+        public UserRepositoryInterface $users,
+        public FaqRepositoryInterface $faqs,
+        public ReviewsRepositoryInterface $reviews
+    ) {
         $this->middleware('admin');
     }
 
@@ -238,7 +241,7 @@ class AdminController extends Controller
 
     public function site_faq()
     {
-        $faqs = $this->faqs->all();
+        $faqs = $this->faqs->simplePaginate(4);
 
         return view("admin.site.faq", compact("faqs"));
     }
@@ -308,8 +311,7 @@ class AdminController extends Controller
 
     public function site_reviews()
     {
-        $reviews = $this->reviews->simplePaginate();
-
-        return view("admin.site.reviews",compact("reviews"));
+        $reviews = $this->reviews->simplePaginate(4);
+        return view("admin.site.reviews", compact("reviews"));
     }
 }

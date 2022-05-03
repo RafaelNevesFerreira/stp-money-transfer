@@ -10,4 +10,5 @@ interface FaqRepositoryInterface
     public function whereId($id);
     public function update($id, $request);
     public function metade($metade, $total);
+    public function simplePaginate($limit);
 }

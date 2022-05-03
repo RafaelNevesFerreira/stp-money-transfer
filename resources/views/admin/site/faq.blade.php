@@ -54,7 +54,9 @@
                                 <p class="faq-answer mb-4">{{ $faq->content }}</p>
                             </div>
                         @endforeach
+                        {{ $faqs->links("pagination::admin") }}
                     </div>
+
                 </div>
                 <!-- end row -->
 

@@ -8,5 +8,5 @@ interface ReviewsRepositoryInterface
     public function create($request);
     public function whereId($id);
     public function limit($limit);
-    public function simplePaginate();
+    public function simplePaginate($limit);
 }

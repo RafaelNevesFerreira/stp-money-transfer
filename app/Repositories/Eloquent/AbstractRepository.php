@@ -39,8 +39,8 @@ class AbstractRepository
         return $this->model::limit($limit)->latest()->get();
     }
 
-    public function simplePaginate()
+    public function simplePaginate($limit)
     {
-        return $this->model::simplePaginate(2);
+        return $this->model::paginate($limit);
     }
 }
