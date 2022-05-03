@@ -106,7 +106,7 @@
             <div class="modal-content">
 
                 <div class="modal-body">
-                    <form class="ps-3 pe-3" action="{{route("admin.site.faq.create")}}">
+                    <form class="ps-3 pe-3" action="{{route("admin.site.faq.create")}}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="titulo" class="form-label">Titulo</label>

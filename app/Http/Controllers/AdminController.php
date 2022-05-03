@@ -201,7 +201,7 @@ class AdminController extends Controller
             $this->users->whereId($id)->sendEmailVerificationNotification();
             return redirect()->back()->with(["message" => "Email de verificação Enviado com sucesso", "status" => 200]);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(["message" => "Erro, tente de novo mais tarde", "status" => 500]);
+            return redirect()->back()->with(["error" => "Erro, tente de novo mais tarde", "status" => 500]);
         }
     }
 
@@ -229,7 +229,7 @@ class AdminController extends Controller
             verificação para o usuario, caso contrario o mesmo não podera se conectar", "status" => 200]);
             }
         } catch (\Throwable $th) {
-            return response()->json(["message" => "Desculpe, mas ouve um erro na hora de mudar o email,
+            return response()->json(["error" => "Desculpe, mas ouve um erro na hora de mudar o email,
              por favor chame o tecnico", "status" => 500]);
         }
     }
@@ -250,9 +250,9 @@ class AdminController extends Controller
 
         try {
             $this->faqs->create($request);
-            redirect()->back()->with(["message" => "Faq Criado com sucesso", "status" => 200]);
+            return redirect()->back()->with(["message" => "Faq Criado com sucesso", "status" => 200]);
         } catch (\Throwable $th) {
-            redirect()->back()->with(["message" => "Erro ao criara Faq", "status" => 500]);
+            return redirect()->back()->with(["error" => "Erro ao criara Faq", "status" => 500]);
         }
     }
 

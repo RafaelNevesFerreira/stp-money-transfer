@@ -94,7 +94,7 @@ Route::middleware("admin")->group(function () {
             Route::post("/users/chage-user_email_verify_secret-password", "verificar_senha_secreta")->name("admin.change.user.email.verify.secret.password");
             Route::post("/users/chage-user_email", "users_change_email")->name("admin.change.user.email");
             Route::get("/site/faq", "site_faq")->name("admin.site.faq");
-            Route::get("/site/faq/create", "site_faq_create")->name("admin.site.faq.create");
+            Route::post("/site/faq/create", "site_faq_create")->name("admin.site.faq.create");
             Route::post("change_status", "change_status")->name("admin.change.status");
             Route::post("/change_theme", "change_theme")->name("admin.change_theme");
         });

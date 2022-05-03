@@ -397,19 +397,6 @@
 @endsection
 
 @section('scripts')
-    @if (session('message'))
-        <script>
-            $.NotificationApp.send("Sucesso", "{{ session('message') }}",
-                "bottom-right", "Background color", "success", "hideAfter", 3000)
-        </script>
-    @endif
-
-    @if (session('status') === 500)
-        <script>
-            $.NotificationApp.send("Erro", "{{ session('message') }}",
-                "bottom-right", "Background color", "danger", "hideAfter", 3000)
-        </script>
-    @endif
     <script>
         $("#ativar_user").click(function() {
             $('#danger-alert-modal').modal('show');
