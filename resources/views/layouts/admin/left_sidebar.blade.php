@@ -53,7 +53,10 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.dashboard.stripe') }}">Dashboard 2</a>
+                            <a href="{{ route('admin.site.faq') }}" class="side-nav-link ">
+                                <i class="uil-rss"></i>
+                                <span> Comentarios </span>
+                            </a>
                         </li>
                     </ul>
                 </div>
