@@ -303,4 +303,9 @@ class AdminController extends Controller
             return redirect()->back()->with(["erro" => "Erro ao efetuar a ação, tente mais tarde", "status" => 500]);
         }
     }
+
+    public function site_reviews()
+    {
+        return view("admin.site.reviews");
+    }
 }

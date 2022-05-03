@@ -53,9 +53,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.site.faq') }}" class="side-nav-link ">
+                            <a href="{{ route('admin.site.reviews') }}" class="side-nav-link ">
                                 <i class="uil-rss"></i>
-                                <span> Comentarios </span>
+                                <span> Reviews </span>
                             </a>
                         </li>
                     </ul>
