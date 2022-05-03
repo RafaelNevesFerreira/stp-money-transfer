@@ -195,8 +195,8 @@ class AdminController extends Controller
         $este_ano = "";
         $ano_passado = "";
         for ($i = 1; $i < 13; $i++) {
-            $este_ano .= number_format($this->transfers->user_transaction_by_month($user->email, $i, date("Y")), 2, ".", ".") . ",";
-            $ano_passado .= number_format($this->transfers->user_transaction_by_month($user->email, $i, date('Y', strtotime('-1 year'))), 2, ".", ".") . ",";
+            $este_ano .= number_format($this->transfers->user_transaction_by_month($user->email, $i, date("Y")), 0, ".", ".") . ",";
+            $ano_passado .= number_format($this->transfers->user_transaction_by_month($user->email, $i, date('Y', strtotime('-1 year'))), 0, ".", ".") . ",";
         }
 
         $este_ano = "[" . $este_ano . "]";
