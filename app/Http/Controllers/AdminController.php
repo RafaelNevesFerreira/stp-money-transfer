@@ -274,4 +274,16 @@ class AdminController extends Controller
     {
         $this->users->change_theme($request->theme);
     }
+
+    public function site_faq_edit(Request $request)
+    {
+        $request->validate(["id" => "required|exists:faqs,id"]);
+
+        try {
+            $faq = $this->faqs->whereId($request->id);
+            return response()->json(["data" => $faq, "status" => 200]);
+        } catch (\Throwable $th) {
+            return response()->json(["error" => "Erro Ao Atualizar a faq, tente depois", "status" => 500]);
+        }
+    }
 }

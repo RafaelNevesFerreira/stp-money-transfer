@@ -47,7 +47,7 @@
                             <div id="faq{{ $faq->id }}">
                                 <div class="faq-question-q-box me-1 apagar" data-id="{{ $faq->id }}"><i
                                         class="mdi mdi-delete"></i></div>
-                                <div class="faq-question-q-box me-2 editar"><i class="mdi mdi-square-edit-outline"></i>
+                                <div class="faq-question-q-box me-2 editar" data-id="{{ $faq->id }}"><i class="mdi mdi-square-edit-outline"></i>
                                 </div>
                                 <h4 class="faq-question" data-wow-delay=".1s">{{ $faq->title }}</h4>
                                 <p class="faq-answer mb-4">{{ $faq->content }}</p>
@@ -81,6 +81,33 @@
                         <div class="mb-3">
                             <label for="description" class="form-label">Descrição</label>
                             <input class="form-control" type="text" name="content" id="description" required
+                                placeholder="Descrição">
+                        </div>
+                        <div class="mb-3 text-center">
+                            <button class="btn btn-primary" type="submit">Criar</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div id="modal_faq_edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <form class="ps-3 pe-3" action="{{ route('admin.site.faq.create') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Titulo</label>
+                            <input class="form-control" type="text" name="title" id="edit_titulo" required
+                                placeholder="Titulo da FAQ">
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descrição</label>
+                            <input class="form-control" type="text" name="content" id="edit_description" required
                                 placeholder="Descrição">
                         </div>
                         <div class="mb-3 text-center">
@@ -156,38 +183,37 @@
 
         $(".editar").click(function() {
             var id = $(this).attr("data-id")
-                $.ajaxSetup({
-                    headers: {
-                        "X-CSRF-TOKEN": $("meta[name='_token']").attr("content")
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": $("meta[name='_token']").attr("content")
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "{{ route('admin.site.faq.edit') }}",
+                data: {
+                    "id": id,
+                },
+                success: function(sucesso) {
+                    if (sucesso.status === 500) {
+                        $("#erro_na_senha").text(sucesso.error)
+                        $.NotificationApp.send("Erro", sucesso.error,
+                            "bottom-right", "Background color", "danger", "hideAfter",
+                            30)
+
+                    } else {
+                        $("#modal_faq_edit").modal("show")
+                        $("#edit_description").value(sucesso.data.contet)
+                        $("#edit_titulo").value(sucesso.data.title)
                     }
-                });
+                },
+                error: function(error) {
+                    $.NotificationApp.send("Erro", error.responseJson.message,
+                        "bottom-right", "Background color", "danger", "hideAfter", 30)
 
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('admin.site.faq.edit') }}",
-                    data: {
-                        "id": id,
-                    },
-                    success: function(sucesso) {
-                        if (sucesso.status === 500) {
-                            $("#erro_na_senha").text(sucesso.error)
-                            $.NotificationApp.send("Erro", sucesso.error,
-                                "bottom-right", "Background color", "danger", "hideAfter",
-                                30)
-
-                        } else {
-                            $("#faq" + id).empty()
-                            $.NotificationApp.send("Sucesso", sucesso.message,
-                                "bottom-right", "Background color", "success", "hideAfter",
-                                3000)
-                        }
-                    },
-                    error: function(error) {
-                        $.NotificationApp.send("Erro", error.responseJson.message,
-                            "bottom-right", "Background color", "danger", "hideAfter", 30)
-
-                    }
-                });
+                }
+            });
         })
     </script>
 @endsection
