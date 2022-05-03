@@ -132,8 +132,20 @@ class AdminController extends Controller
 
         $top_5 = $this->transfers->top_5_transacoes(date("m"), date("Y"), 5, 200, 100000000);
         $saldo_semana_passada_grafico = "[" . $saldo_semana_passada_grafico . "]";
+        // dd($saldo_semana_passada_grafico, $saldo);
 
-        return view("admin.dashboard-stripe", compact("top_5", "paises", "saldo_semana_passada_grafico", "saldo_semanal", "saldo_semana_passada", "prestacoes", "sem_prestacoes", "saldo", "prestacoes_grafico", "sem_prestacoes_grafico"));
+        return view("admin.dashboard-stripe", compact(
+            "top_5",
+            "paises",
+            "saldo_semana_passada_grafico",
+            "saldo_semanal",
+            "saldo_semana_passada",
+            "prestacoes",
+            "sem_prestacoes",
+            "saldo",
+            "prestacoes_grafico",
+            "sem_prestacoes_grafico"
+        ));
     }
 
     public function transfers()

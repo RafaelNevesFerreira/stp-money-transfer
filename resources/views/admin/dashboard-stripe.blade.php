@@ -241,7 +241,7 @@
     <script>
         var sem_prestacoes = {{ $sem_prestacoes_grafico }}
         var prestacoes = {{ $prestacoes_grafico }}
-        var saldo = {{ $saldo }}
+        var saldo_esta_semana = {{ $saldo }}
         var semana_passada = {{ $saldo_semana_passada_grafico }}
     </script>
     <!-- third party js -->
@@ -251,8 +251,6 @@
 
     <script src="{{ asset('assets/dashboard/js/vendor/apexcharts.min.js') }}"></script>
 
-    <!-- Todo js -->
-    <script src="{{ asset('assets/dashboard/js/ui/component.todo.js') }}"></script>
 
     <!-- demo app -->
     <script src="{{ asset('assets/dashboard/js/pages/demo.dashboard.js') }}"></script>

@@ -64,20 +64,7 @@
 <script src="{{ asset('assets/dashboard/js/vendor/dataTables.checkboxes.min.js') }}"></script>
 
 <script src="{{ asset('assets/dashboard/js/pages/demo.sellers.js') }}"></script>
-@if (session('message'))
-    <script>
-        $.NotificationApp.send("Sucesso", "{{ session('message') }}",
-            "bottom-right", "Background color", "success", "hideAfter", 3000)
-    </script>
-@endif
 
-@if (session('status') === 500)
-
-    <script>
-        $.NotificationApp.send("Erro", "{{ session('error') }}",
-            "bottom-right", "Background color", "danger", "hideAfter", 30)
-    </script>
-@endif
 <script>
     $(".theme_color").click(function() {
         $.ajax({
