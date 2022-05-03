@@ -169,15 +169,16 @@
                     data: {
                         "id": id,
                     },
-                    success: function(data) {
-                        if (data.status === 500) {
-                            $("#erro_na_senha").text(data.error)
-                            $.NotificationApp.send("Erro", data.error,
+                    success: function(sucesso) {
+                        if (sucesso.status === 500) {
+                            $("#erro_na_senha").text(sucesso.error)
+                            $.NotificationApp.send("Erro", sucesso.error,
                                 "bottom-right", "Background color", "danger", "hideAfter",
                                 30)
 
                         } else {
-                            $.NotificationApp.send("Sucesso", data.message,
+                            console.log(sucesso);
+                            $.NotificationApp.send("Sucesso", sucesso.message,
                                 "bottom-right", "Background color", "success", "hideAfter",
                                 3000)
                         }
