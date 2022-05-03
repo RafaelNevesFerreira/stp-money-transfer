@@ -44,7 +44,7 @@
                     <div class="col-lg-5 offset-lg-4">
                         <!-- Question/Answer -->
                         @foreach ($faqs as $faq)
-                            <div>
+                            <div id="faq{{ $faq->id }}">
                                 <div class="faq-question-q-box me-1 apagar" data-id="{{ $faq->id }}"><i
                                         class="mdi mdi-delete"></i></div>
                                 <div class="faq-question-q-box me-2 editar"><i class="mdi mdi-square-edit-outline"></i>
@@ -54,44 +54,6 @@
                             </div>
                         @endforeach
                     </div>
-                    <!--/col-md-5 -->
-
-                    {{-- <div class="col-lg-5">
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question">Is safe use Lorem Ipsum?</h4>
-                            <p class="faq-answer mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                        </div>
-
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question">When can be used?</h4>
-                            <p class="faq-answer mb-4">Lorem ipsum dolor sit amet, in mea nonumes dissentias dissentiunt,
-                                pro te solet oratio iriure. Cu sit consetetur moderatius intellegam, ius decore accusamus
-                                te. Ne primis suavitate disputando nam. Mutat convenirete.</p>
-                        </div>
-
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question">License &amp; Copyright</h4>
-                            <p class="faq-answer mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                        </div>
-
-                        <!-- Question/Answer -->
-                        <div>
-                            <div class="faq-question-q-box">Q.</div>
-                            <h4 class="faq-question">Is safe use Lorem Ipsum?</h4>
-                            <p class="faq-answer mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                        </div>
-
-                    </div>
-                    <!--/col-md-5--> --}}
                 </div>
                 <!-- end row -->
 
@@ -177,7 +139,8 @@
                                 30)
 
                         } else {
-                            console.log(sucesso);
+                            var faq = "#faq"+id;
+                            $(faq).empty()
                             $.NotificationApp.send("Sucesso", sucesso.message,
                                 "bottom-right", "Background color", "success", "hideAfter",
                                 3000)

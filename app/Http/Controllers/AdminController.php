@@ -264,9 +264,9 @@ class AdminController extends Controller
 
         try {
             $this->faqs->delete($request->id);
-            return redirect()->back()->with(["message" => "A FAQ foi apagada com sucesso", "status" => 200]);
+            return response()->json(["message" => "A FAQ foi apagada com sucesso", "status" => 200]);
         } catch (\Throwable $th) {
-            return redirect()->back()->with(["error" => "Erro ao Apagar a FAQ", "status" => 500]);
+            return response()->json(["error" => "Erro ao Apagar a FAQ", "status" => 500]);
         }
     }
 
