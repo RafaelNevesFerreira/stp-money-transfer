@@ -21,7 +21,8 @@ class SiteController extends Controller
 
     public function about()
     {
-        return view("site.about");
+        $reviews = $this->reviews->limit(10);
+        return view("site.about",compact("reviews"));
     }
 
     public function send()

@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section('content')
     <!-- Page Header
-          ============================================= -->
+                  ============================================= -->
     <section class="page-header page-header-text-light py-0 mb-0">
         <section class="hero-wrap section">
             <div class="hero-mask opacity-7 bg-dark"></div>
@@ -28,11 +28,11 @@
     <!-- Page Header end -->
 
     <!-- Content
-          ============================================= -->
+                  ============================================= -->
     <div id="content">
 
         <!-- Who we are
-            ============================================= -->
+                    ============================================= -->
         <section class="section">
             <div class="container">
                 <div class="row">
@@ -53,7 +53,7 @@
         <!-- Who we are end -->
 
         <!-- Our Values
-            ============================================= -->
+                    ============================================= -->
         <section class="section bg-white">
             <div class="container">
                 <div class="row g-0">
@@ -91,40 +91,24 @@
         <!-- Our Values end -->
 
         <!-- Testimonial
-            ============================================= -->
+                    ============================================= -->
         <section class="section">
             <div class="container">
-                <h2 class="text-9 text-center">What people are saying about Payyed</h2>
-                <p class="lead text-center mb-4">A payments experience people love to talk about</p>
+                <h2 class="text-9 text-center">O que as pessoas acham de nós?</h2>
+                <p class="lead text-center mb-4">Uma experiência de Envio de dinheiro sobre a qual as pessoas adoram falar
                 <div class="owl-carousel owl-theme" data-autoplay="true" data-nav="true" data-loop="true" data-margin="30"
                     data-slideby="2" data-stagepadding="5" data-items-xs="1" data-items-sm="1" data-items-md="2"
                     data-items-lg="2">
-                    <div class="item">
-                        <div class="testimonial rounded text-center p-4">
-                            <p class="text-9 text-muted opacity-2 mb-0"><i class="fa fa-quote-left"></i></p>
-                            <p class="text-4">“Facil de usar, e o dinheiro chega bem na hora, o que mais
-                                gostei é que posso pagar em 3x mas o
-                                meu receptor recebe o dinheiro na hora.”</p>
-                            <strong class="d-block fw-500">Alves Sousa</strong> <span class="text-muted">Londres</span>
+                    @foreach ($reviews as $review)
+                        <div class="item">
+                            <div class="testimonial rounded text-center p-4">
+                                <p class="text-9 text-muted opacity-2 mb-2"><i class="fa fa-quote-left"></i></p>
+                                <p class="text-4">{{ $review->content }}</p>
+                                <strong class="d-block fw-500">{{ $review->name }}</strong> <span
+                                    class="text-muted">{{ $review->country }}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimonial rounded text-center p-4">
-                            <p class="text-9 text-muted opacity-2 mb-0"><i class="fa fa-quote-left"></i></p>
-                            <p class="text-4">“Estou Feliz Enviando dinheiro com a {{ env('APP_NAME') }},
-                                ganhei 20% de desconto no segundo envio, fantastico.”</p>
-                            <strong class="d-block fw-500">Paula Pereira</strong> <span class="text-muted">França</span>
-                        </div>
-                    </div>
-                    <div class="item mh-100">
-                        <div class="testimonial rounded text-center p-4">
-                            <p class="text-9 text-muted opacity-2 mb-0"><i class="fa fa-quote-left"></i></p>
-                            <p class="text-4">“Envios rápidos e fáceis, disponível para muitas moedas
-                                diferentes. Muito
-                                melhor que as transferências bancarias.”</p>
-                            <strong class="d-block fw-500">Garcia Neves</strong> <span class="text-muted">Portugal<span>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>

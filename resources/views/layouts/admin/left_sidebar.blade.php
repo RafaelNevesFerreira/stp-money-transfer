@@ -41,7 +41,7 @@
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#site" aria-expanded="false" aria-controls="site"
                     class="side-nav-link">
-                    <i class="uil-home-alt"></i>
+                    <i class="uil-globe"></i>
                     <span> Site</span>
                 </a>
                 <div class="collapse" id="site">
