@@ -286,4 +286,20 @@ class AdminController extends Controller
             return response()->json(["error" => "Erro Ao Atualizar a faq, tente depois", "status" => 500]);
         }
     }
+
+    public function site_faq_edit_submit(Request $request)
+    {
+        $request->validate([
+            "title" => "required|min:10|max:250",
+            "content" => "required|min:20|max:250",
+            "id" => "required|exists:faqs,id"
+        ]);
+
+        try {
+            $this->faqs->update($request->id, $request->all());
+            return redirect()->back()->with(["message" => "FAQ Atualizada com sucesso", "status" => 200]);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(["erro" => "Erro ao efetuar a ação, tente mais tarde", "status" => 500]);
+        }
+    }
 }

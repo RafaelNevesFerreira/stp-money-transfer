@@ -47,7 +47,8 @@
                             <div id="faq{{ $faq->id }}">
                                 <div class="faq-question-q-box me-1 apagar" data-id="{{ $faq->id }}"><i
                                         class="mdi mdi-delete"></i></div>
-                                <div class="faq-question-q-box me-2 editar" data-id="{{ $faq->id }}"><i class="mdi mdi-square-edit-outline"></i>
+                                <div class="faq-question-q-box me-2 editar" data-id="{{ $faq->id }}"><i
+                                        class="mdi mdi-square-edit-outline"></i>
                                 </div>
                                 <h4 class="faq-question" data-wow-delay=".1s">{{ $faq->title }}</h4>
                                 <p class="faq-answer mb-4">{{ $faq->content }}</p>
@@ -80,8 +81,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Descrição</label>
-                            <input class="form-control" type="text" name="content" id="description" required
-                                placeholder="Descrição">
+                            <textarea data-toggle="maxlength" name="content" id="description" class="form-control" maxlength="225" rows="3"
+                                placeholder="Descrição"></textarea>
                         </div>
                         <div class="mb-3 text-center">
                             <button class="btn btn-primary" type="submit">Criar</button>
@@ -98,7 +99,7 @@
             <div class="modal-content">
 
                 <div class="modal-body">
-                    <form class="ps-3 pe-3" action="{{ route('admin.site.faq.create') }}" method="POST">
+                    <form class="ps-3 pe-3" action="{{ route('admin.site.faq.edit.submit') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="titulo" class="form-label">Titulo</label>
@@ -107,11 +108,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Descrição</label>
-                            <input class="form-control" type="text" name="content" id="edit_description" required
-                                placeholder="Descrição">
+                            <textarea data-toggle="maxlength" name="content" id="edit_description" class="form-control" maxlength="225" rows="3"
+                                placeholder="This textarea has a limit of 225 chars."></textarea>
                         </div>
                         <div class="mb-3 text-center">
-                            <button class="btn btn-primary" type="submit">Criar</button>
+                            <button class="btn btn-primary" type="submit">Salvar</button>
                         </div>
                     </form>
 
@@ -203,9 +204,10 @@
                             30)
 
                     } else {
+                        $("#edit_description").val(sucesso.data.content)
+                        $("#edit_titulo").val(sucesso.data.title)
                         $("#modal_faq_edit").modal("show")
-                        $("#edit_description").value(sucesso.data.contet)
-                        $("#edit_titulo").value(sucesso.data.title)
+
                     }
                 },
                 error: function(error) {

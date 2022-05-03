@@ -28,4 +28,9 @@ class AbstractRepository
     {
         return $this->model::where("id", $id)->firstOrFail();
     }
+
+    public function update($id, $request)
+    {
+        $this->model::where("id", $id)->firstOrFail()->update($request);
+    }
 }

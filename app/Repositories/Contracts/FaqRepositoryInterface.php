@@ -8,4 +8,5 @@ interface FaqRepositoryInterface
     public function create($request);
     public function delete($id);
     public function whereId($id);
+    public function update($id, $request);
 }
