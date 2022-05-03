@@ -172,14 +172,14 @@
                     success: function(data) {
                         if (data.status === 500) {
                             $("#erro_na_senha").text(data.error)
-                            $("#esperando").remove()
-                            $("#aguardar").html(
-                                "<button class='btn btn-primary' id='senha_colocada'>Continuar</button>"
-                            )
+                            $.NotificationApp.send("Erro", data.error,
+                                "bottom-right", "Background color", "danger", "hideAfter",
+                                30)
 
                         } else {
-                            $("#confirmar_senha").modal('hide');
-                            $('#novo_email').modal('show');
+                            $.NotificationApp.send("Sucesso", data.message,
+                                "bottom-right", "Background color", "success", "hideAfter",
+                                3000)
                         }
                     },
                     error: function(error) {
@@ -188,7 +188,6 @@
 
                     }
                 });
-                console.log(id);
             })
         })
     </script>
