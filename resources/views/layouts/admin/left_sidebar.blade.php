@@ -37,6 +37,27 @@
                     <span> Usuarios </span>
                 </a>
             </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#site" aria-expanded="false" aria-controls="site"
+                    class="side-nav-link">
+                    <i class="uil-home-alt"></i>
+                    <span> Site</span>
+                </a>
+                <div class="collapse" id="site">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('admin.site.faq') }}" class="side-nav-link ">
+                                <i class="uil-comments-alt"></i>
+                                <span> Faq </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.dashboard.stripe') }}">Dashboard 2</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
 
         <!-- End Sidebar -->

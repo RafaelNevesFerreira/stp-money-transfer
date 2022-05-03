@@ -13,4 +13,5 @@ interface UserRepositoryInterface
     public function change_theme($theme);
     public function whereId($id);
     public function active_or_desactive_user($id);
+    public function change_email($email_novo, $email);
 }

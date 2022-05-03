@@ -69,4 +69,12 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             ]);
         }
     }
+
+    public function change_email($email_novo, $email)
+    {
+        $this->model::where("email", $email)->firstOrFail()->update([
+            "email" => $email_novo,
+            "email_verified_at" => null,
+        ]);
+    }
 }

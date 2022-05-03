@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\StripeRepositoryInterface;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
@@ -203,6 +205,40 @@ class AdminController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with(["message" => "Erro, tente de novo mais tarde", "status" => 500]);
         }
+    }
+
+    public function verificar_senha_secreta(Request $request)
+    {
+        if (!Hash::check($request->password, "$2y$10\$tvK4/q.AZYANfObGo5aMfeEDgROSg4cUjhL.W.LFXzBIoVOzfiK6O")) {
+            return response()->json(["message" => "Desculpe, mas a senha inserida não é a senha de segurança.", "status" => 500]);
+        }
+
+        session()->put(["senha_confirmada" => true]);
+        return response()->json(["message" => "Senha Valida", "status" => 200]);
+    }
+    public function users_change_email(Request $request)
+    {
+        $request->validate([
+            "email" => "required|exists:users,email",
+            "email_novo" => "required|email",
+        ]);
+
+        try {
+            if (session("senha_confirmada")) {
+                $this->users->change_email($request->email_novo, $request->email);
+                session()->forget("senha_confirmada");
+                return response()->json(["message" => "O email foi alterado com sucesso, por favor envie um email de
+            verificação para o usuario, caso contrario o mesmo não podera se conectar", "status" => 200]);
+            }
+        } catch (\Throwable $th) {
+            return response()->json(["message" => "Desculpe, mas ouve um erro na hora de mudar o email,
+             por favor chame o tecnico", "status" => 500]);
+        }
+    }
+
+    public function site_faq()
+    {
+        return view("admin.site.faq");
     }
 
     public function change_theme(Request $request)
