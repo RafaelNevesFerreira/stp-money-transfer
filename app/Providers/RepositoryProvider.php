@@ -39,6 +39,10 @@ class RepositoryProvider extends ServiceProvider
             'App\Repositories\Contracts\UserRepositoryInterface',
             'App\Repositories\Eloquent\UserRepository',
         );
+        $this->app->bind(
+            'App\Repositories\Contracts\FaqRepositoryInterface',
+            'App\Repositories\Eloquent\FaqRepository',
+        );
     }
 
 
