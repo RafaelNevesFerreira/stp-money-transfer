@@ -15,4 +15,9 @@ class FaqRepository extends AbstractRepository implements FaqRepositoryInterface
     {
         $this->model::where('id', $id)->delete();
     }
+
+    public function metade($metade, $total)
+    {
+        return $this->model::whereBetween("id", [$metade, $total])->get();
+    }
 }

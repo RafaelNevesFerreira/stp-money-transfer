@@ -9,4 +9,5 @@ interface FaqRepositoryInterface
     public function delete($id);
     public function whereId($id);
     public function update($id, $request);
+    public function metade($metade, $total);
 }

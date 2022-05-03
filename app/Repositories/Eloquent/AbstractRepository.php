@@ -33,4 +33,5 @@ class AbstractRepository
     {
         $this->model::where("id", $id)->firstOrFail()->update($request);
     }
+
 }
