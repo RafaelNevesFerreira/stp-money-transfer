@@ -1,11 +1,11 @@
 @extends("layouts.app")
 @section('content')
     <!-- Content
-                                                  ============================================= -->
+                                                      ============================================= -->
     <div id="content">
 
         <!-- Send Money
-                                                ============================================= -->
+                                                    ============================================= -->
         <section class="hero-wrap">
             <div class="hero-mask opacity-7 bg-dark"></div>
             <div class="hero-bg" style="background-image:url('{{ asset('assets/images/image-6.jpg') }}');"></div>
@@ -95,7 +95,7 @@
         <!-- Send Money End -->
 
         <!-- How it works
-                                                ============================================= -->
+                                                    ============================================= -->
         <section class="section bg-white">
             <div class="container">
                 <h2 class="text-9 text-center"> A Maneira Mais Simple De Enviar Dinheiro
@@ -138,7 +138,7 @@
         <!-- How it works End -->
 
         <!-- Why choose us
-                                                ============================================= -->
+                                                    ============================================= -->
         <section class="section">
             <div class="container">
                 <h2 class="text-9 text-center">Porquê nos escolher?</h2>
@@ -160,7 +160,8 @@
                                 <h2 class="text-6 text-white mb-3">Enviar dinheiro com {{ env('APP_NAME') }}</h2>
                                 <p class="text-light">Enviar dinheiro pela internet sempre foi algo um pouco duvidos,
                                     pois ao longo do tempo mais têm sido os ataque ciberneticos.</p>
-                                <p class="text-light mb-0">Por esse motivo {{ env('APP_NAME') }} investiu em uma plataforma
+                                <p class="text-light mb-0">Por esse motivo {{ env('APP_NAME') }} investiu em uma
+                                    plataforma
                                     segura e facil de ser usada, para facilitar a
                                     vida das pessoas que queiram enviar dinheiro para são tomé.</p>
                             </div>
@@ -199,7 +200,7 @@
         <!-- Why choose us End -->
 
         <!-- How work
-                                                ============================================= -->
+                                                    ============================================= -->
         <section class="hero-wrap section shadow-md">
             <div class="hero-mask opacity-9 bg-primary"></div>
             <div class="hero-bg" style="background-image:url('{{ asset('assets/images/image-1.jpg') }}');"></div>
@@ -216,7 +217,7 @@
         <!-- How work End -->
 
         <!-- Testimonial
-                                                ============================================= -->
+                                                    ============================================= -->
         <section class="section">
             <div class="container">
                 <h2 class="text-9 text-center">O que as pessoas acham de nós?</h2>
@@ -265,7 +266,7 @@
         <!-- Testimonial end -->
 
         <!-- Frequently asked questions
-                                                ============================================= -->
+                                                    ============================================= -->
         <section class="section bg-white">
             <div class="container">
                 <h2 class="text-9 text-center">Dúvidas Frequentes</h2>
@@ -275,82 +276,21 @@
                     <div class="col-md-10 col-lg-8 mx-auto">
                         <hr class="mb-0">
                         <div class="accordion accordion-flush arrow-end" id="popularTopics">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        O que é a {{ env('APP_NAME') }}?
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                                    data-bs-parent="#popularTopics">
-                                    <div class="accordion-body">{{ env('APP_NAME') }} é simplesmente a maneira mais
-                                        facil,
-                                        repida, e segura de enviar dinheiro para são tomé.</div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Posso fazer um envio e pagar em prestações?
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                                    data-bs-parent="#popularTopics">
-                                    <div class="accordion-body">
-                                        <p>Sim! Essa é a grande diferença da {{ env('APP_NAME') }} em relação aos outros
-                                            meios de envio de dinheiro para são tomé, pode enviar até 1.000,00 EUR e pagar
-                                            em três vezes, MAS o seu receptor receberà o valor completo na hora, mesmo que
-                                            você ainda não tenha pagado todas as prestações, Maravilhoso não é?
+                            @foreach ($faqs as $faq)
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading{{ $faq->id }}">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne{{ $faq->id }}" aria-expanded="true"
+                                            aria-controls="collapseOne{{ $faq->id }}">
+                                            {{ $faq->title }}
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne{{ $faq->id }}" class="accordion-collapse collapse"
+                                        aria-labelledby="heading{{ $faq->id }}" data-bs-parent="#popularTopics">
+                                        <div class="accordion-body">{{ $faq->content }}</div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Posso recuperar o meu dinheiro?
-                                    </button>
-                                </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                                    data-bs-parent="#popularTopics">
-                                    <div class="accordion-body">
-                                        Sim! se a pessoa ainda não levantou o seu dinheiro, então você poderà pedir uma
-                                        devolução do seu dinheiro.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingFour">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        Em quanto tempo o dinheiro chega em são tomé?
-                                    </button>
-                                </h2>
-                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                                    data-bs-parent="#popularTopics">
-                                    <div class="accordion-body">
-                                        O Dinheiro poderà ser levantado em são tomé 20 minutos depois de ser enviado
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingFive">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                        Como não pagar taxas na hora do envio do seu dinheiro?
-                                    </button>
-                                </h2>
-                                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                                    data-bs-parent="#popularTopics">
-                                    <div class="accordion-body">
-                                        Se você quiser enviar dinheiro sem pagar as taxas, temos um post que fala
-                                        especialmente sobre isso, leia e siga as etapas
-
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <hr class="mt-0">
                     </div>
@@ -362,7 +302,7 @@
         <!-- Frequently asked questions end -->
 
         <!-- Special Offer
-                                                ============================================= -->
+                                                    ============================================= -->
         <section class="hero-wrap py-5">
             <div class="hero-mask opacity-8 bg-dark"></div>
             <div class="hero-bg" style="background-image:url('{{ asset('assets/images/image-2.jpg') }}');"></div>

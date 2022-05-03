@@ -11,7 +11,10 @@ class SiteController extends Controller
     }
     public function index()
     {
-        return view("site.welcome");
+        $total = $this->faqs->all()->count();
+        $faqs = $this->faqs->metade($total / 2, $total);
+
+        return view("site.welcome",compact("faqs"));
     }
 
     public function about()
