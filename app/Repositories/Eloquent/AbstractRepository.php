@@ -34,4 +34,13 @@ class AbstractRepository
         $this->model::where("id", $id)->firstOrFail()->update($request);
     }
 
+    public function limit($limit)
+    {
+        return $this->model::limit($limit)->latest()->get();
+    }
+
+    public function simplePaginate()
+    {
+        return $this->model::simplePaginate(2);
+    }
 }

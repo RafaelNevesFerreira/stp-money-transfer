@@ -33,32 +33,34 @@
                             <div class="card-body">
                                 <div class="tab-content">
                                     <div class="tab-pane show active">
-                                        <div class="row" >
+                                        <div class="row">
                                             <div class="col-md-12">
                                                 <div class="bg-dragula p-2 p-lg-4">
                                                     <h5 class="mt-0">Todos Os Reviews</h5>
                                                     <div id="company-list-left" class="py-2">
+                                                        @foreach ($reviews as $review)
+                                                            <div class="card mb-0 mt-2">
+                                                                <div class="card-body">
+                                                                    <div class="d-flex align-items-start">
+                                                                        <div class="w-100 overflow-hidden">
+                                                                            <h5 class="mb-1 mt-0">{{ $review->name }}
+                                                                            </h5>
+                                                                            <p> {{ $review->country }} </p>
+                                                                            <p class="mb-0 text-muted">
+                                                                                <span
+                                                                                    class="fst-italic"><b>"</b>{{ $review->content }}.<b>"</b></span>
+                                                                            </p>
+                                                                        </div> <!-- end w-100 -->
+                                                                    </div> <!-- end d-flex -->
+                                                                </div> <!-- end card-body -->
+                                                            </div> <!-- end col -->
+                                                        @endforeach
 
-                                                        <div class="card mb-0 mt-2">
-                                                            <div class="card-body">
-                                                                <div class="d-flex align-items-start">
-                                                                    <div class="w-100 overflow-hidden">
-                                                                        <h5 class="mb-1 mt-0">Louis K. Bond</h5>
-                                                                        <p> Founder & CEO </p>
-                                                                        <p class="mb-0 text-muted">
-                                                                            <span class="fst-italic"><b>"</b>Disrupt
-                                                                                pork belly poutine, asymmetrical tousled
-                                                                                succulents selfies. You probably haven't
-                                                                                heard of them tattooed master cleanse
-                                                                                live-edge keffiyeh.</span>
-                                                                        </p>
-                                                                    </div> <!-- end w-100 -->
-                                                                </div> <!-- end d-flex -->
-                                                            </div> <!-- end card-body -->
-                                                        </div> <!-- end col -->
 
                                                     </div> <!-- end company-list-1-->
+                                                    {{ $reviews->links("pagination::admin") }}
                                                 </div> <!-- end div.bg-light-->
+
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->
                                     </div> <!-- end preview-->

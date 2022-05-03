@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\Contracts\FaqRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\ReviewsRepositoryInterface;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class AdminController extends Controller
 {
-    public function __construct(public TransfersRepositoryInterface $transfers, public UserRepositoryInterface $users, public FaqRepositoryInterface $faqs)
+    public function __construct(public TransfersRepositoryInterface $transfers,
+    public UserRepositoryInterface $users, public FaqRepositoryInterface $faqs, public ReviewsRepositoryInterface $reviews)
     {
         $this->middleware('admin');
     }
@@ -306,6 +308,8 @@ class AdminController extends Controller
 
     public function site_reviews()
     {
-        return view("admin.site.reviews");
+        $reviews = $this->reviews->simplePaginate();
+
+        return view("admin.site.reviews",compact("reviews"));
     }
 }

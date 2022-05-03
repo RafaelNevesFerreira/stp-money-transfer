@@ -1,11 +1,11 @@
 @extends("layouts.app")
 @section('content')
     <!-- Content
-                                                      ============================================= -->
+                                                              ============================================= -->
     <div id="content">
 
         <!-- Send Money
-                                                    ============================================= -->
+                                                            ============================================= -->
         <section class="hero-wrap">
             <div class="hero-mask opacity-7 bg-dark"></div>
             <div class="hero-bg" style="background-image:url('{{ asset('assets/images/image-6.jpg') }}');"></div>
@@ -95,7 +95,7 @@
         <!-- Send Money End -->
 
         <!-- How it works
-                                                    ============================================= -->
+                                                            ============================================= -->
         <section class="section bg-white">
             <div class="container">
                 <h2 class="text-9 text-center"> A Maneira Mais Simple De Enviar Dinheiro
@@ -138,7 +138,7 @@
         <!-- How it works End -->
 
         <!-- Why choose us
-                                                    ============================================= -->
+                                                            ============================================= -->
         <section class="section">
             <div class="container">
                 <h2 class="text-9 text-center">Porquê nos escolher?</h2>
@@ -200,7 +200,7 @@
         <!-- Why choose us End -->
 
         <!-- How work
-                                                    ============================================= -->
+                                                            ============================================= -->
         <section class="hero-wrap section shadow-md">
             <div class="hero-mask opacity-9 bg-primary"></div>
             <div class="hero-bg" style="background-image:url('{{ asset('assets/images/image-1.jpg') }}');"></div>
@@ -217,7 +217,7 @@
         <!-- How work End -->
 
         <!-- Testimonial
-                                                    ============================================= -->
+                                                            ============================================= -->
         <section class="section">
             <div class="container">
                 <h2 class="text-9 text-center">O que as pessoas acham de nós?</h2>
@@ -228,36 +228,17 @@
                         <div class="owl-carousel owl-theme" data-autoplay="true" data-nav="true" data-loop="true"
                             data-margin="30" data-stagepadding="5" data-items-xs="1" data-items-sm="1" data-items-md="1"
                             data-items-lg="1">
-                            <div class="item">
-                                <div class="testimonial rounded text-center p-4">
-                                    <p class="text-9 text-muted opacity-2 mb-2"><i class="fa fa-quote-left"></i></p>
-                                    <p class="text-4">“Facil de usar, e o dinheiro chega bem na hora, o que mais
-                                        gostei é que posso pagar em 3x mas o
-                                        meu receptor recebe o dinheiro na hora”</p>
-                                    <strong class="d-block fw-500">Paula Pereira</strong> <span
-                                        class="text-muted">França</span>
+                            @foreach ($reviews as $review)
+                                <div class="item">
+                                    <div class="testimonial rounded text-center p-4">
+                                        <p class="text-9 text-muted opacity-2 mb-2"><i class="fa fa-quote-left"></i></p>
+                                        <p class="text-4">{{ $review->content }}</p>
+                                        <strong class="d-block fw-500">{{ $review->name }}</strong> <span
+                                            class="text-muted">{{ $review->country }}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item">
-                                <div class="testimonial rounded text-center p-4">
-                                    <p class="text-9 text-muted opacity-2 mb-2"><i class="fa fa-quote-left"></i></p>
-                                    <p class="text-4">“Estou Feliz Enviando dinheiro com a
-                                        {{ env('APP_NAME') }},
-                                        ganhei 20% de desconto no segundo envio, fantastico”</p>
-                                    <strong class="d-block fw-500">Alves Sousa</strong> <span
-                                        class="text-muted">Londres</span>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="testimonial rounded text-center p-4">
-                                    <p class="text-9 text-muted opacity-2 mb-2"><i class="fa fa-quote-left"></i></p>
-                                    <p class="text-4">"Envios rápidos e fáceis, disponível para muitas moedas
-                                        diferentes. Muito
-                                        melhor que as transferências bancarias.”</p>
-                                    <strong class="d-block fw-500">Garcia Neves</strong> <span
-                                        class="text-muted">Portugal</span>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -266,7 +247,7 @@
         <!-- Testimonial end -->
 
         <!-- Frequently asked questions
-                                                    ============================================= -->
+                                                            ============================================= -->
         <section class="section bg-white">
             <div class="container">
                 <h2 class="text-9 text-center">Dúvidas Frequentes</h2>
@@ -302,7 +283,7 @@
         <!-- Frequently asked questions end -->
 
         <!-- Special Offer
-                                                    ============================================= -->
+                                                            ============================================= -->
         <section class="hero-wrap py-5">
             <div class="hero-mask opacity-8 bg-dark"></div>
             <div class="hero-bg" style="background-image:url('{{ asset('assets/images/image-2.jpg') }}');"></div>

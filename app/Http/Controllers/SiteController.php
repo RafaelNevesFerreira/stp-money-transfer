@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Contracts\FaqRepositoryInterface;
+use App\Repositories\Contracts\ReviewsRepositoryInterface;
 
 class SiteController extends Controller
 {
-    public function __construct(public FaqRepositoryInterface $faqs)
+    public function __construct(public FaqRepositoryInterface $faqs, public ReviewsRepositoryInterface $reviews)
     {
     }
     public function index()
     {
         $total = $this->faqs->all()->count();
         $faqs = $this->faqs->metade($total / 2, $total);
+        $reviews = $this->reviews->limit(10);
 
-        return view("site.welcome",compact("faqs"));
+        return view("site.welcome", compact("faqs", "reviews"));
     }
 
     public function about()
