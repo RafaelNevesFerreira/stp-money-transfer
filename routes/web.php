@@ -96,6 +96,7 @@ Route::middleware("admin")->group(function () {
             Route::get("/site/faq", "site_faq")->name("admin.site.faq");
             Route::post("/site/faq/create", "site_faq_create")->name("admin.site.faq.create");
             Route::post("/site/faq/delete", "site_faq_delete")->name("admin.site.faq.delete");
+            Route::post("/site/faq/edit", "site_faq_edit")->name("admin.site.faq.edit");
             Route::post("change_status", "change_status")->name("admin.change.status");
             Route::post("/change_theme", "change_theme")->name("admin.change_theme");
         });

@@ -139,8 +139,7 @@
                                 30)
 
                         } else {
-                            var faq = "#faq"+id;
-                            $(faq).empty()
+                            $("#faq" + id).empty()
                             $.NotificationApp.send("Sucesso", sucesso.message,
                                 "bottom-right", "Background color", "success", "hideAfter",
                                 3000)
@@ -153,6 +152,42 @@
                     }
                 });
             })
+        })
+
+        $(".editar").click(function() {
+            var id = $(this).attr("data-id")
+                $.ajaxSetup({
+                    headers: {
+                        "X-CSRF-TOKEN": $("meta[name='_token']").attr("content")
+                    }
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('admin.site.faq.edit') }}",
+                    data: {
+                        "id": id,
+                    },
+                    success: function(sucesso) {
+                        if (sucesso.status === 500) {
+                            $("#erro_na_senha").text(sucesso.error)
+                            $.NotificationApp.send("Erro", sucesso.error,
+                                "bottom-right", "Background color", "danger", "hideAfter",
+                                30)
+
+                        } else {
+                            $("#faq" + id).empty()
+                            $.NotificationApp.send("Sucesso", sucesso.message,
+                                "bottom-right", "Background color", "success", "hideAfter",
+                                3000)
+                        }
+                    },
+                    error: function(error) {
+                        $.NotificationApp.send("Erro", error.responseJson.message,
+                            "bottom-right", "Background color", "danger", "hideAfter", 30)
+
+                    }
+                });
         })
     </script>
 @endsection
