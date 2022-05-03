@@ -281,6 +281,7 @@ class AdminController extends Controller
 
         try {
             $faq = $this->faqs->whereId($request->id);
+
             return response()->json(["data" => $faq, "status" => 200]);
         } catch (\Throwable $th) {
             return response()->json(["error" => "Erro Ao Atualizar a faq, tente depois", "status" => 500]);

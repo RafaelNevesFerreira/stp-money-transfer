@@ -105,6 +105,7 @@
                             <label for="titulo" class="form-label">Titulo</label>
                             <input class="form-control" type="text" name="title" id="edit_titulo" required
                                 placeholder="Titulo da FAQ">
+                            <input type="text" name="id" id="edit_id" hidden>
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Descrição</label>
@@ -206,6 +207,7 @@
                     } else {
                         $("#edit_description").val(sucesso.data.content)
                         $("#edit_titulo").val(sucesso.data.title)
+                        $("#edit_id").val(sucesso.data.id)
                         $("#modal_faq_edit").modal("show")
 
                     }
