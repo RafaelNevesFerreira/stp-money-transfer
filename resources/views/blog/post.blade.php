@@ -45,7 +45,7 @@
 
                             </li>
                         </ul>
-                        <a href="blog-single.html">
+                        <a href="#">
                             <img class="img-fluid" src="{{ $post->featured_image }}"
                                 alt="{{ $post->title }} image">
                         </a>

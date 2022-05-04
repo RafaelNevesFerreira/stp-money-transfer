@@ -252,7 +252,7 @@
             <div class="container">
                 <h2 class="text-9 text-center">Dúvidas Frequentes</h2>
                 <p class="lead text-center mb-4 mb-sm-5">Não encontrou nada relacionado as suas dúvidas? Envie-nos uma
-                    menssagem <a class="btn-link" href="help.html">Centro de Ajuda</a></p>
+                    menssagem <a class="btn-link" href="{{route("help")}}">Centro de Ajuda</a></p>
                 <div class="row">
                     <div class="col-md-10 col-lg-8 mx-auto">
                         <hr class="mb-0">
