@@ -40,7 +40,8 @@
                                 </p>
                                 <div class="tab-content">
                                     <div class="tab-pane show active" id="input-sizes-preview">
-                                        <form>
+                                        <form method="POST" action="{{ }}">
+                                            @csrf
                                             <div class="mb-3">
                                                 <div class="row ">
                                                     <div class="col-sm-6">
@@ -48,14 +49,16 @@
                                                             minimo aceitavel</label>
 
                                                         <input type="number" id="valor_minimo_prestacoes"
-                                                            class="form-control" value="{{ $defs->min_val }}" placeholder="Valor minimo">
+                                                            class="form-control" name="min_val" value="{{ $defs->min_val }}"
+                                                            placeholder="Valor minimo">
                                                     </div>
                                                     <div class="col-sm-6 ">
                                                         <label for="valor_maximo_prestacoes" class="form-label mt-3">Valor
                                                             maximo aceitavel</label>
 
-                                                        <input type="number" value="{{ $defs->max_val }}" id="valor_maximo_prestacoes"
-                                                            class="form-control" placeholder="Valor maximo">
+                                                        <input required type="number" name="max_val" value="{{ $defs->max_val }}"
+                                                            id="valor_maximo_prestacoes"  class="form-control"
+                                                            placeholder="Valor maximo">
                                                     </div>
                                                 </div>
                                             </div>
@@ -63,9 +66,16 @@
                                             <div class="mb-3">
                                                 <div class="row ">
                                                     <div class="col-sm-6  mt-3">
-                                                        <label for="precentagem_cobrada" class="form-label mb-3 center">Opção pagar
+                                                        <label for="precentagem_cobrada"
+                                                            class="form-label mb-3 center">Opção pagar
                                                             em prestações</label>
-                                                        <input type="checkbox" id="switch1" checked data-switch="bool" />
+                                                        @if ($defs->active)
+                                                            <input required name="active" type="checkbox" id="switch1" checked
+                                                                data-switch="bool" />
+                                                        @else
+                                                            <input required name="active" type="checkbox" id="switch1"
+                                                                data-switch="bool" />
+                                                        @endif
                                                         <label for="switch1" data-on-label="Sim"
                                                             data-off-label="Não"></label>
                                                     </div>
@@ -73,7 +83,8 @@
                                                         <label for="precentagem_cobrada" class="form-label mt-3">Percentagem
                                                             Cobrada</label>
 
-                                                        <input type="number" value="{{ $defs->percentage }}" id="precentagem_cobrada" class="form-control"
+                                                        <input required type="number" value="{{ $defs->percentage }}"
+                                                            id="precentagem_cobrada" name="percentage" class="form-control"
                                                             placeholder="Percentagem Cobrada">
                                                     </div>
 
@@ -85,8 +96,9 @@
                                                     <div class="col-sm-6">
                                                         <label for="valor_minimo_trasacoes" class="form-label mt-3">Numero
                                                             de Transações Minimas</label>
-                                                        <input type="number"value="{{ $defs->min_transactions }}" id="valor_minimo_trasacoes"
-                                                            class="form-control" placeholder="Valor minimo">
+                                                        <input required type="number" value="{{ $defs->min_transactions }}"
+                                                            id="valor_minimo_trasacoes" name="min_transactions" class="form-control"
+                                                            placeholder="Valor minimo">
                                                     </div>
                                                 </div>
                                             </div>

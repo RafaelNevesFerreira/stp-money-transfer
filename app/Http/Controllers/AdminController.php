@@ -340,4 +340,15 @@ class AdminController extends Controller
 
         return view("admin.def.def", compact("defs"));
     }
+
+    public function def_submit(Request $request)
+    {
+        $request->validate([
+            "min_val" => "required|numeric",
+            "max_val" => "required|numeric",
+            "active" => "required|boolean",
+            "percentage" => "required|numeric",
+            "min_transactions" => "required|`numeric"
+        ]);
+    }
 }
