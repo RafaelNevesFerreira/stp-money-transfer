@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Repositories\Contracts\FaqRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\ReviewsRepositoryInterface;
+use App\Repositories\Contracts\TransactionPlansDefInterface;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class AdminController extends Controller
@@ -15,7 +16,8 @@ class AdminController extends Controller
         public TransfersRepositoryInterface $transfers,
         public UserRepositoryInterface $users,
         public FaqRepositoryInterface $faqs,
-        public ReviewsRepositoryInterface $reviews
+        public ReviewsRepositoryInterface $reviews,
+        public TransactionPlansDefInterface $def
     ) {
         $this->middleware('admin');
     }
@@ -23,7 +25,6 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view("admin.def.def");
         $transfers_esta_semana = $this->transfers->transfers_esta_semana();
         $aumento_em_relacao_a_semana_passada = (float)$this->transfers->aumento_em_relacao_a_semana_passada();
         $novos_usuarios_esse_mes = (int)$this->users->novos_usuarios_esse_mes();
@@ -73,7 +74,7 @@ class AdminController extends Controller
         $sem_prestacao = "";
         for ($i = 1; $i < 13; $i++) {
             $prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(1, $i, date("Y"));
-            $prestacao .= $prestacoes. ",";
+            $prestacao .= $prestacoes . ",";
 
             $sem_prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(0, $i, date("Y"));
             $sem_prestacao .= $sem_prestacoes . ",";
@@ -331,5 +332,11 @@ class AdminController extends Controller
     {
         $reviews = $this->reviews->simplePaginate(4);
         return view("admin.site.reviews", compact("reviews"));
+    }
+
+    public function def()
+    {
+        $defs = $this->def->all();
+        return view("admin.def.def", compact("defs"));
     }
 }
