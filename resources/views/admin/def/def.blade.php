@@ -115,21 +115,21 @@
                                 <h4 class="header-title">Dados Sobre o contato</h4>
                                 <div class="tab-content">
                                     <div class="tab-pane show active" id="input-sizes-preview">
-                                        <form>
+                                        <form action="{{ route('admin.contact.submit') }}" method="POST">
+                                            @csrf
                                             <div class="mb-3">
                                                 <div class="row ">
                                                     <div class="col-sm-6">
                                                         <label for="email_1" class="form-label mt-3">Email 1</label>
 
-                                                        <input type="email" value="{{ $contact->email_1 }}" id="email_1"
-                                                            class="form-control" placeholder="Email 1">
+                                                        <input type="email" name="email_1" value="{{ $contact->email_1 }}"
+                                                            id="email_1" class="form-control" placeholder="Email 1">
                                                     </div>
                                                     <div class="col-sm-6 ">
-                                                        <label for="email_2" value="{{ $contact->email_2 }}"
-                                                            class="form-label mt-3">Email 2</label>
+                                                        <label for="email_2" class="form-label mt-3">Email 2</label>
 
-                                                        <input type="email" id="email_2" class="form-control"
-                                                            placeholder="Email 2">
+                                                        <input type="email" name="email_2" value="{{ $contact->email_2 }}"
+                                                            id="email_2" class="form-control" placeholder="Email 2">
                                                     </div>
                                                 </div>
                                             </div>
@@ -139,14 +139,16 @@
                                                     <div class="col-sm-6 ">
                                                         <label for="telefone_1" class="form-label mt-3">Telefone 1</label>
 
-                                                        <input type="text" id="telefone_1" value="{{ $contact->phone_1 }}"
-                                                            class="form-control" placeholder="Telefone 1">
+                                                        <input type="text" name="phone_1" id="telefone_1"
+                                                            value="{{ $contact->phone_1 }}" class="form-control"
+                                                            placeholder="Telefone 1">
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <label for="telefone2" class="form-label mt-3">Telefone 2</label>
 
-                                                        <input type="text" id="telefone2" value="{{ $contact->phone_2 }}"
-                                                            class="form-control" placeholder="Telefone 2">
+                                                        <input type="text" name="phone_2" id="telefone2"
+                                                            value="{{ $contact->phone_2 }}" class="form-control"
+                                                            placeholder="Telefone 2">
                                                     </div>
 
                                                 </div>
@@ -160,12 +162,12 @@
                                                             A Baixo fica o endereço onde os receptores irão levantar o
                                                             dinheiro
                                                         </p>
-                                                        <textarea data-toggle="maxlength" class="form-control" maxlength="225" rows="3"
+                                                        <textarea data-toggle="maxlength" name="address" class="form-control" maxlength="225" rows="3"
                                                             placeholder="Esta area de texto é limitada a 225 caracteres.">{{ $contact->address }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="button" class="btn btn-primary rounded-pill">Atualizar</button>
+                                            <button type="submit" class="btn btn-primary rounded-pill">Atualizar</button>
                                         </form>
                                     </div> <!-- end preview-->
                                 </div> <!-- end tab-content-->

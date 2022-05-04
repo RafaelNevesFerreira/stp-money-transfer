@@ -341,7 +341,7 @@ class AdminController extends Controller
         $defs = $this->def->firstorfail(1);
         $contact = $this->contact->firstorfail(1);
 
-        return view("admin.def.def", compact("defs","contact"));
+        return view("admin.def.def", compact("defs", "contact"));
     }
 
     public function def_submit(Request $request)
@@ -369,6 +369,14 @@ class AdminController extends Controller
 
     public function contact_submit(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            "address" => "required",
+            "email_1" => "required",
+            "phone_1" => "required"
+        ]);
+
+        $this->contact->update(1, $request->all());
+
+        return redirect()->back()->with(["status" => 200, "message" => "Mudanças Salvas com sucesso"]);
     }
 }

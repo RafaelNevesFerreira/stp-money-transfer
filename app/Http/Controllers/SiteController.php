@@ -50,7 +50,7 @@ class SiteController extends Controller
         return view("site.help", compact("first_faq", "second_faq"));
     }
 
-    public function contact()
+    public function contact_submit()
     {
         $contact = $this->contact->firstorfail(1);
         return view("site.contact",compact("contact"));
