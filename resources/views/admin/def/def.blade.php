@@ -36,7 +36,7 @@
                                 <h4 class="header-title">Definições sobre pagamento em Prestações</h4>
                                 <div class="tab-content">
                                     <div class="tab-pane show active" id="input-sizes-preview">
-                                        <form method="POST" action="{{ route("admin.def.submit") }}">
+                                        <form method="POST" action="{{ route('admin.def.submit') }}">
                                             @csrf
                                             <div class="mb-3">
                                                 <div class="row ">
@@ -45,16 +45,16 @@
                                                             minimo aceitavel</label>
 
                                                         <input type="number" min="0" id="valor_minimo_prestacoes"
-                                                            class="form-control" name="min_val" value="{{ $defs->min_val }}"
-                                                            placeholder="Valor minimo">
+                                                            class="form-control" name="min_val"
+                                                            value="{{ $defs->min_val }}" placeholder="Valor minimo">
                                                     </div>
                                                     <div class="col-sm-6 ">
                                                         <label for="valor_maximo_prestacoes" class="form-label mt-3">Valor
                                                             maximo aceitavel</label>
 
-                                                        <input required type="number" min="0" name="max_val" value="{{ $defs->max_val }}"
-                                                            id="valor_maximo_prestacoes"  class="form-control"
-                                                            placeholder="Valor maximo">
+                                                        <input required type="number" min="0" name="max_val"
+                                                            value="{{ $defs->max_val }}" id="valor_maximo_prestacoes"
+                                                            class="form-control" placeholder="Valor maximo">
                                                     </div>
                                                 </div>
                                             </div>
@@ -66,10 +66,10 @@
                                                             class="form-label mb-3 center">Opção pagar
                                                             em prestações</label>
                                                         @if ($defs->active)
-                                                            <input  name="active" type="checkbox" id="switch1" checked
+                                                            <input name="active" type="checkbox" id="switch1" checked
                                                                 data-switch="bool" />
                                                         @else
-                                                            <input  name="active" type="checkbox" id="switch1"
+                                                            <input name="active" type="checkbox" id="switch1"
                                                                 data-switch="bool" />
                                                         @endif
                                                         <label for="switch1" data-on-label="Sim"
@@ -79,8 +79,9 @@
                                                         <label for="precentagem_cobrada" class="form-label mt-3">Percentagem
                                                             Cobrada</label>
 
-                                                        <input required type="number" min="0" value="{{ $defs->percentage }}"
-                                                            id="precentagem_cobrada" name="percentage" class="form-control"
+                                                        <input required type="number" min="0"
+                                                            value="{{ $defs->percentage }}" id="precentagem_cobrada"
+                                                            name="percentage" class="form-control"
                                                             placeholder="Percentagem Cobrada">
                                                     </div>
 
@@ -92,9 +93,10 @@
                                                     <div class="col-sm-6">
                                                         <label for="valor_minimo_trasacoes" class="form-label mt-3">Numero
                                                             de Transações Minimas</label>
-                                                        <input required type="number" min="0" value="{{ $defs->min_transactions }}"
-                                                            id="valor_minimo_trasacoes" name="min_transactions" class="form-control"
-                                                            placeholder="Valor minimo">
+                                                        <input required type="number" min="0"
+                                                            value="{{ $defs->min_transactions }}"
+                                                            id="valor_minimo_trasacoes" name="min_transactions"
+                                                            class="form-control" placeholder="Valor minimo">
                                                     </div>
                                                 </div>
                                             </div>
@@ -119,11 +121,12 @@
                                                     <div class="col-sm-6">
                                                         <label for="email_1" class="form-label mt-3">Email 1</label>
 
-                                                        <input type="email" id="email_1" class="form-control"
-                                                            placeholder="Email 1">
+                                                        <input type="email" value="{{ $contact->email_1 }}" id="email_1"
+                                                            class="form-control" placeholder="Email 1">
                                                     </div>
                                                     <div class="col-sm-6 ">
-                                                        <label for="email_2" class="form-label mt-3">Email 2</label>
+                                                        <label for="email_2" value="{{ $contact->email_2 }}"
+                                                            class="form-label mt-3">Email 2</label>
 
                                                         <input type="email" id="email_2" class="form-control"
                                                             placeholder="Email 2">
@@ -136,14 +139,14 @@
                                                     <div class="col-sm-6 ">
                                                         <label for="telefone_1" class="form-label mt-3">Telefone 1</label>
 
-                                                        <input type="number" id="telefone_1" class="form-control"
-                                                            placeholder="Telefone 1">
+                                                        <input type="text" id="telefone_1" value="{{ $contact->phone_1 }}"
+                                                            class="form-control" placeholder="Telefone 1">
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <label for="telefone2" class="form-label mt-3">Telefone 2</label>
 
-                                                        <input type="number" id="telefone2" class="form-control"
-                                                            placeholder="Telefone 2">
+                                                        <input type="text" id="telefone2" value="{{ $contact->phone_2 }}"
+                                                            class="form-control" placeholder="Telefone 2">
                                                     </div>
 
                                                 </div>
@@ -158,7 +161,7 @@
                                                             dinheiro
                                                         </p>
                                                         <textarea data-toggle="maxlength" class="form-control" maxlength="225" rows="3"
-                                                            placeholder="Esta area de texto é limitada a 225 caracteres."></textarea>
+                                                            placeholder="Esta area de texto é limitada a 225 caracteres.">{{ $contact->address }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -172,10 +175,6 @@
                     </div> <!-- end col -->
                 </div>
                 <!-- end row -->
-
-
-
-
             </div> <!-- container -->
 
         </div> <!-- content -->

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\Contracts\FaqRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\ContactRepositoryInterface;
 use App\Repositories\Contracts\ReviewsRepositoryInterface;
 use App\Repositories\Contracts\TransactionPlansDefInterface;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
@@ -17,7 +18,8 @@ class AdminController extends Controller
         public UserRepositoryInterface $users,
         public FaqRepositoryInterface $faqs,
         public ReviewsRepositoryInterface $reviews,
-        public TransactionPlansDefInterface $def
+        public TransactionPlansDefInterface $def,
+        public ContactRepositoryInterface $contact
     ) {
         $this->middleware('admin');
     }
@@ -337,8 +339,9 @@ class AdminController extends Controller
     public function def()
     {
         $defs = $this->def->firstorfail(1);
+        $contact = $this->contact->firstorfail(1);
 
-        return view("admin.def.def", compact("defs"));
+        return view("admin.def.def", compact("defs","contact"));
     }
 
     public function def_submit(Request $request)
@@ -362,5 +365,10 @@ class AdminController extends Controller
         $this->def->update(1, $request->all());
 
         return redirect()->back()->with(["status" => 200, "message" => "mudanças salvas com sucesso"]);
+    }
+
+    public function contact_submit(Request $request)
+    {
+        dd($request->all());
     }
 }
