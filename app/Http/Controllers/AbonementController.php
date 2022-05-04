@@ -13,19 +13,21 @@ class AbonementController extends Controller
 {
     const STRIPE_KEY = "sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId";
 
+    public $valor_maximo;
+    public $VALOR_MINIMO;
+    public $TAX_POR_ENVIO_EM_PERCENTAGEM;
+
     public function __construct(
+
         public PlansRepositoryInterface $plans,
         public TransfersRepositoryInterface $transfers,
         public TransactionPlansDefInterface $system_def,
-        protected $VALOR_MAXIMO,
-        protected $VALOR_MINIMO,
-        protected $TAX_POR_ENVIO_EM_PERCENTAGEM,
     ) {
-        $this->VALOR_MAXIMO = $this->system_def->get("max_transactions")->max_transactions;
-        $this->VALOR_MINIMO = $this->system_def->get("min_transactions")->min_transactions;
+        $this->valor_maximo = $this->system_def->get("max_val")->max_val;
+        $this->VALOR_MINIMO = $this->system_def->get("min_val")->min_val;
         $this->TAX_POR_ENVIO_EM_PERCENTAGEM = $this->system_def->get("percentage")->percentage;
     }
-    public function pagar_em_2_vezes(PaymentRequest $request)
+    public function pagar_em_2_vezes()
     {
 
         try {
@@ -83,12 +85,12 @@ class AbonementController extends Controller
             $total = number_format((session("total") / 100 * $this->TAX_POR_ENVIO_EM_PERCENTAGEM + session("total")) / 2, 2, ".", ",");
 
 
-            //caso o valor que o usuario queira enviar seja maior do que o valor setado na constante VALOR_MAXIMO
+            //caso o valor que o usuario queira enviar seja maior do que o valor setado na constante valor_maximo
             //e que ele seja maior do que o valor da constante VALOR_MINIMO
-            if (session("valor_a_ser_enviado") >= $this->VALOR_MAXIMO) {
+            if (session("valor_a_ser_enviado") >= $this->valor_maximo) {
                 return redirect()->back()->withErrors("desculpe por enquanto só é possível enviar um valor abaixo de "
-                    . $this->VALOR_MAXIMO . session("moeda") . ", caso queira pagar em prestações, clique no link abaixo e digite um valor abaixo de "
-                    . $this->VALOR_MAXIMO . session("moeda") . " Obrigado" . "<br><a href='" . route("send") . "' class='btn-link'>Inserir Novo Valor</a>");
+                    . $this->valor_maximo . session("moeda") . ", caso queira pagar em prestações, clique no link abaixo e digite um valor abaixo de "
+                    . $this->valor_maximo . session("moeda") . " Obrigado" . "<br><a href='" . route("send") . "' class='btn-link'>Inserir Novo Valor</a>");
             } else if (session("valor_a_ser_enviado") < $this->VALOR_MINIMO) {
                 return redirect()->back()->withErrors("desculpe por enquanto apenas é possível enviar um valor acima  de "
                     . $this->VALOR_MINIMO . session("moeda") . ", caso queira pagar em prestações, clique no link abaixo e digite um valor acima  de "
@@ -170,7 +172,7 @@ class AbonementController extends Controller
         $this->plans->store();
 
         //guarda os dados na table transfer
-        $this->transfer->store();
+        $this->transfers->store();
 
         //apaga todos os valores na seção relacionado com o envio
         session()->forget(["moeda", "tax", "plan", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
