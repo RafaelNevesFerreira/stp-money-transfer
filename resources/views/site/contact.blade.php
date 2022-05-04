@@ -29,7 +29,7 @@
                         <div class="featured-box text-center">
                             <div class="featured-box-icon text-primary mt-4"> <i class="fas fa-map-marker-alt"></i></div>
                             <h3>{{env("APP_NAME")}}.</h3>
-                            <p>{{ $contact->addres }}</p>
+                            <p>{{ $contact->address }}</p>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,8 @@
                         <div class="featured-box text-center">
                             <div class="featured-box-icon text-primary mt-4"> <i class="fas fa-envelope"></i> </div>
                             <h3>Business Inquiries</h3>
-                            <p>{{ $contact->address }}</p>
+                            <p>{{ $contact->email_1 }}</p>
+                            <p>{{ $contact->email_2 }}</p>
                         </div>
                     </div>
                 </div>

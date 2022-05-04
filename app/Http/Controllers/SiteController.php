@@ -52,7 +52,7 @@ class SiteController extends Controller
 
     public function contact()
     {
-        $contact = $this->conatct->firstorfail(1);
+        $contact = $this->contact->firstorfail(1);
         return view("site.contact",compact("contact"));
     }
 
