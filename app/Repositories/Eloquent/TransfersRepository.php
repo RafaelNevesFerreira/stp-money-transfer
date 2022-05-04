@@ -346,7 +346,6 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             ->whereYear("created_at", date("Y"))
             ->where(["plan" => 1, "country" => $country])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
-        // return $pagos + $prestacoes;
 
         return number_format($pagos + $prestacoes, 2, ",", ".");
     }

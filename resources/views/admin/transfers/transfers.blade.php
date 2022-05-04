@@ -64,7 +64,8 @@
                                                         </div>
                                                     </td>
                                                     <td class="table-user">
-                                                        <a href="{{ route('admin.transaction.details', $transfer->id) }}" class="text-body fw-semibold">
+                                                        <a href="{{ route('admin.transaction.details', $transfer->id) }}"
+                                                            class="text-body fw-semibold">
                                                             {{ $transfer->name }}
                                                         </a>
                                                     </td>
@@ -75,11 +76,11 @@
                                                     </td>
                                                     <td>
                                                         @if ($transfer->currency === 'eur')
-                                                            {{ number_format($transfer->value_sended * (int)env('EUR_CAMBIO_VALUE'),2,",",".") }}
+                                                            {{ number_format($transfer->value_sended * (int) env('EUR_CAMBIO_VALUE'), 2, ',', '.') }}
                                                         @elseif ($transfer->currency === 'usd')
-                                                            {{ number_format($transfer->value_sended * (int)env("USD_CAMBIO_VALUE"),2,",",".") }}
+                                                            {{ number_format($transfer->value_sended * (int) env('USD_CAMBIO_VALUE'), 2, ',', '.') }}
                                                         @else
-                                                            {{ number_format($transfer->value_sended * (int)env("GBP_CAMBIO_VALUE"),2,",",".") }}
+                                                            {{ number_format($transfer->value_sended * (int) env('GBP_CAMBIO_VALUE'), 2, ',', '.') }}
                                                         @endif
 
                                                     </td>
@@ -97,12 +98,13 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        {{ $transfer->created_at->format("d-m-Y H:i:s") }}
+                                                        {{ $transfer->created_at->format('d-m-Y H:i:s') }}
                                                     </td>
 
                                                     <td>
-                                                        <a href="{{ route("admin.transaction.details",$transfer->id)}}" class="action-icon">
-                                                             <i class="mdi mdi-square-edit-outline"></i>
+                                                        <a href="{{ route('admin.transaction.details', $transfer->id) }}"
+                                                            class="action-icon">
+                                                            <i class="mdi mdi-square-edit-outline"></i>
                                                         </a>
                                                     </td>
                                                 </tr>

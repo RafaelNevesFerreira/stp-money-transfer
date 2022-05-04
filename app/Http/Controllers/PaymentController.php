@@ -66,7 +66,6 @@ class PaymentController extends Controller
             }
 
             if (session("total")) {
-                // dd(str_replace(",","",number_format(session("total"))));
                 $total = str_replace(",", "", number_format(session("total")));
                 session("total", $total);
             } else {
