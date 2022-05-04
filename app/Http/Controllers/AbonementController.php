@@ -6,18 +6,24 @@ use DateTime;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PaymentRequest;
 use App\Repositories\Contracts\PlansRepositoryInterface;
+use App\Repositories\Contracts\TransactionPlansDefInterface;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class AbonementController extends Controller
 {
     const STRIPE_KEY = "sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId";
-    const VALOR_MAXIMO = 700;
-    const VALOR_MINIMO = 100;
-    const TAX_POR_ENVIO_EM_PERCENTAGEM = 20;
 
-
-    public function __construct(public PlansRepositoryInterface $plans, public TransfersRepositoryInterface $transfer)
-    {
+    public function __construct(
+        public PlansRepositoryInterface $plans,
+        public TransfersRepositoryInterface $transfers,
+        public TransactionPlansDefInterface $system_def,
+        protected $VALOR_MAXIMO,
+        protected $VALOR_MINIMO,
+        protected $TAX_POR_ENVIO_EM_PERCENTAGEM,
+    ) {
+        $this->VALOR_MAXIMO = $this->system_def->get("max_transactions")->max_transactions;
+        $this->VALOR_MINIMO = $this->system_def->get("min_transactions")->min_transactions;
+        $this->TAX_POR_ENVIO_EM_PERCENTAGEM = $this->system_def->get("percentage")->percentage;
     }
     public function pagar_em_2_vezes(PaymentRequest $request)
     {
@@ -62,23 +68,31 @@ class AbonementController extends Controller
                     }
                 }
             endif;
+            //verifica se o numero de transacoes que p usuario ja fez equivale ao minimo necessario para poder
+            //pagar em prestacoes
+            $min_transactions = $this->system_def->get("min_transactions")->min_transactions;
+            if (!$this->transfers->user_count_transactions(Auth::user()->email) > $min_transactions) {
+                return redirect()->back()->withErrors("Infelizmente não sera possivel efetuar a ação desejada,
+                Pois o seu perfil não satisfaz as exigências requeridas para poder pagar em prestações. Apenas
+                podera pagar em prestações depois da sua $min_transactions  Transação");
+            }
 
 
             //prepara o total, somando o total que ja vem com as nossas taxas normais e adiciona uma taxa
             //de 20% em cima do valor
-            $total = number_format((session("total") / 100 * self::TAX_POR_ENVIO_EM_PERCENTAGEM + session("total")) / 2, 2, ".", ",");
+            $total = number_format((session("total") / 100 * $this->TAX_POR_ENVIO_EM_PERCENTAGEM + session("total")) / 2, 2, ".", ",");
 
 
             //caso o valor que o usuario queira enviar seja maior do que o valor setado na constante VALOR_MAXIMO
             //e que ele seja maior do que o valor da constante VALOR_MINIMO
-            if (session("valor_a_ser_enviado") >= self::VALOR_MAXIMO) {
+            if (session("valor_a_ser_enviado") >= $this->VALOR_MAXIMO) {
                 return redirect()->back()->withErrors("desculpe por enquanto só é possível enviar um valor abaixo de "
-                    . self::VALOR_MAXIMO . session("moeda") . ", caso queira pagar em prestações, clique no link abaixo e digite um valor abaixo de "
-                    . self::VALOR_MAXIMO . session("moeda") . " Obrigado" . "<br><a href='" . route("send") . "' class='btn-link'>Inserir Novo Valor</a>");
-            } else if (session("valor_a_ser_enviado") < self::VALOR_MINIMO) {
+                    . $this->VALOR_MAXIMO . session("moeda") . ", caso queira pagar em prestações, clique no link abaixo e digite um valor abaixo de "
+                    . $this->VALOR_MAXIMO . session("moeda") . " Obrigado" . "<br><a href='" . route("send") . "' class='btn-link'>Inserir Novo Valor</a>");
+            } else if (session("valor_a_ser_enviado") < $this->VALOR_MINIMO) {
                 return redirect()->back()->withErrors("desculpe por enquanto apenas é possível enviar um valor acima  de "
-                    . self::VALOR_MINIMO . session("moeda") . ", caso queira pagar em prestações, clique no link abaixo e digite um valor acima  de "
-                    . self::VALOR_MINIMO . session("moeda") . " Obrigado" . "<br><a href='" . route("send") . "' class='btn-link'>Inserir Novo Valor</a>");
+                    . $this->VALOR_MINIMO . session("moeda") . ", caso queira pagar em prestações, clique no link abaixo e digite um valor acima  de "
+                    . $this->VALOR_MINIMO . session("moeda") . " Obrigado" . "<br><a href='" . route("send") . "' class='btn-link'>Inserir Novo Valor</a>");
             }
 
             //adiciona o valor certo da moeda para a variavel cuurency
@@ -159,7 +173,7 @@ class AbonementController extends Controller
         $this->transfer->store();
 
         //apaga todos os valores na seção relacionado com o envio
-        session()->forget(["moeda","tax", "plan", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
+        session()->forget(["moeda", "tax", "plan", "name", "receptor", "address", "country", "phone_number", "email", "tax", "valor_a_ser_enviado", "total"]);
 
         //retorna a view de confirmação de envio de dinheiro
         return view("site.plan_confirmation", compact("valor", "moeda", "valor_debitado", "receptor"));

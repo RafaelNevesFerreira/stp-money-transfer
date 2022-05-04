@@ -10,4 +10,9 @@ class TransactionPlansDefRepository extends AbstractRepository implements Transa
     public function __construct(public TransactionPlansDef $model)
     {
     }
+
+    public function get($attribute)
+    {
+        return $this->model::where("id",1)->first($attribute);
+    }
 }
