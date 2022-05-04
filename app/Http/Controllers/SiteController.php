@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Contracts\FaqRepositoryInterface;
+use App\Repositories\Contracts\ContactRepositoryInterface;
 use App\Repositories\Contracts\ReviewsRepositoryInterface;
 
 class SiteController extends Controller
 {
-    public function __construct(public FaqRepositoryInterface $faqs, public ReviewsRepositoryInterface $reviews)
+    public function __construct(public FaqRepositoryInterface $faqs, public ReviewsRepositoryInterface $reviews, public ContactRepositoryInterface $contact)
     {
     }
     public function index()
@@ -51,7 +52,8 @@ class SiteController extends Controller
 
     public function contact()
     {
-        return view("site.contact");
+        $contact = $this->conatct->firstorfail(1);
+        return view("site.contact",compact("contact"));
     }
 
     public function privacity()
