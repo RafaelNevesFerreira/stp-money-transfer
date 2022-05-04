@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class TransactionPlansDef extends Model
 {
+    protected $fillable = [
+        "active",
+        "min_val",
+        "max_val",
+        "min_tansactions",
+        "percentage",
+    ];
     use HasFactory;
 }
