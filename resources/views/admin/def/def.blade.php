@@ -89,13 +89,6 @@
                                                         <input type="number" id="valor_minimo_trasacoes"
                                                             class="form-control" placeholder="Valor minimo">
                                                     </div>
-                                                    <div class="col-sm-6 ">
-                                                        <label for="valor_maximo_prestacoes" class="form-label mt-3">Valor
-                                                            maximo aceitavel</label>
-
-                                                        <input type="number" id="valor_maximo_prestacoes"
-                                                            class="form-control" placeholder="Valor maximo">
-                                                    </div>
                                                 </div>
                                             </div>
                                         </form>
