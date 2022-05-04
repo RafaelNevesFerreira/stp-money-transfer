@@ -97,7 +97,7 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        {{ $transfer->created_at }}
+                                                        {{ $transfer->created_at->format("d-m-Y H:i:s") }}
                                                     </td>
 
                                                     <td>

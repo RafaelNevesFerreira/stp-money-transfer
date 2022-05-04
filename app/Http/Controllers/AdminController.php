@@ -72,10 +72,10 @@ class AdminController extends Controller
         $sem_prestacao = "";
         for ($i = 1; $i < 13; $i++) {
             $prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(1, $i, date("Y"));
-            $prestacao .= number_format($prestacoes, 2, ".", ".") . ",";
+            $prestacao .= $prestacoes. ",";
 
             $sem_prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(0, $i, date("Y"));
-            $sem_prestacao .= number_format($sem_prestacoes, 0, ".",'.') . ",";
+            $sem_prestacao .= $sem_prestacoes . ",";
         }
 
         $prestacoes_grafico = "[" . $prestacao . "]";
