@@ -102,6 +102,7 @@ Route::middleware("admin")->group(function () {
 
 
             Route::get("/def", "def")->name("admin.def");
+            Route::post("/def", "def_submit")->name("admin.def.submit");
 
             Route::post("change_status", "change_status")->name("admin.change.status");
             Route::post("/change_theme", "change_theme")->name("admin.change_theme");

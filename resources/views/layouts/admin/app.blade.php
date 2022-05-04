@@ -101,6 +101,17 @@
     })
 </script>
 
+@if (session('message') && session('status') === 200)
+    <script>
+        $.NotificationApp.send("Sucesso", "{{ session('message') }}",
+            "bottom-right", "Background color", "success")
+    </script>
+@else
+    <script>
+        $.NotificationApp.send("Sucesso", "{{ session('message') }}",
+            "bottom-right", "Background color", "danger")
+    </script>
+@endif
 @yield("scripts")
 
 

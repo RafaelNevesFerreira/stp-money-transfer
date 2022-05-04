@@ -34,13 +34,9 @@
                             <div class="card-body">
 
                                 <h4 class="header-title">Definições sobre pagamento em Prestações</h4>
-                                <p class="text-muted font-14">
-                                    Set heights using classes like <code>.input-lg</code>, and set widths using grid column
-                                    classes like <code>.col-lg-*</code>.
-                                </p>
                                 <div class="tab-content">
                                     <div class="tab-pane show active" id="input-sizes-preview">
-                                        <form method="POST" action="{{ }}">
+                                        <form method="POST" action="{{ route("admin.def.submit") }}">
                                             @csrf
                                             <div class="mb-3">
                                                 <div class="row ">
@@ -48,7 +44,7 @@
                                                         <label for="valor_minimo_prestacoes" class="form-label mt-3">Valor
                                                             minimo aceitavel</label>
 
-                                                        <input type="number" id="valor_minimo_prestacoes"
+                                                        <input type="number" min="0" id="valor_minimo_prestacoes"
                                                             class="form-control" name="min_val" value="{{ $defs->min_val }}"
                                                             placeholder="Valor minimo">
                                                     </div>
@@ -56,7 +52,7 @@
                                                         <label for="valor_maximo_prestacoes" class="form-label mt-3">Valor
                                                             maximo aceitavel</label>
 
-                                                        <input required type="number" name="max_val" value="{{ $defs->max_val }}"
+                                                        <input required type="number" min="0" name="max_val" value="{{ $defs->max_val }}"
                                                             id="valor_maximo_prestacoes"  class="form-control"
                                                             placeholder="Valor maximo">
                                                     </div>
@@ -70,10 +66,10 @@
                                                             class="form-label mb-3 center">Opção pagar
                                                             em prestações</label>
                                                         @if ($defs->active)
-                                                            <input required name="active" type="checkbox" id="switch1" checked
+                                                            <input  name="active" type="checkbox" id="switch1" checked
                                                                 data-switch="bool" />
                                                         @else
-                                                            <input required name="active" type="checkbox" id="switch1"
+                                                            <input  name="active" type="checkbox" id="switch1"
                                                                 data-switch="bool" />
                                                         @endif
                                                         <label for="switch1" data-on-label="Sim"
@@ -83,7 +79,7 @@
                                                         <label for="precentagem_cobrada" class="form-label mt-3">Percentagem
                                                             Cobrada</label>
 
-                                                        <input required type="number" value="{{ $defs->percentage }}"
+                                                        <input required type="number" min="0" value="{{ $defs->percentage }}"
                                                             id="precentagem_cobrada" name="percentage" class="form-control"
                                                             placeholder="Percentagem Cobrada">
                                                     </div>
@@ -96,13 +92,13 @@
                                                     <div class="col-sm-6">
                                                         <label for="valor_minimo_trasacoes" class="form-label mt-3">Numero
                                                             de Transações Minimas</label>
-                                                        <input required type="number" value="{{ $defs->min_transactions }}"
+                                                        <input required type="number" min="0" value="{{ $defs->min_transactions }}"
                                                             id="valor_minimo_trasacoes" name="min_transactions" class="form-control"
                                                             placeholder="Valor minimo">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="button" class="btn btn-primary rounded-pill">Atualizar</button>
+                                            <button type="submit" class="btn btn-primary rounded-pill">Atualizar</button>
                                         </form>
                                     </div> <!-- end preview-->
                                 </div> <!-- end tab-content-->
@@ -115,10 +111,6 @@
                             <div class="card-body">
 
                                 <h4 class="header-title">Dados Sobre o contato</h4>
-                                <p class="text-muted font-14">
-                                    Easily extend form controls by adding text, buttons, or button groups on either side of
-                                    textual inputs, custom selects, and custom file inputs
-                                </p>
                                 <div class="tab-content">
                                     <div class="tab-pane show active" id="input-sizes-preview">
                                         <form>

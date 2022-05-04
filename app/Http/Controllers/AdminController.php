@@ -346,9 +346,21 @@ class AdminController extends Controller
         $request->validate([
             "min_val" => "required|numeric",
             "max_val" => "required|numeric",
-            "active" => "required|boolean",
             "percentage" => "required|numeric",
-            "min_transactions" => "required|`numeric"
+            "min_transactions" => "required|numeric"
         ]);
+        if ($request->has("active") && $request->active == "on") {
+            $request->merge([
+                'active' => 1,
+            ]);
+        } else {
+            $request->merge([
+                'active' => 0,
+            ]);
+        }
+
+        $this->def->update(1, $request->all());
+
+        return redirect()->back()->with(["status" => 200, "message" => "mudanças salvas com sucesso"]);
     }
 }
