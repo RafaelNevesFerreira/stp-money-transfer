@@ -18,7 +18,7 @@ return new class extends Migration
             $table->boolean("active");
             $table->float("min_val");
             $table->float("max_val");
-            $table->integer("min_tansactions");
+            $table->integer("min_transactions");
             $table->float("percentage");
             $table->timestamps();
         });

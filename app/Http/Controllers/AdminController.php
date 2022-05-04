@@ -336,7 +336,8 @@ class AdminController extends Controller
 
     public function def()
     {
-        $defs = $this->def->all();
+        $defs = $this->def->firstorfail(1);
+
         return view("admin.def.def", compact("defs"));
     }
 }

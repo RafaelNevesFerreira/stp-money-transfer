@@ -43,4 +43,9 @@ class AbstractRepository
     {
         return $this->model::paginate($limit);
     }
+
+    public function firstorfail($id)
+    {
+        return $this->model::where("id",$id)->firstOrFail();
+    }
 }

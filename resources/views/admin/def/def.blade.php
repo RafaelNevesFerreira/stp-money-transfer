@@ -48,13 +48,13 @@
                                                             minimo aceitavel</label>
 
                                                         <input type="number" id="valor_minimo_prestacoes"
-                                                            class="form-control" placeholder="Valor minimo">
+                                                            class="form-control" value="{{ $defs->min_val }}" placeholder="Valor minimo">
                                                     </div>
                                                     <div class="col-sm-6 ">
                                                         <label for="valor_maximo_prestacoes" class="form-label mt-3">Valor
                                                             maximo aceitavel</label>
 
-                                                        <input type="number" id="valor_maximo_prestacoes"
+                                                        <input type="number" value="{{ $defs->max_val }}" id="valor_maximo_prestacoes"
                                                             class="form-control" placeholder="Valor maximo">
                                                     </div>
                                                 </div>
@@ -73,7 +73,7 @@
                                                         <label for="precentagem_cobrada" class="form-label mt-3">Percentagem
                                                             Cobrada</label>
 
-                                                        <input type="number" id="precentagem_cobrada" class="form-control"
+                                                        <input type="number" value="{{ $defs->percentage }}" id="precentagem_cobrada" class="form-control"
                                                             placeholder="Percentagem Cobrada">
                                                     </div>
 
@@ -85,7 +85,7 @@
                                                     <div class="col-sm-6">
                                                         <label for="valor_minimo_trasacoes" class="form-label mt-3">Numero
                                                             de Transações Minimas</label>
-                                                        <input type="number" id="valor_minimo_trasacoes"
+                                                        <input type="number"value="{{ $defs->min_transactions }}" id="valor_minimo_trasacoes"
                                                             class="form-control" placeholder="Valor minimo">
                                                     </div>
                                                 </div>

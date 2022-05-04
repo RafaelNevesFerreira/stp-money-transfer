@@ -11,7 +11,7 @@ class TransactionPlansDef extends Model
         "active",
         "min_val",
         "max_val",
-        "min_tansactions",
+        "min_transactions",
         "percentage",
     ];
     use HasFactory;
