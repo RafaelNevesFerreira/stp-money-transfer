@@ -23,6 +23,7 @@ class AdminController extends Controller
 
     public function dashboard()
     {
+        return view("admin.def.def");
         $transfers_esta_semana = $this->transfers->transfers_esta_semana();
         $aumento_em_relacao_a_semana_passada = (float)$this->transfers->aumento_em_relacao_a_semana_passada();
         $novos_usuarios_esse_mes = (int)$this->users->novos_usuarios_esse_mes();

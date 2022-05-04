@@ -61,6 +61,13 @@
                     </ul>
                 </div>
             </li>
+
+            <li class="side-nav-item menuitem">
+                <a href="{{ route('admin.users') }}" class="side-nav-link ">
+                    <i class="uil-cog"></i>
+                    <span> Definições </span>
+                </a>
+            </li>
         </ul>
 
         <!-- End Sidebar -->
