@@ -62,10 +62,9 @@
 
                                             <div class="mb-3">
                                                 <div class="row ">
-                                                    <div class="col-sm-6 mt-3">
-                                                        <label for="precentagem_cobrada" class="form-label ">Percentagem
-                                                            Cobrada</label>
-                                                        <br>
+                                                    <div class="col-sm-6  mt-3">
+                                                        <label for="precentagem_cobrada" class="form-label mb-3 center">Opção pagar
+                                                            em prestações</label>
                                                         <input type="checkbox" id="switch1" checked data-switch="bool" />
                                                         <label for="switch1" data-on-label="Sim"
                                                             data-off-label="Não"></label>
@@ -91,6 +90,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <button type="button" class="btn btn-primary rounded-pill">Atualizar</button>
                                         </form>
                                     </div> <!-- end preview-->
                                 </div> <!-- end tab-content-->
@@ -102,61 +102,63 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="header-title">Input Group</h4>
+                                <h4 class="header-title">Dados Sobre o contato</h4>
                                 <p class="text-muted font-14">
                                     Easily extend form controls by adding text, buttons, or button groups on either side of
                                     textual inputs, custom selects, and custom file inputs
                                 </p>
                                 <div class="tab-content">
-                                    <div class="tab-pane show active" id="input-group-preview">
+                                    <div class="tab-pane show active" id="input-sizes-preview">
                                         <form>
                                             <div class="mb-3">
-                                                <label class="form-label">Static</label>
-                                                <div class="input-group flex-nowrap">
-                                                    <span class="input-group-text" id="basic-addon1">@</span>
-                                                    <input type="text" class="form-control" placeholder="Username"
-                                                        aria-label="Username" aria-describedby="basic-addon1">
-                                                </div>
-                                            </div>
+                                                <div class="row ">
+                                                    <div class="col-sm-6">
+                                                        <label for="email_1" class="form-label mt-3">Email 1</label>
 
-                                            <div class="mb-3">
-                                                <label class="form-label">Dropdowns</label>
-                                                <div class="input-group">
-                                                    <button class="btn btn-primary dropdown-toggle" type="button"
-                                                        data-bs-toggle="dropdown" aria-haspopup="true"
-                                                        aria-expanded="false">Dropdown</button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#">Action</a>
-                                                        <a class="dropdown-item" href="#">Another action</a>
-                                                        <a class="dropdown-item" href="#">Something else here</a>
+                                                        <input type="email" id="email_1" class="form-control"
+                                                            placeholder="Email 1">
                                                     </div>
-                                                    <input type="text" class="form-control" placeholder="" aria-label=""
-                                                        aria-describedby="basic-addon1">
+                                                    <div class="col-sm-6 ">
+                                                        <label for="email_2" class="form-label mt-3">Email 2</label>
+
+                                                        <input type="email" id="email_2" class="form-control"
+                                                            placeholder="Email 2">
+                                                    </div>
                                                 </div>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label class="form-label">Buttons</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Recipient's username"
-                                                        aria-label="Recipient's username">
-                                                    <button class="btn btn-dark" type="button">Button</button>
+                                                <div class="row ">
+                                                    <div class="col-sm-6 ">
+                                                        <label for="telefone_1" class="form-label mt-3">Telefone 1</label>
+
+                                                        <input type="number" id="telefone_1" class="form-control"
+                                                            placeholder="Telefone 1">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label for="telefone2" class="form-label mt-3">Telefone 2</label>
+
+                                                        <input type="number" id="telefone2" class="form-control"
+                                                            placeholder="Telefone 2">
+                                                    </div>
+
                                                 </div>
                                             </div>
 
-                                            <div class="row g-2">
-                                                <div class="col-sm-6">
-                                                    <label class="form-label">File input</label>
-                                                    <input class="form-control" type="file" id="inputGroupFile04">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="formFileMultiple01" class="form-label">Multiple files
-                                                        input</label>
-                                                    <input class="form-control" type="file" id="formFileMultiple01"
-                                                        multiple>
+                                            <div class="mb-3">
+                                                <div class="row ">
+                                                    <div class="col-sm-12">
+                                                        <label class="form-label">Endereço</label>
+                                                        <p class="text-muted font-13">
+                                                            A Baixo fica o endereço onde os receptores irão levantar o
+                                                            dinheiro
+                                                        </p>
+                                                        <textarea data-toggle="maxlength" class="form-control" maxlength="225" rows="3"
+                                                            placeholder="Esta area de texto é limitada a 225 caracteres."></textarea>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <button type="button" class="btn btn-primary rounded-pill">Atualizar</button>
                                         </form>
                                     </div> <!-- end preview-->
                                 </div> <!-- end tab-content-->
