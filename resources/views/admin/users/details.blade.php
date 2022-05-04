@@ -511,6 +511,7 @@
             }
         })
 
+
         var ano_passado = {{ $ano_passado }}
         var este_ano = {{ $este_ano }}
     </script>

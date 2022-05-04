@@ -195,8 +195,8 @@ class AdminController extends Controller
         $este_ano = "";
         $ano_passado = "";
         for ($i = 1; $i < 13; $i++) {
-            $este_ano .= number_format($this->transfers->user_transaction_by_month($user->email, $i, date("Y")), 0, ".", ".") . ",";
-            $ano_passado .= number_format($this->transfers->user_transaction_by_month($user->email, $i, date('Y', strtotime('-1 year'))), 0, ".", ".") . ",";
+            $este_ano .= $this->transfers->user_transaction_by_month($user->email, $i, date("Y")) . ",";
+            $ano_passado .= number_format($this->transfers->user_transaction_by_month($user->email, $i, date('Y', strtotime('-1 year'))), 1, ".", ".") . ",";
         }
 
         $este_ano = "[" . $este_ano . "]";
@@ -205,8 +205,6 @@ class AdminController extends Controller
 
         $prestacoes_pagas = $this->transfers->prestacoes_pagas($user->email, date("m", strtotime("-1 months")), date("Y", strtotime("-2 months")));
         $prestacoes_a_pagas = $this->transfers->prestacoes_a_pagar($user->email, date("m", strtotime("+1 months")), date("Y", strtotime("-2 months")));
-
-        // $total_prestacoes
 
 
         return view("admin.users.details", compact("prestacoes_a_pagas", "prestacoes_pagas", "transfers", "ano_passado", "este_ano", "user_total_transactions_prestacoes", "user_total_transactions_sem_prestacoes", "user", "user_total_transactions"));

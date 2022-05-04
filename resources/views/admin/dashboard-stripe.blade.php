@@ -15,7 +15,7 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">{{env("APP_NAME")}}</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">{{ env('APP_NAME') }}</a></li>
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
                                     <li class="breadcrumb-item active">Dashboard 2</li>
                                 </ol>
@@ -52,7 +52,8 @@
                                             <i class="mdi mdi-cart-plus widget-icon"></i>
                                         </div>
                                         <h5 class="text-muted fw-normal mt-0" title="Number of Orders"> Sem Prestações</h5>
-                                        <h3 class="mt-3 mb-3">{{ number_format($sem_prestacoes, 2, ',', '.') }} €</h3>
+                                        <h3 class="mt-3 mb-3">{{ number_format($sem_prestacoes, 2, ',', '.') }} €
+                                        </h3>
 
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -67,7 +68,8 @@
                                             <i class="mdi mdi-currency-usd widget-icon"></i>
                                         </div>
                                         <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Total</h5>
-                                        <h3 class="mt-3 mb-3">{{ number_format($prestacoes + $sem_prestacoes, 2, ',', '.') }} €</h3>
+                                        <h3 class="mt-3 mb-3">
+                                            {{ number_format($prestacoes + $sem_prestacoes, 2, ',', '.') }} €</h3>
 
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -163,9 +165,8 @@
                                     <div class="progress-w-percent">
                                         <span class="progress-value fw-bold">{{ $pais['value'] }} €</span>
                                         <div class="progress progress-sm">
-                                            <div class="progress-bar" role="progressbar"
-
-                                                aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                 @endforeach
@@ -199,7 +200,8 @@
                                                         <span class="text-muted font-13">Valor</span>
                                                     </td>
                                                     <td>
-                                                        <h5 class="font-14 my-1 fw-normal">{{ $transactions->tax }} €</h5>
+                                                        <h5 class="font-14 my-1 fw-normal">{{ $transactions->tax }} €
+                                                        </h5>
                                                         <span class="text-muted font-13">Tax</span>
                                                     </td>
                                                     <td>
@@ -243,6 +245,8 @@
         var prestacoes = {{ $prestacoes_grafico }}
         var saldo_esta_semana = {{ $saldo }}
         var semana_passada = {{ $saldo_semana_passada_grafico }}
+
+
     </script>
     <!-- third party js -->
     <script src="{{ asset('assets/dashboard/js/vendor/jquery-jvectormap-1.2.2.min.js') }}"></script>

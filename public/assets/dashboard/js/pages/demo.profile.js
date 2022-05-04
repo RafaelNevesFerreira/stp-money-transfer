@@ -5,13 +5,23 @@
     t.prototype.respChart = function(e, r, a, o) {
         var n = Chart.controllers.bar.prototype.draw;
         Chart.controllers.bar = Chart.controllers.bar.extend({
-            draw: function() {
-                n.apply(this, arguments);
-                var t = this.chart.chart.ctx,
-                    e = t.fill;
-                t.fill = function() { t.save(), t.shadowColor = "rgba(0,0,0,0.01)", t.shadowBlur = 20, t.shadowOffsetX = 4, t.shadowOffsetY = 5, e.apply(this, arguments), t.restore() }
-            }
-        }), Chart.defaults.global.defaultFontColor = "#8391a2", Chart.defaults.scale.gridLines.color = "#8391a2";
+                draw: function() {
+                    n.apply(this, arguments);
+                    var t = this.chart.chart.ctx,
+                        e = t.fill;
+                    t.fill = function() {
+                        t.save(),
+                            t.shadowColor = "rgba(0,0,0,0.01)",
+                            t.shadowBlur = 20,
+                            t.shadowOffsetX = 4,
+                            t.shadowOffsetY = 5,
+                            e.apply(this, arguments),
+                            t.restore()
+                    }
+                }
+            }),
+            Chart.defaults.global.defaultFontColor = "#8391a2",
+            Chart.defaults.scale.gridLines.color = "#8391a2";
         var s = e.get(0).getContext("2d"),
             i = l(e).parent();
         return function() {
@@ -60,7 +70,26 @@
                             data: ano_passado
                         }
                     ]
-                }, [].push(this.respChart(l("#high-performing-product"), "Bar", e, { maintainAspectRatio: !1, datasets: { bar: { barPercentage: .7, categoryPercentage: .5 } }, legend: { display: !1 }, scales: { yAxes: [{ gridLines: { display: !1, color: "rgba(0,0,0,0.05)" }, stacked: !1, ticks: { stepSize: 20 } }], xAxes: [{ stacked: !1, gridLines: { color: "rgba(0,0,0,0.01)" } }] } })))
+                }, [].push(this.respChart(l("#high-performing-product"), "Bar", e, {
+                    maintainAspectRatio: !1,
+                    datasets: { bar: { barPercentage: .7, categoryPercentage: .5 } },
+                    legend: { display: !1 },
+                    scales: {
+                        yAxes: [{
+                            gridLines: {
+                                display: !1,
+                                color: "rgba(0,0,0,0.05)"
+                            },
+                            stacked: !1,
+                            ticks: { stepSize: 20 }
+                        }],
+                        xAxes: [{
+                            stacked: !1,
+                            gridLines: { color: "rgba(0,0,0,0.01)" }
+                        }]
+                    }
+
+                })))
     }, t.prototype.init = function() {
         var e = this;
         Chart.defaults.global.defaultFontFamily = '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif', e.charts = this.initCharts(), l(window).on("resize", function(t) { l.each(e.charts, function(t, e) { try { e.destroy() } catch (t) {} }), e.charts = e.initCharts() })
