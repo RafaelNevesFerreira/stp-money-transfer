@@ -106,7 +106,7 @@
         $.NotificationApp.send("Sucesso", "{{ session('message') }}",
             "bottom-right", "Background color", "success")
     </script>
-@else
+@elseif (session('message') || session('status') === 500)
     <script>
         $.NotificationApp.send("Sucesso", "{{ session('message') }}",
             "bottom-right", "Background color", "danger")
