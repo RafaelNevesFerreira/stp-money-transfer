@@ -187,8 +187,23 @@
 
                     switch (data["plan"]) {
                         case 1:
-                            var plan = "A Pagar em prestações " + ((data["value_sended"] + data[
-                                    "tax"]) / 100 * 20 + (data["value_sended"] + data["tax"])) / 2 +
+                            number_format = function(number, decimals, dec_point, thousands_sep) {
+                                number = number.toFixed(decimals);
+
+                                var nstr = number.toString();
+                                nstr += '';
+                                x = nstr.split('.');
+                                x1 = x[0];
+                                x2 = x.length > 1 ? dec_point + x[1] : '';
+                                var rgx = /(\d+)(\d{3})/;
+
+                                while (rgx.test(x1))
+                                    x1 = x1.replace(rgx, '$1' + thousands_sep + '$2');
+
+                                return x1 + x2;
+                            }
+                            var plan = "A Pagar em prestações " + number_format(((data["value_sended"] + data[
+                                    "tax"]) / 100 * 20 + (data["value_sended"] + data["tax"])) / 2 ,2,",",".") +
                                 currency + " por mês"
                             break;
                         case 0:

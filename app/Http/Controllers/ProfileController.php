@@ -45,7 +45,7 @@ class ProfileController extends Controller
 
     public function change_photo(Request $request)
     {
-        $path = "/profile/images/";
+        $path = "/images/profile/";
         $file = $request->file("file");
         $new_name = "UIMG" . date('Ymd') . uniqid() . ".jpg";
 

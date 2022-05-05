@@ -15,7 +15,8 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">{{ env('APP_NAME') }}</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">{{ env('APP_NAME') }}</a>
+                                    </li>
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
                                     <li class="breadcrumb-item active">Dashboard 2</li>
                                 </ol>
@@ -241,11 +242,41 @@
 
 @section('scripts')
     <script>
-        var sem_prestacoes = {{ $sem_prestacoes_grafico }}
-        var prestacoes = {{ $prestacoes_grafico }}
-        var saldo_esta_semana = {{ $saldo }}
+        var sem_prestacoes_sem_formatar = {{ $sem_prestacoes_grafico }}
+        var prestacoes_sem_formatar = {{ $prestacoes_grafico }}
+        var saldo_esta_semana_sem_formatar = {{ $saldo }}
         var semana_passada = {{ $saldo_semana_passada_grafico }}
 
+        number_format = function(number, decimals, dec_point, thousands_sep) {
+            number = number.toFixed(decimals);
+
+            var nstr = number.toString();
+            nstr += '';
+            x = nstr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? dec_point + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+
+            while (rgx.test(x1))
+                x1 = x1.replace(rgx, '$1' + thousands_sep + '$2');
+
+            return x1 + x2;
+        }
+        var saldo_esta_semana = [];
+        $.each(saldo_esta_semana_sem_formatar, function(index, value) {
+            saldo_esta_semana.push(number_format(value, 2, ".",' ').replace(" ", ""));
+        });
+
+
+        var prestacoes = [];
+        $.each(prestacoes_sem_formatar, function(index, value) {
+            prestacoes.push(number_format(value, 2, ".",' ').replace(" ", ""));
+        });
+
+        var sem_prestacoes = [];
+        $.each(sem_prestacoes_sem_formatar, function(index, value) {
+            sem_prestacoes.push(number_format(value, 2, ".",' ').replace(" ", ""));
+        });
 
     </script>
     <!-- third party js -->

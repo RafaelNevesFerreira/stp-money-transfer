@@ -10,7 +10,11 @@ class StatusFilter
     {
         $query->when(request()->filled('filter'), function ($query) {
             $filter = request('filter');
-            $query->where('status', $filter);
+            if ($filter === "plan") {
+                $query->where('plan', 1);
+            } else {
+                $query->where("status", $filter);
+            }
         });
 
         return $next($query);

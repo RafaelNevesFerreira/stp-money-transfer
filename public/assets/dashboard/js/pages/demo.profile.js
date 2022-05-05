@@ -92,7 +92,12 @@
                 })))
     }, t.prototype.init = function() {
         var e = this;
-        Chart.defaults.global.defaultFontFamily = '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif', e.charts = this.initCharts(), l(window).on("resize", function(t) { l.each(e.charts, function(t, e) { try { e.destroy() } catch (t) {} }), e.charts = e.initCharts() })
+        Chart.defaults.global.defaultFontFamily = '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
+            e.charts = this.initCharts(), l(window).on("resize",
+                function(t) {
+                    l.each(e.charts,
+                        function(t, e) { try { e.destroy() } catch (t) {} }), e.charts = e.initCharts()
+                })
     }, l.Profile = new t, l.Profile.Constructor = t
 }(window.jQuery),
 function() {

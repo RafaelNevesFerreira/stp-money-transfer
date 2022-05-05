@@ -51,7 +51,7 @@
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" id="renbolsado" name="filter"
-                                                value="renbolsed">
+                                                value="reimbursed">
                                             <label class="form-check-label" for="renbolsado">Reembolsado</label>
                                         </div>
                                         <div class="form-check form-check-inline">

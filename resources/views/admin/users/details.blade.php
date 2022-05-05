@@ -512,8 +512,33 @@
         })
 
 
-        var ano_passado = {{ $ano_passado }}
-        var este_ano = {{ $este_ano }}
+        var ano_passado_sem_formatar = {{ $ano_passado }}
+        var este_ano_sem_formatar = {{ $este_ano }}
+
+        number_format = function(number, decimals, dec_point, thousands_sep) {
+            number = number.toFixed(decimals);
+
+            var nstr = number.toString();
+            nstr += '';
+            x = nstr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? dec_point + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+
+            while (rgx.test(x1))
+                x1 = x1.replace(rgx, '$1' + thousands_sep + '$2');
+
+            return x1 + x2;
+        }
+        var ano_passado = [];
+        $.each(ano_passado_sem_formatar, function(index, value) {
+            ano_passado.push(number_format(value, 2, ".", ' ').replace(" ", ""));
+        });
+
+        var este_ano = [];
+        $.each(este_ano_sem_formatar, function(index, value) {
+            este_ano.push(number_format(value, 2, ".", ' ').replace(" ", ""));
+        });
     </script>
     <!-- third party js -->
     <script src="{{ asset('assets/dashboard/js/vendor/Chart.bundle.min.js') }}"></script>
