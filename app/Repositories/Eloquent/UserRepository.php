@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Http\Requests\ProfilleChangeData;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,16 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         $this->model::where("id", Auth::user()->id)->update([
             "avatar" => $name
+        ]);
+    }
+
+    public function change_data(ProfilleChangeData $request)
+    {
+        $this->model::where("id", Auth::user()->id)->update([
+            "name" => $request->name,
+            "phone_number" => $request->phone_number,
+            "country" => $request->country,
+            "address" => $request->address,
         ]);
     }
 

@@ -71,6 +71,7 @@ class ProfileController extends Controller
 
     public function profilleChangeDta(ProfilleChangeData $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        $this->user->change_data($request);
     }
 }
