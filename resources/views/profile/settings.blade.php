@@ -96,8 +96,7 @@
                     <!-- Personal Details End -->
 
 
-                    <!-- Email Addresses
-                                          ============================================= -->
+                    <!-- Email Addresses               ============================================= -->
                     <div class="bg-white shadow-sm rounded p-4 mb-4">
                         <h3 class="text-5 fw-400 d-flex align-items-center mb-4">Email<a href="#edit-email"
                                 data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link"><span
@@ -111,8 +110,7 @@
                         </div>
 
                     </div>
-                    <!-- Edit Details Modal
-                                          ================================== -->
+                    <!-- Edit Details Modal     ================================== -->
                     <div id="edit-email" class="modal fade" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
