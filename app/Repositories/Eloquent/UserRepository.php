@@ -25,10 +25,9 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     public function change_data(ProfilleChangeData $request)
     {
         $this->model::where("id", Auth::user()->id)->update([
-            "name" => $request->name,
-            "phone_number" => $request->phone_number,
-            "country" => $request->country,
-            "address" => $request->address,
+            "name" => $request->nome,
+            "country" => $request->pais,
+            "address" => $request->morada,
         ]);
     }
 

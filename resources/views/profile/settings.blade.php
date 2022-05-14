@@ -1,23 +1,21 @@
 @extends('layouts.profile.app')
 @section('content')
     <!-- Content
-                                          ============================================= -->
+                                              ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
             <div class="row">
 
                 <!-- Left Panel
-                                                ============================================= -->
+                                                    ============================================= -->
                 @include('layouts.profile.left-painel')
 
                 <!-- Left Panel End -->
 
-                <!-- Middle Panel
-                                                ============================================= -->
+                <!-- Middle Panel ============================================= -->
                 <div class="col-lg-9">
 
-                    <!-- Personal Details
-                                                  ============================================= -->
+                    <!-- Personal Details   ============================================= -->
                     <div class="bg-white shadow-sm rounded p-4 mb-4">
                         <h3 class="text-5 fw-400 d-flex align-items-center mb-4">Detalhes Pessoais<a
                                 href="#edit-personal-details" data-bs-toggle="modal"
@@ -30,7 +28,8 @@
                         </div>
                         <div class="row gx-3 align-items-center">
                             <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Data de Registro:</p>
-                            <p class="col-sm-9 text-3">{{ Auth::user()->created_at->format("d M Y") }}</p>
+                            <p class="col-sm-9 text-3">{{ Auth::user()->created_at->format('d/m/Y') }} às
+                                {{ Auth::user()->created_at->format('H\h : i\m') }}</p>
                         </div>
                         <div class="row gx-3 align-items-center">
                             <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Telemovel:</p>
@@ -46,12 +45,19 @@
                                 <p>Sucesso</p>
                                 <p>{{ session('message') }}</p>
                             </div>
-                        @elseif(session("status") === 500)
+                        @elseif(session('status') === 500)
                             <div class="alert alert-danger">
-                                <p>Erro</p>
-                                <p>{{session("message")}}</p>
+                                <p>Atenção</p>
+                                <p>{{ session('message') }}</p>
                             </div>
                         @endif
+
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger">
+                                <p>Atenção</p>
+                                <p>{{ $error }}</p>
+                            </div>
+                        @endforeach
                     </div>
                     <!-- Edit Details Modal                  ================================== -->
                     <div id="edit-personal-details" class="modal fade " role="dialog" aria-hidden="true">
@@ -66,16 +72,11 @@
                                     <form id="personaldetails" method="post" action="{{ route('profille.change.data') }}">
                                         @csrf
                                         <div class="row g-3">
-                                            <div class="col-12 col-sm-6">
+                                            <div class="col-12 col-sm-12">
                                                 <label for="name" class="form-label">Nome</label>
-                                                <input type="text" value="{{ Auth::user()->name }}" class="form-control"
-                                                    data-bv-field="name" name="name" id="name" required placeholder="Nome">
-                                            </div>
-                                            <div class="col-12 col-sm-6">
-                                                <label for="phone_number" class="form-label">Telemovel</label>
-                                                <input type="number" value="{{ Auth::user()->phone_number }}"
-                                                    class="form-control" name="phone_number" data-bv-field="phone_number"
-                                                    id="phone_number" required placeholder="Telemovel">
+                                                <input type="text" value="{{ Auth::user()->name }}"
+                                                    class="form-control" data-bv-field="name" name="nome" id="name"
+                                                    required placeholder="Nome">
                                             </div>
                                         </div>
 
@@ -85,13 +86,13 @@
                                             <div class="col-6">
                                                 <label for="address" class="form-label">Morada</label>
                                                 <input type="text" value="{{ Auth::user()->address }}"
-                                                    class="form-control" name="address" data-bv-field="address"
+                                                    class="form-control" name="morada" data-bv-field="address"
                                                     id="address" required placeholder="Morada">
                                             </div>
                                             <div class="col-6">
                                                 <label for="country" class="form-label">Pais</label>
                                                 <input type="text" value="{{ Auth::user()->country }}"
-                                                    class="form-control" name="country" data-bv-field="country"
+                                                    class="form-control" name="pais" data-bv-field="country"
                                                     id="country" required placeholder="Pais">
                                             </div>
                                             <div class="col-12 mt-4 d-grid"><button class="btn btn-primary"
@@ -130,13 +131,14 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body p-4">
-                                    <form id="emailAddresses" method="post">
+                                    <form id="emailAddresses" method="post" action="{{ route('profille.change.data') }}">
+                                        @csrf
                                         <div class="mb-3">
                                             <label for="email" class="form-label d-inline-flex align-items-center">
                                                 Email
                                             </label>
-                                            <input type="text" value="smithrhodes1982@gmail.com" class="form-control"
-                                                data-bv-field="email" id="email" required placeholder="Email">
+                                            <input type="text" value="{{ Auth::user()->email }}" class="form-control"
+                                                name="email" id="email" required placeholder="Email">
                                         </div>
                                         <div class="alert alert-warning">
                                             <p>Atenção</p>

@@ -29,10 +29,10 @@ class ProfilleChangeData extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required|min:2|max:150",
-            "phone_number" => "required|alpha_num",
-            "country" => "required|min:3|max:200",
-            "address" => "required|max:200"
+            "email" => "email",
+            "nome" => "min:2|max:150|required_if:email,null",
+            "morada" => "min:3|max:200|required_if:email,null",
+            "pais" => "max:200|required_if:email,null"
         ];
     }
 }

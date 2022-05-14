@@ -72,7 +72,11 @@ class ProfileController extends Controller
     public function profilleChangeDta(ProfilleChangeData $request)
     {
         try {
-            $this->user->change_data($request);
+            if ($request->has("email")) {
+                $this->user->change_email($request->email, Auth::user()->email);
+            } else {
+                $this->user->change_data($request);
+            }
             return redirect()->back()->with(["message" => "Atualizações feitas com sucesso", "status" => 200]);
         } catch (\Throwable $th) {
             return redirect()->back()->with(["message" => "Erro ao tentar salvar as mudançã, tente mais tarde", "status" => 500]);
