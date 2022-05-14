@@ -71,7 +71,11 @@ class ProfileController extends Controller
 
     public function profilleChangeDta(ProfilleChangeData $request)
     {
-        // dd($request->all());
-        $this->user->change_data($request);
+        try {
+            $this->user->change_data($request);
+            return redirect()->back()->with(["message" => "Atualizações feitas com sucesso", "status" => 200]);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(["message" => "Erro ao tentar salvar as mudançã, tente mais tarde", "status" => 500]);
+        }
     }
 }

@@ -1,23 +1,23 @@
-@extends("layouts.profile.app")
+@extends('layouts.profile.app')
 @section('content')
     <!-- Content
-                                  ============================================= -->
+                                          ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
             <div class="row">
 
                 <!-- Left Panel
-                                        ============================================= -->
+                                                ============================================= -->
                 @include('layouts.profile.left-painel')
 
                 <!-- Left Panel End -->
 
                 <!-- Middle Panel
-                                        ============================================= -->
+                                                ============================================= -->
                 <div class="col-lg-9">
 
                     <!-- Personal Details
-                                          ============================================= -->
+                                                  ============================================= -->
                     <div class="bg-white shadow-sm rounded p-4 mb-4">
                         <h3 class="text-5 fw-400 d-flex align-items-center mb-4">Detalhes Pessoais<a
                                 href="#edit-personal-details" data-bs-toggle="modal"
@@ -41,9 +41,19 @@
                             <p class="col-sm-9 text-3">{{ Auth::user()->address }},<br>
                                 {{ Auth::user()->country }}<br>
                         </div>
+                        @if (session('message') && session('status') === 200)
+                            <div class="alert alert-success">
+                                <p>Sucesso</p>
+                                <p>{{ session('message') }}</p>
+                            </div>
+                        @elseif(session("status") === 500)
+                            <div class="alert alert-danger">
+                                <p>Erro</p>
+                                <p>{{session("message")}}</p>
+                            </div>
+                        @endif
                     </div>
-                    <!-- Edit Details Modal
-                                          ================================== -->
+                    <!-- Edit Details Modal                  ================================== -->
                     <div id="edit-personal-details" class="modal fade " role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
@@ -53,7 +63,7 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body p-4">
-                                    <form id="personaldetails" method="post" action="{{route("profille.change.data")}}">
+                                    <form id="personaldetails" method="post" action="{{ route('profille.change.data') }}">
                                         @csrf
                                         <div class="row g-3">
                                             <div class="col-12 col-sm-6">
@@ -64,8 +74,8 @@
                                             <div class="col-12 col-sm-6">
                                                 <label for="phone_number" class="form-label">Telemovel</label>
                                                 <input type="number" value="{{ Auth::user()->phone_number }}"
-                                                    class="form-control" name="phone_number" data-bv-field="phone_number" id="phone_number"
-                                                    required placeholder="Telemovel">
+                                                    class="form-control" name="phone_number" data-bv-field="phone_number"
+                                                    id="phone_number" required placeholder="Telemovel">
                                             </div>
                                         </div>
 
@@ -75,14 +85,14 @@
                                             <div class="col-6">
                                                 <label for="address" class="form-label">Morada</label>
                                                 <input type="text" value="{{ Auth::user()->address }}"
-                                                    class="form-control" name="address" data-bv-field="address" id="address" required
-                                                    placeholder="Morada">
+                                                    class="form-control" name="address" data-bv-field="address"
+                                                    id="address" required placeholder="Morada">
                                             </div>
                                             <div class="col-6">
                                                 <label for="country" class="form-label">Pais</label>
                                                 <input type="text" value="{{ Auth::user()->country }}"
-                                                    class="form-control" name="country" data-bv-field="country" id="country" required
-                                                    placeholder="Pais">
+                                                    class="form-control" name="country" data-bv-field="country"
+                                                    id="country" required placeholder="Pais">
                                             </div>
                                             <div class="col-12 mt-4 d-grid"><button class="btn btn-primary"
                                                     type="submit">Salvar Mudanças</button></div>
@@ -130,8 +140,10 @@
                                         </div>
                                         <div class="alert alert-warning">
                                             <p>Atenção</p>
-                                            <p>Uma vez que trocar esse email, ele ja não sera valido na hora de entrar na sua conta.
-                                                sera enviado um email de confirmação para o novo email, e se não confirmar , tambem não tera acesso aos seu dados</p>
+                                            <p>Uma vez que trocar esse email, ele ja não sera valido na hora de entrar na
+                                                sua conta.
+                                                sera enviado um email de confirmação para o novo email, e se não confirmar ,
+                                                tambem não tera acesso aos seu dados</p>
                                         </div>
                                         <div class="d-grid w-100"><button class="btn btn-primary" type="submit">Salvar
                                                 Mudanças</button></div>
