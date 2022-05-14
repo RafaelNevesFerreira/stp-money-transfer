@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DetailsRequest;
 use App\Http\Requests\IdentificationRequest;
+use App\Models\TransactionPlansDef;
 use Illuminate\Http\Request;
 
 class SendMoneyController extends Controller
 {
+    public function __construct(public TransactionPlansDef $defs)
+    {
+    }
     public function details(DetailsRequest $request)
     {
         $valor = (float) str_replace(".", "", $request->valor_enviado);
@@ -46,6 +50,7 @@ class SendMoneyController extends Controller
     {
         $data[] = $request->all();
 
+        $this->defs::first()->get("active");
         session()->put([
             "name" => $request->name,
             "phone_number" => $request->phone_number,
