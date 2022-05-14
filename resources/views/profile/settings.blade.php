@@ -30,7 +30,7 @@
                         </div>
                         <div class="row gx-3 align-items-center">
                             <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Data de Registro:</p>
-                            <p class="col-sm-9 text-3">{{ Auth::user()->created_at }}</p>
+                            <p class="col-sm-9 text-3">{{ Auth::user()->created_at->format("d M Y") }}</p>
                         </div>
                         <div class="row gx-3 align-items-center">
                             <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Telemovel:</p>
