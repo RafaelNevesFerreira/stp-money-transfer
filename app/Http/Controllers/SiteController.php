@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TransactionPlansDef;
 use App\Repositories\Contracts\FaqRepositoryInterface;
 use App\Repositories\Contracts\ContactRepositoryInterface;
 use App\Repositories\Contracts\ReviewsRepositoryInterface;
 
 class SiteController extends Controller
 {
-    public function __construct(public FaqRepositoryInterface $faqs, public ReviewsRepositoryInterface $reviews, public ContactRepositoryInterface $contact)
-    {
+    public function __construct(
+        public FaqRepositoryInterface $faqs,
+        public ReviewsRepositoryInterface $reviews,
+        public ContactRepositoryInterface $contact,
+        public TransactionPlansDef $defs
+    ) {
     }
     public function index()
     {
@@ -23,7 +28,7 @@ class SiteController extends Controller
     public function about()
     {
         $reviews = $this->reviews->limit(10);
-        return view("site.about",compact("reviews"));
+        return view("site.about", compact("reviews"));
     }
 
     public function send()
@@ -38,7 +43,12 @@ class SiteController extends Controller
 
     public function payment()
     {
-        return view("site.payment");
+        if ($this->defs::firstOrFail("active")->active === 0) {
+            $active = 0;
+        } else {
+            $active = 1;
+        }
+        return view("site.payment",compact("active"));
     }
 
     public function help()
@@ -53,7 +63,7 @@ class SiteController extends Controller
     public function contact()
     {
         $contact = $this->contact->firstorfail(1);
-        return view("site.contact",compact("contact"));
+        return view("site.contact", compact("contact"));
     }
 
     public function privacity()

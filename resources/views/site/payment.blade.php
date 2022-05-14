@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends('layouts.app')
 @section('content')
     <!-- Steps Progress bar -->
     <div class="row mt-4 mb-5">
@@ -44,38 +44,41 @@
 
                             <div class='col-md-6 col-md-4 form-group '>
                                 <label for="card_no" class="control-label mt-3">Card</label>
-                                <input type="number" id="card_no" class="form-control" name="card_no">
+                                <input type="number" id="card_no" required class="form-control" name="card_no">
                             </div>
                             <div class='col-md-6 col-md-4 form-group '>
                                 <label class='control-label mt-3'>CVC</label>
-                                <input type="number" id="cvc" value="{{ old('cvc') }}" class="form-control" name="cvc">
+                                <input type="number" id="cvc" required value="{{ old('cvc') }}" class="form-control" name="cvc">
                             </div>
                             <div class='col-md-6 col-md-4 form-group '>
                                 <label class='control-label mt-3'>Expiration Month</label>
-                                <input type="number" id="exp_month" value="{{ old('exp_month') }}" class="form-control"
+                                <input type="number" id="exp_month" required value="{{ old('exp_month') }}" class="form-control"
                                     name="exp_month">
                             </div>
                             <div class='col-md-6 col-md-4 form-group ' style="margin-bottom: 20px;">
                                 <label class='control-label mt-3'>Expiration Year</label>
-                                <input type="number" id="exp_year" class="form-control" value="{{ old('exp_year') }}"
+                                <input type="number" id="exp_year" required class="form-control" value="{{ old('exp_year') }}"
                                     name="exp_year">
 
                             </div>
-                            <div class='col-md-12 col-md-4 form-group ' style="margin-bottom: 20px;">
-                                <label class='control-label mt-3'>Deseja Pagar Em Prestações?</label>
-
-                                <label class='control-label mt-3'>Sim</label>
-                                <input type="radio" name="pagar_em_prestacoes" class="pagar_em_prestacoes" value="sim">
-                                <label class='control-label mt-3'>Não</label>
-                                <input type="radio" name="pagar_em_prestacoes" class="pagar_em_prestacoes" value="nao">
-
-                            </div>
-                            <div id="memes" hidden>
+                            @if ($active)
                                 <div class='col-md-12 col-md-4 form-group ' style="margin-bottom: 20px;">
-                                    <label class='control-label mt-3'>Pagar em 2x</label>
-                                    <input type="radio" value="2" class="prestacoes" name="numero_prestacoes">
+                                    <label class='control-label mt-3'>Deseja Pagar Em Prestações?</label>
+
+                                    <label class='control-label mt-3'>Sim</label>
+                                    <input type="radio" name="pagar_em_prestacoes" class="pagar_em_prestacoes" value="sim">
+                                    <label class='control-label mt-3'>Não</label>
+                                    <input type="radio" name="pagar_em_prestacoes" class="pagar_em_prestacoes" value="nao">
+
                                 </div>
-                            </div>
+                                <div id="memes" hidden>
+                                    <div class='col-md-12 col-md-4 form-group ' style="margin-bottom: 20px;">
+                                        <label class='control-label mt-3'>Pagar em 2x</label>
+                                        <input type="radio" value="2" class="prestacoes" name="numero_prestacoes">
+                                    </div>
+                                </div>
+                            @endif
+
 
                         </div>
                         @if ($errors->any())

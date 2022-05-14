@@ -51,7 +51,7 @@
 
             @include('layouts.navigation')
             <!-- Header End -->
-            @yield("content")
+            @yield('content')
 
             <!-- Footer
     ============================================= -->
@@ -92,7 +92,7 @@
         <script src="{{ asset('assets/js/theme.js') }}"></script>
         <script src="{{ asset('assets/js/app.js') }}"></script>
 
-        @yield("scripts")
+        @yield('scripts')
 
         <script>
             $("#logout").click(function() {
