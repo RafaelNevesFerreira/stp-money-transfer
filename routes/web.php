@@ -61,6 +61,7 @@ Route::controller(ProfileController::class)->group(function () {
     Route::middleware(["user", "verified"])->group(function () {
         Route::prefix("user")->group(function () {
             Route::get("profile", "profille")->name("profile.dashboard");
+            Route::get("notifications", "notifications")->name("notifications");
             Route::post("/change_photo", "change_photo")->name("profile.change.photo");
             Route::get("transactions", "transactions")->name("profile.transactions");
             Route::get("settings", "settings")->name("profile.settings");

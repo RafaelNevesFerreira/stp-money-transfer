@@ -9,7 +9,7 @@
                     </li>
                     <li class="nav-item"> <a class="nav-link" href="{{route("profile.transactions")}}">Transações</a></li>
                     <li class="nav-item"> <a class="nav-link"
-                            href="http://demo.harnishdesign.net/html/payyed/settings-notifications.html">Notifications</a>
+                            href="{{route("notifications")}}">Notifications</a>
                     </li>
                 </ul>
             </div>

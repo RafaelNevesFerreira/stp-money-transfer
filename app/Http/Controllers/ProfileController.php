@@ -21,6 +21,11 @@ class ProfileController extends Controller
         return view("profile.profille", compact("transfers"));
     }
 
+    public function notifications()
+    {
+        return view("profile.notifications");
+    }
+
     public function settings()
     {
         return view("profile.settings");
