@@ -217,11 +217,12 @@
                         case "sended":
                             var status = "O Valor está  disponível e jà pode ser levantado"
                             break;
-                        case "receveid":
+                        case "received":
                             var status = "O Valor foi Recebido"
                             break;
-                        default:
+                        case "reimbursed":
                             var status = "O Valor Foi Reembolsado"
+                            break;
 
                     }
 

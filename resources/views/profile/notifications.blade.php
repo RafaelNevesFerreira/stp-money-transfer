@@ -1,7 +1,7 @@
 @extends('layouts.profile.app')
 @section('content')
     <!-- Content
-                              ============================================= -->
+                                  ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
             <div class="row">
@@ -26,6 +26,8 @@
                         @empty
                         @endforelse
                     </div>
+                    {{ $notifications->links('pagination::default') }}
+
                     <!-- Notifications End -->
 
                 </div>

@@ -9,7 +9,7 @@
                     </li>
                     <li class="nav-item"> <a class="nav-link" href="{{route("profile.transactions")}}">Transações</a></li>
                     <li class="nav-item"> <a class="nav-link"
-                            href="{{route("notifications")}}">Notifications</a>
+                            href="{{route("notifications")}}">Notificações</a>
                     </li>
                 </ul>
             </div>

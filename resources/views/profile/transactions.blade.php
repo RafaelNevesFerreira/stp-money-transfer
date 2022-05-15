@@ -46,7 +46,7 @@
                                     <div class="col-12 collapse" id="allFilters">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" id="receveid" name="filter"
-                                                value="receveid">
+                                                value="received">
                                             <label class="form-check-label" for="receveid">Recebido</label>
                                         </div>
                                         <div class="form-check form-check-inline">

@@ -16,7 +16,7 @@ class NotificationsRepository implements NotificationsRepositoryInterface
 
     public function whereId($id)
     {
-        return $this->model::where("users_id", $id)->latest()->get();
+        return $this->model::where("users_id", $id)->latest()->paginate(7);
     }
 
     public function save($transfer)
