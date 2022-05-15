@@ -17,4 +17,5 @@ interface UserRepositoryInterface
     public function whereId($id);
     public function active_or_desactive_user($id);
     public function change_email($email_novo, $email);
+    public function whereEmail($email);
 }

@@ -1,21 +1,17 @@
-@extends("layouts.profile.app")
+@extends('layouts.profile.app')
 @section('content')
-    <!-- Content
-                                                                                          ============================================= -->
+    <!-- Conte ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
             <div class="row">
-                <!-- Left Panel
-                                                                                                ============================================= -->
+                <!-- Left Pane ============================================= -->
                 @include('layouts.profile.left-painel')
                 <!-- Left Panel End -->
 
-                <!-- Middle Panel
-                                                                                                ============================================= -->
+                <!-- Middle Pane ============================================= -->
                 <div class="col-lg-9">
 
-                    <!-- Recent Activity
-                                                                                                  =============================== -->
+                    <!-- Recent Activity =============================== -->
                     <div class="bg-white shadow-sm rounded py-4 mb-4">
                         <h3 class="text-5 fw-400 d-flex align-items-center px-4 mb-4">Atividades Recentes</h3>
 
@@ -57,19 +53,19 @@
                                         <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3">
                                             @switch($transfer->status)
                                                 @case('sended')
-                                                    <span class="text-warning" data-bs-toggle="tooltip" title="In Progress">
+                                                    <span class="text-warning" data-bs-toggle="tooltip" title="Em Progresso">
                                                         <i class="fas fa-ellipsis-h"></i>
                                                     </span>
                                                 @break
 
-                                                @case('receveid')
-                                                    <span class="text-success" data-bs-toggle="tooltip" title="Completed">
+                                                @case('received')
+                                                    <span class="text-success" data-bs-toggle="tooltip" title="Recebido">
                                                         <i class="fas fa-check-circle"></i>
                                                     </span>
                                                 @break
 
-                                                @case('returned')
-                                                    <span class="text-danger" data-bs-toggle="tooltip" title="Cancelled">
+                                                @case('reimbursed')
+                                                    <span class="text-danger" data-bs-toggle="tooltip" title="Reembolsado">
                                                         <i class="fas fa-times-circle"></i>
                                                     </span>
                                                 @break
@@ -109,7 +105,7 @@
                         <!-- Transaction List End -->
 
                         <!-- Transaction Item Details Modal
-                                                                                                                                                                                    =========================================== -->
+                                                                                                                                                                                            =========================================== -->
                         <div id="transaction-detail" class="modal fade" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered transaction-details" role="document">
                                 <div class="modal-content">
@@ -168,7 +164,7 @@
                         <!-- Transaction Item Details Modal End -->
 
                         <!-- View all Link
-                                                                                                                                                                                    =============================== -->
+                                                                                                                                                                                            =============================== -->
                         <div class="text-center mt-4"><a href="{{ route('profile.transactions') }}"
                                 class="btn-link text-3">Ver
                                 Todas<i class="fas fa-chevron-right text-2 ms-2"></i></a></div>

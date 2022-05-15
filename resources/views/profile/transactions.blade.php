@@ -111,19 +111,19 @@
                                         <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3">
                                             @switch($transfer->status)
                                                 @case('sended')
-                                                    <span class="text-warning" data-bs-toggle="tooltip" title="Enviado">
+                                                    <span class="text-warning" data-bs-toggle="tooltip" title="Em Progresso">
                                                         <i class="fas fa-ellipsis-h"></i>
                                                     </span>
                                                 @break
 
-                                                @case('receveid')
+                                                @case('received')
                                                     <span class="text-success" data-bs-toggle="tooltip" title="Recebido">
                                                         <i class="fas fa-check-circle"></i>
                                                     </span>
                                                 @break
 
-                                                @case('returned')
-                                                    <span class="text-danger" data-bs-toggle="tooltip" title="Cancelado">
+                                                @case('reimbursed')
+                                                    <span class="text-danger" data-bs-toggle="tooltip" title="Reembolsado">
                                                         <i class="fas fa-times-circle"></i>
                                                     </span>
                                                 @break

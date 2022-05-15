@@ -55,7 +55,7 @@
         <!-- Secondary Menu============================================= -->
         @include('layouts.profile.secondary_menu')
         <!-- Secondary Menu end -->
-        @yield("content")
+        @yield('content')
 
         @include('layouts.footer')
     </div>
@@ -170,7 +170,21 @@
                     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
                     var yyyy = today.getFullYear();
                     today = dd + '/' + mm + '/' + yyyy;
+                    number_format = function(number, decimals, dec_point, thousands_sep) {
+                        number = number.toFixed(decimals);
 
+                        var nstr = number.toString();
+                        nstr += '';
+                        x = nstr.split('.');
+                        x1 = x[0];
+                        x2 = x.length > 1 ? dec_point + x[1] : '';
+                        var rgx = /(\d+)(\d{3})/;
+
+                        while (rgx.test(x1))
+                            x1 = x1.replace(rgx, '$1' + thousands_sep + '$2');
+
+                        return x1 + x2;
+                    }
 
                     switch (data["currency"]) {
                         case "eur":
@@ -187,23 +201,11 @@
 
                     switch (data["plan"]) {
                         case 1:
-                            number_format = function(number, decimals, dec_point, thousands_sep) {
-                                number = number.toFixed(decimals);
 
-                                var nstr = number.toString();
-                                nstr += '';
-                                x = nstr.split('.');
-                                x1 = x[0];
-                                x2 = x.length > 1 ? dec_point + x[1] : '';
-                                var rgx = /(\d+)(\d{3})/;
-
-                                while (rgx.test(x1))
-                                    x1 = x1.replace(rgx, '$1' + thousands_sep + '$2');
-
-                                return x1 + x2;
-                            }
-                            var plan = "A Pagar em prestações " + number_format(((data["value_sended"] + data[
-                                    "tax"]) / 100 * 20 + (data["value_sended"] + data["tax"])) / 2 ,2,",",".") +
+                            var plan = "A Pagar em prestações " + number_format(((data["value_sended"] +
+                                    data[
+                                        "tax"]) / 100 * 20 + (data["value_sended"] + data[
+                                    "tax"])) / 2, 2, ",", ".") +
                                 currency + " por mês"
                             break;
                         case 0:
@@ -213,21 +215,24 @@
 
                     switch (data["status"]) {
                         case "sended":
-                            var status = "O Valor está  disponível para ser levantado"
+                            var status = "O Valor está  disponível e jà pode ser levantado"
                             break;
                         case "receveid":
-                            var status = "O Valor ja foi Recebido"
+                            var status = "O Valor foi Recebido"
                             break;
+                        default:
+                            var status = "O Valor Foi Reembolsado"
+
                     }
 
-
-
-
-                    $("#transfer_value").text(data["value_sended"] + data["tax"] + currency)
+                    $("#transfer_value").text(number_format(data["value_sended"] + data["tax"], 2, ",",
+                        ".") + currency)
                     $("#transfer_date").text(today)
-                    $("#transfer_valor_sem_taxa").text(data["value_sended"] + currency)
-                    $("#transfer_tax").text(data["tax"] + currency)
-                    $("#transfer_total").text(data["value_sended"] + data["tax"] + currency)
+                    $("#transfer_valor_sem_taxa").text(number_format(data["value_sended"], 2, ",",
+                        ".") + currency)
+                    $("#transfer_tax").text(number_format(data["tax"], 2, ",", ".") + currency)
+                    $("#transfer_total").text(number_format(data["value_sended"] + data["tax"], 2, ",",
+                        ".") + currency)
                     $("#transfer_receptor").text(data["destinatary_name"])
                     $("#transfer_id").text(data["transfer_code"])
                     $("#transfer_status").text(status)
@@ -255,4 +260,4 @@
         })
     </script>
 
-    @yield("scripts")
+    @yield('scripts')

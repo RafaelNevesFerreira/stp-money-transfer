@@ -3,11 +3,11 @@
 namespace App\Repositories\Eloquent;
 
 use DateTime;
-use DateInterval;
 use App\Models\Transfer;
 use App\Pipes\DateFilter;
 use App\Pipes\StatusFilter;
 use App\Jobs\PaimentSuccess;
+use App\Repositories\Contracts\NotificationsRepositoryInterface;
 use Illuminate\Support\Carbon;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\DB;
@@ -20,10 +20,8 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     public $DOLAR_EURO_PARA = 0.953370;
     public $LIBRA_EURO_PARA = 1.16866;
 
-    public $model;
-    public function __construct()
+    public function __construct(public Transfer $model, public NotificationsRepositoryInterface $notifications)
     {
-        $this->model = new Transfer();
     }
 
     public function store()
@@ -117,16 +115,18 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function change_status($id, $reembolsado = false)
     {
+        $transfer = $this->model::where("id", $id)->firstOrFail();
+
         if ($reembolsado) {
-            $this->model::where("id", $id)->update([
-                "status" => "reimbursed",
-            ]);
+            $transfer->status = "reimbursed";
+            $transfer->save();
         } else {
-            $this->model::where("id", $id)->update([
-                "status" => "received",
-                "received_at" => now()
-            ]);
+            $transfer->status = "received";
+            $transfer->received_at = now();
+            $transfer->save();
         }
+
+        $this->notifications->save($transfer);
     }
 
     public function transfers_esta_semana(): int

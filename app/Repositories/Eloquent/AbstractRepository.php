@@ -14,6 +14,11 @@ class AbstractRepository
         return $this->model::whereSlug($slug)->firstOrFail();
     }
 
+    public function whereEmail($email)
+    {
+        return $this->model::where("email", $email)->firstOrFail();
+    }
+
     public function whereTag($tag)
     {
         return $this->model::with("posts")->where("slug", $tag)->paginate(6)->firstOrFail();
@@ -46,6 +51,6 @@ class AbstractRepository
 
     public function firstorfail($id)
     {
-        return $this->model::where("id",$id)->firstOrFail();
+        return $this->model::where("id", $id)->firstOrFail();
     }
 }
