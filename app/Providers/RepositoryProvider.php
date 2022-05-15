@@ -59,6 +59,11 @@ class RepositoryProvider extends ServiceProvider
             'App\Repositories\Contracts\ContactRepositoryInterface',
             'App\Repositories\Eloquent\ContactRepository',
         );
+
+        $this->app->bind(
+            'App\Repositories\Contracts\NotificationsRepositoryInterface',
+            'App\Repositories\Eloquent\NotificationsRepository',
+        );
     }
 
 

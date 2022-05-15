@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProfilleChangeData;
-use App\Repositories\Contracts\TransfersRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\TransfersRepositoryInterface;
+use App\Repositories\Contracts\NotificationsRepositoryInterface;
 
 class ProfileController extends Controller
 {
-    public function __construct(public TransfersRepositoryInterface $transfers, public UserRepositoryInterface $user)
+    public function __construct(public TransfersRepositoryInterface $transfers, public UserRepositoryInterface $user,
+    public NotificationsRepositoryInterface $notifications)
     {
     }
     public function profille()
@@ -23,7 +25,8 @@ class ProfileController extends Controller
 
     public function notifications()
     {
-        return view("profile.notifications");
+        $notifications = $this->notifications->whereId(Auth::user()->id);
+        return view("profile.notifications",compact("notifications"));
     }
 
     public function settings()
