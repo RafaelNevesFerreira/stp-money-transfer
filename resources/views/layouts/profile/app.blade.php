@@ -225,7 +225,7 @@
 
                     }
 
-                    var total = data["value_sended"] + parseFloat(data["tax"]);
+                    var total = parseFloat(data["value_sended"]) + parseFloat(data["tax"]);
                     console.log(Number(parseFloat(total)));
                     total = Number(parseFloat(total));
 
