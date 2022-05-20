@@ -1,12 +1,4 @@
 <aside class="col-lg-4 col-xl-3">
-    <!-- Search      =============================== -->
-    <div class="input-group shadow-sm mb-4">
-
-        <span class="input-group-text bg-white border-0 p-0">
-            <button class="btn text-muted shadow-none px-3 border-0" type="button"><i class="fa fa-search"></i></button>
-        </span>
-
-    </div>
 
     <!-- Categories      =============================== -->
     <div class="bg-white shadow-sm rounded p-3 mb-4">
