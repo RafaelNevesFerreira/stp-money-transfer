@@ -64,7 +64,7 @@
 
 
                     </div>
-                    <div class="mt-3 3"></div>
+                    <div class="mt-4"></div>
                     <!-- Pagination============================================= -->
                     @if (Route::current()->uri != 'blog/tag/{tag}')
                         {{ $posts->links('pagination::default') }}
