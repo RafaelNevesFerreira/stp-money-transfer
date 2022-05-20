@@ -66,22 +66,6 @@
     <a id="back-to-top" data-bs-toggle="tooltip" title="Voltar ao topo" href="javascript:void(0)"><i
             class="fa fa-chevron-up"></i></a>
 
-    <!-- Video Modal
-============================================= -->
-    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content bg-transparent border-0">
-                <button type="button" class="btn-close btn-close-white ms-auto me-n3" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-                <div class="modal-body p-0">
-                    <div class="ratio ratio-16x9">
-                        <iframe id="video" src="#" allow="autoplay;" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Video Modal end -->
 
     <!-- Script -->
     <script src="{{ asset('plugins/ijaboCropTool.min.js') }}"></script>
@@ -199,7 +183,7 @@
                         return x1 + x2;
                     }
                     switch (data["plan"]) {
-                        case 1:
+                        case "1":
 
                             var plan = "A Pagar em prestações " + number_format(((data["value_sended"] +
                                     data[
@@ -207,7 +191,7 @@
                                     "tax"])) / 2, 2, ",", ".") +
                                 currency + " por mês"
                             break;
-                        case 0:
+                        case "0":
                             var plan = "Pago por cartão bancário"
                             break;
                     }
