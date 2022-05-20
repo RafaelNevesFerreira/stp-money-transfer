@@ -114,7 +114,7 @@ Route::middleware("admin")->group(function () {
 
 
 Route::middleware(["dashboard"])->group(function () {
-    Route::get("dashboard", function () {
+    Route::get("dashboards", function () {
 
     });
 });
