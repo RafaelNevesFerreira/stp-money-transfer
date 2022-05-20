@@ -225,7 +225,7 @@
 
                     }
 
-                    var total = data["value_sended"] + data["tax"];
+                    var total = data["value_sended"] + parseFloat(data["tax"]);
                     total = Number(parseFloat(total));
 
                     $("#transfer_value").text(number_format(total, 2, ",",
