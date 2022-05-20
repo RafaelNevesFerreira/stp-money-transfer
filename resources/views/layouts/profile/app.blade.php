@@ -188,11 +188,10 @@
 
                     switch (data["plan"]) {
                         case 1:
-
                             var plan = "A Pagar em prestações " + number_format(total, 2, ",", ".") +
                                 currency + " por mês"
                             break;
-                        case 0:
+                        default
                             var plan = "Pago por cartão bancário"
                             break;
                     }
