@@ -191,7 +191,7 @@
                             var plan = "A Pagar em prestações " + number_format(total, 2, ",", ".") +
                                 currency + " por mês"
                             break;
-                        default
+                        default:
                             var plan = "Pago por cartão bancário"
                             break;
                     }
