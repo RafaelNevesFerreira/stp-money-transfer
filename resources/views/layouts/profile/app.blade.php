@@ -184,7 +184,7 @@
                     }
 
                     number_format = function(number, decimals, dec_point, thousands_sep) {
-                        number = Number(number).toFixed(decimals);
+                        number = number.toFixed(decimals);
 
                         var nstr = number.toString();
                         nstr += '';
@@ -226,8 +226,8 @@
                     }
 
                     var total = data["value_sended"] + data["tax"];
+                    total = Number(parseFloat(total));
 
-                    console.log(typeof total, Number(parseFloat(total)));
                     $("#transfer_value").text(number_format(total, 2, ",",
                         ".") + currency)
                     $("#transfer_date").text(today)
