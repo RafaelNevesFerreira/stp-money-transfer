@@ -129,7 +129,7 @@
     </script>
     <!-- Style Switcher -->
     <script src="{{ asset('assets/js/theme.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/app.js') }}"></script> --}}
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 
     <script>
         //User Photo change
@@ -184,7 +184,6 @@
                     }
 
                     number_format = function(number, decimals, dec_point, thousands_sep) {
-                        number = number.toFixed(decimals);
 
                         var nstr = number.toString();
                         nstr += '';
