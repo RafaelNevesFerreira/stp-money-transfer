@@ -227,6 +227,7 @@
 
                     var total = data["value_sended"] + data["tax"];
 
+                    console.log(typeof total, total);
                     $("#transfer_value").text(number_format(total, 2, ",",
                         ".") + currency)
                     $("#transfer_date").text(today)
