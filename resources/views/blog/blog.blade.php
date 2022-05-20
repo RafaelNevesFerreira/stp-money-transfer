@@ -62,7 +62,7 @@
                             </div>
                         @empty
                             <div>
-                                <p>Nada Dispoinvel</p>
+                                <p>Nenhum Post Relacionado com essa pesquisa</p>
                             </div>
                         @endforelse
 
