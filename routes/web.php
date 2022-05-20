@@ -36,6 +36,9 @@ Route::controller(SiteController::class)->group(function () {
         if (!File::exists($path)) {
             abort(404);
         }
+
+
+
         $file = File::get($path);
         $type = File::mimeType($path);
 
