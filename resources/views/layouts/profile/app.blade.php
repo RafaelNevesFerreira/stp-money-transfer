@@ -129,7 +129,7 @@
     </script>
     <!-- Style Switcher -->
     <script src="{{ asset('assets/js/theme.js') }}"></script>
-    <script src="{{ asset('assets/js/app.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/app.js') }}"></script> --}}
 
     <script>
         //User Photo change
