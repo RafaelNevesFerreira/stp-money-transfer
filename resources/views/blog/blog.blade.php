@@ -33,7 +33,7 @@
                             <div class="col-12">
                                 <div class="blog-post card shadow-sm border-0"> <a class="d-flex"
                                         href="{{ route('post', $post->slug) }}"><img class="card-img-top"
-                                            src="{{ $post->featured_image }}" alt="{{ $post->title }} image"></a>
+                                            src="{{ asset($post->featured_image) }}" alt="{{ $post->title }} image"></a>
                                     <div class="card-body p-4">
                                         <h4 class="title-blog"><a
                                                 href="{{ route('post', $post->slug) }}">{{ $post->title }}</a></h4>
