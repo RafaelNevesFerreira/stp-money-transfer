@@ -170,6 +170,19 @@
                     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
                     var yyyy = today.getFullYear();
                     today = dd + '/' + mm + '/' + yyyy;
+
+                    switch (data["currency"]) {
+                        case "eur":
+                            var currency = "€"
+                            break;
+                        case "usd":
+                            var currency = "$"
+                            break;
+                        case "gbp":
+                            var currency = "£"
+                            break;
+                    }
+
                     number_format = function(number, decimals, dec_point, thousands_sep) {
                         number = number.toFixed(decimals);
 
@@ -185,19 +198,6 @@
 
                         return x1 + x2;
                     }
-                    switch (data["currency"]) {
-                        case "eur":
-                            var currency = "€"
-                            break;
-                        case "usd":
-                            var currency = "$"
-                            break;
-                        case "gbp":
-                            var currency = "£"
-                            break;
-                    }
-
-
                     switch (data["plan"]) {
                         case 1:
 
