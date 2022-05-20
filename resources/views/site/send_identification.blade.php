@@ -200,12 +200,12 @@
                             <h3 class="text-5 fw-400 mb-3 mb-sm-4">Confirmar Detalhes</h3>
                             <hr class="mx-n3 mx-sm-n5 mb-4">
                             <p class="mb-1">Valor à Enviar <span
-                                    class="text-3 float-end">{{ session('valor_a_ser_enviado') }}
+                                    class="text-3 float-end">{{ number_format(session('valor_a_ser_enviado'),2,",",".") }}
                                     {{ session('moeda') }}</span></p>
-                            <p class="mb-1">Total Tax <span class="text-3 float-end">{{ session('tax') }}
+                            <p class="mb-1">Total Tax <span class="text-3 float-end">{{ number_format(session('tax'),2,",",".") }}
                                     {{ session('moeda') }}</span></p>
                             <hr>
-                            <p class="text-4 fw-500">Total<span class="float-end">{{ session('total') }}
+                            <p class="text-4 fw-500">Total<span class="float-end">{{ number_format(session('total'),2,",",".") }}
                                     {{ session('moeda') }}</span></p>
                             <div class="d-grid"><button class="btn btn-primary">Enviar</button></div>
                         </form>

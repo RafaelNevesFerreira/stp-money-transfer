@@ -152,16 +152,18 @@ class PaymentController extends Controller
             $stripe = new \Stripe\StripeClient(
                 'sk_test_51JZwMrFzWXjclIq0uBjHEYo8XhVtSEQhe8eJ4Dt6Zwr7igTQ2p3MwIeUQ2RJgMtmAxBRCV6KAo5nJHYlGyoikr4s00T9dLQnId'
             );
-            $memes = $stripe->paymentIntents->retrieve(
+            $str = $stripe->paymentIntents->retrieve(
                 $request->payment_intent,
                 []
             );
-            if ($memes->status == "succeeded") {
+            if ($str->status == "succeeded") {
                 $this->transfers->store();
             }
             return $this->task($request);
         } catch (\Throwable $th) {
-
+            if (!session("receptor")) {
+                return redirect()->route("home");
+            }
             $this->task($request);
             $valor = session("valor_a_ser_enviado");
             $moeda = session("moeda");

@@ -42,8 +42,8 @@
                             <p class="text-success text-8 fw-500 lh-1">Sucesso!</p>
                             <p class="lead">Sua Transação Foi Feita Com Sucesso</p>
                         </div>
-                        <p class="text-3 mb-4">Você enviou <span class="text-4 fw-500">{{$valor}} {{$moeda }}</span> para <span
-                                class="fw-500">{{$receptor}}</span>, See transaction details under <a
+                        <p class="text-3 mb-4">Você enviou <span class="text-4 fw-500">{{number_format($valor,2,",",".")}} {{$moeda }}</span> para <span
+                                class="fw-500">{{$receptor}}</span>, Veja os detalhes da transação clicando no link <a
                                 class="btn-link" href="{{route("profile.transactions")}}">Detalhes</a>.</p>
                         <div class="d-grid"><a href="{{ route("send") }}" class="btn btn-primary">Novo Envio</a></div>
                     </div>

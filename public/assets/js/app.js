@@ -1,5 +1,19 @@
     $(document).ready(function() {
+        number_format = function(number, decimals, dec_point, thousands_sep) {
+            number = number.toFixed(decimals);
 
+            var nstr = number.toString();
+            nstr += '';
+            x = nstr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? dec_point + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+
+            while (rgx.test(x1))
+                x1 = x1.replace(rgx, '$1' + thousands_sep + '$2');
+
+            return x1 + x2;
+        }
         $("#youSend").keyup(function() {
             if ($("#youSend").val() < 1) {
                 $("#recipientGets").val(0);
@@ -27,11 +41,18 @@
                 } else {
                     minha_tax = 10;
                 }
-                var tax = valor * 0.029 + 0.3 + minha_tax
+
+                if (valor < 1) {
+                    var tax = 0
+                } else {
+                    var tax = valor * 0.029 + 0.3 + minha_tax
+                }
 
                 var total = valor + tax;
-                $("#taxas").text(tax.toFixed(2));
-                $("#total").text(total);
+                $("#taxas").text(number_format(tax, 2, ",",
+                    "."));
+                $("#total").text(number_format(total, 2, ",",
+                    "."));
                 var selected = $('select[name="moeda"]').val()
 
                 if (selected == "eur") {
@@ -60,9 +81,6 @@
                 var valor_mueda = 25;
                 $("#recipientGets").val(formater.format(valor * valor_mueda));
 
-
-
-
             }
         });
 
@@ -72,7 +90,6 @@
             if ($(this).val() == "eur") {
                 if ($(".moeda_mudar").length) {
                     $(".moeda_mudar").text("€")
-
                 } else {
                     // create a paragraph element
                     var span = $("<span class='moeda_mudar'>€</span>");
@@ -157,6 +174,8 @@
 
         //imagem dos posts do blog
         $(".embedded_image").children('img').addClass("img-fluid");
+
+        /////////////////////////////////////////////////////
         $('#total').maskMoney()
 
         $(".pagar_em_prestacoes").click(function() {
