@@ -185,7 +185,6 @@
 
                         return x1 + x2;
                     }
-
                     switch (data["currency"]) {
                         case "eur":
                             var currency = "€"
