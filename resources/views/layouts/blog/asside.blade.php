@@ -1,9 +1,7 @@
 <aside class="col-lg-4 col-xl-3">
     <!-- Search      =============================== -->
     <div class="input-group shadow-sm mb-4">
-        <form action="{{ route("blog") }}" method="get">
-            <input class="form-control shadow-none border-0 pe-0" type="search" name="title" id="search-input" placeholder="Pesquisar" value="">
-        </form>
+
         <span class="input-group-text bg-white border-0 p-0">
             <button class="btn text-muted shadow-none px-3 border-0" type="button"><i class="fa fa-search"></i></button>
         </span>
