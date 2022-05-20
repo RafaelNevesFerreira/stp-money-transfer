@@ -1,15 +1,17 @@
 <?php
 
-use App\Http\Controllers\AbonementController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\PaymentTipeController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SendMoneyController;
-use App\Http\Controllers\SiteController;
-use App\Http\Controllers\TecnicoController;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\SiteController;
+use Illuminate\Support\Facades\Response;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TecnicoController;
+use App\Http\Controllers\AbonementController;
+use App\Http\Controllers\SendMoneyController;
+use App\Http\Controllers\PaymentTipeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +31,19 @@ Route::controller(SiteController::class)->group(function () {
     Route::get("/help", "help")->name("help");
     Route::get("/contact", "contact")->name("contact");
     Route::get("/privacity", "privacity")->name("privacity");
+    Route::get('storage/wink/images/{filename}', function ($filename) {
+        $path = storage_path('app/public/wink/images/' . $filename);
+        if (!File::exists($path)) {
+            abort(404);
+        }
+        $file = File::get($path);
+        $type = File::mimeType($path);
 
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+    });
     Route::middleware("send_money")->group(function () {
         Route::get("/identification", "identification")->name("identification");
         Route::get("/payment", "payment")->name("payment");
@@ -115,7 +129,6 @@ Route::middleware("admin")->group(function () {
 
 Route::middleware(["dashboard"])->group(function () {
     Route::get("dashboard", function () {
-
     });
 });
 
