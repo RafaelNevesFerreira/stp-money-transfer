@@ -183,7 +183,7 @@
                         return x1 + x2;
                     }
                     switch (data["plan"]) {
-                        case "1":
+                        case 1:
 
                             var plan = "A Pagar em prestações " + number_format(((data["value_sended"] +
                                     data[
@@ -191,10 +191,12 @@
                                     "tax"])) / 2, 2, ",", ".") +
                                 currency + " por mês"
                             break;
-                        case "0":
+                        case 0:
                             var plan = "Pago por cartão bancário"
                             break;
                     }
+
+                    console.log(plan);
 
                     switch (data["status"]) {
                         case "sended":
