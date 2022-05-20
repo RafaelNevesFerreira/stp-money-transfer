@@ -62,15 +62,14 @@
                             </div>
                         @endforeach
 
-                    </div>
+
                     </div>
 
                     <!-- Pagination============================================= -->
                     @if (Route::current()->uri != 'blog/tag/{tag}')
                         {{ $posts->links('pagination::default') }}
                     @else
-                    <ul class="pagination justify-content-center my-5">
-                    </ul>
+
 
                     @endif
 
