@@ -225,13 +225,15 @@
 
                     }
 
-                    $("#transfer_value").text(number_format(data["value_sended"] + data["tax"], 2, ",",
+                    var total = data["value_sended"] + data["tax"];
+
+                    $("#transfer_value").text(number_format(total, 2, ",",
                         ".") + currency)
                     $("#transfer_date").text(today)
                     $("#transfer_valor_sem_taxa").text(number_format(data["value_sended"], 2, ",",
                         ".") + currency)
                     $("#transfer_tax").text(number_format(data["tax"], 2, ",", ".") + currency)
-                    $("#transfer_total").text(number_format(data["value_sended"] + data["tax"], 2, ",",
+                    $("#transfer_total").text(number_format(total, 2, ",",
                         ".") + currency)
                     $("#transfer_receptor").text(data["destinatary_name"])
                     $("#transfer_id").text(data["transfer_code"])
