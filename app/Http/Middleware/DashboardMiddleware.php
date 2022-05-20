@@ -26,7 +26,7 @@ class DashboardMiddleware
         } elseif (!Auth::check()) {
             return redirect()->route("login");
         } else {
-            return redirect()->route("login");
+            return redirect()->route("home");
         }
     }
 }
