@@ -17,6 +17,7 @@ class DashboardMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        dd(Auth::check());
         if (Auth::check() && Auth::user()->role === 1) {
             return redirect()->route("profile.dashboard");
         } elseif (Auth::check() && Auth::user()->role === 2) {
