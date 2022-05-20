@@ -196,7 +196,7 @@
                             break;
                     }
 
-                    console.log(data["plan"] == 0);
+                    console.log(data["plan"]);
 
                     switch (data["status"]) {
                         case "sended":
