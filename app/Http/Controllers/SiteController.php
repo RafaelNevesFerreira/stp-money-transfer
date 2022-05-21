@@ -43,13 +43,13 @@ class SiteController extends Controller
 
     public function payment()
     {
-        if ($this->defs::firstOrFail("active")->active === 0) {
+        if ($this->defs->get("active")->active === 0) {
             $active = 0;
         } else {
             $active = 1;
         }
 
-        dd($active);
+        dd($this->defs->get("active"));
         return view("site.payment",compact("active"));
     }
 
