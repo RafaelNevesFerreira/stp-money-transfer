@@ -43,7 +43,7 @@
                         <div class='form-row row'>
 
                             <div class='col-md-6 col-md-4 form-group '>
-                                <label for="card_no" class="control-label mt-3">Card</label>
+                                <label for="card_no" class="control-label mt-3">N. Cartão</label>
                                 <input type="number" id="card_no" required class="form-control" name="card_no">
                             </div>
                             <div class='col-md-6 col-md-4 form-group '>
@@ -51,12 +51,12 @@
                                 <input type="number" id="cvc" required value="{{ old('cvc') }}" class="form-control" name="cvc">
                             </div>
                             <div class='col-md-6 col-md-4 form-group '>
-                                <label class='control-label mt-3'>Expiration Month</label>
+                                <label class='control-label mt-3'>Mês de expiração</label>
                                 <input type="number" id="exp_month" required value="{{ old('exp_month') }}" class="form-control"
                                     name="exp_month">
                             </div>
                             <div class='col-md-6 col-md-4 form-group ' style="margin-bottom: 20px;">
-                                <label class='control-label mt-3'>Expiration Year</label>
+                                <label class='control-label mt-3'>Ano de expiração</label>
                                 <input type="number" id="exp_year" required class="form-control" value="{{ old('exp_year') }}"
                                     name="exp_year">
 
