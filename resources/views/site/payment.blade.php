@@ -86,7 +86,7 @@
                                 <div class='col-md-12 error form-group'>
                                     <div class='alert-danger alert'>
                                         @foreach ($errors->all() as $error)
-                                            <p>{{ @lang("card_error.$error")  }}</p>
+                                            <p> @lang("card_error.$error") </p>
                                         @endforeach
                                     </div>
                                 </div>
