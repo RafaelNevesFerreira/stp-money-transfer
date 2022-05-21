@@ -49,7 +49,7 @@ class SiteController extends Controller
         //     $active = 1;
         // }
 
-        dd($this->defs->first("active")->active);
+        dd($this->defs->first("active")->active === 0);
         return view("site.payment",compact("active"));
     }
 
