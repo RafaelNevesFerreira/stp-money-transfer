@@ -24,4 +24,3 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           port: ${{ secrets.REMOTE_PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: "cd /var/www/html && ./.scripts/deploy.sh"
