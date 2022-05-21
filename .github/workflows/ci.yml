@@ -23,5 +23,5 @@ jobs:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           port: ${{ secrets.REMOTE_PORT }}
-          key: ${{ secrets.SSERVER_SSH_KEYSHKEY }}
-          script: "../scripts/deploy.sh"
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: "../  scripts/deploy.sh"
