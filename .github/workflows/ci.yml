@@ -1,26 +1,30 @@
-name: Deploy
-
-# Trigger the workflow on push and
-# pull request events on the production branch
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    push:
+        branches:
+            -   main
 
-# Authenticate to the the server via ssh
-# and run our deployment script
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Deploy to server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          port: ${{ secrets.REMOTE_PORT }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+    build:
+        name: Build and Deploy
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout Repository
+                uses: actions/checkout@master
+            -   name: Setup Enviroment
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.1'
+            -   name: Speed up the packages installation process
+                run: composer global require hirak/prestissimo
+            -   name: Install Packages
+                run: composer install --no-dev
+            -   name: Deploy to Server
+                uses: ngocquyhoang/deploy@laravel
+                with:
+                    user: ${{ secrets.REMOTE_USER }}
+                    host: ${{ secrets.REMOTE_HOST }}
+                    port: ${{ secrets.REMOTE_PORT }}
+                    path: ${{ secrets.REMOTE_TARGET }}
+                env:
+                    DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
