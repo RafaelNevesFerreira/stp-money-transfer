@@ -43,7 +43,7 @@ class SiteController extends Controller
 
     public function payment()
     {
-        if ($this->defs::firstOrFail("active")->active === "0") {
+        if ($this->defs::firstOrFail("active")->active === 0) {
             $active = 0;
         } else {
             $active = 1;
