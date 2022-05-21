@@ -40,9 +40,9 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         }
         $transfer_code = uniqid("SMT");
         if (session("plans")) {
-            $plan = session("plans");
+            $plan = 1;
         } else {
-            $plan = false;
+            $plan = 0;
         }
 
         if (Auth::check()) {
