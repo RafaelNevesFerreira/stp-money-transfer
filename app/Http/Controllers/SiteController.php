@@ -48,6 +48,8 @@ class SiteController extends Controller
         } else {
             $active = 1;
         }
+
+        dd($active);
         return view("site.payment",compact("active"));
     }
 
