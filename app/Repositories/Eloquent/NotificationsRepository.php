@@ -26,14 +26,14 @@ class NotificationsRepository implements NotificationsRepositoryInterface
             if ($transfer->status === "received") {
                 $this->model::create([
                     "title" => "Dinheiro Recebido",
-                    "content" => "O seu dinheiro foi levantado com sucesso no dia" . date("d/m/Y"),
+                    "content" => "O seu dinheiro foi levantado com sucesso no dia " . date("d/m/Y"). ". Obrigado pela confiança",
                     "users_id" => $users->id
                 ]);
                 MoneyStatus::dispatch("received", $users)->delay(now()->addSecond(10));
             } else {
                 $this->model::create([
                     "title" => "Dinheiro Reembolsado",
-                    "content" => "O seu dinheiro foi reembolsado com sucesso no dia" . date("d/m/Y") . ". Obrigado pela confiança",
+                    "content" => "O seu dinheiro foi reembolsado com sucesso no dia " . date("d/m/Y") . ". Obrigado pela confiança",
                     "users_id" => $users->id
                 ]);
                 MoneyStatus::dispatch("reimbursed", $users)->delay(now());
