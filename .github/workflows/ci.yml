@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout do repositorio
         uses: actions/checkout@v1
+      - name: Deploy para meu host
+        uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{secrets.SERVER_SSH_KEY}}
           ARGS: "-rltgoDzv0 --delete"
