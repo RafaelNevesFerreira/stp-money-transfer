@@ -1,18 +1,25 @@
-name: "rafael ferreira"
+name: Deploy
+
+# Trigger the workflow on push and
+# pull request events on the production branch
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
+# Authenticate to the the server via ssh
+# and run our deployment script
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout do repositorio
-        uses: actions/checkout@v1
-      - name: Deploy para meu host
-        uses: easingthemes/ssh-deploy@main
-        env:
+      - uses: actions/checkout@v2
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
           ARGS: "-rltgoDzv0 --delete"
           REMOTE_USER: ${{secrets.REMOTE_USER}}
