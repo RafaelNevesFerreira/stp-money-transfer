@@ -33,7 +33,7 @@
                                 <div class="mb-3 col">
                                     <label for="country" class="form-label">País</label>
                                     <!-- All countries -->
-                                    <select id="country" class="form-control" name="country">
+                                    <select id="country" class="form-control " required name="country">
                                         <option>Selecione Seu País De Residência</option>
                                         <option value="Angola">Angola</option>
                                         <option value="Argentina">Argentina</option>
