@@ -86,7 +86,7 @@
                                 <div class='col-md-12 error form-group'>
                                     <div class='alert-danger alert'>
                                         @foreach ($errors->all() as $error)
-                                            <p>{{ __("card_error.$error")  }}</p>
+                                            <p>{{ __("card_error.Your card has insufficient funds.")  }}</p>
                                         @endforeach
                                     </div>
                                 </div>
