@@ -151,16 +151,16 @@
                                 style="background-image:url('{{ asset('assets/images/image-6.jpg') }}');">
                             </div>
                             <div class="hero-content">
-                                <h2 class="text-6 text-white mb-3">Porquê {{ env('APP_NAME') }}?</h2>
-                                <p class="text-light mb-5">{{ env('APP_NAME') }} visa qualidade, segurança e rapidez,
+                                <h2 class="text-6 text-white mb-3">Porquê {{ config('APP_NAME') }}?</h2>
+                                <p class="text-light mb-5">{{ config('APP_NAME') }} visa qualidade, segurança e rapidez,
                                     estamos no mercado trabalhando
                                     com as mais diversas e melhores tecnologias
                                     para garantir que os envios do dinheiros dos nossos clientes seja feito da forma mais
                                     segura possivel.</p>
-                                <h2 class="text-6 text-white mb-3">Enviar dinheiro com {{ env('APP_NAME') }}</h2>
+                                <h2 class="text-6 text-white mb-3">Enviar dinheiro com {{ config('APP_NAME') }}</h2>
                                 <p class="text-light">Enviar dinheiro pela internet sempre foi algo um pouco duvidos,
                                     pois ao longo do tempo mais têm sido os ataque ciberneticos.</p>
-                                <p class="text-light mb-0">Por esse motivo {{ env('APP_NAME') }} investiu em uma
+                                <p class="text-light mb-0">Por esse motivo {{ config('APP_NAME') }} investiu em uma
                                     plataforma
                                     segura e facil de ser usada, para facilitar a
                                     vida das pessoas que queiram enviar dinheiro para são tomé.</p>
