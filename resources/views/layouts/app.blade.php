@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon-32x32.png') }}">
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon-16x16.png') }}">
         <link rel="manifest" href="{{ asset('assets/images/site.webmanifest') }}">
-        <title>{{ env('APP_NAME') }}</title>
+        <title>STP Money Transfer</title>
         <meta name="description"
             content="This professional design html template is for build a Money Transfer and online payments website.">
         <meta name="author" content="Rafael Ferreira">
