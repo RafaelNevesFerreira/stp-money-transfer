@@ -19,7 +19,7 @@
                             <p class="text-4 text-white mb-4"> Envie dinheiro de forma segura, rapida, eficaz e com as
                                 melhores taxas.</p>
                             <a class="btn btn-outline-light video-btn" href="#"
-                                data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal"
+                                data-src="https://player.vimeo.com/video/712561887?h=eb5f9d1abd" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>" data-bs-toggle="modal"
                                 data-bs-target="#videoModal"><span class="text-2 me-3"><i
                                         class="fas fa-play"></i></span>Veja como Isso Funciona</a>
                         </div>
@@ -207,7 +207,7 @@
             <div class="hero-content my-3 my-lg-5">
                 <div class="container text-center">
                     <h2 class="text-10 text-white mb-4 mb-lg-5">Como funciona o envio de dinheiro?</h2>
-                    <a class="video-btn d-inline-flex" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas"
+                    <a class="video-btn d-inline-flex" href="#" data-src="https://player.vimeo.com/video/712561887?h=eb5f9d1abd" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>"
                         data-bs-toggle="modal" data-bs-target="#videoModal"> <span
                             class="playButton playButton-pulsing bg-white m-auto"><i class="fas fa-play"></i></span>
                     </a>
