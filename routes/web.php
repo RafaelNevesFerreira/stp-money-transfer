@@ -31,12 +31,14 @@ Route::controller(SiteController::class)->group(function () {
     Route::get("/help", "help")->name("help");
     Route::get("/contact", "contact")->name("contact");
     Route::get("/privacity", "privacity")->name("privacity");
+<<<<<<< Updated upstream
+
+=======
     Route::get('storage/wink/images/{filename}', function ($filename) {
         $path = storage_path('app/public/wink/images/' . $filename);
         if (!File::exists($path)) {
             abort(404);
         }
-
 
 
         $file = File::get($path);
@@ -47,6 +49,7 @@ Route::controller(SiteController::class)->group(function () {
 
         return $response;
     });
+>>>>>>> Stashed changes
     Route::middleware("send_money")->group(function () {
         Route::get("/identification", "identification")->name("identification");
         Route::get("/payment", "payment")->name("payment");
