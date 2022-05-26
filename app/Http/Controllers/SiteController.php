@@ -63,6 +63,7 @@ class SiteController extends Controller
 
     public function contact()
     {
+        dd("memes");
         $contact = $this->contact->firstorfail(1);
         return view("site.contact", compact("contact"));
     }

@@ -1,11 +1,7 @@
-@extends("layouts.app")
+@extends('layouts.app')
 @section('content')
-    <!-- Content
-                                                              ============================================= -->
     <div id="content">
 
-        <!-- Send Money
-                                                            ============================================= -->
         <section class="hero-wrap">
             <div class="hero-mask opacity-7 bg-dark"></div>
             <div class="hero-bg" style="background-image:url('{{ asset('assets/images/image-6.jpg') }}');"></div>
@@ -95,7 +91,7 @@
         <!-- Send Money End -->
 
         <!-- How it works
-                                                            ============================================= -->
+                                                                ============================================= -->
         <section class="section bg-white">
             <div class="container">
                 <h2 class="text-9 text-center"> A Maneira Mais Simple De Enviar Dinheiro
@@ -107,26 +103,22 @@
                     <div class="col-lg-4">
                         <div class="featured-box style-3">
                             <div class="featured-box-icon text-light"><span class="w-100 text-20 fw-500">1</span></div>
-                            <h3>Faça o Login Ou Crie Uma Conta</h3>
-                            <p class="text-3">Essas etapas não sõ obrigatórias para o envio do dinheiro, mas tornará
-                                muito mais rapido o
-                                seu processo de envio</p>
+                            <h3>Receptor e valor a enviar</h3>
+                            <p class="text-3">O Primeiro passo é inserir o seu receptor e o valor que deseja enviar</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="featured-box style-3">
                             <div class="featured-box-icon text-light"><span class="w-100 text-20 fw-500">2</span></div>
-                            <h3>Selecione o Receptor</h3>
-                            <p class="text-3">Prencha os campos do formulario com os dados pessoais do receptor.</p>
+                            <h3>Identificação</h3>
+                            <p class="text-3">A Segunda etapa consite na sua identificação, identifique-se pois o seu receptor precisarà dos seus dados para levantar o dinheiro.</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="featured-box style-3">
                             <div class="featured-box-icon text-light"><span class="w-100 text-20 fw-500">3</span></div>
-                            <h3>Envie dinheiro</h3>
-                            <p class="text-3">Depois de enviar o dinheiro, o destinatário será notificado por
-                                e-mail, menssagem ou chalada telefonica quando
-                                o dinheiro for transferido para São Tomé, menos de 30min.</p>
+                            <h3>Pagamento</h3>
+                            <p class="text-3">A Terceira e última etapa consiste no pagamento, deverà pagar em cartão bancário, caso deseje pagar em espécie, entre em contacto conosco e nossos agentes iram ter consigo para pegar o valor.</p>
                         </div>
                     </div>
                 </div>
@@ -138,7 +130,7 @@
         <!-- How it works End -->
 
         <!-- Why choose us
-                                                            ============================================= -->
+                                                                ============================================= -->
         <section class="section">
             <div class="container">
                 <h2 class="text-9 text-center">Porquê nos escolher?</h2>
@@ -155,7 +147,7 @@
                                 <p class="text-light mb-5">{{ env('APP_NAME') }} visa qualidade, segurança e rapidez,
                                     estamos no mercado trabalhando
                                     com as mais diversas e melhores tecnologias
-                                    para garantir que os envios do dinheiros dos nossos clientes seja feito da forma mais
+                                    para garantir que os envios do dinheiro dos nossos clientes seja feito da forma mais
                                     segura possivel.</p>
                                 <h2 class="text-6 text-white mb-3">Enviar dinheiro com {{ env('APP_NAME') }}</h2>
                                 <p class="text-light">Enviar dinheiro pela internet sempre foi algo um pouco duvidos,
@@ -163,7 +155,7 @@
                                 <p class="text-light mb-0">Por esse motivo {{ env('APP_NAME') }} investiu em uma
                                     plataforma
                                     segura e facil de ser usada, para facilitar a
-                                    vida das pessoas que queiram enviar dinheiro para são tomé.</p>
+                                    vida das pessoas que queiram enviar dinheiro de ou para são tomé.</p>
                             </div>
                         </div>
                     </div>
@@ -200,7 +192,7 @@
         <!-- Why choose us End -->
 
         <!-- How work
-                                                            ============================================= -->
+                                                                ============================================= -->
         <section class="hero-wrap section shadow-md">
             <div class="hero-mask opacity-9 bg-primary"></div>
             <div class="hero-bg" style="background-image:url('{{ asset('assets/images/image-1.jpg') }}');"></div>
@@ -217,11 +209,11 @@
         <!-- How work End -->
 
         <!-- Testimonial
-                                                            ============================================= -->
+                                                                ============================================= -->
         <section class="section">
             <div class="container">
                 <h2 class="text-9 text-center">O que as pessoas acham de nós?</h2>
-                <p class="lead text-center mb-4">Uma experiência de Envio de dinheiro sobre a qual as pessoas adoram falar
+                <p class="lead text-center mb-4">Uma experiência sobre a qual as pessoas adoram falar
                 </p>
                 <div class="row">
                     <div class="col-lg-10 col-xl-8 mx-auto">
@@ -247,12 +239,12 @@
         <!-- Testimonial end -->
 
         <!-- Frequently asked questions
-                                                            ============================================= -->
+                                                                ============================================= -->
         <section class="section bg-white">
             <div class="container">
                 <h2 class="text-9 text-center">Dúvidas Frequentes</h2>
-                <p class="lead text-center mb-4 mb-sm-5">Não encontrou nada relacionado as suas dúvidas? Envie-nos uma
-                    menssagem <a class="btn-link" href="{{route("help")}}">Centro de Ajuda</a></p>
+                <p class="lead text-center mb-4 mb-sm-5">Não encontrou nada relacionado às suas dúvidas? Envie-nos uma
+                    menssagem <a class="btn-link" href="{{ route('help') }}">Centro de Ajuda</a></p>
                 <div class="row">
                     <div class="col-md-10 col-lg-8 mx-auto">
                         <hr class="mb-0">
@@ -283,7 +275,7 @@
         <!-- Frequently asked questions end -->
 
         <!-- Special Offer
-                                                            ============================================= -->
+                                                                ============================================= -->
         <section class="hero-wrap py-5">
             <div class="hero-mask opacity-8 bg-dark"></div>
             <div class="hero-bg" style="background-image:url('{{ asset('assets/images/image-2.jpg') }}');"></div>
