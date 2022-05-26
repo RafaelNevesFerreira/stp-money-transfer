@@ -17,7 +17,7 @@ class TecnicoMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role === "2") {
+        if (Auth::check() && Auth::user()->role === 2) {
             return $next($request);
         } else if (!Auth::check()) {
             return redirect()->route("login");
