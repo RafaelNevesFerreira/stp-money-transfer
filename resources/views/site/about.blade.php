@@ -16,7 +16,7 @@
                                 destinatário de forma segura!</p>
                             <a href="#" class="btn btn-primary m-2">Crie uma conta</a> <a
                                 class="btn btn-outline-light video-btn m-2" href="#"
-                                data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal"
+                                data-src="https://player.vimeo.com/video/712589238" data-bs-toggle="modal"
                                 data-bs-target="#videoModal"><span class="me-2"><i
                                         class="fas fa-play-circle"></i></span>Veja como funciona</a>
                         </div>
