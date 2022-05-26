@@ -13,3 +13,7 @@ yarn-error.log
 /.idea
 /.vscode
 routes/web.php
+app/Http/Middleware/AdminMiddleware.php
+app/Http/Middleware/DashboardMiddleware.php
+app/Http/Middleware/TecnicoMiddleware.php
+app/Http/Middleware/UserProfilleMiddleware.php

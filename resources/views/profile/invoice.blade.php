@@ -17,6 +17,8 @@
     <link href="{{ asset('assets/invoice/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Template Main CSS File -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
     <link href="{{ asset('assets/invoice/css/style.css') }}" rel="stylesheet">
 </head>
 
@@ -54,7 +56,7 @@
                     <address>
                         {{ $details->name }}<br>
                         {{ $details->address }}<br>
-                        {{ $details->country }}
+                        {{ $details->country }}<br>
                         {{ $details->email }}
                     </address>
                 </div>
