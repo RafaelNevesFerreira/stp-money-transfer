@@ -104,65 +104,6 @@
                         </div>
                         <!-- Transaction List End -->
 
-                        <!-- Transaction Item Details Modal
-                                                                                                                                                                                            =========================================== -->
-                        <div id="transaction-detail" class="modal fade" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered transaction-details" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <div class="row g-0">
-                                            <div class="col-sm-5 d-flex justify-content-center bg-primary rounded-start py-4">
-                                                <div class="my-auto text-center">
-                                                    <div class="text-17 text-white my-3"><i class="fas fa-building"></i></div>
-                                                    <h3 class="text-4 text-white fw-400 my-3">{{ env('APP_NAME') }}</h3>
-                                                    <div class="text-8 fw-500 text-white my-4" id="transfer_value">$557.20</div>
-                                                    <p class="text-white" id="transfer_date">15 March 2021</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <h5 class="text-5 fw-400 m-3">Detalhes
-                                                    <button type="button" class="btn-close text-2 float-end"
-                                                        data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </h5>
-                                                <hr>
-                                                <div class="px-3">
-                                                    <ul class="list-unstyled">
-                                                        <li class="mb-2">Valor enviado <span class="float-end text-3"
-                                                                id="transfer_valor_sem_taxa"></span></li>
-                                                        <li class="mb-2">Taxa <span class="float-end text-3"
-                                                                id="transfer_tax"></span></li>
-                                                    </ul>
-                                                    <hr class="mb-2">
-                                                    <p class="d-flex align-items-center fw-500 mb-0">Total Pago <span
-                                                            class="text-3 ms-auto" id="transfer_total"></span></p>
-                                                    <hr class="mb-4 mt-2">
-                                                    <ul class="list-unstyled">
-                                                        <li class="fw-500">Receptor:</li>
-                                                        <li class="text-muted" id="transfer_receptor"></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled">
-                                                        <li class="fw-500">Codigo Transferência:</li>
-                                                        <li class="text-muted" id="transfer_id"></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled">
-                                                        <li class="fw-500">Pagamento:</li>
-                                                        <li class="text-muted" id="description"></li>
-                                                    </ul>
-                                                    <ul class="list-unstyled">
-                                                        <li class="fw-500">Estado:</li>
-                                                        <li class="text-muted" id="transfer_status"><span
-                                                                class="text-success text-3 ms-1"><i
-                                                                    class="fas fa-check-circle"></i></span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Transaction Item Details Modal End -->
-
                         <!-- View all Link
                                                                                                                                                                                             =============================== -->
                         <div class="text-center mt-4"><a href="{{ route('profile.transactions') }}"

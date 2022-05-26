@@ -83,7 +83,8 @@ Route::controller(ProfileController::class)->group(function () {
             Route::get("transactions", "transactions")->name("profile.transactions");
             Route::get("settings", "settings")->name("profile.settings");
             Route::post("change_data", "profilleChangeDta")->name("profille.change.data");
-            Route::post("transfer_details", "transfer_details")->name("profille.transfer_details");
+            Route::post("transactions_details", "transfer_details")->name("profille.transfer_details");
+            Route::get("transactions_invoice/{id}", "invoice")->name("profille.invoice");
         });
     });
 });
