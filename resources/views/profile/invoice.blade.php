@@ -56,7 +56,7 @@
                     <address>
                         {{ $details->name }}<br>
                         {{ $details->address }}<br>
-                        {{ $details->country }}
+                        {{ $details->country }}<br>
                         {{ $details->email }}
                     </address>
                 </div>
