@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProfilleChangeData;
@@ -12,9 +14,11 @@ use App\Repositories\Contracts\NotificationsRepositoryInterface;
 
 class ProfileController extends Controller
 {
-    public function __construct(public TransfersRepositoryInterface $transfers, public UserRepositoryInterface $user,
-    public NotificationsRepositoryInterface $notifications)
-    {
+    public function __construct(
+        public TransfersRepositoryInterface $transfers,
+        public UserRepositoryInterface $user,
+        public NotificationsRepositoryInterface $notifications
+    ) {
     }
     public function profille()
     {
@@ -26,7 +30,7 @@ class ProfileController extends Controller
     public function notifications()
     {
         $notifications = $this->notifications->whereId(Auth::user()->id);
-        return view("profile.notifications",compact("notifications"));
+        return view("profile.notifications", compact("notifications"));
     }
 
     public function settings()
@@ -41,6 +45,11 @@ class ProfileController extends Controller
         return view("profile.transactions", compact("transfers"));
     }
 
+    public function invoice($id)
+    {
+        $details = $this->transfers->details($id);
+        return view("profile.invoice", compact("details"));
+    }
 
     public function transfer_details(Request $request)
     {
