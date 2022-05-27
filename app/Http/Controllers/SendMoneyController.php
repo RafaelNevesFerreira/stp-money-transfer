@@ -47,8 +47,6 @@ class SendMoneyController extends Controller
     {
         $data[] = $request->all();
 
-
-
         session()->put([
             "name" => $request->name,
             "phone_number" => $request->phone_number,
