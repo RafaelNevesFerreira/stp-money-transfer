@@ -140,7 +140,7 @@
                                         <h5 class="text-3 text-body">Não consegue encontrar o que procura?</h5>
                                         <p class="text-muted mb-0">Queremos responder a todas as suas dúvidas. Entre em
                                             contato e retornaremos o mais breve possível.
-                                            <a class="btn-link" href="#">
+                                            <a class="btn-link" href="{{route("contact")}}">
                                                 Contate-no
                                                 <span class="text-1 ms-1">
                                                     <i class="fas fa-chevron-right"></i>
@@ -164,7 +164,7 @@
                                         <h5 class="text-3 text-body">Perguntas técnicas</h5>
                                         <p class="text-muted mb-0">
                                             Tem algumas dúvidas técnicas? Fale conosco.
-                                            <a class="btn-link" href="#">
+                                            <a class="btn-link" href="{{route("contact")}}">
                                                 Clique aqui
                                                 <span class="text-1 ms-1">
                                                     <i class="fas fa-chevron-right"></i>
