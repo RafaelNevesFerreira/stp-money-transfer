@@ -161,7 +161,7 @@
                                 </div>
                                 <div class="col text-center text-sm-start">
                                     <div class="">
-                                        <h5 class="text-3 text-body">Technical questions</h5>
+                                        <h5 class="text-3 text-body">Perguntas técnicas</h5>
                                         <p class="text-muted mb-0">
                                             Tem algumas dúvidas técnicas? Fale conosco.
                                             <a class="btn-link" href="#">
