@@ -92,16 +92,6 @@
                                     </div>
                                 </div>
                             @endif
-
-                            @if (session('message'))
-                                <div class='form-row row'>
-                                    <div class='col-md-12 error form-group'>
-                                        <div class='alert-success alert'>
-                                            <p>{{session("message")}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
                             <div class="d-grid"><button class="btn btn-primary">Enviar</button></div>
                         </form>
                     </div>
