@@ -1,4 +1,4 @@
-@extends("layouts.admin.app")
+@extends('layouts.admin.app')
 @section('content')
     <div class="content-page">
         <div class="content">
@@ -128,8 +128,8 @@
                                 Des do seu registro, {{ $user->name }} fez {{ $user_total_transactions }}
                                 Transações.
                                 Das {{ $user_total_transactions }} Transações feitas por {{ $user->name }},
-                                {{ $user_total_transactions_sem_prestacoes }} foram em pretações e
-                                {{ $user_total_transactions_prestacoes }} foram pagos na totalidade
+                                {{ $user_total_transactions_prestacoes }} foram em pretações e
+                                {{ $user_total_transactions_sem_prestacoes }} foram pagos na totalidade
                             </p>
 
                             <hr />
