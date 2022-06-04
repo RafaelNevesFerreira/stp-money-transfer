@@ -46,7 +46,7 @@ class AbstractRepository
 
     public function simplePaginate($limit)
     {
-        return $this->model::paginate($limit);
+        return $this->model::latest()->paginate($limit);
     }
 
     public function firstorfail($id)
