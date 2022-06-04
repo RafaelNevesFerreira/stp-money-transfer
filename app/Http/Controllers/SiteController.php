@@ -42,7 +42,7 @@ class SiteController extends Controller
 
         $this->reviews->create($request->all());
 
-        return redirect()->route("review")->with("message","review deixado com sucesso");
+        return redirect()->route("home");
     }
 
     public function about()
