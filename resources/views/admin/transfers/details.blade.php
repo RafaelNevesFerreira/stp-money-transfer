@@ -80,7 +80,7 @@
                                     {{ $transfer->address }}<br>
                                     {{ $transfer->country }}<br>
                                     <abbr title="Phone">P:</abbr> {{ $transfer->phone_number }} <br />
-                                    <abbr title="Email">Email:</abbr> {{ $transfer->email }}
+                                    <abbr id="transfer_email" data-transfer-email={{$transfer->email}} title="Email">Email:</abbr> {{ $transfer->email }}
                                 </address>
 
                             </div>
@@ -179,8 +179,10 @@
 @section('scripts')
     <script>
         $("#recebido").click(function() {
-            var id;
+            var id, email;
             id = $(this).attr("data-id")
+            email = $("#transfer_email").attr("data-transfer-email")
+
             $.ajaxSetup({
                 headers: {
                     "X-CSRF-TOKEN": $("meta[name='_token']").attr("content")
@@ -192,7 +194,8 @@
                 url: "{{ route('admin.change.status') }}",
                 data: {
                     "status": "recebido",
-                    "id": id
+                    "id": id,
+                    "email" :email
                 },
                 success: function(data) {
                     $(this).remove();
@@ -205,8 +208,9 @@
         })
 
         $("#reembolsado").click(function() {
-            var id;
+            var id, email;
             id = $(this).attr("data-id")
+
             $.ajaxSetup({
                 headers: {
                     "X-CSRF-TOKEN": $("meta[name='_token']").attr("content")
@@ -218,7 +222,7 @@
                 url: "{{ route('admin.change.status') }}",
                 data: {
                     "status": "reembolsado",
-                    "id": id
+                    "id": id,
                 },
                 success: function(data) {
                     $(this).remove();

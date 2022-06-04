@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\Contracts\FaqRepositoryInterface;
@@ -175,6 +176,7 @@ class AdminController extends Controller
     {
         if ($request->status === "recebido") {
             $this->transfers->change_status($request->id, false);
+            Review::dispatch($request->email)->delay(now());
         } else {
             $this->transfers->change_status($request->id, true);
         }

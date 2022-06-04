@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends('layouts.app')
 @section('content')
     <!-- Content  ============================================= -->
     <div id="content" class="py-4">
@@ -119,8 +119,8 @@
                                             <label for="email" class="form-label">Email</label>
                                             @if (Auth::check())
                                                 <input type="text" class="form-control" id="email" required
-                                                    placeholder="Digite o seu email" disabled value="{{ Auth::user()->email }}"
-                                                    name="email">
+                                                    placeholder="Digite o seu email" disabled
+                                                    value="{{ Auth::user()->email }}" name="email">
                                             @else
                                                 <input type="text" class="form-control" id="email" required
                                                     placeholder="Digite o seu email" value="{{ session('email') }}"
@@ -170,9 +170,64 @@
 
 
                                             <label for="country" class="form-label">País</label>
-                                            <input type="text" class="form-control" id="country" required
-                                                placeholder="Digite o seu país de residência" name="country">
-                                        </div>
+                                            <select id="country" class="form-control " required name="country">
+                                                <option value="Portugal">Portugal</option>
+                                                <option value="Angola">Angola</option>
+                                                <option value="França">França</option>
+                                                <option value="Argentina">Argentina</option>
+                                                <option value="Australia">Austrália</option>
+                                                <option value="Austria">Áustria</option>
+                                                <option value="Bangladesh">Bangladesh</option>
+                                                <option value="Bélgica">Bélgica</option>
+                                                <option value="Brasil">Brasil</option>
+                                                <option value="Bulgaria">Bulgária</option>
+                                                <option value="Burkina Faso">Burkina Faso</option>
+                                                <option value="Camarões">Camarões</option>
+                                                <option value="Canada">Canadá</option>
+                                                <option value="cabo Verde">cabo Verde</option>
+                                                <option value="China">China</option>
+                                                <option value="Colombia">Colômbia</option>
+                                                <option value="Comoros">Comores</option>
+                                                <option value="Congo">Congo</option>
+                                                <option value="Cote D'Ivoire">Cote D'Ivoire</option>
+                                                <option value="Cuba">Cuba</option>
+                                                <option value="Ecuador">Equador</option>
+                                                <option value="Guiné Equatorial">Guiné Equatorial</option>
+                                                <option value="Finlândia">Finlândia</option>
+                                                <option value="Gabão">Gabão</option>
+                                                <option value="Alemanha">Alemanha</option>
+                                                <option value="Guiné">Guiné</option>
+                                                <option value="Guine-Bissau">Guine-bissau</option>
+                                                <option value="Hong Kong">Hong Kong</option>
+                                                <option value="Hungria">Hungria</option>
+                                                <option value="Islândia">Islândia</option>
+                                                <option value="India">Índia</option>
+                                                <option value="Itália">Itália</option>
+                                                <option value="Japão">Japão</option>
+                                                <option value="Quênia">Quênia</option>
+                                                <option value="Líbano">Líbano</option>
+                                                <option value="Luxemburgo">Luxemburgo</option>
+                                                <option value="Macau">Macau</option>
+                                                <option value="Mali">Mali</option>
+                                                <option value="Mexico">México</option>
+                                                <option value="Monaco">Mônaco</option>
+                                                <option value="Mongolia">Mongólia</option>
+                                                <option value="Marrocos">Marrocos</option>
+                                                <option value="Moçambique">Moçambique</option>
+                                                <option value="Países Baixos">Países Baixos</option>
+                                                <option value="Nova Zelândia">Nova Zelândia</option>
+                                                <option value="Nigeria">Nigéria</option>
+                                                <option value="Polônia">Polônia</option>
+                                                <option value="Catar">Catar</option>
+                                                <option value="Ruanda">Ruanda</option>
+                                                <option value="Senegal">Senegal</option>
+                                                <option value="Espanha">Espanha</option>
+                                                <option value="Suíça">Suíça</option>
+                                                <option value="Taiwan">Taiwan</option>
+                                                <option value="Timor-Leste">Timor-Leste</option>
+                                                <option value="Reino Unido">Reino Unido</option>
+                                                <option value="Estados Unidos">Estados Unidos</option>
+                                            </select>                                        </div>
                                         <div class="col-md-12">
                                             <label for="email" class="form-label">Email</label>
                                             <input type="text" class="form-control" id="email" required
@@ -182,14 +237,15 @@
                                     </div>
                                     <br>
                                     <p>Automatize o processo</p>
-                                    <p><small>Uma vez cadastrado o seu processo de envio será mais rapido, sem falar que poderà pedir reembolso apenas se for cliente.</small></p>
+                                    <p><small>Uma vez cadastrado o seu processo de envio será mais rapido, sem falar que
+                                            poderà pedir reembolso apenas se for cliente.</small></p>
 
                                     <div class="d-grid "><a href="{{ route('register') }}"
                                             class="btn btn-warning">Cadastre-se</a></div>
-                                            <br>
-                                            <p class="text-center">Ou</p>
-                                            <div class="d-grid "><a href="{{ route('login') }}"
-                                                class="btn btn-info">Login</a></div>
+                                    <br>
+                                    <p class="text-center">Ou</p>
+                                    <div class="d-grid "><a href="{{ route('login') }}"
+                                            class="btn btn-info">Login</a></div>
                                 @endif
 
 
@@ -198,13 +254,26 @@
                             <h3 class="text-5 fw-400 mb-3 mb-sm-4">Confirmar Detalhes</h3>
                             <hr class="mx-n3 mx-sm-n5 mb-4">
                             <p class="mb-1">Valor à Enviar <span
-                                    class="text-3 float-end">{{ number_format(session('valor_a_ser_enviado'),2,",",".") }}
+                                    class="text-3 float-end">{{ number_format(session('valor_a_ser_enviado'), 2, ',', '.') }}
                                     {{ session('moeda') }}</span></p>
-                            <p class="mb-1">Total Tax <span class="text-3 float-end">{{ number_format(session('tax'),2,",",".") }}
+                            <p class="mb-1">Total Tax <span
+                                    class="text-3 float-end">{{ number_format(session('tax'), 2, ',', '.') }}
                                     {{ session('moeda') }}</span></p>
                             <hr>
-                            <p class="text-4 fw-500">Total<span class="float-end">{{ number_format(session('total'),2,",",".") }}
+                            <p class="text-4 fw-500">Total<span
+                                    class="float-end">{{ number_format(session('total'), 2, ',', '.') }}
                                     {{ session('moeda') }}</span></p>
+                            @if ($errors->any())
+                                <div class='form-row row'>
+                                    <div class='col-md-12 error form-group'>
+                                        <div class='alert-danger alert'>
+                                            @foreach ($errors->all() as $error)
+                                                <p>{!! $error !!}</p>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="d-grid"><button class="btn btn-primary">Enviar</button></div>
                         </form>
                         <!-- Send Money Confirm end -->
