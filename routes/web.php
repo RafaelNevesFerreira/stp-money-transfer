@@ -31,13 +31,14 @@ Route::controller(SiteController::class)->group(function () {
     Route::get("/help", "help")->name("help");
     Route::get("/contact", "contact")->name("contact");
     Route::get("/privacity", "privacity")->name("privacity");
+    Route::get("/review", "review")->name("review");
+    Route::post("/review", "review_submit")->name("review_submit");
 
     Route::get('storage/wink/images/{filename}', function ($filename) {
         $path = storage_path('app/public/wink/images/' . $filename);
         if (!File::exists($path)) {
             abort(404);
         }
-
 
         $file = File::get($path);
         $type = File::mimeType($path);

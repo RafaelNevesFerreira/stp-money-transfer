@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReviewMail;
+use Illuminate\Http\Request;
 use App\Models\TransactionPlansDef;
 use App\Repositories\Contracts\FaqRepositoryInterface;
 use App\Repositories\Contracts\ContactRepositoryInterface;
@@ -13,7 +15,7 @@ class SiteController extends Controller
         public FaqRepositoryInterface $faqs,
         public ReviewsRepositoryInterface $reviews,
         public ContactRepositoryInterface $contact,
-        public TransactionPlansDef $defs
+        public TransactionPlansDef $defs,
     ) {
     }
     public function index()
@@ -23,6 +25,24 @@ class SiteController extends Controller
         $reviews = $this->reviews->limit(10);
 
         return view("site.welcome", compact("faqs", "reviews"));
+    }
+
+    public function review()
+    {
+        return view("site.review");
+    }
+
+    public function review_submit(Request $request)
+    {
+        $request->validate([
+            "name" => "required|string",
+            "content" => "required|max:300|min:3",
+            "country" => "required"
+        ]);
+
+        $this->reviews->create($request->all());
+
+        return redirect()->route("review")->with("message","review deixado com sucesso");
     }
 
     public function about()

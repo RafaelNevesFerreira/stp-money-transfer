@@ -39,7 +39,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
                 break;
         }
         $transfer_code = uniqid("SMT");
-        if (session("plans")) {
+        if (session("plan")) {
             $plan = 1;
         } else {
             $plan = 0;
@@ -56,7 +56,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             "currency" => $currency,
             "country" => session("country"),
             "phone_number" => session("phone_number"),
-            "plans" => $plan,
+            "plan" => $plan,
             "email" => $email,
             "tax" => session("tax"),
             "value_sended" => session("valor_a_ser_enviado"),
@@ -100,7 +100,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function abonement_this_month()
     {
-        return $this->model::where("plans", 1)->whereMonth('created_at', date("m"))->count();
+        return $this->model::where("plan", 1)->whereMonth('created_at', date("m"))->count();
     }
 
     public function to_received_this_month()
@@ -127,6 +127,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         }
 
         $this->notifications->save($transfer);
+
     }
 
     public function transfers_esta_semana(): int
@@ -157,18 +158,18 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
     public function numero_de_prestações_da_semana()
     {
-        return $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where("plans", 1)->count();
+        return $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where("plan", 1)->count();
     }
 
     public function saldo_semanal()
     {
         $pagos_em_prestacoes_com_euro = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
-            ->where(["plans" => 1])
+            ->where(["plan" => 1])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
 
         $pagos_com_euro = $this->model::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
-            ->where(["plans" => 0])
+            ->where(["plan" => 0])
             ->sum(DB::raw("value_sended + tax"));
 
 
@@ -185,11 +186,11 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
 
         $pagos_em_prestacoes_com_euro = $this->model::whereBetween('created_at', [$start_week, $end_week])
-            ->where(["plans" => 1])
+            ->where(["plan" => 1])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
         $pagos_com_euro = $this->model::whereBetween('created_at', [$start_week, $end_week])
-            ->where(["plans" => 0])
+            ->where(["plan" => 0])
             ->sum(DB::raw("value_sended + tax"));
 
         if ($total == true) {
@@ -212,12 +213,12 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
         $pagos_em_prestacoes_com_euro = $this->model::whereMonth('created_at', $mes)
             ->whereYear("created_at", date("Y"))
-            ->where(["plans" => 1])
+            ->where(["plan" => 1])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
         $pagos_com_euro = $this->model::whereMonth('created_at', $mes)
             ->whereYear("created_at", date("Y"))
-            ->where(["plans" => 0])
+            ->where(["plan" => 0])
             ->sum(DB::raw("value_sended + tax"));
 
         return $pagos_em_prestacoes_com_euro + $pagos_com_euro;
@@ -227,12 +228,12 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     {
         $pagos_em_prestacoes_com_euro = $this->model::whereMonth('created_at', '=', $mes)
             ->whereYear('created_at', date('Y', strtotime('-1 year')))
-            ->where(["plans" => 1])
+            ->where(["plan" => 1])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
         $pagos_com_euro = $this->model::whereMonth('created_at', '=', $mes)
             ->whereYear('created_at', date('Y', strtotime('-1 year')))
-            ->where(["plans" => 0])
+            ->where(["plan" => 0])
             ->sum(DB::raw("value_sended + tax"));
 
         return $pagos_em_prestacoes_com_euro + $pagos_com_euro;
@@ -267,12 +268,12 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         if ($plan === 1) {
             return $this->model::whereMonth('created_at', $month)
                 ->whereYear("created_at", $year)
-                ->where(["plans" => 1])
+                ->where(["plan" => 1])
                 ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
         } else {
             return $this->model::whereMonth('created_at', $month)
                 ->whereYear("created_at", $year)
-                ->where(["plans" => 0])
+                ->where(["plan" => 0])
                 ->sum(DB::raw("value_sended + tax"));
         }
     }
@@ -286,13 +287,13 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     {
         $pegos = $this->model::where("created_at", ">", Carbon::now()->endOfWeek()->subdays($date))
             ->where("created_at", "<=", Carbon::now()->endOfWeek()->subdays($date - 1))
-            ->where(["plans" => 0])
+            ->where(["plan" => 0])
             ->sum(DB::raw("value_sended + tax"));
 
 
         $prestacoes = $this->model::where("created_at", ">", Carbon::now()->endOfWeek()->subdays($date))
             ->where("created_at", "<=", Carbon::now()->endOfWeek()->subdays($date - 1))
-            ->where(["plans" => 1])
+            ->where(["plan" => 1])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
 
@@ -318,12 +319,12 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
 
         $pagos = $this->model::where("created_at", ">", $start_week)
             ->where("created_at", "<", $end_week)
-            ->where(["plans" => 0])
+            ->where(["plan" => 0])
             ->sum(DB::raw("value_sended + tax"));
 
         $prestacoes = $this->model::where("created_at", ">", $start_week)
             ->where("created_at", "<", $end_week)
-            ->where(["plans" => 1])
+            ->where(["plan" => 1])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
 
@@ -339,12 +340,12 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     {
         $pagos = $this->model::whereMonth('created_at', date("m"))
             ->whereYear("created_at", date("Y"))
-            ->where(["plans" => 0, "country" => $country])
+            ->where(["plan" => 0, "country" => $country])
             ->sum(DB::raw("value_sended + tax"));
 
         $prestacoes = $this->model::whereMonth('created_at', date("m"))
             ->whereYear("created_at", date("Y"))
-            ->where(["plans" => 1, "country" => $country])
+            ->where(["plan" => 1, "country" => $country])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
 
         return number_format($pagos + $prestacoes, 2, ",", ".");
@@ -354,7 +355,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     {
         return $this->model::whereMonth("created_at", $month)
             ->whereYear("created_at", $year)
-            ->where("plans", 0)
+            ->where("plan", 0)
             ->where("value_sended", ">", $min)
             ->where("value_sended", "<", $max)
             ->limit($limit)
@@ -364,12 +365,12 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     public function user_count_transactions($email, $prestacoes = 3)
     {
         if ($prestacoes == 1) {
-            return $this->model::where("plans", 1)
+            return $this->model::where("plan", 1)
                 ->where("email", $email)
                 ->count();
         } elseif ($prestacoes == 0) {
             return $this->model::where("email", $email)
-                ->where("plans", 0)
+                ->where("plan", 0)
                 ->count();
         } else {
             return $this->model::where("email", $email)->count();
@@ -380,7 +381,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     {
         $pagos_com_euro = $this->model::whereMonth('created_at', $month)
             ->whereYear("created_at", $year)
-            ->where(["plans" => 0, "email" => $email])
+            ->where(["plan" => 0, "email" => $email])
             ->sum(DB::raw("value_sended + tax"));
 
         return  $pagos_com_euro;
@@ -395,7 +396,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     {
         return $this->model::whereMonth('created_at', "<", $month)
             ->whereYear("created_at", $year)
-            ->where(["plans" => 1, "email" => $email])
+            ->where(["plan" => 1, "email" => $email])
             ->sum(DB::raw("value_sended + tax"));
     }
 
@@ -404,7 +405,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return $this->model::whereMonth('created_at', "<", $month)
             ->whereMonth('created_at', ">=", date("m", strtotime("-1 months")))
             ->whereYear("created_at", $year)
-            ->where(["plans" => 1, "email" => $email])
+            ->where(["plan" => 1, "email" => $email])
             ->sum(DB::raw("(((value_sended + tax) * 20) / 100 + (value_sended + tax)) / 2"));
     }
 }
