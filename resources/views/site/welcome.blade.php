@@ -134,7 +134,7 @@
         <section class="section">
             <div class="container">
                 <h2 class="text-9 text-center">Porquê nos escolher?</h2>
-                <p class="lead text-center mb-5">A baixo alguns dos motivos do porquê nos escolher.</p>
+                <p class="lead text-center mb-5">Abaixo alguns dos motivos do porquê nos escolher.</p>
                 <div class="row gy-4">
                     <div class="col-md-6">
                         <div class="hero-wrap section h-100 p-5 rounded">
@@ -147,10 +147,10 @@
                                 <p class="text-light mb-5">{{ env('APP_NAME') }} visa qualidade, segurança e rapidez,
                                     estamos no mercado trabalhando
                                     com as mais diversas e melhores tecnologias
-                                    para garantir que os envios do dinheiro dos nossos clientes seja feito da forma mais
+                                    para garantir que os envios do dinheiro dos nossos clientes sejam feitos da forma mais
                                     segura possivel.</p>
                                 <h2 class="text-6 text-white mb-3">Enviar dinheiro com {{ env('APP_NAME') }}</h2>
-                                <p class="text-light">Enviar dinheiro pela internet sempre foi algo um pouco duvidos,
+                                <p class="text-light">Enviar dinheiro pela internet sempre foi um tanto quanto duvidoso,
                                     pois ao longo do tempo mais têm sido os ataque ciberneticos.</p>
                                 <p class="text-light mb-0">Por esse motivo {{ env('APP_NAME') }} investiu em uma
                                     plataforma
