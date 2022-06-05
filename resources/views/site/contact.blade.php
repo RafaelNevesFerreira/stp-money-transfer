@@ -37,7 +37,7 @@
                     <div class="bg-white shadow-md rounded h-100 p-3">
                         <div class="featured-box text-center">
                             <div class="featured-box-icon text-primary mt-4"> <i class="fas fa-phone"></i> </div>
-                            <h3>Telephone</h3>
+                            <h3>Telefone</h3>
                             <p class="mb-0">{{ $contact->phone_1 }}</p>
                             <p>{{ $contact->phone_2 }}</p>
                         </div>
@@ -47,7 +47,7 @@
                     <div class="bg-white shadow-md rounded h-100 p-3">
                         <div class="featured-box text-center">
                             <div class="featured-box-icon text-primary mt-4"> <i class="fas fa-envelope"></i> </div>
-                            <h3>Business Inquiries</h3>
+                            <h3>Email</h3>
                             <p>{{ $contact->email_1 }}</p>
                             <p>{{ $contact->email_2 }}</p>
                         </div>
@@ -56,7 +56,7 @@
             </div>
             <div class="text-center py-5">
                 <h2 class="text-8">Entre em contato</h2>
-                <p class="lead">Estamos presetes nas mais populares redes e meios de comunicaçã.</p>
+                <p class="lead">Estamos presetes nas mais populares redes e meios de comunicação.</p>
                 <div class="d-flex flex-column">
                     <ul class="social-icons social-icons-lg social-icons-colored justify-content-center">
                         <li class="social-icons-facebook"><a data-bs-toggle="tooltip" href="http://www.facebook.com/"

@@ -14,7 +14,7 @@
                             <h1 class="text-11 fw-500 text-white mb-3">Sobre {{ env('APP_NAME') }}</h1>
                             <p class="text-5 text-white lh-base mb-4">Nossa missão é de garantir que o seu dinheiro chegue ao
                                 destinatário de forma segura!</p>
-                            <a href="#" class="btn btn-primary m-2">Crie uma conta</a> <a
+                            <a href="{{route("register")}}" class="btn btn-primary m-2">Crie uma conta</a> <a
                                 class="btn btn-outline-light video-btn m-2" href="#"
                                 data-src="https://player.vimeo.com/video/714360049?h=9a4af99e60" data-bs-toggle="modal"
                                 data-bs-target="#videoModal"><span class="me-2"><i
@@ -39,10 +39,11 @@
                     <div class="col-lg-6 d-flex">
                         <div class="my-auto px-0 px-lg-5 mx-2">
                             <h2 class="text-9 mb-4">Quem somos nós</h2>
-                            <p class="text-4">Quidam lisque persius interesset his et, in quot quidam persequeris
-                                vim, ad mea essent possim iriure. Lisque persius interesset his et, in quot quidam
-                                persequeris vim, ad mea essent possim iriure. lisque persius interesset his et, in quot
-                                quidam mea essent possim iriure.</p>
+                            <p class="text-4">{{env("APP_NAME")}} é uma plataforma de envio de dinheiro focada para o  mercado
+                                São Tomése, nós visamos qualidade, segurança, e eficacia. A nossa plataforma
+                                foi criada no ambito de facilitar a vida das pessoas que queiram enviar dinheior
+                                de ou para São Tomé
+                                .</p>
                         </div>
                     </div>
                     <div class="col-lg-6 my-auto text-center"> <img class="img-fluid shadow-lg rounded-3"
@@ -67,22 +68,18 @@
                     </div>
                     <div class="col-lg-6 d-flex order-1 order-lg-2">
                         <div class="my-auto px-0 px-lg-5">
-                            <h2 class="text-9 mb-4">Our Values</h2>
-                            <h4 class="text-4 fw-500">Our Mission</h4>
-                            <p class="tex-3">Quidam lisque persius interesset his et, in quot quidam persequeris
-                                vim, ad mea essent possim iriure. Lisque persius interesset his et, in quot quidam
-                                persequeris vim, ad mea essent possim iriure. lisque persius interesset his et, in quot
-                                quidam mea essent possim iriure.</p>
-                            <h4 class="text-4 fw-500 mb-2">Our Vision</h4>
-                            <p class="tex-3">Persequeris quidam lisque persius interesset his et, in quot quidam
-                                vim, ad mea essent possim iriure. Lisque persius interesset his et, in quot quidam
-                                persequeris vim, ad mea essent possim iriure. lisque persius interesset his et, in quot
-                                quidam.</p>
-                            <h4 class="text-4 fw-500 mb-2">Our Goal</h4>
-                            <p class="tex-3">Lisque persius interesset his et, in quot quidam persequeris vim, ad
-                                mea essent possim iriure. Lisque persius interesset his et, in quot quidam persequeris vim,
-                                ad mea essent possim iriure. lisque persius interesset his et, in quot quidam mea essent
-                                possim iriure.</p>
+                            <h2 class="text-9 mb-4">{{env("APP_NAME")}}</h2>
+                            <h4 class="text-4 fw-500">Nossa Missão</h4>
+                            <p class="tex-3">Nossa missão é proporcionar as pessoas que queiram enviar dinheiro de ou para são
+                                tomé uma experiência unica e eficaz.</p>
+                            <h4 class="text-4 fw-500 mb-2">Nossa Visão</h4>
+                            <p class="tex-3">Ser reconhecida como líder em soluções para envio de dinheiro
+                                com colaboradores de médias e grandes empresas através serviços de excelência.</p>
+                            <h4 class="text-4 fw-500 mb-2">Nosso Valores</h4>
+                            <p class="tex-3">Só é bom para a gente, se for bom para o cliente; Simples. Sempre;
+                                Fanáticos por performance; Pensamos e agimos como donos;
+                                 Gente é tudo para a gente;
+                                Ética é inegociável; O melhor argumento é o que vale.</p>
                         </div>
                     </div>
                 </div>
