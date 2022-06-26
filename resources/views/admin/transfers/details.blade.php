@@ -1,4 +1,4 @@
-@extends("layouts.admin.app")
+@extends('layouts.admin.app')
 @section('content')
     <div class="content-page">
         <div class="content">
@@ -80,7 +80,8 @@
                                     {{ $transfer->address }}<br>
                                     {{ $transfer->country }}<br>
                                     <abbr title="Phone">P:</abbr> {{ $transfer->phone_number }} <br />
-                                    <abbr id="transfer_email" data-transfer-email={{$transfer->email}} title="Email">Email:</abbr> {{ $transfer->email }}
+                                    <abbr id="transfer_email" data-transfer-email={{ $transfer->email }}
+                                        title="Email">Email:</abbr> {{ $transfer->email }}
                                 </address>
 
                             </div>
@@ -97,7 +98,7 @@
                                         <p class="mb-2"><span class="fw-bold me-2">Tipo de Pagamento:</span>
                                             @if ($transfer->plan)
                                                 Pagar em prestações
-                                                {{ ((((int) $transfer->value_sended + $transfer->tax) * 20) / 100 +($transfer->value_sended + $transfer->tax)) /2 }}
+                                                {{ ((((int) $transfer->value_sended + $transfer->tax) * 20) / 100 + ($transfer->value_sended + $transfer->tax)) / 2 }}
                                                 € por mês
                                             @else
                                                 Pago na totalidade
@@ -127,12 +128,19 @@
 
                                 <div class="text-center">
                                     {{-- <i class="mdi mdi-truck-fast h2 text-muted"></i> --}}
-                                    <h5><b>{{ $transfer->destinatary_name }}</b></h5>
+                                    @if ($transfer->received_at && $transfer->status == 'received')
+                                        <h5><b>{{ $transfer->receptor->name }}
+                                                {{ $transfer->receptor->last_name }}</b></h5>
+                                        <h5><b>Data de nascença: {{ $transfer->receptor->birthday_date }} </b></h5>
+                                        <h5><b>Nacionalidade : {{ $transfer->receptor->nationality }}</b></h5>
+                                    @endif
+
                                     <p class="mb-1"><b>Codigo :</b> #{{ $transfer->transfer_code }}</p>
                                     <p class="mb-0"><span class="fw-bold me-2">Valor a receber:</span>
                                         {{ number_format($transfer->value_sended * (int) env('EUR_CAMBIO_VALUE'), 2, ',', '.') }}
                                         dbs
                                     </p>
+
                                     <p class="mt-1">
                                         @if (!$transfer->received_at && $transfer->status != 'reimbursed')
                                             <div>
@@ -143,19 +151,19 @@
                                                     data-off-label="não"></label>
                                             </div>
 
-                                            <div>
+                                            {{-- <div>
                                                 <span class="fw-bold me-2 estado_reembolsar">Reembolsado:</span>
                                                 <input type="checkbox" class="label_recebido" id="reembolsado"
                                                     data-id="{{ $transfer->id }}" data-switch="success" />
                                                 <label for="reembolsado" class="label_recebido" data-on-label="Sim"
                                                     data-off-label="não"></label>
-                                            </div>
+                                            </div> --}}
                                         @elseif ($transfer->status === 'reimbursed')
                                             <span class="fw-bold me-2 estado_reembolsado">Reembolsado:</span>
                                             O Valor foi reembolsado
                                         @else
                                             <span class="fw-bold me-2 estado_reembolsado">Recebido:</span>
-                                            {{$transfer->received_at}}
+                                            {{ $transfer->received_at }}
                                         @endif
                                     </p>
                                 </div>
@@ -174,13 +182,52 @@
         @include('layouts.admin.footer')
         <!-- end Footer -->
 
+        <div id="detalhes_do_receptor" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nome</label>
+                            <input class="form-control" type="text" name="name" id="name" required placeholder="Nome">
+                        </div>
+                        <div class="mb-3">
+                            <label for="last_name" class="form-label">Apelido</label>
+                            <input class="form-control" type="text" name="last_name" id="last_name" required
+                                placeholder="Apelido">
+                        </div>
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Nacionalidade</label>
+                            @include('layouts.select_country')
+                        </div>
+                        <div class="mb-3">
+                            <label for="birthday_date" class="form-label">Data de Nascimento</label>
+                            <input class="form-control" type="date" max="{{ date('d/m/Y') }}" name="birthday_date"
+                                id="birthday_date" required placeholder="Data de Nascimento">
+                        </div>
+                        <div class=' erro'>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <button class="btn btn-primary" id="enviar" type="button">Enviar</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     </div>
 @endsection
 @section('scripts')
     <script>
         $("#recebido").click(function() {
-            var id, email;
-            id = $(this).attr("data-id")
+            $("#detalhes_do_receptor").modal("show")
+        })
+
+        $("#enviar").click(function() {
+            var name, last_name, birthday_date, nationality, id, email;
+            name = $("#name").val()
+            last_name = $("#last_name").val()
+            birthday_date = $("#birthday_date").val()
+            nationality = $("#country").val()
+            id = $("#recebido").attr("data-id")
             email = $("#transfer_email").attr("data-transfer-email")
 
             $.ajaxSetup({
@@ -193,9 +240,12 @@
                 type: "POST",
                 url: "{{ route('admin.change.status') }}",
                 data: {
-                    "status": "recebido",
+                    "name": name,
+                    "last_name": last_name,
+                    "birthday_date": birthday_date,
+                    "nationality": nationality,
                     "id": id,
-                    "email" :email
+                    "email": email
                 },
                 success: function(data) {
                     $(this).remove();
@@ -203,7 +253,13 @@
                     $.NotificationApp.send("Sucesso", "O estado foi atualizado com sucesso",
                         "bottom-right", "Background color", "success")
                     $(".process-line").css("width", "100%")
-                }
+                    $("#detalhes_do_receptor").modal("hide")
+
+                },
+                error: function(error) {
+                    $(".erro").html("<p>" + error.responseJSON.message + "</p>")
+                    $(".erro").addClass("alert alert-danger")
+                },
             });
         })
 
@@ -227,7 +283,6 @@
                 success: function(data) {
                     $(this).remove();
                     $(".label_recebido").remove();
-
                     $(".estado_recebido").remove();
                     $(".estado_reembolsar").text("O Valor Foi Reembolsado");
                     $.NotificationApp.send("Sucesso", "O estado foi atualizado com sucesso",

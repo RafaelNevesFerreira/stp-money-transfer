@@ -25,4 +25,9 @@ class Transfer extends Model
         "transfer_code",
         "status",
     ];
+
+    public function receptor()
+    {
+        return $this->hasOne(TransferReception::class);
+    }
 }

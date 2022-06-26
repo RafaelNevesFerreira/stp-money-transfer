@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="_token" content="{{ csrf_token() }}" />
 
-    <title>{{ env('APP_NAME') }} - Money Transfer and Online Payments HTML Template</title>
+    <title>{{ env('APP_NAME') }} - Money Transfer and Online Payments </title>
 
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />

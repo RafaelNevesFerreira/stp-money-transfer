@@ -174,12 +174,19 @@ class AdminController extends Controller
 
     public function change_status(Request $request)
     {
-        if ($request->status === "recebido") {
-            $this->transfers->change_status($request->id, false);
-            Review::dispatch($request->email)->delay(now());
-        } else {
-            $this->transfers->change_status($request->id, true);
-        }
+
+        $request->validate([
+            "last_name" => "required",
+            "name" => "required",
+            "nationality" => "required",
+            "birthday_date" => "required",
+            "id" => "required|exists:transfers,id",
+            "email" => "required"
+        ]);
+
+        $this->transfers->change_status($request->id, $request->all());
+        Review::dispatch($request->email)->delay(now());
+
     }
 
     public function users()

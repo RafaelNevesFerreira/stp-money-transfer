@@ -7,6 +7,7 @@ use App\Models\Transfer;
 use App\Pipes\DateFilter;
 use App\Pipes\StatusFilter;
 use App\Jobs\PaimentSuccess;
+use App\Models\TransferReception;
 use App\Repositories\Contracts\NotificationsRepositoryInterface;
 use Illuminate\Support\Carbon;
 use Illuminate\Pipeline\Pipeline;
@@ -20,7 +21,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     public $DOLAR_EURO_PARA = 0.953370;
     public $LIBRA_EURO_PARA = 1.16866;
 
-    public function __construct(public Transfer $model, public NotificationsRepositoryInterface $notifications)
+    public function __construct(public Transfer $model, public NotificationsRepositoryInterface $notifications, public TransferReception $transfer_receptor)
     {
     }
 
@@ -113,21 +114,24 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return $this->model::whereDay('created_at', date("d"))->limit(4)->get();
     }
 
-    public function change_status($id, $reembolsado = false)
+    public function change_status($id, $request)
     {
         $transfer = $this->model::where("id", $id)->firstOrFail();
 
-        if ($reembolsado) {
-            $transfer->status = "reimbursed";
-            $transfer->save();
-        } else {
-            $transfer->status = "received";
-            $transfer->received_at = now();
-            $transfer->save();
-        }
+        $transfer->status = "received";
+        $transfer->received_at = now();
+        $transfer->save();
+
+        $this->transfer_receptor->create([
+            "name" => $request["name"],
+            "last_name" => $request["last_name"],
+            "nationality" => $request["nationality"],
+            "birthday_date" => $request["birthday_date"],
+            "transfer_id" => $transfer->id,
+        ]);
+
 
         $this->notifications->save($transfer);
-
     }
 
     public function transfers_esta_semana(): int

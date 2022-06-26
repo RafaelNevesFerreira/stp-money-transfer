@@ -33,65 +33,7 @@
                                 <div class="mb-3 col">
                                     <label for="country" class="form-label">País</label>
                                     <!-- All countries -->
-                                    <select id="country" class="form-control " required name="country">
-                                        <option>Selecione Seu País De Residência</option>
-                                        <option value="Angola">Angola</option>
-                                        <option value="Argentina">Argentina</option>
-                                        <option value="Australia">Austrália</option>
-                                        <option value="Austria">Áustria</option>
-                                        <option value="Bangladesh">Bangladesh</option>
-                                        <option value="Belgium">Bélgica</option>
-                                        <option value="Brazil">Brasil</option>
-                                        <option value="Bulgaria">Bulgária</option>
-                                        <option value="Burkina Faso">Burkina Faso</option>
-                                        <option value="Cameroon">Camarões</option>
-                                        <option value="Canada">Canadá</option>
-                                        <option value="Cape Verde">cabo Verde</option>
-                                        <option value="China">China</option>
-                                        <option value="Colombia">Colômbia</option>
-                                        <option value="Comoros">Comores</option>
-                                        <option value="Congo">Congo</option>
-                                        <option value="Cote D'Ivoire">Cote D'Ivoire</option>
-                                        <option value="Cuba">Cuba</option>
-                                        <option value="Ecuador">Equador</option>
-                                        <option value="Equatorial Guinea">Guiné Equatorial</option>
-                                        <option value="Finland">Finlândia</option>
-                                        <option value="France">França</option>
-                                        <option value="Gabon">Gabão</option>
-                                        <option value="Germany">Alemanha</option>
-                                        <option value="Guinea">Guiné</option>
-                                        <option value="Guinea-Bissau">Guinea-bissau</option>
-                                        <option value="Hong Kong">Hong Kong</option>
-                                        <option value="Hungary">Hungria</option>
-                                        <option value="Iceland">Islândia</option>
-                                        <option value="India">Índia</option>
-                                        <option value="Italy">Itália</option>
-                                        <option value="Japan">Japão</option>
-                                        <option value="Kenya">Quênia</option>
-                                        <option value="Lebanon">Líbano</option>
-                                        <option value="Luxembourg">Luxemburgo</option>
-                                        <option value="Macao">Macau</option>
-                                        <option value="Mali">Mali</option>
-                                        <option value="Mexico">México</option>
-                                        <option value="Monaco">Mônaco</option>
-                                        <option value="Mongolia">Mongólia</option>
-                                        <option value="Morocco">Marrocos</option>
-                                        <option value="Mozambique">Moçambique</option>
-                                        <option value="Netherlands">Países Baixos</option>
-                                        <option value="New Zealand">Nova Zelândia</option>
-                                        <option value="Nigeria">Nigéria</option>
-                                        <option value="Poland">Polônia</option>
-                                        <option value="Portugal">Portugal</option>
-                                        <option value="Qatar">Catar</option>
-                                        <option value="Rwanda">Ruanda</option>
-                                        <option value="Senegal">Senegal</option>
-                                        <option value="Spain">Espanha</option>
-                                        <option value="Switzerland">Suíça</option>
-                                        <option value="Taiwan">Taiwan</option>
-                                        <option value="Timor-Leste">Timor-Leste</option>
-                                        <option value="United Kingdom">Reino Unido</option>
-                                        <option value="United States">Estados Unidos</option>
-                                    </select>
+                                    @include("layouts.select_country")
                                 </div>
                                 <div class="mb-3 col">
                                     <label for="emailAddress" class="form-label">Email </label>

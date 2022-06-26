@@ -13,7 +13,7 @@ interface TransfersRepositoryInterface
     public function abonement_this_month();
     public function to_received_this_month();
     public function transfers_today();
-    public function change_status($id, $reembolsado = false);
+    public function change_status($id, $request);
     public function transfers_esta_semana();
     public function aumento_em_relacao_a_semana_passada();
     public function numero_de_prestações_da_semana();

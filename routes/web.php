@@ -105,14 +105,23 @@ Route::middleware("admin")->group(function () {
         Route::prefix("admin")->group(function () {
             Route::get("/dashboard", "dashboard")->name("admin.dashboard");
             Route::get("/dashboard/stripe", "dashboard_stripe")->name("admin.dashboard.stripe");
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
             Route::get("/transactions", "transfers")->name("admin.transfers");
             Route::get("/transactions/{id}", "transaction_details")->name("admin.transaction.details");
+
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
             Route::get("/users", "users")->name("admin.users");
             Route::get("/users/{id}", "users_details")->name("admin.user.details");
             Route::post("/users/desactive/{id}", "users_desactive")->name("admin.user.desactive");
             Route::post("/users/verify-email/{id}", "users_verify_email")->name("admin.user.verify.email");
             Route::post("/users/chage-user_email_verify_secret-password", "verificar_senha_secreta")->name("admin.change.user.email.verify.secret.password");
             Route::post("/users/chage-user_email", "users_change_email")->name("admin.change.user.email");
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             Route::get("/site/faq", "site_faq")->name("admin.site.faq");
             Route::post("/site/faq/create", "site_faq_create")->name("admin.site.faq.create");
             Route::post("/site/faq/delete", "site_faq_delete")->name("admin.site.faq.delete");
@@ -120,10 +129,13 @@ Route::middleware("admin")->group(function () {
             Route::post("/site/faq/edit/submit", "site_faq_edit_submit")->name("admin.site.faq.edit.submit");
             Route::get("/site/reviews", "site_reviews")->name("admin.site.reviews");
 
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             Route::get("/def", "def")->name("admin.def");
             Route::post("/def", "def_submit")->name("admin.def.submit");
             Route::post("/def_contact", "contact_submit")->name("admin.contact.submit");
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             Route::post("change_status", "change_status")->name("admin.change.status");
             Route::post("/change_theme", "change_theme")->name("admin.change_theme");

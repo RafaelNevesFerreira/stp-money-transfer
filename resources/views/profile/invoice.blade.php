@@ -43,7 +43,7 @@
         <!-- Main Content -->
         <main>
             <div class="row ">
-                <div class="col-6 text-end order-sm-1">
+                <div class="col-6  order-sm-1">
                     <strong>Pago a:</strong>
                     <address>
                         {{ env('APP_NAME') }}<br>
@@ -51,7 +51,7 @@
                         Pin : 80265
                     </address>
                 </div>
-                <div class="col-6 order-sm-0">
+                <div class="col-6 text-start order-sm-0">
                     <strong>Faturado a:</strong>
                     <address>
                         {{ $details->name }}<br>

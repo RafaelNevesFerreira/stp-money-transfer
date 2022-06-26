@@ -170,64 +170,8 @@
 
 
                                             <label for="country" class="form-label">País</label>
-                                            <select id="country" class="form-control " required name="country">
-                                                <option value="Portugal">Portugal</option>
-                                                <option value="Angola">Angola</option>
-                                                <option value="França">França</option>
-                                                <option value="Argentina">Argentina</option>
-                                                <option value="Australia">Austrália</option>
-                                                <option value="Austria">Áustria</option>
-                                                <option value="Bangladesh">Bangladesh</option>
-                                                <option value="Bélgica">Bélgica</option>
-                                                <option value="Brasil">Brasil</option>
-                                                <option value="Bulgaria">Bulgária</option>
-                                                <option value="Burkina Faso">Burkina Faso</option>
-                                                <option value="Camarões">Camarões</option>
-                                                <option value="Canada">Canadá</option>
-                                                <option value="cabo Verde">cabo Verde</option>
-                                                <option value="China">China</option>
-                                                <option value="Colombia">Colômbia</option>
-                                                <option value="Comoros">Comores</option>
-                                                <option value="Congo">Congo</option>
-                                                <option value="Cote D'Ivoire">Cote D'Ivoire</option>
-                                                <option value="Cuba">Cuba</option>
-                                                <option value="Ecuador">Equador</option>
-                                                <option value="Guiné Equatorial">Guiné Equatorial</option>
-                                                <option value="Finlândia">Finlândia</option>
-                                                <option value="Gabão">Gabão</option>
-                                                <option value="Alemanha">Alemanha</option>
-                                                <option value="Guiné">Guiné</option>
-                                                <option value="Guine-Bissau">Guine-bissau</option>
-                                                <option value="Hong Kong">Hong Kong</option>
-                                                <option value="Hungria">Hungria</option>
-                                                <option value="Islândia">Islândia</option>
-                                                <option value="India">Índia</option>
-                                                <option value="Itália">Itália</option>
-                                                <option value="Japão">Japão</option>
-                                                <option value="Quênia">Quênia</option>
-                                                <option value="Líbano">Líbano</option>
-                                                <option value="Luxemburgo">Luxemburgo</option>
-                                                <option value="Macau">Macau</option>
-                                                <option value="Mali">Mali</option>
-                                                <option value="Mexico">México</option>
-                                                <option value="Monaco">Mônaco</option>
-                                                <option value="Mongolia">Mongólia</option>
-                                                <option value="Marrocos">Marrocos</option>
-                                                <option value="Moçambique">Moçambique</option>
-                                                <option value="Países Baixos">Países Baixos</option>
-                                                <option value="Nova Zelândia">Nova Zelândia</option>
-                                                <option value="Nigeria">Nigéria</option>
-                                                <option value="Polônia">Polônia</option>
-                                                <option value="Catar">Catar</option>
-                                                <option value="Ruanda">Ruanda</option>
-                                                <option value="Senegal">Senegal</option>
-                                                <option value="Espanha">Espanha</option>
-                                                <option value="Suíça">Suíça</option>
-                                                <option value="Taiwan">Taiwan</option>
-                                                <option value="Timor-Leste">Timor-Leste</option>
-                                                <option value="Reino Unido">Reino Unido</option>
-                                                <option value="Estados Unidos">Estados Unidos</option>
-                                            </select>                                        </div>
+                                            @include('layouts.select_country')
+                                        </div>
                                         <div class="col-md-12">
                                             <label for="email" class="form-label">Email</label>
                                             <input type="text" class="form-control" id="email" required
