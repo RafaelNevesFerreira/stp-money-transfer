@@ -10,8 +10,10 @@ class StatusFilter
     {
         $query->when(request()->filled('filter'), function ($query) {
             $filter = request('filter');
-            if ($filter === "plan") {
-                $query->where('plan', 1);
+            if ($filter === "cash") {
+                $query->where('payment_method', "cash");
+            } elseif ($filter === "card") {
+                $query->where('payment_method', "card");
             } else {
                 $query->where("status", $filter);
             }

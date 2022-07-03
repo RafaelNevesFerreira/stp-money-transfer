@@ -32,7 +32,6 @@ class AdminController extends Controller
         $aumento_em_relacao_a_semana_passada = (float)$this->transfers->aumento_em_relacao_a_semana_passada();
         $novos_usuarios_esse_mes = (int)$this->users->novos_usuarios_esse_mes();
         $aumento_de_usuarios_em_relacao_aom_mes_passado = (float)$this->users->aumento_de_usuarios_em_relacao_aom_mes_passado();
-        $numero_de_prestações_da_semana = $this->transfers->numero_de_prestações_da_semana();
 
         $saldo_semanal = $this->transfers->saldo_semanal();
 
@@ -42,9 +41,8 @@ class AdminController extends Controller
 
         $saldo_semana_passada = $this->transfers->saldo_semana_passada();
 
-        $pago_emprestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(1, date("m"), date("Y"));
-
-        $pago_em_cash = $this->transfers->pagos_em_prestacoes_ou_cash(0, date("m"), date("Y"));
+        $pago_em_cash = $this->transfers->pago_mes_ano(date("m"), date("Y"), "cash");
+        $pago_em_card = $this->transfers->pago_mes_ano(date("m"), date("Y"), "card");
 
         $usuarios_desse_mes = $this->users->usuarios_mes_ano(date("m"), date("Y"), 6);
 
@@ -56,13 +54,12 @@ class AdminController extends Controller
             "aumento_em_relacao_a_semana_passada",
             "novos_usuarios_esse_mes",
             "aumento_de_usuarios_em_relacao_aom_mes_passado",
-            "numero_de_prestações_da_semana",
             "saldo_semanal",
             "saldo_semana_passada",
             "lucros_desse_ano",
             "lucros_ano_passado",
-            "pago_emprestacoes",
             "pago_em_cash",
+            "pago_em_card",
             "usuarios_desse_mes",
             "transacoes_recentes"
         ));
@@ -73,23 +70,23 @@ class AdminController extends Controller
         $numero_clientes = $this->users->all()->count();
         $numero_transactions = $this->transfers->all()->count();
 
-        $prestacao = "";
-        $sem_prestacao = "";
+        $pago_em_cash = "";
+        $pago_em_card = "";
+        $total = "";
         for ($i = 1; $i < 13; $i++) {
-            $prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(1, $i, date("Y"));
-            $prestacao .= $prestacoes . ",";
+            $cash = $this->transfers->pago_mes_ano($i, date("Y"), "cash");
 
-            $sem_prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(0, $i, date("Y"));
-            $sem_prestacao .= $sem_prestacoes . ",";
+            $card = $this->transfers->pago_mes_ano($i, date("Y"), "card");
+
+            $total .= $card + $cash . ",";
         }
 
-        $prestacoes_grafico = "[" . $prestacao . "]";
+        // dd($total);
 
-        $sem_prestacoes_grafico = "[" . $sem_prestacao . "]";
+        $total_grafico = "[" . $total . "]";
 
-
-        $prestacoes = $this->transfers->pagos_em_prestacoes_ou_cash(1, date("m"), date("Y"));
-        $sem_prestacoes =  $this->transfers->pagos_em_prestacoes_ou_cash(0, date("m"), date("Y"));
+        $cash = $this->transfers->pago_mes_ano(date("m"), date("Y"), "cash");
+        $card = $this->transfers->pago_mes_ano(date("m"), date("Y"), "card");
 
 
 
@@ -152,11 +149,10 @@ class AdminController extends Controller
             "saldo_semana_passada_grafico",
             "saldo_semanal",
             "saldo_semana_passada",
-            "prestacoes",
-            "sem_prestacoes",
+            "card",
+            "cash",
             "saldo",
-            "prestacoes_grafico",
-            "sem_prestacoes_grafico"
+            "total_grafico"
         ));
     }
 
@@ -186,7 +182,6 @@ class AdminController extends Controller
 
         $this->transfers->change_status($request->id, $request->all());
         Review::dispatch($request->email)->delay(now());
-
     }
 
     public function users()
@@ -200,8 +195,12 @@ class AdminController extends Controller
         $user = $this->users->whereId($id);
         $user_total_transactions = $this->transfers->user_count_transactions($user->email);
 
-        $user_total_transactions_prestacoes = $this->transfers->user_count_transactions($user->email, 1);
-        $user_total_transactions_sem_prestacoes = $this->transfers->user_count_transactions($user->email, 0);
+        $user_total_transactions_cash = $this->transfers->user_count_transactions($user->email, "cash");
+        $user_total_transactions_card = $this->transfers->user_count_transactions($user->email, "card");
+
+
+        $user_total_payment_cash = $this->transfers->user_total_payment($user->email, "cash");
+        $user_total_payment_card = $this->transfers->user_total_payment($user->email, "card");
 
         $transfers = $this->transfers->transaction_by_user($user->email);
 
@@ -216,11 +215,7 @@ class AdminController extends Controller
 
         $ano_passado = "[" . $ano_passado . "]";
 
-        $prestacoes_pagas = $this->transfers->prestacoes_pagas($user->email, date("m", strtotime("-1 months")), date("Y", strtotime("-2 months")));
-        $prestacoes_a_pagas = $this->transfers->prestacoes_a_pagar($user->email, date("m", strtotime("+1 months")), date("Y", strtotime("-2 months")));
-
-
-        return view("admin.users.details", compact("prestacoes_a_pagas", "prestacoes_pagas", "transfers", "ano_passado", "este_ano", "user_total_transactions_prestacoes", "user_total_transactions_sem_prestacoes", "user", "user_total_transactions"));
+        return view("admin.users.details", compact("transfers","user_total_payment_cash","user_total_payment_card", "ano_passado", "este_ano", "user_total_transactions_cash", "user_total_transactions_card", "user", "user_total_transactions"));
     }
 
     public function users_desactive($id)

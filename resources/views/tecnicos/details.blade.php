@@ -93,20 +93,15 @@
                                 <ul class="list-unstyled mb-0">
                                     <li>
                                         <p class="mb-2"><span class="fw-bold me-2">Tipo de Pagamento:</span>
-                                            @if ($transfer->plan)
-                                                Pagar em prestações
-                                                {{ ((((int) $transfer->value_sended + $transfer->tax) * 20) / 100 +($transfer->value_sended + $transfer->tax)) /2 }}
-                                                @if ($transfer->currency === 'eur')
-                                                    €
-                                                @elseif ($transfer->currency === 'usd')
-                                                    $
-                                                @else
-                                                    £
-                                                @endif
-                                                por mês
-                                            @else
-                                                Pago na totalidade
-                                            @endif
+                                            @switch($transfer->payment_method)
+                                                @case("cash")
+                                                    <span class="text-muted">Pago em Liquido</span>
+                                                @break
+
+                                                @case("card")
+                                                    <span class="text-muted">Debitado em cartão de credito</span>
+                                                @break
+                                            @endswitch
                                         </p>
                                         <p class="mb-2"><span class="fw-bold me-2">Valor enviado:</span>
                                             {{ number_format($transfer->value_sended, 2, ',', '.') }}

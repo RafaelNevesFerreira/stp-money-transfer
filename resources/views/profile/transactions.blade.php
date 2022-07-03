@@ -1,7 +1,7 @@
-@extends("layouts.profile.app")
+@extends('layouts.profile.app')
 @section('content')
     <!-- Content
-                  ============================================= -->
+                      ============================================= -->
     <div id="content" class="py-4">
         <div class="container">
             <div class="row">
@@ -9,18 +9,18 @@
                 @include('layouts.profile.left-painel')
 
                 <!-- Middle Panel
-                        ============================================= -->
+                            ============================================= -->
                 <div class="col-lg-9">
                     <h2 class="fw-400 mb-3">Transações</h2>
 
                     <!-- Filter
-                          ============================================= -->
+                              ============================================= -->
                     <div class="row">
                         <div class="col mb-2">
                             <form id="filterTransactions" method="get" action="{{ route('profile.transactions') }}">
                                 <div class="row g-3 mb-3">
                                     <!-- Date Range
-                                  ========================= -->
+                                      ========================= -->
                                     <div class="col-sm-6 col-md-5">
                                         <div class="position-relative">
                                             <input id="dateRange" type="text" class="form-control"
@@ -55,9 +55,14 @@
                                             <label class="form-check-label" for="renbolsado">Reembolsado</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" id="plans" name="filter"
-                                                value="plan">
-                                            <label class="form-check-label" for="plans">Prestações</label>
+                                            <input class="form-check-input" type="radio" id="cash" name="filter"
+                                                value="cash">
+                                            <label class="form-check-label" for="cash">Pago em Liquido</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" id="card" name="filter"
+                                                value="card">
+                                            <label class="form-check-label" for="card">Pago em Cartão</label>
                                         </div>
                                     </div>
                                     <!-- All Filters collapse End -->
@@ -68,7 +73,7 @@
                     <!-- Filter End -->
 
                     <!-- All Transactions
-                          ============================================= -->
+                              ============================================= -->
                     <div class="bg-white shadow-sm rounded py-4 mb-4">
                         <h3 class="text-5 fw-400 d-flex align-items-center px-4 mb-4">Todas Transações</h3>
                         <!-- Title     =============================== -->
@@ -85,7 +90,7 @@
 
 
                         <!-- Transaction Item Details Modal
-                            =========================================== -->
+                                =========================================== -->
                         @forelse ($transfers as $transfer)
                             <div class="transaction-list">
                                 <div class="transaction-item px-4 py-3 transfer-id" id="{{ $transfer->id }}">
@@ -98,13 +103,13 @@
                                         </div>
                                         <div class="col col-sm-7">
                                             <span class="d-block text-4">{{ $transfer->destinatary_name }}</span>
-                                            @switch($transfer->plan)
-                                                @case(1)
-                                                    <span class="text-muted">Pago em prestações</span>
+                                            @switch($transfer->payment_method)
+                                                @case('cash')
+                                                    <span class="text-muted">Pago em Liquido</span>
                                                 @break
 
-                                                @case(0)
-                                                    <span class="text-muted">Debitado em cartão</span>
+                                                @case('card')
+                                                    <span class="text-muted">Debitado em cartão de credito</span>
                                                 @break
                                             @endswitch
                                         </div>

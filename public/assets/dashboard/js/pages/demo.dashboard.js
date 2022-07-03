@@ -51,10 +51,7 @@
                 plotOptions: { bar: { horizontal: !1, columnWidth: "20%" } },
                 dataLabels: { enabled: !1 },
                 stroke: { show: !0, width: 2, colors: ["transparent"] },
-                series: [{ name: "Prestacoes", data: prestacoes },
-                    { name: "Sem prestacoes", data: sem_prestacoes },
-
-                ],
+                series: [{ name: "Total", data: total }],
                 zoom: { enabled: !1 },
                 legend: { show: !1 },
                 colors: e,

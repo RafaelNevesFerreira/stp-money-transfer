@@ -99,7 +99,7 @@
                                     <div class="col-12">
                                         <h5 class="text-muted fw-normal mt-0 " title="Prestações da semana">N⁰. Prestações
                                             da semana</h5>
-                                        <h3 class="my-2 py-1">{{ $numero_de_prestações_da_semana }}</h3>
+                                        <h3 class="my-2 py-1">{{ 0 }}</h3>
                                         <br>
                                     </div>
                                 </div> <!-- end row-->
@@ -153,10 +153,10 @@
                                     <div class="col-sm-6">
                                         <i class="mdi mdi-send widget-icon rounded-circle bg-light-lighten text-muted"></i>
                                         <h3 class="fw-normal mt-4">
-                                            <span>{{ number_format($pago_emprestacoes, 2, ',', '.') }} €</span>
+                                            <span>{{ number_format($pago_em_card, 2, ',', '.') }} €</span>
                                         </h3>
                                         <p class="text-muted  mb-3">
-                                            <i class="mdi mdi-checkbox-blank-circle text-danger"></i> Pago em Prestações
+                                            <i class="mdi mdi-checkbox-blank-circle text-danger"></i> Pago em Cartão
                                         </p>
                                     </div>
                                     <div class="col-sm-6">
@@ -167,7 +167,7 @@
                                         </h3>
                                         <p class="text-muted  mb-3">
                                             <i class="mdi mdi-checkbox-blank-circle text-primary"></i>
-                                            Pago na Totalidade
+                                            Pago em Liquido
                                         </p>
                                     </div>
                                 </div>
@@ -274,7 +274,7 @@
                                                         @endif
                                                     </td>
                                                     <td class="table-action">
-                                                        <a href="javascript: void(0);" class="action-icon"> <i
+                                                        <a href="{{route("admin.transaction.details",$transfer->id)}}" class="action-icon"> <i
                                                                 class="mdi mdi-eye"></i></a>
                                                     </td>
                                                 </tr>
@@ -328,17 +328,16 @@
 @endsection
 
 
-@if ($pago_emprestacoes + $pago_em_cash > 0)
     @section('scripts')
         <script>
             var esse_ano = jQuery.parseJSON($("#esse_ano").attr("data-meses"))
             var ano_passado = jQuery.parseJSON($("#ano_passado").attr("data-meses"))
 
 
-            var pago_em_prestacoes_percentagem =
-                {{ number_format(($pago_emprestacoes * 100) / ($pago_emprestacoes + $pago_em_cash)) }}
+            var pago_em_card_percentagem =
+                {{ number_format(($pago_em_card * 100) / ($pago_em_card + $pago_em_cash)) }}
             var pago_em_cash_percentagem =
-                {{ number_format(($pago_em_cash * 100) / ($pago_emprestacoes + $pago_em_cash)) }}
+                {{ number_format(($pago_em_cash * 100) / ($pago_em_card + $pago_em_cash)) }}
 
 
             $(document).ready(function() {
@@ -352,10 +351,6 @@
         <!-- Apex js -->
         <script src="{{ asset('assets/dashboard/js/vendor/apexcharts.min.js') }}"></script>
 
-        <!-- Todo js -->
-        <script src="{{ asset('assets/dashboard/js/ui/component.todo.js') }}"></script>
-
         <!-- demo app -->
         <script src="{{ asset('assets/dashboard/js/pages/demo.dashboard-crm.js') }}"></script>
     @endsection
-@endif

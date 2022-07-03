@@ -50,7 +50,7 @@
                                                     <ul class="mb-0 list-inline text-light">
                                                         <li class="list-inline-item me-3">
                                                             <h5 class="mb-1 mt-2">
-                                                                {{ $user_total_transactions_sem_prestacoes + $user_total_transactions_prestacoes }}
+                                                                {{ $user_total_transactions_cash + $user_total_transactions_card }}
                                                             </h5>
                                                             <p class="mb-0 font-13 text-white-50 ">Transações</p>
                                                         </li>
@@ -128,8 +128,8 @@
                                 Dês do seu registro, {{ $user->name }} fez {{ $user_total_transactions }}
                                 Transações.
                                 Das Transações feitas por {{ $user->name }},
-                                {{ $user_total_transactions_prestacoes }} foram em pretações e
-                                {{ $user_total_transactions_sem_prestacoes }} foram pagos na totalidade
+                                {{ $user_total_transactions_cash }} foram em liquido e
+                                {{ $user_total_transactions_card }} em cartão de credito
                             </p>
 
                             <hr />
@@ -177,7 +177,7 @@
                     <!-- Chart-->
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title mb-3">Receita sem prestações</h4>
+                            <h4 class="header-title mb-3">Receita Anual</h4>
                             <div dir="ltr">
                                 <div style="height: 260px;" class="chartjs-chart">
                                     <canvas id="high-performing-product"></canvas>
@@ -192,10 +192,10 @@
                             <div class="card tilebox-one">
                                 <div class="card-body">
                                     <i class="dripicons-basket float-end text-muted"></i>
-                                    <h6 class="text-muted text-uppercase mt-0">Prestações a pagar</h6>
+                                    <h6 class="text-muted text-uppercase mt-0">Pago em liquido</h6>
                                     <h2 class="m-b-20">
-                                        €<span>{{ number_format($prestacoes_a_pagas, 2, ',', '.') }}</span></h2>
-                                    <span class="text-muted">O valor a pagar de prestações</span>
+                                        €<span>{{ number_format($user_total_payment_cash, 2, ',', '.') }}</span></h2>
+                                    <span class="text-muted">Total Pago</span>
                                 </div> <!-- end card-body-->
                             </div>
                             <!--end card-->
@@ -205,9 +205,9 @@
                             <div class="card tilebox-one">
                                 <div class="card-body">
                                     <i class="dripicons-box float-end text-muted"></i>
-                                    <h6 class="text-muted text-uppercase mt-0">Prestações Pagas</h6>
+                                    <h6 class="text-muted text-uppercase mt-0">Pago em Cartão</h6>
                                     <h2 class="m-b-20">
-                                        €<span>{{ number_format($prestacoes_pagas, 2, ',', '.') }}</span></h2>
+                                        €<span>{{ number_format($user_total_payment_card, 2, ',', '.') }}</span></h2>
                                     <span class="text-muted">Total Pago</span>
                                 </div> <!-- end card-body-->
                             </div>

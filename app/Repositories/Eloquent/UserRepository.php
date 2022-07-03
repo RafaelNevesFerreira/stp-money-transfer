@@ -87,4 +87,9 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             "email_verified_at" => null,
         ]);
     }
+
+    public function all()
+    {
+        return $this->model::where("role", 1)->get();
+    }
 }
