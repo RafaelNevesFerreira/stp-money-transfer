@@ -56,7 +56,7 @@
                                         <div class="card shadow-none m-0 border-start">
                                             <div class="card-body text-center">
                                                 <i class="dripicons-broadcast text-muted" style="font-size: 24px;"></i>
-                                                <h3><span>{{ $received_this_month }}</span></h3>
+                                                <h3><span>{{ $received }}</span></h3>
                                                 <p class="text-muted font-15 mb-0">Recebido</p>
                                             </div>
                                         </div>
@@ -66,7 +66,7 @@
                                         <div class="card shadow-none m-0 border-start">
                                             <div class="card-body text-center">
                                                 <i class="dripicons-graph-line text-muted" style="font-size: 24px;"></i>
-                                                <h3><span>{{ $to_received_this_month }}</span> <i
+                                                <h3><span>{{ $to_receive }}</span> <i
                                                         class="mdi mdi-arrow-up text-success"></i></h3>
                                                 <p class="text-muted font-15 mb-0">A Receber</p>
                                             </div>

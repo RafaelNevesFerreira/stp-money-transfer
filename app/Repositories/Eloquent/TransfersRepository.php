@@ -84,7 +84,7 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return $this->model::where("id", $id)->firstOrFail();
     }
 
-    public function received_this_month()
+    public function received()
     {
         return $this->model::where("status", "received")->whereMonth('created_at', date("m"))->count();
     }
@@ -94,9 +94,9 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return $this->model::where("status", "reimbursed")->whereMonth('created_at', date("m"))->count();
     }
 
-    public function to_received_this_month()
+    public function to_receive()
     {
-        return $this->model::where("status", "sended")->whereMonth('created_at', date("m"))->count();
+        return $this->model::where("status", "sended")->count();
     }
 
     public function transfers_today()

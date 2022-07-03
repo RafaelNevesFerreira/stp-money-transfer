@@ -3,7 +3,7 @@
     <div class="content-page">
         <div class="content">
             <!-- Topbar Start -->
-            @include('tecnicos.topbar')
+            @include("tecnicos.topbar")
             <!-- end Topbar -->
 
             <!-- Start Content-->
@@ -15,9 +15,11 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="{{route("tecnico.transactions")}}">Transações</a></li>
+                                    <li class="breadcrumb-item"><a
+                                            href="{{ route('tecnico.transactions') }}">Transações</a>
+                                    </li>
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Detalhes</a></li>
-                                    <li class="breadcrumb-item active">#{{$transfer->transfer_code}} </li>
+                                    <li class="breadcrumb-item active">#{{ $transfer->transfer_code }} </li>
                                 </ol>
                             </div>
                             <h4 class="page-title">Detalhes</h4>
@@ -41,10 +43,10 @@
                                         data-bs-placement="bottom">Disponivel</span>
                                 </div>
                                 <div class="step-item current">
-                                    <span data-bs-container="#tooltip-container" data-bs-toggle="tooltip"
+                                    <span data-bs-container="#tooltip-container" id="estado_final" data-bs-toggle="tooltip"
                                         data-bs-placement="bottom" title="{{ $transfer->received_at }}">
                                         @if ($transfer->status === 'reimbursed')
-                                            Cancelado
+                                            Reembolsado
                                         @else
                                             Recebido
                                         @endif
@@ -78,7 +80,8 @@
                                     {{ $transfer->address }}<br>
                                     {{ $transfer->country }}<br>
                                     <abbr title="Phone">P:</abbr> {{ $transfer->phone_number }} <br />
-                                    <abbr title="Email">Email:</abbr> {{ $transfer->email }}
+                                    <abbr id="transfer_email" data-transfer-email={{ $transfer->email }}
+                                        title="Email">Email:</abbr> {{ $transfer->email }}
                                 </address>
 
                             </div>
@@ -93,29 +96,20 @@
                                 <ul class="list-unstyled mb-0">
                                     <li>
                                         <p class="mb-2"><span class="fw-bold me-2">Tipo de Pagamento:</span>
-                                            @switch($transfer->payment_method)
-                                                @case("cash")
-                                                    <span class="text-muted">Pago em Liquido</span>
-                                                @break
-
-                                                @case("card")
-                                                    <span class="text-muted">Debitado em cartão de credito</span>
-                                                @break
-                                            @endswitch
+                                            @if ($transfer->payment_method === "cash")
+                                                Pagar em Liquido
+                                            @else
+                                                Pago em cartão de credito
+                                            @endif
                                         </p>
                                         <p class="mb-2"><span class="fw-bold me-2">Valor enviado:</span>
                                             {{ number_format($transfer->value_sended, 2, ',', '.') }}
-                                            @if ($transfer->currency === 'eur')
-                                                €
-                                            @elseif ($transfer->currency === 'usd')
-                                                $
-                                            @else
-                                                £
-                                            @endif
+                                            €
                                         </p>
 
                                         <p class="mb-2"><span class="fw-bold me-2">Data de Envio:</span>
-                                            {{ $transfer->created_at->format("d-m-Y") }} às {{ $transfer->created_at->format("H:i:s") }}
+                                            {{ $transfer->created_at->format('d-m-Y') }} às
+                                            {{ $transfer->created_at->format('H:i:s') }}
                                         </p>
 
                                     </li>
@@ -132,29 +126,41 @@
 
                                 <div class="text-center">
                                     {{-- <i class="mdi mdi-truck-fast h2 text-muted"></i> --}}
-                                    <h5><b>{{ $transfer->destinatary_name }}</b></h5>
+                                    @if ($transfer->received_at && $transfer->status == 'received')
+                                        <h5><b>{{ $transfer->receptor->name }}
+                                                {{ $transfer->receptor->last_name }}</b></h5>
+                                        <h5><b>Data de nascença: {{ $transfer->receptor->birthday_date }} </b></h5>
+                                        <h5><b>Nacionalidade : {{ $transfer->receptor->nationality }}</b></h5>
+                                    @endif
+
                                     <p class="mb-1"><b>Codigo :</b> #{{ $transfer->transfer_code }}</p>
                                     <p class="mb-0"><span class="fw-bold me-2">Valor a receber:</span>
-                                        @if ($transfer->currency === 'eur')
-                                            {{ number_format($transfer->value_sended * (int) env('EUR_CAMBIO_VALUE'), 2, ',', '.') }}
-                                            dbs
-                                        @elseif ($transfer->currency === 'usd')
-                                            {{ number_format($transfer->value_sended * (int) env('USD_CAMBIO_VALUE'), 2, ',', '.') }}
-                                            dbs
-                                        @else
-                                            {{ number_format($transfer->value_sended * (int) env('GBP_CAMBIO_VALUE'), 2, ',', '.') }}
-                                            dbs
-                                        @endif
+                                        {{ number_format($transfer->value_sended * (int) env('EUR_CAMBIO_VALUE'), 2, ',', '.') }}
+                                        dbs
                                     </p>
+
                                     <p class="mt-1">
-                                        @if (!$transfer->received_at)
-                                            <span class="fw-bold me-2 ">Recebido:</span>
-                                            <input type="checkbox" id="recebido" data-id="{{ $transfer->id }}"
-                                                data-switch="success" />
-                                            <label for="recebido" class="label_recebido" data-on-label="Sim"
-                                                data-off-label="não"></label>
+                                        @if (!$transfer->received_at && $transfer->status != 'reimbursed')
+                                            <div>
+                                                <span class="fw-bold me-2 estado_recebido">Recebido:</span>
+                                                <input type="checkbox" class="label_recebido" id="recebido"
+                                                    data-id="{{ $transfer->id }}" data-switch="success" />
+                                                <label for="recebido" class="label_recebido" data-on-label="Sim"
+                                                    data-off-label="não"></label>
+                                            </div>
+
+                                            {{-- <div>
+                                                <span class="fw-bold me-2 estado_reembolsar">Reembolsado:</span>
+                                                <input type="checkbox" class="label_recebido" id="reembolsado"
+                                                    data-id="{{ $transfer->id }}" data-switch="success" />
+                                                <label for="reembolsado" class="label_recebido" data-on-label="Sim"
+                                                    data-off-label="não"></label>
+                                            </div> --}}
+                                        @elseif ($transfer->status === 'reimbursed')
+                                            <span class="fw-bold me-2 estado_reembolsado">Reembolsado:</span>
+                                            O Valor foi reembolsado
                                         @else
-                                            <span class="fw-bold me-2">Recebido:</span>
+                                            <span class="fw-bold me-2 estado_reembolsado">Recebido:</span>
                                             {{ $transfer->received_at }}
                                         @endif
                                     </p>
@@ -174,5 +180,114 @@
         @include('tecnicos.footer')
         <!-- end Footer -->
 
+        <div id="detalhes_do_receptor" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nome</label>
+                            <input class="form-control" type="text" name="name" id="name" required placeholder="Nome">
+                        </div>
+                        <div class="mb-3">
+                            <label for="last_name" class="form-label">Apelido</label>
+                            <input class="form-control" type="text" name="last_name" id="last_name" required
+                                placeholder="Apelido">
+                        </div>
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Nacionalidade</label>
+                            @include('layouts.select_country')
+                        </div>
+                        <div class="mb-3">
+                            <label for="birthday_date" class="form-label">Data de Nascimento</label>
+                            <input class="form-control" type="date" max="{{ date('d/m/Y') }}" name="birthday_date"
+                                id="birthday_date" required placeholder="Data de Nascimento">
+                        </div>
+                        <div class=' erro'>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <button class="btn btn-primary" id="enviar" type="button">Enviar</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     </div>
+
+    <script>
+        $("#recebido").click(function() {
+            $("#detalhes_do_receptor").modal("show")
+        })
+
+        $("#enviar").click(function() {
+            var name, last_name, birthday_date, nationality, id, email;
+            name = $("#name").val()
+            last_name = $("#last_name").val()
+            birthday_date = $("#birthday_date").val()
+            nationality = $("#country").val()
+            id = $("#recebido").attr("data-id")
+            email = $("#transfer_email").attr("data-transfer-email")
+
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": $("meta[name='_token']").attr("content")
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "{{ route('tecnico.change.status') }}",
+                data: {
+                    "name": name,
+                    "last_name": last_name,
+                    "birthday_date": birthday_date,
+                    "nationality": nationality,
+                    "id": id,
+                    "email": email
+                },
+                success: function(data) {
+                    $(this).remove();
+                    $(".label_recebido").remove();
+                    $.NotificationApp.send("Sucesso", "O estado foi atualizado com sucesso",
+                        "bottom-right", "Background color", "success")
+                    $(".process-line").css("width", "100%")
+                    $("#detalhes_do_receptor").modal("hide")
+
+                },
+                error: function(error) {
+                    $(".erro").html("<p>" + error.responseJSON.message + "</p>")
+                    $(".erro").addClass("alert alert-danger")
+                },
+            });
+        })
+
+        $("#reembolsado").click(function() {
+            var id, email;
+            id = $(this).attr("data-id")
+
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": $("meta[name='_token']").attr("content")
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "{{ route('tecnico.change.status') }}",
+                data: {
+                    "status": "reembolsado",
+                    "id": id,
+                },
+                success: function(data) {
+                    $(this).remove();
+                    $(".label_recebido").remove();
+                    $(".estado_recebido").remove();
+                    $(".estado_reembolsar").text("O Valor Foi Reembolsado");
+                    $.NotificationApp.send("Sucesso", "O estado foi atualizado com sucesso",
+                        "bottom-right", "Background color", "success")
+                    $(".process-line").css("width", "100%")
+                    $("#estado_final").text("Reembolsado")
+                }
+            });
+        })
+    </script>
 @endsection

@@ -8,9 +8,9 @@ interface TransfersRepositoryInterface
     public function store();
     public function get_by_user_email();
     public function details($id);
-    public function received_this_month();
+    public function received();
     public function reimbursed_this_month();
-    public function to_received_this_month();
+    public function to_receive();
     public function transfers_today();
     public function change_status($id, $request);
     public function transfers_esta_semana();
