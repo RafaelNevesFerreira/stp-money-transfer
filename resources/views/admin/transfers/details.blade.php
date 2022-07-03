@@ -96,12 +96,10 @@
                                 <ul class="list-unstyled mb-0">
                                     <li>
                                         <p class="mb-2"><span class="fw-bold me-2">Tipo de Pagamento:</span>
-                                            @if ($transfer->plan)
-                                                Pagar em prestações
-                                                {{ ((((int) $transfer->value_sended + $transfer->tax) * 20) / 100 + ($transfer->value_sended + $transfer->tax)) / 2 }}
-                                                € por mês
+                                            @if ($transfer->payment_method === "cash")
+                                                Pagar em Liquido
                                             @else
-                                                Pago na totalidade
+                                                Pago em cartão de credito
                                             @endif
                                         </p>
                                         <p class="mb-2"><span class="fw-bold me-2">Valor enviado:</span>
