@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Contracts\TransfersRepositoryInterface;
+use App\Jobs\Review;
 use Illuminate\Http\Request;
+use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class TecnicoController extends Controller
 {
@@ -14,17 +15,15 @@ class TecnicoController extends Controller
     public function dashboard()
     {
 
-        $received_this_month = $this->transfer->received_this_month();
+        $received = $this->transfer->received();
         $reimbursed_this_month = $this->transfer->reimbursed_this_month();
-        $abonement_this_month = $this->transfer->abonement_this_month();
-        $to_received_this_month = $this->transfer->to_received_this_month();
+        $to_receive = $this->transfer->to_receive();
 
         $transfers_today = $this->transfer->transfers_today();
         return view("tecnicos.dashboard", compact(
-            "received_this_month",
+            "received",
             "reimbursed_this_month",
-            "abonement_this_month",
-            "to_received_this_month",
+            "to_receive",
             "transfers_today"
         ));
     }
@@ -43,6 +42,17 @@ class TecnicoController extends Controller
 
     public function change_status(Request $request)
     {
-        $this->transfer->change_status($request->id,false);
+
+        $request->validate([
+            "last_name" => "required",
+            "name" => "required",
+            "nationality" => "required",
+            "birthday_date" => "required",
+            "id" => "required|exists:transfers,id",
+            "email" => "required"
+        ]);
+
+        $this->transfer->change_status($request->id, $request->all());
+        Review::dispatch($request->email)->delay(now());
     }
 }

@@ -4,7 +4,7 @@
             <div class="header-column justify-content-start">
                 <!-- Logo  ============================= -->
                 <div class="logo me-3">
-                    {{-- <a class="d-flex" href="{{ route('home') }}" title="Payyed - HTML Template"><img
+                    {{-- <a class="d-flex" href="{{ route('home') }}" title="{{ env("APP_NAME") }}"><img
                                 src="{{ asset('images/logo.png') }}" alt="Payyed" /></a> --}}
                 </div>
                 <!-- Logo end -->

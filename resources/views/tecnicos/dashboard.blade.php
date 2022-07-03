@@ -1,4 +1,4 @@
-@extends("tecnicos.app")
+@extends('tecnicos.app')
 @section('content')
     <!-- ============================================================== -->
     <!-- Start Page Content here -->
@@ -36,7 +36,7 @@
                                         <div class="card shadow-none m-0">
                                             <div class="card-body text-center">
                                                 <i class="dripicons-calendar text-muted" style="font-size: 24px;"></i>
-                                                <h3><span>{{ $abonement_this_month }}</span></h3>
+                                                <h3><span>{{ 0 }}</span></h3>
                                                 <p class="text-muted font-15 mb-0">Prestações</p>
                                             </div>
                                         </div>
@@ -56,7 +56,7 @@
                                         <div class="card shadow-none m-0 border-start">
                                             <div class="card-body text-center">
                                                 <i class="dripicons-broadcast text-muted" style="font-size: 24px;"></i>
-                                                <h3><span>{{ $received_this_month }}</span></h3>
+                                                <h3><span>{{ $received }}</span></h3>
                                                 <p class="text-muted font-15 mb-0">Recebido</p>
                                             </div>
                                         </div>
@@ -66,7 +66,7 @@
                                         <div class="card shadow-none m-0 border-start">
                                             <div class="card-body text-center">
                                                 <i class="dripicons-graph-line text-muted" style="font-size: 24px;"></i>
-                                                <h3><span>{{ $to_received_this_month }}</span> <i
+                                                <h3><span>{{ $to_receive }}</span> <i
                                                         class="mdi mdi-arrow-up text-success"></i></h3>
                                                 <p class="text-muted font-15 mb-0">A Receber</p>
                                             </div>
@@ -97,12 +97,15 @@
                                                     <td>
                                                         <h5 class="font-14 my-1"><a href="javascript:void(0);"
                                                                 class="text-body">{{ $transfer->name }}</a></h5>
-                                                        @if ($transfer->plan === 1)
-                                                            <span class="text-muted font-13">A pagar em prestções</span>
-                                                        @else
-                                                            <span class="text-muted font-13">Pago em cartão de
-                                                                credito</span>
-                                                        @endif
+                                                        @switch($transfer->payment_method)
+                                                            @case('cash')
+                                                                <span class="text-muted">Pago em Liquido</span>
+                                                            @break
+
+                                                            @case('card')
+                                                                <span class="text-muted">Debitado em cartão de credito</span>
+                                                            @break
+                                                        @endswitch
                                                     </td>
                                                     <td>
                                                         <span class="text-muted font-13">Status</span> <br />
@@ -116,7 +119,8 @@
                                                     </td>
                                                     <td>
                                                         <span class="text-muted font-13">Receptor</span>
-                                                        <h5 class="font-14 mt-1 fw-normal">{{ $transfer->destinatary_name }}
+                                                        <h5 class="font-14 mt-1 fw-normal">
+                                                            {{ $transfer->destinatary_name }}
                                                         </h5>
                                                     </td>
                                                     <td>
@@ -125,36 +129,37 @@
                                                             {{ $transfer->created_at->diffForHumans() }}</h5>
                                                     </td>
                                                     <td class="table-action" style="width: 90px;">
-                                                        <a href="{{route("tecnico.transaction.details",$transfer->id)}}" title="Detalhes" class="action-icon"> <i
-                                                                class="mdi mdi-pencil" ></i></a>
+                                                        <a href="{{ route('tecnico.transaction.details', $transfer->id) }}"
+                                                            title="Detalhes" class="action-icon"> <i
+                                                                class="mdi mdi-pencil"></i></a>
                                                     </td>
                                                 </tr>
-                                            @empty
-                                            <div class="allert alert-warning text-center">
-                                                <p>Nenhuma transação por enquanto</p>
-                                            </div>
-                                            @endforelse
+                                                @empty
+                                                    <div class="allert alert-warning text-center">
+                                                        <p>Nenhuma transação por enquanto</p>
+                                                    </div>
+                                                @endforelse
 
 
-                                        </tbody>
-                                    </table>
-                                </div> <!-- end table-responsive-->
+                                            </tbody>
+                                        </table>
+                                    </div> <!-- end table-responsive-->
 
-                            </div> <!-- end card body-->
-                        </div> <!-- end card -->
-                    </div><!-- end col-->
-                </div>
-                <!-- end row-->
+                                </div> <!-- end card body-->
+                            </div> <!-- end card -->
+                        </div><!-- end col-->
+                    </div>
+                    <!-- end row-->
 
-            </div> <!-- container -->
+                </div> <!-- container -->
 
-        </div> <!-- content -->
+            </div> <!-- content -->
 
-        @include('tecnicos.footer')
+            @include('tecnicos.footer')
 
-    </div>
+        </div>
 
-    <!-- ============================================================== -->
-    <!-- End Page content -->
-    <!-- ============================================================== -->
-@endsection
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+    @endsection

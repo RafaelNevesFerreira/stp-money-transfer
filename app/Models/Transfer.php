@@ -19,10 +19,15 @@ class Transfer extends Model
         "email",
         "value_sended",
         "received_at",
-        "plan",
+        "payment_method",
         "tax",
         "destinatary_name",
         "transfer_code",
         "status",
     ];
+
+    public function receptor()
+    {
+        return $this->hasOne(TransferReception::class);
+    }
 }

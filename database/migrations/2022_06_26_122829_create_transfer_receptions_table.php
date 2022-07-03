@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_plans_defs', function (Blueprint $table) {
+        Schema::create('transfer_receptions', function (Blueprint $table) {
             $table->id();
-            $table->boolean("active");
-            $table->float("min_val");
-            $table->float("max_val");
-            $table->integer("min_transactions");
-            $table->float("percentage");
+            $table->string("name");
+            $table->string("last_name");
+            $table->date("birthday_date");
+            $table->string("nationality");
+            $table->foreignId("transfer_id")->references("id")->on("transfers");
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction_plans_defs');
+        Schema::dropIfExists('transfer_receptions');
     }
 };

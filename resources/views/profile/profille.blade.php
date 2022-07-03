@@ -40,13 +40,13 @@
                                         </div>
                                         <div class="col col-sm-7">
                                             <span class="d-block text-4">{{ $transfer->destinatary_name }}</span>
-                                            @switch($transfer->plan)
-                                                @case(1)
-                                                    <span class="text-muted">Pago em prestações</span>
+                                            @switch($transfer->payment_method)
+                                                @case("cash")
+                                                    <span class="text-muted">Pago em Liquido</span>
                                                 @break
 
-                                                @case(0)
-                                                    <span class="text-muted">Debitado em cartão</span>
+                                                @case("card")
+                                                    <span class="text-muted">Debitado em cartão de credito</span>
                                                 @break
                                             @endswitch
                                         </div>

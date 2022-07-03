@@ -246,12 +246,11 @@
                     var total = parseFloat(data["value_sended"]) + parseFloat(data["tax"]);
                     total = Number(parseFloat(total));
 
-                    if (data["plan"] == 1) {
-                        var plan = "A Pagar em prestações " + number_format(total, 2, ",", ".") +
-                            currency + " por mês"
+                    if (data["payment_method"] == "cash") {
+                        var plan = "Pago em Liquido"
 
                     } else {
-                        var plan = "Pago por cartão bancário"
+                        var plan = "Pago por cartão de credito"
 
                     }
 

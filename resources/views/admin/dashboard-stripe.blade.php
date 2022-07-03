@@ -37,9 +37,9 @@
                                         <div class="float-end">
                                             <i class="mdi mdi-account-multiple widget-icon"></i>
                                         </div>
-                                        <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Prestações
+                                        <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Liquido
                                         </h5>
-                                        <h3 class="mt-3 mb-3">{{ number_format($prestacoes, 2, ',', '.') }} €
+                                        <h3 class="mt-3 mb-3">{{number_format($cash,2,",",".")}} €
                                         </h3>
 
                                     </div> <!-- end card-body-->
@@ -52,8 +52,8 @@
                                         <div class="float-end">
                                             <i class="mdi mdi-cart-plus widget-icon"></i>
                                         </div>
-                                        <h5 class="text-muted fw-normal mt-0" title="Number of Orders"> Sem Prestações</h5>
-                                        <h3 class="mt-3 mb-3">{{ number_format($sem_prestacoes, 2, ',', '.') }} €
+                                        <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Cartão de credito</h5>
+                                        <h3 class="mt-3 mb-3">{{number_format($card,2,",",".")}} €
                                         </h3>
 
                                     </div> <!-- end card-body-->
@@ -70,7 +70,7 @@
                                         </div>
                                         <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Total</h5>
                                         <h3 class="mt-3 mb-3">
-                                            {{ number_format($prestacoes + $sem_prestacoes, 2, ',', '.') }} €</h3>
+                                            {{number_format($cash+$card,2,",",".")}} €</h3>
 
                                     </div> <!-- end card-body-->
                                 </div> <!-- end card-->
@@ -104,7 +104,7 @@
                                 <h4 class="header-title mb-3">receita anual</h4>
 
                                 <div dir="ltr">
-                                    <div id="high-performing-product" class="apex-charts" data-colors="#fa5c7c,#727cf5">
+                                    <div id="high-performing-product" class="apex-charts" data-colors="#727cf5">
                                     </div>
                                 </div>
 
@@ -242,10 +242,9 @@
 
 @section('scripts')
     <script>
-        var sem_prestacoes_sem_formatar = {{ $sem_prestacoes_grafico }}
-        var prestacoes_sem_formatar = {{ $prestacoes_grafico }}
         var saldo_esta_semana_sem_formatar = {{ $saldo }}
         var semana_passada = {{ $saldo_semana_passada_grafico }}
+        var total_sem_formatar = {{ $total_grafico }}
 
         number_format = function(number, decimals, dec_point, thousands_sep) {
             number = number.toFixed(decimals);
@@ -267,15 +266,9 @@
             saldo_esta_semana.push(number_format(value, 2, ".",' ').replace(" ", ""));
         });
 
-
-        var prestacoes = [];
-        $.each(prestacoes_sem_formatar, function(index, value) {
-            prestacoes.push(number_format(value, 2, ".",' ').replace(" ", ""));
-        });
-
-        var sem_prestacoes = [];
-        $.each(sem_prestacoes_sem_formatar, function(index, value) {
-            sem_prestacoes.push(number_format(value, 2, ".",' ').replace(" ", ""));
+        var total = [];
+        $.each(total_sem_formatar, function(index, value) {
+            total.push(number_format(value, 2, ".",' ').replace(" ", ""));
         });
 
     </script>
