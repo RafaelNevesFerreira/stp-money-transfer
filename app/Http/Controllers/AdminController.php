@@ -19,7 +19,6 @@ class AdminController extends Controller
         public UserRepositoryInterface $users,
         public FaqRepositoryInterface $faqs,
         public ReviewsRepositoryInterface $reviews,
-        public TransactionPlansDefInterface $def,
         public ContactRepositoryInterface $contact
     ) {
         $this->middleware('admin');
@@ -160,6 +159,31 @@ class AdminController extends Controller
     {
         $transfers = $this->transfers->all();
         return view("admin.transfers.transfers", compact("transfers"));
+    }
+    public function new_transaction(Request $request)
+    {
+        try {
+            $request->validate([
+                "destinatary_name" => "required|max:300",
+                "name" => "required|string|max:255",
+                "address" => "required|string|max:200",
+                "country" => "required|string|max:120",
+                "email" => "required|email",
+                "phone_number" => "required",
+                "comprovativo" => "required|file",
+                "valor_enviado" => "required",
+                "moeda" => "required"
+            ]);
+
+
+            $transfer = $this->transfer->new_transfer($request->all());
+            $this->transfer->storeImage($request, $transfer->id);
+
+
+            return redirect()->back()->with(["message" => "Transação efectuada com sucesso","status" => 200]);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(["message" => "Erro ao efectuar Transação","status" => 500]);
+        }
     }
 
     public function transaction_details($id)
@@ -342,10 +366,9 @@ class AdminController extends Controller
 
     public function def()
     {
-        $defs = $this->def->firstorfail(1);
         $contact = $this->contact->firstorfail(1);
 
-        return view("admin.def.def", compact("defs", "contact"));
+        return view("admin.def.def", compact("contact"));
     }
 
     public function def_submit(Request $request)

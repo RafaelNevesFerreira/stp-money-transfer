@@ -30,4 +30,21 @@ class Transfer extends Model
     {
         return $this->hasOne(TransferReception::class);
     }
+
+    public function comprovative_user()
+    {
+        return $this->hasOneThrough(
+            User::class,
+            TransferComprovative::class,
+            'transfer_id', // Foreign key on the cars table...
+            'id', // Foreign key on the owners table...
+            'id', // Local key on the mechanics table...
+            'id' // Local key on the cars table...
+        );
+    }
+
+    public function comprovative()
+    {
+        return $this->hasOne(TransferComprovative::class);
+    }
 }

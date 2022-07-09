@@ -29,86 +29,8 @@
 
 
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
 
-                                <h4 class="header-title">Definições sobre pagamento em Prestações</h4>
-                                <div class="tab-content">
-                                    <div class="tab-pane show active" id="input-sizes-preview">
-                                        <form method="POST" action="{{ route('admin.def.submit') }}">
-                                            @csrf
-                                            <div class="mb-3">
-                                                <div class="row ">
-                                                    <div class="col-sm-6">
-                                                        <label for="valor_minimo_prestacoes" class="form-label mt-3">Valor
-                                                            minimo aceitavel</label>
-
-                                                        <input type="number" min="0" id="valor_minimo_prestacoes"
-                                                            class="form-control" name="min_val"
-                                                            value="{{ $defs->min_val }}" placeholder="Valor minimo">
-                                                    </div>
-                                                    <div class="col-sm-6 ">
-                                                        <label for="valor_maximo_prestacoes" class="form-label mt-3">Valor
-                                                            maximo aceitavel</label>
-
-                                                        <input required type="number" min="0" name="max_val"
-                                                            value="{{ $defs->max_val }}" id="valor_maximo_prestacoes"
-                                                            class="form-control" placeholder="Valor maximo">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <div class="row ">
-                                                    <div class="col-sm-6  mt-3">
-                                                        <label for="precentagem_cobrada"
-                                                            class="form-label mb-3 center">Opção pagar
-                                                            em prestações</label>
-                                                        @if ($defs->active)
-                                                            <input name="active" type="checkbox" id="switch1" checked
-                                                                data-switch="bool" />
-                                                        @else
-                                                            <input name="active" type="checkbox" id="switch1"
-                                                                data-switch="bool" />
-                                                        @endif
-                                                        <label for="switch1" data-on-label="Sim"
-                                                            data-off-label="Não"></label>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <label for="precentagem_cobrada" class="form-label mt-3">Percentagem
-                                                            Cobrada</label>
-
-                                                        <input required type="number" min="0"
-                                                            value="{{ $defs->percentage }}" id="precentagem_cobrada"
-                                                            name="percentage" class="form-control"
-                                                            placeholder="Percentagem Cobrada">
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <div class="row ">
-                                                    <div class="col-sm-6">
-                                                        <label for="valor_minimo_trasacoes" class="form-label mt-3">Numero
-                                                            de Transações Minimas</label>
-                                                        <input required type="number" min="0"
-                                                            value="{{ $defs->min_transactions }}"
-                                                            id="valor_minimo_trasacoes" name="min_transactions"
-                                                            class="form-control" placeholder="Valor minimo">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary rounded-pill">Atualizar</button>
-                                        </form>
-                                    </div> <!-- end preview-->
-                                </div> <!-- end tab-content-->
-                            </div> <!-- end card-body -->
-                        </div> <!-- end card -->
-                    </div> <!-- end col -->
-
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
 

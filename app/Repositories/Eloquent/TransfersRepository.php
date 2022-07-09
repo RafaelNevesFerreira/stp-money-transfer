@@ -2,11 +2,13 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Http\Controllers\SendMoneyController;
 use DateTime;
 use App\Models\Transfer;
 use App\Pipes\DateFilter;
 use App\Pipes\StatusFilter;
 use App\Jobs\PaimentSuccess;
+use App\Models\TransferComprovative;
 use App\Models\TransferReception;
 use App\Repositories\Contracts\NotificationsRepositoryInterface;
 use Illuminate\Support\Carbon;
@@ -22,8 +24,12 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     public $DOLAR_EURO_PARA = 0.953370;
     public $LIBRA_EURO_PARA = 1.16866;
 
-    public function __construct(public Transfer $model, public NotificationsRepositoryInterface $notifications, public TransferReception $transfer_receptor)
-    {
+    public function __construct(
+        public Transfer $model,
+        public NotificationsRepositoryInterface $notifications,
+        public TransferReception $transfer_receptor,
+        public SendMoneyController $send_money_controller
+    ) {
     }
 
     public function store()
@@ -61,6 +67,47 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         ]);
 
         PaimentSuccess::dispatch($email, session("name"), $transfer_code, session("receptor"))->delay(now());
+    }
+
+    public function new_transfer($request)
+    {
+        $transfer_code = uniqid("SMT");
+        $valor = (float) str_replace(".", "", $request["valor_enviado"]);
+
+
+        $tax = $this->send_money_controller->calculate_tax($valor);
+
+        PaimentSuccess::dispatch($request["email"], $request["name"], $transfer_code, $request["destinatary_name"])->delay(now());
+
+
+        return $this->model::create([
+            "name" => $request["name"],
+            "address" => $request["address"],
+            "currency" => $request["moeda"],
+            "country" => $request["country"],
+            "phone_number" => $request["phone_number"],
+            "email" => $request["email"],
+            "tax" => $tax,
+            "payment_method" => $request["payment_method"],
+            "value_sended" => $valor,
+            "destinatary_name" => $request["destinatary_name"],
+            "transfer_code" => $transfer_code,
+        ]);
+    }
+
+    public function storeImage($request, $id)
+    {
+        $data = new TransferComprovative();
+
+        if ($request->file('comprovativo')) {
+            $file = $request->file('comprovativo');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('images/comprovative'), $filename);
+            $data['name'] = $filename;
+            $data['transfers_id'] = $id;
+            $data['auth_id'] = Auth::user()->id;
+        }
+        $data->save();
     }
 
     public function get_by_user_email()
@@ -218,11 +265,11 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return $meses;
     }
 
-    public function pago_mes_ano($month, $year,$payment_method)
+    public function pago_mes_ano($month, $year, $payment_method)
     {
         return $this->model::whereMonth('created_at', $month)
             ->whereYear("created_at", $year)
-            ->where("payment_method",$payment_method)
+            ->where("payment_method", $payment_method)
             ->sum(DB::raw("value_sended + tax"));
     }
 
@@ -317,5 +364,4 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     {
         return $this->model::where("email", $email)->get();
     }
-
 }

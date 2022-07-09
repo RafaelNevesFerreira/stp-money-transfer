@@ -193,4 +193,48 @@
         });
 
 
+
+
+
+
     })
+
+    $("#nova_transacao").click(function() {
+        $("#nova_transacao_modal").modal("show")
+    })
+    $("#tipo_transacao").change(function() {
+        var value, div_receptor
+        value = $(this).val();
+        if ($(".cambio").attr("hidden") ==
+            "hidden") {
+            div_receptor =
+                "<div class='mb-3'><label for='receptor_name' class='form-label'>Nome do Receptor</label><input class='form-control' type='text' name='destinatary_name' id='receptor_name' required></div>"
+            email =
+                "<div class='mb-3'><label for='email' class='form-label'>Email</label><input class='form-control' type='text' name='email' id='email' required></div>"
+            name =
+                "<div class='mb-3'><label for='receptor_name' class='form-label'>Nome</label><input class='form-control' type='text' name='name' id='receptor_name' required></div>"
+            country =
+                "<div class='mb-3'><label for='country' class='form-label'>Pais de Residencia</label><input class='form-control' type='text' name='country' id='country' required></div>"
+            address =
+                "<div class='mb-3'><label for='address' class='form-label'>Morada</label><input class='form-control' type='text' name='address' id='address' required></div>"
+            phone_number =
+                "<div class='mb-3 '><label for='phone_number' class='form-label'>Numero de telemovel</label><input class='form-control' type='number' name='phone_number' id='phone_number' required></div>"
+            comprovativo =
+                "<div class='mb-3'><label for='comprovativo' class='form-label'>Comprovativo da Transferência</label><input class='form-control' accept='image/*' type='file' name='comprovativo' id='comprovativo' required></div>"
+            button =
+                "<div class='mb-3 text-center'><button class='btn btn-primary' id='enviar' type='submit'>Enviar</button></div>"
+
+
+            $("#transacao_modal_body_1")
+                .append(name + email + country);
+
+            $("#transacao_modal_body_2")
+                .append(address + phone_number + div_receptor);
+
+            $(".modal-body-row").append(comprovativo + button)
+            $(".cambio").removeAttr("hidden")
+            $(".comprovativo").removeAttr("hidden");
+
+
+        }
+    });

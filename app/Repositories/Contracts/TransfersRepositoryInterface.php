@@ -6,6 +6,8 @@ interface TransfersRepositoryInterface
 {
     public function all();
     public function store();
+    public function new_transfer($request);
+    public function storeImage($request,$id);
     public function get_by_user_email();
     public function details($id);
     public function received();
