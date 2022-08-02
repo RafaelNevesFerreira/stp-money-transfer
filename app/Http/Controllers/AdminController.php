@@ -9,7 +9,6 @@ use App\Repositories\Contracts\FaqRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\ContactRepositoryInterface;
 use App\Repositories\Contracts\ReviewsRepositoryInterface;
-use App\Repositories\Contracts\TransactionPlansDefInterface;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class AdminController extends Controller
@@ -176,8 +175,8 @@ class AdminController extends Controller
             ]);
 
 
-            $transfer = $this->transfer->new_transfer($request->all());
-            $this->transfer->storeImage($request, $transfer->id);
+            $transfer = $this->transfers->new_transfer($request->all());
+            $this->transfers->storeImage($request, $transfer->id);
 
 
             return redirect()->back()->with(["message" => "Transação efectuada com sucesso","status" => 200]);
@@ -189,7 +188,9 @@ class AdminController extends Controller
     public function transaction_details($id)
     {
         $transfer = $this->transfers->details($id);
+
         return view("admin.transfers.details", compact("transfer"));
+
     }
 
     public function change_status(Request $request)

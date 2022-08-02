@@ -50,10 +50,6 @@ class RepositoryProvider extends ServiceProvider
             'App\Repositories\Eloquent\ReviewsRepository',
         );
 
-        $this->app->bind(
-            'App\Repositories\Contracts\TransactionPlansDefInterface',
-            'App\Repositories\Eloquent\TransactionPlansDefRepository',
-        );
 
         $this->app->bind(
             'App\Repositories\Contracts\ContactRepositoryInterface',

@@ -64,6 +64,8 @@
 <script src="{{ asset('assets/dashboard/js/vendor/dataTables.checkboxes.min.js') }}"></script>
 
 <script src="{{ asset('assets/dashboard/js/pages/demo.sellers.js') }}"></script>
+<script src="{{ asset('assets/js/maskmoney.min.js') }}"></script>
+
 <script src="{{ asset('assets/js/app.js') }}"></script>
 
 <script>

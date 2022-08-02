@@ -1,7 +1,7 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "Stp Money transfer platform.",
+    "description": "Jimbulo platform.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {

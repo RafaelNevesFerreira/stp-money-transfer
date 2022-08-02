@@ -6,7 +6,6 @@ use DateTime;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PaymentRequest;
 use App\Repositories\Contracts\PlansRepositoryInterface;
-use App\Repositories\Contracts\TransactionPlansDefInterface;
 use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class AbonementController extends Controller
@@ -21,11 +20,10 @@ class AbonementController extends Controller
 
         public PlansRepositoryInterface $plans,
         public TransfersRepositoryInterface $transfers,
-        public TransactionPlansDefInterface $system_def,
     ) {
-        $this->valor_maximo = $this->system_def->get("max_val")->max_val;
-        $this->VALOR_MINIMO = $this->system_def->get("min_val")->min_val;
-        $this->TAX_POR_ENVIO_EM_PERCENTAGEM = $this->system_def->get("percentage")->percentage;
+        $this->valor_maximo = null;
+        $this->VALOR_MINIMO = null;
+        $this->TAX_POR_ENVIO_EM_PERCENTAGEM = null;
     }
     public function pagar_em_2_vezes()
     {

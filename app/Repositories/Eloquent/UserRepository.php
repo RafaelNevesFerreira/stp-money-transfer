@@ -2,16 +2,17 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Http\Requests\ProfilleChangeData;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProfilleChangeData;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\TransfersRepositoryInterface;
 
 class UserRepository extends AbstractRepository implements UserRepositoryInterface
 {
 
-    public function __construct(public User $model)
+    public function __construct(public User $model, public TransfersRepositoryInterface $transfer)
     {
     }
 
@@ -86,6 +87,8 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             "email" => $email_novo,
             "email_verified_at" => null,
         ]);
+
+        $this->transfer->email_changed($email_novo,$email);
     }
 
     public function all()

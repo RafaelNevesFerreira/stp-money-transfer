@@ -69,17 +69,19 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         PaimentSuccess::dispatch($email, session("name"), $transfer_code, session("receptor"))->delay(now());
     }
 
+    //criar uma nova transação apartir do painel tecnico ou admin
     public function new_transfer($request)
     {
+        //crio o ID unico que sera transmitido ao usuario para poder levantar o dinheiro
         $transfer_code = uniqid("SMT");
+
+        //tiro a caracte "." do valor enviado
         $valor = (float) str_replace(".", "", $request["valor_enviado"]);
 
-
+        //calculo a taxa com base no valor
         $tax = $this->send_money_controller->calculate_tax($valor);
 
-        PaimentSuccess::dispatch($request["email"], $request["name"], $transfer_code, $request["destinatary_name"])->delay(now());
-
-
+        //crio a transfer
         return $this->model::create([
             "name" => $request["name"],
             "address" => $request["address"],
@@ -93,23 +95,36 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             "destinatary_name" => $request["destinatary_name"],
             "transfer_code" => $transfer_code,
         ]);
+
+        //dispacho a job responsavel por enviar o email de confirmação ao usuario
+        PaimentSuccess::dispatch($request["email"], $request["name"], $transfer_code, $request["destinatary_name"])->delay(now());
     }
 
+    //função para tratar do upload dos comprovativos enviados pelo painel do tecnico ou do admin
     public function storeImage($request, $id)
     {
+        //cria uma instância do model e atribuo a uma variavel
         $data = new TransferComprovative();
 
+        //verifico se na request existe algum parametro denominado file
         if ($request->file('comprovativo')) {
+            //atribuo o parametro vindo da request a variavel filek
             $file = $request->file('comprovativo');
+            //crio o nome que sera atribuido ao ficheiro
             $filename = date('YmdHi') . $file->getClientOriginalName();
+            //mouvo o ficheiro para a pasta designada a baixo
             $file->move(public_path('images/comprovative'), $filename);
+
+            //crio um novo transfer comprovative
             $data['name'] = $filename;
-            $data['transfers_id'] = $id;
-            $data['auth_id'] = Auth::user()->id;
+            $data['transfer_id'] = $id;
+            $data['user_id'] = Auth::user()->id;
         }
+        //salvo
         $data->save();
     }
 
+    //função responsavel pelos filtros feitos no frontofficed pelo usuario na pagina de transfers
     public function get_by_user_email()
     {
 
@@ -117,7 +132,6 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             ->send($this->model::where("email", Auth::user()->email))
             ->through([
                 StatusFilter::class,
-
                 DateFilter::class,
             ])
             ->thenReturn()
@@ -125,12 +139,13 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             ->paginate(6);
     }
 
+    //metodo responsavel por retornar uma transfer pelo seu id
     public function details($id)
     {
-
         return $this->model::where("id", $id)->firstOrFail();
     }
 
+    //metodo responsavel por retornar o numero de transacoes realizadas esse mês
     public function received()
     {
         return $this->model::where("status", "received")->whereMonth('created_at', date("m"))->count();
