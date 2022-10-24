@@ -21,9 +21,6 @@ use phpDocumentor\Reflection\Types\Null_;
 class TransfersRepository extends AbstractRepository implements TransfersRepositoryInterface
 {
 
-    public $DOLAR_EURO_PARA = 0.953370;
-    public $LIBRA_EURO_PARA = 1.16866;
-
     public function __construct(
         public Transfer $model,
         public NotificationsRepositoryInterface $notifications,
