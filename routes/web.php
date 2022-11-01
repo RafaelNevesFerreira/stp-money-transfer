@@ -76,7 +76,7 @@ Route::controller(SendMoneyController::class)->group(function () {
 
 
 Route::controller(ProfileController::class)->group(function () {
-    Route::middleware(["verified"])->group(function () {
+    // Route::middleware(["verified"])->group(function () {
         Route::prefix("user")->group(function () {
             Route::get("profile", "profille")->name("profile.dashboard");
             Route::get("notifications", "notifications")->name("notifications");
@@ -87,7 +87,7 @@ Route::controller(ProfileController::class)->group(function () {
             Route::post("transactions_details", "transfer_details")->name("profille.transfer_details");
             Route::get("transactions_invoice/{id}", "invoice")->name("profille.invoice");
         });
-    });
+    // });
 });
 
 Route::controller(TecnicoController::class)->group(function () {
