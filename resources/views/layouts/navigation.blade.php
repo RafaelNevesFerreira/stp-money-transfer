@@ -2,12 +2,6 @@
     <div class="container">
         <div class="header-row">
             <div class="header-column justify-content-start">
-                <!-- Logo  ============================= -->
-                <div class="logo me-3">
-                    <a class="d-flex" href="{{ route('home') }}" title="{{ env("APP_NAME") }}"><img
-                                src="{{ asset('images/logo.jpg') }}" alt="Payyed" /></a>
-                </div>
-                <!-- Logo end -->
                 <!-- Collapse Button     ============================== -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-nav">
                     <span></span> <span></span> <span></span> </button>
