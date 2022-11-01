@@ -28,24 +28,28 @@
                 });
                 valor = parseFloat(valor.replace(".", ''))
 
-                if (valor >= 100 && valor <= 400) {
-                    var minha_tax = 27
-                } else if (valor > 400 && valor <= 800) {
-                    minha_tax = 50
-                } else if (valor > 800 && valor <= 1000) {
-                    minha_tax = 150
-                } else if (valor == 25) {
-                    minha_tax = 5;
-                } else if (valor < 25) {
-                    minha_tax = 3;
-                } else {
-                    minha_tax = 10;
+                if (valor >= 20 && valor <= 50) {
+                    var minha_tax = 2
+                } else if (valor > 50 && valor <= 150) {
+                    minha_tax = 4.5
+                } else if (valor > 150 && valor <= 300) {
+                    minha_tax = 9
+                } else if (valor > 300 && valor <= 500) {
+                    minha_tax = 15
+                } else if (valor > 500 && valor <= 1000) {
+                    minha_tax = 30;
+                } else if (valor > 1000 && valor <= 2500) {
+                    minha_tax = 75;
+                } else if (valor > 2500 && valor <= 5000) {
+                    minha_tax = 150;
+                } else if (valor < 20) {
+                    minha_tax = 1;
                 }
 
                 if (valor < 1) {
                     var tax = 0
                 } else {
-                    var tax = valor * 0.029 + 0.3 + minha_tax
+                    var tax = valor * 0.030 + 0.3 + minha_tax
                 }
 
                 var total = valor + tax;
@@ -193,4 +197,48 @@
         });
 
 
+
+
+
+
     })
+
+    $("#nova_transacao").click(function() {
+        $("#nova_transacao_modal").modal("show")
+    })
+    $("#tipo_transacao").change(function() {
+        var value, div_receptor
+        value = $(this).val();
+        if ($(".cambio").attr("hidden") ==
+            "hidden") {
+            div_receptor =
+                "<div class='mb-3'><label for='receptor_name' class='form-label'>Nome do Receptor</label><input class='form-control' type='text' name='destinatary_name' id='receptor_name' required></div>"
+            email =
+                "<div class='mb-3'><label for='email' class='form-label'>Email</label><input class='form-control' type='text' name='email' id='email' required></div>"
+            name =
+                "<div class='mb-3'><label for='receptor_name' class='form-label'>Nome</label><input class='form-control' type='text' name='name' id='receptor_name' required></div>"
+            country =
+                "<div class='mb-3'><label for='country' class='form-label'>Pais de Residencia</label><input class='form-control' type='text' name='country' id='country' required></div>"
+            address =
+                "<div class='mb-3'><label for='address' class='form-label'>Morada</label><input class='form-control' type='text' name='address' id='address' required></div>"
+            phone_number =
+                "<div class='mb-3 '><label for='phone_number' class='form-label'>Numero de telemovel</label><input class='form-control' type='number' name='phone_number' id='phone_number' required></div>"
+            comprovativo =
+                "<div class='mb-3'><label for='comprovativo' class='form-label'>Comprovativo da Transferência</label><input class='form-control' accept='image/*' type='file' name='comprovativo' id='comprovativo' required></div>"
+            button =
+                "<div class='mb-3 text-center'><button class='btn btn-primary' id='enviar' type='submit'>Enviar</button></div>"
+
+
+            $("#transacao_modal_body_1")
+                .append(name + email + country);
+
+            $("#transacao_modal_body_2")
+                .append(address + phone_number + div_receptor);
+
+            $(".modal-body-row").append(comprovativo + button)
+            $(".cambio").removeAttr("hidden")
+            $(".comprovativo").removeAttr("hidden");
+
+
+        }
+    });

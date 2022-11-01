@@ -2,11 +2,13 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Http\Controllers\SendMoneyController;
 use DateTime;
 use App\Models\Transfer;
 use App\Pipes\DateFilter;
 use App\Pipes\StatusFilter;
 use App\Jobs\PaimentSuccess;
+use App\Models\TransferComprovative;
 use App\Models\TransferReception;
 use App\Repositories\Contracts\NotificationsRepositoryInterface;
 use Illuminate\Support\Carbon;
@@ -19,11 +21,12 @@ use phpDocumentor\Reflection\Types\Null_;
 class TransfersRepository extends AbstractRepository implements TransfersRepositoryInterface
 {
 
-    public $DOLAR_EURO_PARA = 0.953370;
-    public $LIBRA_EURO_PARA = 1.16866;
-
-    public function __construct(public Transfer $model, public NotificationsRepositoryInterface $notifications, public TransferReception $transfer_receptor)
-    {
+    public function __construct(
+        public Transfer $model,
+        public NotificationsRepositoryInterface $notifications,
+        public TransferReception $transfer_receptor,
+        public SendMoneyController $send_money_controller
+    ) {
     }
 
     public function store()
@@ -63,6 +66,62 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         PaimentSuccess::dispatch($email, session("name"), $transfer_code, session("receptor"))->delay(now());
     }
 
+    //criar uma nova transação apartir do painel tecnico ou admin
+    public function new_transfer($request)
+    {
+        //crio o ID unico que sera transmitido ao usuario para poder levantar o dinheiro
+        $transfer_code = uniqid("SMT");
+
+        //tiro a caracte "." do valor enviado
+        $valor = (float) str_replace(".", "", $request["valor_enviado"]);
+
+        //calculo a taxa com base no valor
+        $tax = $this->send_money_controller->calculate_tax($valor);
+
+        //crio a transfer
+        return $this->model::create([
+            "name" => $request["name"],
+            "address" => $request["address"],
+            "currency" => $request["moeda"],
+            "country" => $request["country"],
+            "phone_number" => $request["phone_number"],
+            "email" => $request["email"],
+            "tax" => $tax,
+            "payment_method" => $request["payment_method"],
+            "value_sended" => $valor,
+            "destinatary_name" => $request["destinatary_name"],
+            "transfer_code" => $transfer_code,
+        ]);
+
+        //dispacho a job responsavel por enviar o email de confirmação ao usuario
+        PaimentSuccess::dispatch($request["email"], $request["name"], $transfer_code, $request["destinatary_name"])->delay(now());
+    }
+
+    //função para tratar do upload dos comprovativos enviados pelo painel do tecnico ou do admin
+    public function storeImage($request, $id)
+    {
+        //cria uma instância do model e atribuo a uma variavel
+        $data = new TransferComprovative();
+
+        //verifico se na request existe algum parametro denominado file
+        if ($request->file('comprovativo')) {
+            //atribuo o parametro vindo da request a variavel filek
+            $file = $request->file('comprovativo');
+            //crio o nome que sera atribuido ao ficheiro
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            //mouvo o ficheiro para a pasta designada a baixo
+            $file->move(public_path('images/comprovative'), $filename);
+
+            //crio um novo transfer comprovative
+            $data['name'] = $filename;
+            $data['transfer_id'] = $id;
+            $data['user_id'] = Auth::user()->id;
+        }
+        //salvo
+        $data->save();
+    }
+
+    //função responsavel pelos filtros feitos no frontofficed pelo usuario na pagina de transfers
     public function get_by_user_email()
     {
 
@@ -70,7 +129,6 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             ->send($this->model::where("email", Auth::user()->email))
             ->through([
                 StatusFilter::class,
-
                 DateFilter::class,
             ])
             ->thenReturn()
@@ -78,12 +136,13 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
             ->paginate(6);
     }
 
+    //metodo responsavel por retornar uma transfer pelo seu id
     public function details($id)
     {
-
         return $this->model::where("id", $id)->firstOrFail();
     }
 
+    //metodo responsavel por retornar o numero de transacoes realizadas esse mês
     public function received()
     {
         return $this->model::where("status", "received")->whereMonth('created_at', date("m"))->count();
@@ -218,11 +277,11 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
         return $meses;
     }
 
-    public function pago_mes_ano($month, $year,$payment_method)
+    public function pago_mes_ano($month, $year, $payment_method)
     {
         return $this->model::whereMonth('created_at', $month)
             ->whereYear("created_at", $year)
-            ->where("payment_method",$payment_method)
+            ->where("payment_method", $payment_method)
             ->sum(DB::raw("value_sended + tax"));
     }
 
@@ -317,5 +376,4 @@ class TransfersRepository extends AbstractRepository implements TransfersReposit
     {
         return $this->model::where("email", $email)->get();
     }
-
 }

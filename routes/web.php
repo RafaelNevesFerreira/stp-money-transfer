@@ -96,6 +96,7 @@ Route::controller(TecnicoController::class)->group(function () {
             Route::get("dashboard", "dashboard")->name("tecnico.dashboard");
             Route::get("transactions", "transactions")->name("tecnico.transactions");
             Route::get("transactions/{id}", "transaction_details")->name("tecnico.transaction.details");
+            Route::post("transactions/new", "new_transaction")->name("tecnico.transaction.new");
             Route::post("change_status", "change_status")->name("tecnico.change.status");
 
         });
@@ -111,6 +112,8 @@ Route::middleware("admin")->group(function () {
 
             Route::get("/transactions", "transfers")->name("admin.transfers");
             Route::get("/transactions/{id}", "transaction_details")->name("admin.transaction.details");
+            Route::post("transactions/new", "new_transaction")->name("admin.transaction.new");
+
 
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

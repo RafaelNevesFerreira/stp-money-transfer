@@ -61,25 +61,6 @@
                                     name="exp_year">
 
                             </div>
-                            @if ($active)
-                                <div class='col-md-12 col-md-4 form-group ' style="margin-bottom: 20px;">
-                                    <label class='control-label mt-3'>Deseja Pagar Em Prestações?</label>
-
-                                    <label class='control-label mt-3'>Sim</label>
-                                    <input type="radio" name="pagar_em_prestacoes" class="pagar_em_prestacoes" value="sim">
-                                    <label class='control-label mt-3'>Não</label>
-                                    <input type="radio" name="pagar_em_prestacoes" class="pagar_em_prestacoes" value="nao">
-
-                                </div>
-                                <div id="memes" hidden>
-                                    <div class='col-md-12 col-md-4 form-group ' style="margin-bottom: 20px;">
-                                        <label class='control-label mt-3'>Pagar em 2x</label>
-                                        <input type="radio" value="2" class="prestacoes" name="numero_prestacoes">
-                                    </div>
-                                </div>
-                            @endif
-
-
                         </div>
                         @if ($errors->any())
                             <div class='form-row row'>

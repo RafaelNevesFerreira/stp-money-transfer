@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="_token" content="{{ csrf_token() }}" />
 
-    <title>{{ env('APP_NAME') }} - Money Transfer and Online Payments </title>
+    <title>{{ env('APP_NAME') }} </title>
 
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="Coderthemes" name="author" />
+    <meta content="Rafael Ferreira" name="author" />
     <!-- App favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon-32x32.png') }}">
@@ -64,6 +64,9 @@
 <script src="{{ asset('assets/dashboard/js/vendor/dataTables.checkboxes.min.js') }}"></script>
 
 <script src="{{ asset('assets/dashboard/js/pages/demo.sellers.js') }}"></script>
+<script src="{{ asset('assets/js/maskmoney.min.js') }}"></script>
+
+<script src="{{ asset('assets/js/app.js') }}"></script>
 
 <script>
     $(".theme_color").click(function() {

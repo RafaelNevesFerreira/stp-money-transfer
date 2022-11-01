@@ -26,7 +26,9 @@
     <link href="{{ asset('assets/dashboard/css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style" />
     <link href="{{ asset('assets/dashboard/css/app-dark.min.css') }}" rel="stylesheet" type="text/css"
         id="dark-style" />
-        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/currency-flags.min.css') }}" />
+
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 
 </head>
 
@@ -37,7 +39,7 @@
         <!-- ========== Left Sidebar Start ========== -->
         @include('tecnicos.left_sidebar')
         <!-- Left Sidebar End -->
-        @yield("content")
+        @yield('content')
 
 
     </div>
@@ -46,39 +48,20 @@
     <!-- bundle -->
     <script src="{{ asset('assets/dashboard/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/dashboard/js/app.min.js') }}"></script>
+
     <script src="{{ asset('assets/dashboard/js/vendor/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/dashboard/js/vendor/dataTables.bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/dashboard/js/vendor/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/dashboard/js/vendor/responsive.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/dashboard/js/vendor/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/dashboard/js/vendor/dataTables.checkboxes.min.js') }}"></script>
+    <script src="{{ asset('assets/js/maskmoney.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 
     <script src="{{ asset('assets/dashboard/js/pages/demo.sellers.js') }}"></script>
     <script>
-        $("#recebido").click(function() {
-            var id;
-            id = $(this).attr("data-id")
-            $.ajaxSetup({
-                headers: {
-                    "X-CSRF-TOKEN": $("meta[name='_token']").attr("content")
-                }
-            });
 
-            $.ajax({
-                type: "POST",
-                url: "{{ route('tecnico.change.status') }}",
-                data: {
-                    "id": id
-                },
-                success: function(data) {
-                    $(this).remove();
-                    $(".label_recebido").remove();
-                    $.NotificationApp.send("Sucesso", "O estado foi atualizado com sucesso",
-                        "bottom-right", "Background color", "success")
-                    $(".process-line").css("width", "100%")
-                }
-            });
-        })
         $("#logout").click(function() {
             $.ajaxSetup({
                 headers: {
@@ -95,6 +78,17 @@
             });
         })
     </script>
+    @if (session('message') && session('status') === 200)
+        <script>
+            $.NotificationApp.send("Sucesso", "{{ session('message') }}",
+                "bottom-right", "Background color", "success")
+        </script>
+    @elseif (session('message') || session('status') === 500)
+        <script>
+            $.NotificationApp.send("Sucesso", "{{ session('message') }}",
+                "bottom-right", "Background color", "danger")
+        </script>
+    @endif
 </body>
 
 </html>

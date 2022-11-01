@@ -4,8 +4,8 @@
             <div class="header-column justify-content-start">
                 <!-- Logo  ============================= -->
                 <div class="logo me-3">
-                    {{-- <a class="d-flex" href="{{ route('home') }}" title="{{ env("APP_NAME") }}"><img
-                                src="{{ asset('images/logo.png') }}" alt="Payyed" /></a> --}}
+                    <a class="d-flex" href="{{ route('home') }}" title="{{ env("APP_NAME") }}"><img
+                                src="{{ asset('images/logo.jpg') }}" alt="Payyed" /></a>
                 </div>
                 <!-- Logo end -->
                 <!-- Collapse Button     ============================== -->

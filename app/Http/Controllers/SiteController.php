@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Mail\ReviewMail;
 use Illuminate\Http\Request;
-use App\Models\TransactionPlansDef;
 use App\Repositories\Contracts\FaqRepositoryInterface;
 use App\Repositories\Contracts\ContactRepositoryInterface;
 use App\Repositories\Contracts\ReviewsRepositoryInterface;
@@ -15,7 +14,6 @@ class SiteController extends Controller
         public FaqRepositoryInterface $faqs,
         public ReviewsRepositoryInterface $reviews,
         public ContactRepositoryInterface $contact,
-        public TransactionPlansDef $defs,
     ) {
     }
     public function index()
@@ -63,13 +61,8 @@ class SiteController extends Controller
 
     public function payment()
     {
-        if ($this->defs->first("active")->active === "0") {
-            $active = 0;
-        } else {
-            $active = 1;
-        }
 
-        return view("site.payment", compact("active"));
+        return view("site.payment");
     }
 
     public function help()

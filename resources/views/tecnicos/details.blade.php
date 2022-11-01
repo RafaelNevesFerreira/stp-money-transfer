@@ -1,9 +1,9 @@
-@extends("tecnicos.app")
+@extends('tecnicos.app')
 @section('content')
     <div class="content-page">
         <div class="content">
             <!-- Topbar Start -->
-            @include("tecnicos.topbar")
+            @include('tecnicos.topbar')
             <!-- end Topbar -->
 
             <!-- Start Content-->
@@ -15,8 +15,7 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a
-                                            href="{{ route('tecnico.transactions') }}">Transações</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('tecnico.transactions') }}">Transações</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Detalhes</a></li>
                                     <li class="breadcrumb-item active">#{{ $transfer->transfer_code }} </li>
@@ -96,10 +95,14 @@
                                 <ul class="list-unstyled mb-0">
                                     <li>
                                         <p class="mb-2"><span class="fw-bold me-2">Tipo de Pagamento:</span>
-                                            @if ($transfer->payment_method === "cash")
-                                                Pagar em Liquido
-                                            @else
+                                            @if ($transfer->payment_method === 'cash')
+                                                Pago em Liquido
+                                            @elseif ($transfer->payment_method === 'mb_way')
+                                                Pago em transferência Mb Way
+                                            @elseif ($transfer->payment_method === 'card')
                                                 Pago em cartão de credito
+                                            @else
+                                                Pago em Transferência Bancaria
                                             @endif
                                         </p>
                                         <p class="mb-2"><span class="fw-bold me-2">Valor enviado:</span>
@@ -111,6 +114,10 @@
                                             {{ $transfer->created_at->format('d-m-Y') }} às
                                             {{ $transfer->created_at->format('H:i:s') }}
                                         </p>
+                                        @if ($transfer->payment_method != 'card')
+                                            <div class='mb-3 text-center'><button class='btn btn-primary'
+                                                    id='detalhes_pagamento' type='button'>Detalhes</button></div>
+                                        @endif
 
                                     </li>
                                 </ul>
@@ -186,7 +193,8 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="name" class="form-label">Nome</label>
-                            <input class="form-control" type="text" name="name" id="name" required placeholder="Nome">
+                            <input class="form-control" type="text" name="name" id="name" required
+                                placeholder="Nome">
                         </div>
                         <div class="mb-3">
                             <label for="last_name" class="form-label">Apelido</label>
@@ -211,11 +219,62 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+        <div id="detalhes_do_pagamento" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="standard-modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">Detalhes</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <p class="mb-2"><span class="fw-bold me-2">Tipo de Pagamento:</span>
+                                    @if ($transfer->payment_method === 'cash')
+                                        Pago em Liquido
+                                    @elseif ($transfer->payment_method === 'mb_way')
+                                        Pago em transferência Mb Way
+                                    @elseif ($transfer->payment_method === 'card')
+                                        Pago em cartão de credito
+                                    @else
+                                        Pago em Transferência Bancaria
+                                    @endif
+                                </p>
+                                <p class="mb-2"><span class="fw-bold me-2">Valor enviado:</span>
+                                    {{ number_format($transfer->value_sended, 2, ',', '.') }}
+                                    €
+                                </p>
+
+                                <p class="mb-2"><span class="fw-bold me-2">Por:</span>
+                                    {{ $transfer->comprovative_user->name }},
+                                    @if ($transfer->comprovative_user->role == 2)
+                                        Tecnico
+                                    @else
+                                        Administrador
+                                    @endif
+                                </p>
+
+                                <img class="img-fluid" src="{{ asset("images/comprovative")."/".$transfer->comprovative->name }}" alt="">
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     </div>
 
     <script>
         $("#recebido").click(function() {
             $("#detalhes_do_receptor").modal("show")
+        })
+
+        $("#detalhes_pagamento").click(function() {
+            $("#detalhes_do_pagamento").modal("show")
         })
 
         $("#enviar").click(function() {
