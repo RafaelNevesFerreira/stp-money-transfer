@@ -22,6 +22,7 @@ class ProfileController extends Controller
     }
     public function profille()
     {
+        return "ok";
         $transfers  = $this->transfers->get_by_user_email();
 
         return view("profile.profille", compact("transfers"));
