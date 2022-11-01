@@ -76,7 +76,7 @@ Route::controller(SendMoneyController::class)->group(function () {
 
 
 Route::controller(ProfileController::class)->group(function () {
-    Route::middleware(["user", "verified"])->group(function () {
+    Route::middleware(["verified"])->group(function () {
         Route::prefix("user")->group(function () {
             Route::get("profile", "profille")->name("profile.dashboard");
             Route::get("notifications", "notifications")->name("notifications");
